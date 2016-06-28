@@ -1,0 +1,36 @@
+
+
+NUEVO CONTROLADOR o SECCIÓN
+
+1. Crear nuevo controlador en la carpeta Controllers con terminacion "Controller.php"
+    Ej: nuevoController.php
+2. En el archivo crear la clase nuevoController extendida de Controller, y agregar el metodo index.
+    /*class findriskController extends Controller {
+    	public function __construct() {
+        	parent::__construct();
+    	}
+    
+    	public function index()
+    	{
+        	//$post = $this->loadModel('post'); //cargar modelo
+        	//$this->_view->posts = $post->getPosts(); //  ejecutar metodos del modelo
+	        //$this->_view->setJs(array('index'));  // cargar js
+
+	        $this->_view->titulo = 'Find Risk';
+        	$this->_view->renderizar('index', 'findrisk');
+    	}
+     }
+
+3. En la carpeta views crear una nueva carpeta con el nombre del controlador... views/nuevo
+   e incluir el archivo index.phtml , uno por cada metodo creado en el controlador.
+	   Ej: nuevo.phtml , actualizar.phtml
+   En estos archivos se incluye el codigo html de cada vista.
+
+
+Para incluir un JS a una vista:
+1. Crear una carpeta llamada js dentro de views/nombrecontrolador/..
+2. Dentro de la carpeta crear el archivo .js con nombre al metodo a que hace referencia.
+  (Se puede incluir en un solo archivo todas las funciones)
+3. En el "metodo" del controlador requerido incluir la linea..
+	$this->_view->setJs(array('nuevo'));
+   El contenido del array son todos los archivos js de ese controlador.

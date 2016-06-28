@@ -1,0 +1,44 @@
+<h2>Registro</h2>
+
+<form name="form1" method="post" action="">
+    <input type="hidden" value="1" name="enviar" />
+    
+    <p>
+        <label>Nombres: </label>
+        <input type="text" name="nombre" value="<?php if(isset($this->datos)) echo $this->datos['nombre']; ?>" />
+    </p>
+    
+    <p>
+        <label>Apellidos: </label>
+        <input type="text" name="apellido" value="<?php if(isset($this->datos)) echo $this->datos['apellido']; ?>" />
+    </p>
+    
+    <p>
+        <label>Identificaci&oacute;n: </label>
+        <input type="text" name="documento" value="<?php if(isset($this->datos)) echo $this->datos['documento']; ?>" />
+    </p>
+
+    <p>
+        <label>Tel&eacute;fono: </label>
+        <input type="text" name="telefono" value="<?php if(isset($this->datos)) echo $this->datos['telefono']; ?>" />
+    </p>
+
+    <p>
+        <label>Correo Electr&oacute;nico: </label>
+        <input type="text" name="email" value="<?php if(isset($this->datos)) echo $this->datos['email']; ?>" />
+    </p>
+    
+    <p>
+        <label>Contrasena: </label>
+        <input type="password" name="pass" />
+    </p>
+    
+    <p>
+        <label>Confirmar: </label>
+        <input type="password" name="confirmar" />
+    </p>    
+        
+    <p>
+        <input type="submit" value="Enviar" />
+    </p>
+</form>

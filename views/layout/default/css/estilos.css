@@ -1,0 +1,91 @@
+
+	.colorWhite{
+		color           :#ecf0f1;
+		font-size       : 15px;
+	}
+		.colorBlue , .input-field label.active  , .input-field label  {
+		color           :#3498db;
+		font-size       : 15px;
+		}
+		.collapsible-header {
+		font-size       : 20px;
+		background-color: #27ae60;
+		color           :#ecf0f1;
+		}
+		#hogar .separador{
+		background-color: #27ae60;
+		height          : 70px;
+		width           : 100%
+		}
+		
+		
+		.subtitulos{
+		color           : white;
+		padding         : 4px;
+		margin-left     : 10px;
+		background-color: #27ae60;
+		}
+
+
+		.collapsible-body {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+       
+
+       /*.container{
+       	width: 98%;
+       }*/
+       label.preguntas{
+       	font-size: 18px;
+       	color :#3498db;
+       }
+       label.respuestas{
+       	color :#000;
+       }
+       .colorRed{
+       	color:red;
+       }
+       .titulo{
+       	text-align: center;
+       	font-size: 23px;
+       	color: #000;
+       }
+
+       #respuestaRiesgo{
+             background-color: #3498db;
+             color: red;
+             font-size:20px;
+             padding-right: 10px;
+             border-radius: 10px;
+             padding: 5px;
+             border-color: red;
+       }
+       #calcular{
+       	padding: 20px;
+       	background-color: #3498db;
+       	color: white;
+            cursor: pointer;
+       }
+       .boton-modificado{
+       	margin: 0px;
+       	height: 58px
+       }
+       .ventana{
+            position: relative;
+            display: inline-block;
+            background-color:  #64DD17;
+            color:white;
+            width:auto;
+            z-index: 30;
+            padding: 5px;
+            float: right;
+            border-radius: 5px;
+       }
+ 
+       .mensage{
+              cursor: pointer;
+       }
+
+    
+

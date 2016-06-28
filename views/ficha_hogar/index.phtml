@@ -1,0 +1,324 @@
+
+		<div class="row">
+
+			<form action="u.html" id="hogar" method="GET">
+
+				<ul class="collapsible" data-collapsible="accordion">
+
+					<li>
+						<div class="collapsible-header ">Ficha Hogar</div>
+						<div class="collapsible-body">
+
+							<div class="container">
+								<div class="row">
+									<br>
+									<div class="col s6">
+										<label for="first_name" class="colorBlue">1. Fecha Ingreso</label>
+										<input type="date" >
+
+									</div>
+								</div>
+
+								<div class="row">
+									<h6 class="subtitulos">Identificación del municipio</h6>
+									<div class="input-field col s6">
+										<input placeholder="Placeholder" type="text" class="validate">
+										<label for="municipio" class="colorWhite" >2. Municipio</label>
+									</div>
+									<div class="input-field col s6">
+										<input placeholder="Código municipio"  type="text" class="validate">
+										<label for="codMunicipio" class="colorWhite" >3. Código municipio</label>
+									</div>
+
+								</div>
+
+                                <div class="row">
+									<h6 class="subtitulos">Identificación del Hogar</h6>
+									<div class="input-field col s6">
+										<input placeholder="Código del hogar"  type="text" class="validate">
+										<label for="codHogar" class="colorWhite" >4. Código del hogar</label>
+									</div>
+
+								</div>
+
+
+								<div class="collapsible-header ">
+									<label for="" class="colorWhite" > UBICACIÓN HOGAR    </label>
+								</div>
+
+														
+						      <input name="ubicacion" type="radio" id="urbana" />
+						      <label for="urbana" class="colorBlue">4. Zona Urbana</label>
+						      <input name="ubicacion" type="radio" id="rural" />
+						      <label for="rural" class="colorBlue">5. Zona Rural</label>
+			
+						       <div  id="datosUrbano">
+								       <div class="row">
+								       	<br>
+											<div class="input-field col s6">
+												<input placeholder="Barrio Número" type="text" class="validate">
+												<label for="numBarrio" class="colorWhite" >5. Barrio Número</label>
+											</div>
+											<div class="input-field col s6">
+												<input placeholder="Nombre Barrio"  type="text" class="validate">
+												<label for="nomBarrio" class="colorWhite" >6. Nombre</label>
+											</div>
+								       </div>
+								       <div class="row">
+								    
+											<div class="input-field col s6">
+												<input placeholder="Nomenclatura" type="text" class="validate">
+												<label for="nomenclaturaBarrio" class="colorWhite" >5. Nomenclatura</label>
+											</div>
+											<div class="input-field col s6">
+												<input placeholder=""  type="text" class="validate">
+												<label for="noaplicaBarrio" class="colorWhite" >6. No aplica</label>
+											</div>
+								       </div>
+
+								</div>
+						
+						     
+                               <div  id="datosRural">
+								       <div class="row">
+								       	<br>
+											<div class="input-field col s6">
+												<input placeholder="Vereda o inspección Número" type="text" class="validate">
+												<label for="numVereda" class="colorWhite" >10.	Vereda o inspección Número</label>
+											</div>
+											<div class="input-field col s6">
+												<input placeholder="Nombre Vereda o inspección "  type="text" class="validate">
+												<label for="nomVereda" class="colorWhite" >11. Nombre</label>
+											</div>
+								       </div>
+								       <div class="row">
+								    
+											<div class="input-field col s6">
+												<input placeholder="Nomenclatura" type="text" class="validate">
+												<label for="nomenclaturaVereda" class="colorWhite" >12. Nomenclatura</label>
+											</div>
+											<div class="input-field col s6">
+												<input placeholder=""  type="text" class="validate">
+												<label for="noaplicaVereda" class="colorWhite" >13. No aplica</label>
+											</div>
+								       </div>
+
+								</div>
+
+							</div>
+
+
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header active">INDENTIFICAR MIEMBROS DEL HOGAR </div>
+						<div class="collapsible-body">
+							
+                          <!--
+                             	<div class="row ">
+                             	<br>
+								<div class="input-field col s1">
+												<input placeholder=""  type="text" class="validate">
+												<label for="codigoPersona" class="colorWhite" >14. Codigo</label>
+								</div>
+								<div class="input-field col s3">
+												<input placeholder=""  type="text" class="validate">
+												<label for="nomPersona" class="colorWhite" >15. Nombres y apellidos</label>
+								</div>
+								<div class="col s2">
+										  <label for="" class="colorBlue">16. Fecha Nacimiento</label>
+										   <input type="date" >
+                                      
+								</div>
+                                
+                                  
+                                <div class="input-field col s1">
+										    <select>
+										      <option value="" disabled selected></option>
+										      <option value="1">M</option>
+										      <option value="2">F</option>
+										    </select>
+								<label class="colorBlue">18. Sexo</label>
+							   </div>
+
+							   <div class="input-field col s4">
+												<input placeholder=""  type="text" class="validate">
+												<label for="nomPersona" class="colorWhite" >19. Vinculación familiar con respecto al jefe del hogar</label>
+								</div>
+							    </div>
+                                 -->
+                      <br>
+                          <div class="row">
+                            	  <div class="input-field col s3">
+										   <br> <select>
+										      <option value="" disabled selected></option>
+										      <option value="1">1 | Nuclear</option>
+										      <option value="2">2 | Extenso</option>
+										      <option value="3">3 |	Monopaternal</option>
+										      <option value="2">4 |	Unipersonal</option>
+										    </select>
+								<label class="colorBlue">25. Tipo de Hogar</label>
+							   </div>
+							       <div class="input-field col s3">
+										   <br>  <select>
+										      <option value="" disabled selected></option>
+										      <option value="1">M</option>
+										      <option value="2">F</option>
+										    </select>
+								<label class="colorBlue">26. Jefe Hogar</label>
+							   </div>
+                               <div class="input-field col s3"><br>
+									<input placeholder="Telefono de contacto"  type="text" class="validate">
+								<label class="colorBlue">27. Teléfono de contacto</label>
+							   </div>
+							    <div class="input-field col s3"><br>
+									<input placeholder="Telefono de contacto"  type="text" class="validate">
+								<label class="colorBlue">27. Teléfono de contacto</label>
+							   </div>
+
+                            </div>
+
+
+                         <table id="tabledatosHogar">
+					        <thead>
+					          <tr>
+					              <th class="colorBlue">14. Codigo</th>
+					              <th class="colorBlue">15. Nombres y apellidos</th>
+					              <th class="colorBlue">16. Tipo Documento</th>
+					              <th class="colorBlue">17. Fecha Nacimiento</th>
+					              <th class="colorBlue">18. Edad</th>
+					              <th class="colorBlue">19. Sexo</th>
+					              <th class="colorBlue">20. Vinculación familiar con respecto al jefe del hogar</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+
+					         <tr id="fila-nueva">
+					            <td><input placeholder="Codigo"  type="text" class="validate"></td>
+					            <td><input placeholder="Nombres y apellidos"  type="text" class="validate"></td>
+					            <td><input placeholder="Fecha de nacimiento"  type="date" class="validate"></td>
+					            <td><input placeholder="Edad"  type="text" class="validate"></td>
+					            <td>  <select id="seleccion" class="browser-default">
+										      <option value="" disabled selected></option>
+										      <option value="1">M</option>
+										      <option value="2">F</option>
+									  </select> </td>
+					            <td><input placeholder=""  type="text" class="validate"></td>
+					          </tr>
+
+					          <tr>
+					            <td><input placeholder="Codigo"  type="text" class="validate"></td>
+					            <td><input placeholder="Nombres y apellidos"  type="text" class="validate"></td>
+					            <td><input placeholder="Fecha de nacimiento"  type="date" class="validate"></td>
+					            <td><input placeholder="Edad"  type="text" class="validate"></td>
+					            <td>  <select class="browser-default">
+										      <option value="" disabled selected></option>
+										      <option value="1">M</option>
+										      <option value="2">F</option>
+									  </select>       </td>
+					            <td><input placeholder=""  type="text" class="validate"></td>
+					          </tr>
+
+					        
+					          
+					        </tbody>
+					      </table>
+
+                         <a class="btn waves-effect waves-light" type="submit" id="agregarFamiliar">Agregar Familiar
+										 
+										  </a>
+										  <br>
+										  <br>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header ">CARACTERÍSTICAS SOCIOECONÓMICAS DEL HOGAR  </div>
+						<div class="collapsible-body">
+							
+                         <table id="tablaSocioeconomica">
+                         	<thead class="colorBlue">
+                         		<tr>
+                         			<th>20. Código Miembro</th>
+                         			<th>21. Documento de Identidad</th>
+                         			<th>22. Escolaridad</th>
+                         			<th colspan="3">23.	Ocupación</th>
+                         			<th colspan="3">24.	Vinculación al SGSSS</th>
+                         		</tr>
+                                 <tr>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th>Tipo</th>
+                                 <th>Recive Pago</th>
+                                 <th>Aporta al hogar</th>
+                                 <th>Regimen</th>
+                                 <th>Tipo de Vinculacion </th>
+                                 <th>Nombre Eps</th>
+                                 </tr>
+
+                         	</thead>
+
+                         	<tbody>
+                         		<tr>
+                         			<td><input placeholder="Codigo"  type="text" class="validate"></td>
+                         			<td><input placeholder="Documento Identidad"  type="text" class="validate"></td>
+                         			<td><input placeholder="Escolaridad"  type="text" class="validate"></td>
+                         			<td><input placeholder="Tipo"  type="text" class="validate"></td>
+                         			<td><input placeholder="Recive pago"  type="text" class="validate"></td>
+                         			<td><input placeholder="Aporta al hogar"  type="text" class="validate"></td>
+                         			<td><input placeholder="Regimen"  type="text" class="validate"></td>
+                         			<td><input placeholder="Tipo de Vinculacion "  type="text" class="validate"></td>
+                         			<td><input placeholder="Nombre Eps"  type="text" class="validate"></td>
+                         		</tr>
+                         		<tr>
+                         			<td><input placeholder="Codigo"  type="text" class="validate"></td>
+                         			<td><input placeholder="Documento Identidad"  type="text" class="validate"></td>
+                         			<td><input placeholder="Escolaridad"  type="text" class="validate"></td>
+                         			<td><input placeholder="Tipo"  type="text" class="validate"></td>
+                         			<td><input placeholder="Recive pago"  type="text" class="validate"></td>
+                         			<td><input placeholder="Aporta al hogar"  type="text" class="validate"></td>
+                         			<td><input placeholder="Regimen"  type="text" class="validate"></td>
+                         			<td><input placeholder="Tipo de Vinculacion "  type="text" class="validate"></td>
+                         			<td><input placeholder="Nombre Eps"  type="text" class="validate"></td>
+                         		</tr>
+                         	</tbody>
+                         </table>
+
+
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header   ">CONDICIONES DE VULNERABILIDAD SOCIAL DEL HOGAR  </div>
+						<div class="collapsible-body">
+						<br>
+
+
+                          <table>
+                          	<thead class="colorBlue" >
+                          		<tr >
+                          			<th>28. Código miembro</th>
+                          			<th>29. Etapa del ciclo vital</th>
+                          			<th>30.	Condición de discapacidad</th>
+                          			<th>31. Grupo étnico</th>
+                          			<th>32.	Vinculación con el conflicto armado</th>
+                          			<th>33.	Población LGBTI</th>
+                          			<th>34.	Adolescentes en embarazo dependientes</th>
+                          			<th>35.	Menor trabajador</th>
+                          			<th>36.	Menores en deserción escolar</th>
+                          		</tr>
+                          	</thead>
+                          	<tbody>
+                          		    
+                          	</tbody>
+                          </table>
+
+
+							</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</form>
+</div>
