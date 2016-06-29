@@ -19,8 +19,15 @@ class firmaModel extends Model
 
     public function getFirmas()
 	{
-		$firmas = $this->_db->query("select * from firmas");
-        return $firmas->fetchall();
+		$firma = $this->_db->query("select * from firmas");
+        return $firma->fetchall();
 	}
+
+    public function getFirma($id)
+    {
+        $id = (int) $id;
+        $firma = $this->_db->query("select * from firmas where id = $id");
+        return $firma->fetch();
+    }
 }
  ?>

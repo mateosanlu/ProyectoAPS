@@ -23,27 +23,31 @@
 
 <body>
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><?php echo APP_NAME; ?></a>
-          <ul class="right hide-on-med-and-down">
-            <?php if(isset($_layoutParams['menu'])): ?>
-                    <?php for($i = 0; $i < count($_layoutParams['menu']); $i++): ?>
-                    <?php 
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="<?php echo BASE_URL; ?>" class="brand-logo">
+                <img class="z-depth-1" src="<?php echo $_layoutParams['ruta_img']; ?>logo.jpg" style="height:111px;">
+                <?php //echo APP_NAME; ?>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <?php if(isset($_layoutParams['menu'])): ?>
+                        <?php for($i = 0; $i < count($_layoutParams['menu']); $i++): ?>
+                        <?php 
 
-                    if($item && $_layoutParams['menu'][$i]['id'] == $item ){ 
-                    $_item_style = 'current'; 
-                    } else {
-                    $_item_style = '';
-                    }
+                        if($item && $_layoutParams['menu'][$i]['id'] == $item ){ 
+                        $_item_style = 'current'; 
+                        } else {
+                        $_item_style = '';
+                        }
 
-                    ?>
+                        ?>
 
-                    <li><a class="<?php echo $_item_style; ?>" href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><?php  echo $_layoutParams['menu'][$i]['titulo']; ?></a></li>
+                        <li><a class="<?php echo $_item_style; ?>" href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><?php  echo $_layoutParams['menu'][$i]['titulo']; ?></a></li>
 
-                    <?php endfor; ?>
-                <?php endif; ?>
-              <li><a href="">sass <span class="new badge">4</span></a></li>
-          </ul>
-
+                        <?php endfor; ?>
+                    <?php endif; ?>
+                <li><a href="">sass <span class="new badge">4</span></a></li>
+            </ul>
+          
           <ul id="nav-mobile" class="side-nav">
             <?php if(isset($_layoutParams['menu'])): ?>
                     <?php for($i = 0; $i < count($_layoutParams['menu']); $i++): ?>

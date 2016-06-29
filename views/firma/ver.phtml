@@ -1,0 +1,15 @@
+<a class="waves-effect waves-light btn" onclick="history.back(-1)">Atrás</a>
+<br>
+<?php 
+ 	$dir = ROOT.'public\temp'; // directory name
+	foreach (scandir($dir) as $item) {
+	if ($item == '.' || $item == '..') continue;
+	unlink($dir.DIRECTORY_SEPARATOR.$item);
+	}
+?>
+<?php if(isset($this->firma['firma'])) { 
+	$Base64Img = base64_decode($this->firma['firma']);
+	file_put_contents(ROOT.'public/temp/temp'.'VerFirma'.'.png', $Base64Img); 
+
+	echo '<img src="'.BASE_URL . 'public/temp/temp'.'VerFirma'.'.png" style="width:300px;">';
+} ?>

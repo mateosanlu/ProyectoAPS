@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL', 'http://127.0.0.1/aps/');
+define('BASE_URL', 'http://'.getHostByName(getHostName()).'/ProyectoAps/');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'default');
 

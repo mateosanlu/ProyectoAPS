@@ -19,7 +19,7 @@ class View
                 'enlace' => BASE_URL
                 ),
             array(
-                'id' => 'inicio',
+                'id' => 'idFirmas',
                 'titulo' => 'Firmas',
                 'enlace' => BASE_URL . 'firma'
                 )

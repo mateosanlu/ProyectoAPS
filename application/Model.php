@@ -5,7 +5,7 @@ class Model
     protected $_db;
     
     public function __construct() {
-        //$this->_db = new Database(); //deshabilitar instancia DB
+        $this->_db = new Database(); //deshabilitar instancia DB
     }
 }
 

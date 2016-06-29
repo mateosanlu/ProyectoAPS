@@ -1,194 +1,24 @@
-<DIV STYLE="">
-	<FORM NAME="STPadCaptDemo">
-		<P>&nbsp;&nbsp;&nbsp;&nbsp;
-			<INPUT language=javascript class="waves-effect waves-light btn" id=StartBtn onclick="Start()" type=button value="Start Demo" name=StartBtn disabled=true>
-		</P>
-	</FORM>
-</DIV>
+<a class="waves-effect waves-light btn" href="<?php echo BASE_URL . 'firma/nuevo'; ?>">Agregar firma</a>
 
-<DIV STYLE="">
-	<TABLE height=160 cellPadding=0 width=320 border=0>
-		<TR>
-			<TD>
-				<OBJECT id=STPadCapt height=320 width=430 classid=clsid:3946312B-1829-4D4F-A2DF-CD35C8908BA1 name=STPadCapt VIEWASTEXT>
-					<PARAM NAME="_Version" VALUE="131095">
-					<PARAM NAME="_ExtentX" VALUE="4842">
-					<PARAM NAME="_ExtentY" VALUE="1323">
-					<PARAM NAME="_StockProps" VALUE="0">
-				</OBJECT>
-			</TD>
-		</TR>
-	</TABLE>
-</DIV>
-
-<form id="form1" method="post" action="<?php echo BASE_URL; ?>firma/index">  
-
-    <textarea id="Base64" name="Base64" cols="200" rows="200"><?php if(isset($this->firma['firmaBase64'])) echo $this->firma['firmaBase64']; ?></textarea>
-    
-    <p><input type="submit" class="button" value="Guardar" /></p>
-</form>
-
-<?php if(isset($this->firmas)) : ?>
-
-<?php for($i = 0; $i < count($this->firmas); $i++): ?>
-
-	<?php $image = base64_to_jpeg( $this->firmas[$i]['firma'], 'tmp.png' ); ?>
- 	<img src="<?php echo $image ?>" style="width:300px;">
-  
-<?php endfor;?>
-<?php endif; ?>
-
-
-
-
-<SCRIPT LANGUAGE=javascript>
-<!--
-if (STPadCapt.DeviceGetCount() > 0)
-{
-	STPadCapt.ControlMirrorDisplay = 2;	// display bitmaps and signature in OCX window
-	document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-}
-else
-	alert("No devices detected. Please connect a signotec LCD Signature Pad and reload this page!");
-
-function Start()
-{
-	document.STPadCaptDemo.StartBtn.disabled=true;	// disable "Start Demo" button
-
-	// try to open first pad
-	nReturn = STPadCapt.DeviceOpen(0);
-	if	((nReturn < 0) && (nReturn != -6))
-	{
-		alert("Could not open device because of error " + nReturn);
-		document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-		return;
+<?php 
+	//BORRAR CONTENIDO CARPETAL TEMPORAL
+ 	$dir = ROOT.'public\temp'; 
+	foreach (scandir($dir) as $item) {
+	if ($item == '.' || $item == '..') continue;
+	unlink($dir.DIRECTORY_SEPARATOR.$item);
 	}
-	
-	// get path of the bitmap
-	pathArray = window.location.pathname.split('/');
-	pathname = "";
-	for (i = 1; i < pathArray.length - 1; i++)
-	{
-		pathname += pathArray[i];
-		pathname += "/";
-	}
-	//pathname = unescape(pathname) + "http://127.0.0.1/mvc/views/layout/default/img/DefaultBitmap.png";
-	pathname = "http://127.0.0.1/mvc/views/layout/default/img/DefaultBitmap.png";
-	
-	// alternatively use a URL
-	//pathname = "http://www.signotec.com/internet/datei.php?id=313b2d3b687474703a302e3538302e35387777772e6e6f6c69732d6d616e616765722e6465302e35386e6f6c69736d616e61676572302e3538776d302e35387369676e6f746563302e35386d656469656e302e353862696c646572302e35387465617365725f667261755f656e672e6a7067";
-	
-	// draw bitmap on LCD
-	nReturn = STPadCapt.DisplaySetImageFromFile(0, 0, pathname);
-	if (nReturn < 0)
-	{	// error
-		alert("Could not load bitmap because of error " + nReturn);
-		STPadCapt.DeviceClose(0);
-		document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-		return;
-	}
-	
-	// set signature window
-	nReturn = STPadCapt.SensorSetSignRect(0, 100, 0, 0);  //0, 43, 0, 0
-	if (nReturn < 0)
-	{   // error
-		alert("Could not set signature window because of error " + nReturn);
-		STPadCapt.DeviceClose();
-		document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-		return;
-	}
+?>
 
-	// add hot spots
-	nReturn = STPadCapt.SensorAddHotSpot(28, 22, 162, 58);  //168, 9, 85, 33
-	if (nReturn < 0)
-	{   // error
-		alert("Could not add 'Cancel' hot spot because of error " + nReturn);
-		STPadCapt.DeviceClose(0);
-		document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-		return;
-	}
-	nReturn = STPadCapt.SensorAddHotSpot(238, 22, 162, 58); //273, 9, 85, 33
-	if (nReturn < 0)
-	{   // error
-		alert("Could not add 'Retry' hot spot because of error " + nReturn);
-		STPadCapt.DeviceClose(0);
-		document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-		return;
-	}
-	nReturn = STPadCapt.SensorAddHotSpot(448, 22, 162, 58); //378, 9, 85, 33
-	if (nReturn < 0)
-	{   // error
-		alert("Could not add 'Confirm' hot spot because of error " + nReturn);
-		STPadCapt.DeviceClose(0);
-		document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-		return;
-	}
+<ul id="firmas" class="dropdown-content">
+	<?php if(isset($this->firmas)) : ?>
+		<?php for($i = 0; $i < count($this->firmas); $i++): ?>
+			
+			<li><a href="<?php echo BASE_URL . 'firma/ver/' . $this->firmas[$i]['id']; ?>"><?php echo $this->firmas[$i]['id']; ?></a></li>
+		 			  
+		<?php endfor;?>
+	<?php endif; ?>
+</ul>
+  <a class="btn dropdown-button" href="#!" data-activates="firmas">Ver<i class="mdi-navigation-arrow-drop-down right"></i></a>
 
-	// start capturing
-	nReturn = STPadCapt.SignatureStart();
-	if (nReturn < 0)
-	{   // error
-		alert("Could not start capture process because of error " + nReturn);
-		STPadCapt.DeviceClose();
-		document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-		return;
-	}
-}
-//-->
-</SCRIPT>
 
-<SCRIPT LANGUAGE=javascript FOR=STPadCapt EVENT=SensorHotSpotPressed(nHotSpotId)>
-<!--
-STPadCapt_SensorHotSpotPressed(nHotSpotId)
-//-->
-</SCRIPT>
 
-<SCRIPT LANGUAGE=javascript>
-<!--
-function STPadCapt_SensorHotSpotPressed(nHotSpotId)
-{
-	switch (nHotSpotId)
-	{
-		case 0: // "Cancel" button: cancel capturing
-			nReturn = STPadCapt.SignatureCancel();
-			if (nReturn < 0)
-				alert("Could not cancel capturing because of error " + nReturn);
-			else
-			{
-				nReturn = STPadCapt.DeviceClose(0);
-				if (nReturn < 0)
-					alert("Could not close device because of error " + nReturn);
-				document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-			}
-			break;
-		case 1: // "Retry" button: retry capturing
-			nReturn = STPadCapt.SignatureRetry();
-			if (nReturn < 0)
-				alert("Could not erase signature because of error " + nReturn);
-			break;
-		case 2: // "OK" button: confirm capturing
-			nReturn = STPadCapt.SignatureConfirm();
-			if (nReturn < 0)
-				alert("Could not confirm signature because of error " + nReturn);
-			else
-			{
-				if (nReturn > 0)
-				{
-					// show Base64 encoded image
-					//alert("This is the PNG image of the signature as Base64 encoded string:\n\n" + STPadCapt.SignatureSaveAsStreamEx(300, 0, 0, 201, 0, 0, 0));
-					//alert("This is the JPEG image of the signature as Base64 encoded string:\n\n" + STPadCapt.SignatureSaveAsStreamEx(300, 0, 0, 203, 0, 0, 0));
-
-					//SignatureSaveAsStreamEx(SHORT nResolution, LONG nWidth, LONG nHeight, SHORT nFileType, SHORT nPenWidth, OLE_COLOR clrPen, LONG nOptions)
-
-					document.getElementById("Base64").innerHTML = STPadCapt.SignatureSaveAsStreamEx(300, 0, 0, 203, 0, 0, 0);
-				}
-				// clean up
-				STPadCapt.SensorClearHotSpots();
-				STPadCapt.SensorClearSignRect();
-				document.STPadCaptDemo.StartBtn.disabled = false;	// enable "Start Demo" button
-			}
-			break;
-	}
-}
-//-->
-</SCRIPT>
