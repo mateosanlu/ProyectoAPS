@@ -50,7 +50,7 @@ class loginController extends Controller
             }
                         
             Session::set('autenticado', true);
-            Session::set('level', $row['role']);
+            Session::set('level', $row['rol']);
             Session::set('usuario', $row['usuario']);
             Session::set('id_usuario', $row['id']);
             Session::set('tiempo', time());

@@ -18,7 +18,13 @@
     <?php endfor; ?>
     <?php endif; ?>
 
-        
+    <script type="text/javascript">
+        $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+      });
+    </script>
+
 </head>
 
 <body>
@@ -41,7 +47,7 @@
 
                         ?>
 
-                        <li><a class="<?php echo $_item_style; ?>" href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><?php  echo $_layoutParams['menu'][$i]['titulo']; ?></a></li>
+                        <li><a class="<?php echo $_item_style ." ".$_layoutParams['menu'][$i]['class']; ?>" href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><?php  echo $_layoutParams['menu'][$i]['titulo']; ?></a></li>
 
                         <?php endfor; ?>
                     <?php endif; ?>
@@ -84,5 +90,35 @@
             <div id="mensaje"><?php echo $this->_mensaje; ?></div>
             <?php endif; ?>
 
+            <div id="login" class="modal">
 
                 
+                <form name="form1" method="post" action="<?php echo BASE_URL; ?>login">
+                    <div class="modal-content">
+                        <div class="row">
+                            <h2>Iniciar Sesi&oacute;n</h2>
+                            <input type="hidden" value="1" name="enviar" />
+                            <div class="row">
+                                <div class="input-field col s6">
+                                  <i class="material-icons prefix">account_circle</i>
+                                  <input id="icon_prefix" type="text" class="validate" name="usuario" value="<?php if(isset($this->datos)) echo $this->datos['usuario']; ?>">
+                                  <label for="icon_prefix">Usuario</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                  <i class="material-icons prefix">lock</i>
+                                  <input id="icon_prefix" type="password" name="pass" class="validate">
+                                  <label for="icon_prefix">Contraseña</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                        <input class="waves-effect waves-light btn" type="submit" value="Ingresar" />
+                    </div>
+                 </form>
+            </div>
+
+   

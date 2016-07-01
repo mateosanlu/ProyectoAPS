@@ -19,6 +19,44 @@ class View
                 'enlace' => BASE_URL
                 ),
             array(
+                'id' => 'formatos',
+                'titulo' => 'Formatos',
+                'enlace' => '#formatos'
+                )
+        );
+
+        $formatos = array(
+            array(
+                'id' => 'ficha_familiar',
+                'titulo' => 'Ficha familiar',
+                'enlace' => BASE_URL . 'ficha_hogar'
+                ),
+            array(
+                'id' => 'findrisk',
+                'titulo' => 'Test FindRisk',
+                'enlace' => BASE_URL . 'findrisk'
+                ),
+            array(
+                'id' => 'cancer_mama',
+                'titulo' => 'Cancer de mama',
+                'enlace' => BASE_URL . 'cancer_mama'
+                ),
+            array(
+                'id' => 'aiepi',
+                'titulo' => 'Ficha AIEPI',
+                'enlace' => BASE_URL . 'aiepi'
+                ),
+            array(
+                'id' => 'kardex_gestantes',
+                'titulo' => 'Kardex de gestantes',
+                'enlace' => BASE_URL . 'kardex_gestantes'
+                ),
+            array(
+                'id' => 'demanda_inducida',
+                'titulo' => 'Demanda inducida',
+                'enlace' => BASE_URL . 'demanda_inducida'
+                ),
+            array(
                 'id' => 'idFirmas',
                 'titulo' => 'Firmas',
                 'enlace' => BASE_URL . 'firma'
@@ -35,7 +73,9 @@ class View
             $menu[] = array(
                 'id' => 'login',
                 'titulo' => 'Iniciar Sesion',
-                'enlace' => BASE_URL . 'login'
+                //'enlace' => BASE_URL . 'login',
+                'enlace' => '#login',
+                'class' => 'modal-trigger'
                 );
             
             $menu[] = array(
@@ -56,6 +96,7 @@ class View
             'ruta_img' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/img/',
             'ruta_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/js/',
             'menu' => $menu,
+            'formatos' => $formatos,
             'js' => $js
         );
         
