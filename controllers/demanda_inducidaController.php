@@ -2,11 +2,11 @@
 
 class demanda_inducidaController extends Controller
 {
-    private $_respuestas;
+    private $_formato;
 
     public function __construct() {
         parent::__construct();
-        $this->_respuestas = $this->loadModel('demanda_inducida'); //cargar modelo
+        $this->_formato = $this->loadModel('demanda_inducida'); //cargar modelo
     }
     
     public function index()
@@ -20,24 +20,20 @@ class demanda_inducidaController extends Controller
 
     public function nuevo()
     {   
+        $this->_view->preguntas = $this->_formato->getPreguntas();
         $this->_view->titulo = 'Nuevo registro demanda inducida';
 
         if($this->getInt('guardar') == 1){
             $this->_view->datos = $_POST;
-            
-            if(!$this->getTexto('selectDemanda1')){
-                $this->_view->_error = $this->getPostParam('selectDemanda3').'Debe introducir la firma'.$this->getPostParam('selectDemanda2');
-                $this->_view->renderizar('nuevo', 'demanda_inducida');
-                exit;
-            }
-            
-            $result = $this->_respuestas->set(
+                        
+            $result = $this->_formato->set(
                     $this->getPostParam('selectDemanda1'),  $this->getPostParam('selectDemanda2'),   
                     $this->getPostParam('selectDemanda3'),  $this->getPostParam('selectDemanda4'),   
                     $this->getPostParam('selectDemanda5'),   $this->getPostParam('selectDemanda6'),
                     $this->getPostParam('selectDemanda7'),   $this->getPostParam('selectDemanda8'),   
                     $this->getPostParam('selectDemanda9'),   $this->getPostParam('selectDemanda10'),   
-                    $this->getPostParam('selectDemanda11'),   $this->getPostParam('selectDemanda12')
+                    $this->getPostParam('selectDemanda11'),   $this->getPostParam('selectDemanda12'),
+                    '2','1'
                     );
 
             if ($result == false) {

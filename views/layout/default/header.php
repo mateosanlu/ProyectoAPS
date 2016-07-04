@@ -18,6 +18,14 @@
     <?php endfor; ?>
     <?php endif; ?>
 
+    <?php if(isset($_layoutParams['css']) && count($_layoutParams['css'])): ?>
+    <?php for($i=0; $i < count($_layoutParams['css']); $i++): ?>
+    
+    <script src="<?php echo $_layoutParams['css'][$i] ?>" type="text/javascript"></script>
+    
+    <?php endfor; ?>
+    <?php endif; ?>
+
     <script type="text/javascript">
         $(document).ready(function(){
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered

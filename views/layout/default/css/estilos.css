@@ -1,55 +1,54 @@
+.colorWhite{
+            color           :#ecf0f1;
+            font-size       : 15px;
+            }
+            .colorBlue , .input-field label.active  , .input-field label  {
+            color           :#3498db;
+            font-size       : 15px;
+            }
+            .collapsible-header {
+            font-size       : 20px;
+            background-color: #27ae60;
+            color           :#ecf0f1;
+            }
+            #hogar .separador{
+            background-color: #27ae60;
+            height          : 70px;
+            width           : 100%
+            }
+            
+            
+            .subtitulos{
+            color           : white;
+            padding         : 4px;
+            margin-left     : 10px;
+            background-color: #27ae60;
+            }
 
-	.colorWhite{
-		color           :#ecf0f1;
-		font-size       : 15px;
-	}
-		.colorBlue , .input-field label.active  , .input-field label  {
-		color           :#3498db;
-		font-size       : 15px;
-		}
-		.collapsible-header {
-		font-size       : 20px;
-		background-color: #27ae60;
-		color           :#ecf0f1;
-		}
-		#hogar .separador{
-		background-color: #27ae60;
-		height          : 70px;
-		width           : 100%
-		}
-		
-		
-		.subtitulos{
-		color           : white;
-		padding         : 4px;
-		margin-left     : 10px;
-		background-color: #27ae60;
-		}
 
-
-		.collapsible-body {
-			padding-left: 5px;
-			padding-right: 5px;
-		}
+            .collapsible-body {
+                  padding-left: 5px;
+                  padding-right: 5px;
+            }
        
 
        /*.container{
-       	width: 98%;
+            width: 98%;
        }*/
        label.preguntas{
-       	font-size: 18px;
-       	color :#3498db;
+            font-size: 18px;
+            color :#3498db;
        }
        label.respuestas{
-       	color :#000;
+            color :#000;
        }
        .colorRed{
-       	color:red;
+            color:red;
        }
        .titulo{
-       	text-align: center;
-       	font-size: 23px;
-       	color: #000;
+            text-align: center;
+            font-size: 23px;
+            color: #000;
        }
 
        #respuestaRiesgo{
@@ -62,14 +61,16 @@
              border-color: red;
        }
        #calcular{
-       	padding: 20px;
-       	background-color: #3498db;
-       	color: white;
+            font-family: "Roboto", sans-serif;
+            padding: 20px;
+            background-color: #3498db;
+            color: white;
             cursor: pointer;
+
        }
        .boton-modificado{
-       	margin: 0px;
-       	height: 58px
+            margin: 0px;
+            height: 58px
        }
        .ventana{
             position: relative;
@@ -87,5 +88,70 @@
               cursor: pointer;
        }
 
+       .fecha > input{
+            border-bottom: 0px;
+       }
+
+    
+
+/*
+
+
+*/
+
+
+  .rotar{
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+  }
+  .border-tabla{
+      border: 1px solid #2ecc71;
+
+  }
+/*
+  .titulo-tabla{
+    background-color: #2ecc71;
+    border-right: 1px solid #000;
+  }
+*/
+    .border-tabla > td , .border-tabla > th{
+
+           border: 1px solid #2ecc71;    }
+
+  .alerta{
+    
+      background-color: red;
+      border-radius: 5px;
+  }
+
+  label.alerta{
+      color: white;
+
+  }
+  .obligatorio{
+      display: inline-block;
+      color: red;
+  }
+
+
+  p#barra{
+      padding: 5px;
+      background-color: #3498db;
+      border-radius:5px;
+      height: 5px;
+      width: 100%;
+ }
+
+
+
+
+
+
+
+
+    
+     div.container2{
+      padding: 30px;
+     }
     
 

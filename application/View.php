@@ -4,10 +4,12 @@ class View
 {
     private $_controlador;
     private $_js;
+    private $_css;
     
     public function __construct(Request $peticion) {
         $this->_controlador = $peticion->getControlador();
         $this->_js = array();
+        $this->_css = array();
     }
     
     public function renderizar($vista, $item = false)
@@ -86,9 +88,14 @@ class View
         }
         
         $js = array();
+        $css = array();
         
         if(count($this->_js)){
             $js = $this->_js;
+        }
+
+        if(count($this->_css)){
+            $css = $this->_css;
         }
         
         $_layoutParams = array(
@@ -97,7 +104,8 @@ class View
             'ruta_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/js/',
             'menu' => $menu,
             'formatos' => $formatos,
-            'js' => $js
+            'js' => $js,
+            'css' => $css
         );
         
         $rutaView = ROOT . 'views' . DS . $this->_controlador . DS . $vista . '.phtml';
@@ -120,6 +128,17 @@ class View
             }
         } else {
             throw new Exception('Error de js');
+        }
+    }
+
+    public function setCss(array $css)
+    {
+        if(is_array($css) && count($css)){
+            for($i=0; $i < count($css); $i++){
+                $this->_css[] = BASE_URL . 'views/' . $this->_controlador . '/css/' . $css[$i] . '.css';
+            }
+        } else {
+            throw new Exception('Error de css');
         }
     }
 }

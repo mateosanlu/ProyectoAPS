@@ -1,0 +1,1537 @@
+<div>
+	<h5 class="center-align teal lighten-2 ">Formulario Ficha AIEPI</h5>
+</div>
+
+	<div class="row">
+		<form action="<?php echo BASE_URL; ?>aiepi/nuevo" class="col s12" id="formAiepi" name="formAiepi" method="post">
+			<input type="hidden" name="guardar" value="1" />
+			<ul class="collapsible" data-collapsible="accordion">
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white white-text text-white">Datos De Ubicacion</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s2">
+								<input type="text" name="fechaEncuestaAiepi" id="fechaEncuestaAiepi" class="datepicker" 
+								value="01-07-2016">
+								<label class="blue-text text-darken-2" for="fechaEncuestaAiepi">1. Fecha</label>
+							</div>
+							<div class="input-field col s5">
+								<input type="text" name="nombreInstitucion" id="nombreInstitucion" class="validate"
+								value="HOSPITAL">
+								<label class="blue-text text-darken-2" for="nombreInstitucion">2. Institucion</label>
+							</div>
+							<div class="input-field col s5">
+								<select name="nombreMunicipio" id="nombreMunicipio">
+									<option value="" disabled selected>Seleccione Un Municipio</option>
+									<?php if(isset($this->municipios)): ?>
+				                        <?php for($i = 0; $i < count($this->municipios); $i++): ?>
+
+				                        	<option value="<?php echo $this->municipios[$i]['ID_MUNICIPIO']; ?>"><?php echo $this->municipios[$i]['DES_MUNICIPIO']; ?></option>
+
+				                        <?php endfor; ?>
+				                    <?php endif; ?>
+								</select>
+								<label  class="blue-text text-darken-2">3. Municipio</label>
+									
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<select name="aseguradorAiepi" id="aseguradorAiepi">
+									<option value="" disabled selected>Seleccione Eps</option>
+									<?php if(isset($this->eps)): ?>
+				                        <?php for($i = 0; $i < count($this->eps); $i++): ?>
+
+				                        	<option value="<?php echo $this->eps[$i]['ID_EPS']; ?>"><?php echo $this->eps[$i]['DES_EPS']; ?></option>
+
+				                        <?php endfor; ?>
+				                    <?php endif; ?>
+								</select>
+								<label>4. Asegurador (EPS)</label>
+							</div>
+							<!-- Los Tipos De Usuarios Se Traen De La Base De Datos -->
+							<div class="input-field col s6">
+								<select name="tipoDeUsuarioAiepi" id="tipoDeUsuarioAiepi">
+									<option value="1" disabled selected>Seleccion Tipo De Usuario</option>
+									<option value="2">CONTRIBUTIVO</option>
+									<option value="3">SUBSIDIADO</option>
+									<option value="4">VINCULADO</option>
+									<option value="5">POBRE NO ASEGURADO</option>
+									<option value="6">ESPECIAL</option>
+								</select>
+								<label for="aseguradorAiepi" class="blue-text text-darken-2" >5. Tipo De Usuario</label>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Datos Del Niño</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s12">
+							<?php 
+							//$queryNiño=mysql_query("SELECT ID_MIEMBROS_HOGAR, FICHA_HOGAR_ID_FIC_HOGAR,NOMBRE_MIEMBRO,FECHA_NACIMIENTO,IDENTIFICACION_MIEMBRO_HOGAR, 								DES_EPS FROM `miembros_hogar` INNER JOIN eps on eps.ID_EPS=miembros_hogar.EPS_ID_EPS");
+
+							/*	while ($row=mysql_fetch_array($queryNiño)) {
+												$miembroHogar=$row['ID_MIEMBROS_HOGAR'];
+												$fechaNacBD=$row['FECHA_NACIMIENTO'];
+											}			*/
+							 ?>
+								<input type="text" name="nombreNiño" id="nombreNiño" class="validate" value="<?php echo $miembroHogar;?>">
+								<label class="blue-text text-darken-2" for="nombreNiño">6. Nombres Y Apellidos</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s4">
+								<input type="text" name="rcNiño" id="rcNiño" class="validate">
+								<label for="rcNiño" class="blue-text text-darken-2">7. Registro Civil</label>
+							</div>
+							<div class="input-field col s4">
+								<input type="text" name="fechNacimientoNiño" id="fechNacimientoNiño" value="01/06/2016">
+								<label for="fechNacimientoNiño" class="blue-text text-darken-2">8. Fecha De Nacimiento</label>
+							</div>
+							<div class="input-field col s4">
+								<label for="" class="blue-text text-darken-2">9. Genero</label>
+								<br>
+								<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="masculinoGeneroAiepi" value="M">
+								<label for="masculinoGeneroAiepi">Masculino</label>
+								<br>
+								<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="femeninoGeneroAiepi" value="F">
+								<label for="femeninoGeneroAiepi">Femenino</label>
+							</div>
+						</div>
+						<div class="row">
+							<!-- Los Datos Se Traen De La Base De Datos -->
+							<div class="input-field col s6">
+								<select name="procedenciaAiepi" id="procedenciaAiepi">
+									<option value="" disabled selected>Seleccione una procedencia</option>
+									<option value="1">Urbana</option>
+									<option value="2">Rural</option>
+									<option value="3">Centros Poblados</option>
+								</select>
+								<label class="blue-text text-darken-2">10. Procedencia</label>
+							</div>
+							
+							<!-- Los Datos Se Traen De La Base De Datos -->
+							<div class="input-field col s6">
+								<select name="tipoPoblacionAiepi" id="tipoPoblacionAiepi">
+									<option value="" disabled selected>Seleccione Tipo De Poblacion</option>
+									<option value="1">Desplazado</option>
+									<option value="2">Desmovilizado</option>
+									<option value="3">Raizal</option>
+									<option value="4">Menor Abandonado</option>
+									<option value="5">Persona En Condicion De Discapacidad</option>
+									<option value="6">Afro</option>
+									<option value="7">ROM/Gitano</option>
+									<option value="8">Palenquero</option>
+									<option value="9">Indigena</option>
+									<option value="10">Habitante De Calle</option>
+									<option value="11">Victima Conflicto Armado</option>
+									<option value="12">No Aplica</option>
+								</select>
+								<label class="blue-text text-darken-2">11. Tipo De Poblacion</label>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Datos Del Acompañante</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" name="nombreAcompañanteAiepi" id="nombreAcompañanteAiepi">
+								<label for="nombreAcompañanteAiepi" class="blue-text text-darken-2">12. Nombres Y Apellidos Del Acompañante</label>
+							</div>
+						</div>
+						<div class="row">
+							<!-- Los Datos Se Traen De La Base De Datos -->
+							<div class="input-field col s3">
+								<select name="parentescoAiepi" id="parentescoAiepi">
+									<option value="" disabled selected>Seleccione Parentesco</option>
+									<option value="1">Jefe De Hogar</option>
+									<option value="2">Conyuge</option>
+									<option value="3">Madre</option>
+									<option value="4">Padre</option>
+									<option value="5">Hijo(a)</option>
+									<option value="6">Hermano(a)</option>
+									<option value="7">Abuelos(as)</option>
+									<option value="8">Sobrinos</option>
+									<option value="9">Madrasta</option>
+									<option value="10">Padrastro</option>
+									<option value="11">Otros Parientes</option>
+									<option value="12">Otros Miembros No Parientes</option>
+								</select>
+								<label class="blue-text text-darken-2">13. Parentesco</label>
+							</div>
+							<div class="input-field col s3">
+								<input type="text" name="direccionAiepi" id="direccionAiepi">
+								<label for="direccionAiepi" class="blue-text text-darken-2">14. Direccion</label>
+							</div>
+							<div class="input-field col s3">
+								<input type="text" name="TelefonoAiepi" id="TelefonoAiepi">
+								<label for="TelefonoAiepi" class="blue-text text-darken-2">15. Telefono</label>
+							</div>
+							<div class="input-field col s3">
+								<select name="evaluacionRealizadaAiepi" id="evaluacionRealizadaAiepi">
+									<option value="" disabled selected>Seleccione Evaluacion Realizada</option>
+									<option value="1">Primera Vez</option>
+									<option value="2">Seguimiento</option>
+									<option value="3">Por Alto Riesgo De La Familia</option>
+									<option value="4">Enfermedad De Alto Riesgo</option>
+								</select>
+								<label  class="blue-text text-darken-2">16. Evaluacion Realizada</label>
+							</div>
+						</div>
+						
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Primera Parte: Identificacion De Signos Generales De Riesgo</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s4">
+								17. Identificacion De Signos Generales De Riesgo
+								
+								<input type="checkbox" class="filled-in" name="tipSelecSignoRiesgoOp1" id="tipSelecSignoRiesgoOp1" value="1">
+								<label for="tipSelecSignoRiesgoOp1" class="black-text text-black"> No Puede Beber O Tomar El pecho</label>
+								<br>
+								<input type="checkbox" class="filled-in" name="tipSelecSignoRiesgoOp2" id="tipSelecSignoRiesgoOp2" value="2">
+								<label for="tipSelecSignoRiesgoOp2" class="black-text text-black"> Letargico</label>
+								<br>
+								<input type="checkbox" class="filled-in" name="tipSelecSignoRiesgoOp3" id="tipSelecSignoRiesgoOp3" value="3">
+								<label for="tipSelecSignoRiesgoOp3" class="black-text text-black"> Inconsciente</label>
+								<br>
+								<input type="checkbox" class="filled-in" name="tipSelecSignoRiesgoOp4" id="tipSelecSignoRiesgoOp4" value="4">
+								<label for="tipSelecSignoRiesgoOp4" class="black-text text-black"> Vomita Todo</label>
+								<br>
+								<input type="checkbox" class="filled-in" name="tipSelecSignoRiesgoOp5" id="tipSelecSignoRiesgoOp5" value="5">
+								<label for="tipSelecSignoRiesgoOp5" class="black-text text-black"> Convulsiones</label>
+								<br>
+								<input type="checkbox" class="filled-in" name="tipSelecSignoRiesgoOp6" id="tipSelecSignoRiesgoOp6" value="6">
+								<label for="tipSelecSignoRiesgoOp6" class="black-text text-black"> Ninguna De Las anteriores</label>
+								
+							</div>
+							<div class="input-field col s6">
+								<br>
+								18. Tiene el Niño o Niña Problemas De Salud Bucal?
+								
+								<br>
+								19. ¿Tiene Dolor o Molestia Al Comer?
+								
+								<br>
+								20. ¿Ha tenido Algun Golpe En La Boca?
+								
+								<br>
+								21. ¿Durante La Noche Duerme Sin Cepillarse Los Dientes?
+								
+								<br>
+								22. ¿Le Supervisa El Cepillado De Dientes?
+								
+								<br>
+								23. ¿Le Sangra La Encia Cuando Se Cepilla?
+								
+							</div>
+							<div class="input-field col s2">
+								<input class="with-gap" class="with-gap" type="radio" name="opProblemaSaludBocal" id="opProblemaSaludBocalSi" value="1">
+								<label for="opProblemaSaludBocalSi">Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opProblemaSaludBocal" id="opProblemaSaludBocalNo" value="0">
+								<label for="opProblemaSaludBocalNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opDolorAlComer" id="opDolorAlComerSi" value="1">
+								<label for="opDolorAlComerSi">Si</label>
+								<input class="with-gap" type="radio" name="opDolorAlComer" id="opDolorAlComerNo" value="0">
+								<label for="opDolorAlComerNo">No</label>
+								<br>
+								<input class="with-gap" class="with-gap" type="radio" name="opGolpeBoca" id="opGolpeBocaSi" value="1">
+								<label for="opGolpeBocaSi" >Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opGolpeBoca" id="opGolpeBocaNo" value="0">
+								<label for="opGolpeBocaNo">No</label>
+								<br>
+								<input class="with-gap" class="with-gap" type="radio" name="opDuermeSinCepillarse" id="opDuermeSinCepillarseSi" value="1">
+								<label for="opDuermeSinCepillarseSi">Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opDuermeSinCepillarse" id="opDuermeSinCepillarseNo" value="0">
+								<label for="opDuermeSinCepillarseNo">No</label>
+								<br>
+								<input class="with-gap" class="with-gap" type="radio" name="opSupervisaCepillado" id="opSupervisaCepilladoSi" value="1">
+								<label for="opSupervisaCepilladoSi">Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opSupervisaCepillado" id="opSupervisaCepilladoNo" value="0">
+								<label for="opSupervisaCepilladoNo">No</label>
+								<br>
+								<input class="with-gap" class="with-gap" type="radio" name="opSangraCuandoCepilla" id="opSangraCuandoCepillaSi" value="1">
+								<label for="opSangraCuandoCepillaSi">Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opSangraCuandoCepilla" id="opSangraCuandoCepillaNo" value="0">
+								<label for="opSangraCuandoCepillaNo">No</label>
+							</div>
+						</div>
+						<p></p>
+						<div class="row">
+							<br>
+							<div class="input-field col s2">
+								<input type="number" value="0" min="0" name="numValOdontologicasAño" id="numValOdontologicasAño">
+								<label for="numValOdontologicasAño" class="blue-text text-darken-2">24. ¿N° De Valoraciones Odontologicas En El Ultimo Año?</label>
+							</div>
+							<div class="input-field col s2">
+								
+								<input type="number" value="0" min="0" name="numHigieneOralDia" id="numHigieneOralDia">
+								<label for="numHigieneOralDia" class="blue-text text-darken-2">25. ¿Cuantas Veces Hace Higiene Oral Al Dia?</label>
+							</div>
+							<div class="input-field col s8">
+								<input type="text" name="dascHigOral" id="dascHigOral">
+								<label for="dascHigOral" class="blue-text text-darken-2">26. ¿Con Que Hace La Higienizacion Oral?</label>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Segunda Parte: Identificacion De Signos Generales De Riesgo</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s3">
+								27. ¿Tiene el Niño o Niña Tos?
+							</div>
+							<div class="input-field col s3">
+								<input class="with-gap" type="radio" name="opNiñoConTos" id="opNiñoConTosSi" value="1">
+								<label for="opNiñoConTosSi">Si</label>
+								<input class="with-gap" type="radio" name="opNiñoConTos" id="opNiñoConTosNo" checked="true" value="0">
+								<label for="opNiñoConTosNo">No</label>
+							</div>
+							<div class="input-field col s6" id="numDiasConTos" hidden="true">
+								<input type="number" min="0" name="numDiasConTos" id="numDiasConTos">
+								<label for="numDiasConTos" class="blue-text text-darken-2">28. Numero De Dias Que lleva Con Tos</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s3" >
+								29. ¿Tiene El Niño(a) Dificultado Para Respirar?
+							</div>
+							<div class="input-field col s3">
+								<input class="with-gap" type="radio" name="opDificultadParaRespirar" id="opDificultadParaRespirarSi" value="1">
+								<label for="opDificultadParaRespirarSi">Si</label>
+								<input class="with-gap" type="radio" name="opDificultadParaRespirar" id="opDificultadParaRespirarNo" checked="true" value="0">
+								<label for="opDificultadParaRespirarNo">No</label>
+							</div>
+							<div class="input-field col s6" id="numDiasConDificultadParaRespirar" hidden="true">
+								<input type="number" min="0" name="numDiasConDificultadParaRespirar" id="numDiasConDificultadParaRespirar">
+								<label for="numDiasConDificultadParaRespirar" class="blue-text text-darken-2">30. Numero De Dias Con Dificultad Para Respirar</label>
+							</div>
+						</div>
+						
+						<div class="row">
+							<!-- Posible Primera Parte Para Finalizar Validacion -->
+							<div class="input-field col s3">
+								31. ¿Tiene Tiraje Sucostal?
+							</div>
+							<div class="input-field col s3">
+								<input class="with-gap" class="with-gap" type="radio" name="opTirajeSucostal" id="opTirajeSucostalSi" value="1">
+								<label for="opTirajeSucostalSi" >Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opTirajeSucostal" id="opTirajeSucostalNo" value="0">
+								<label for="opTirajeSucostalNo" >No</label>
+							</div>
+							<div class="input-field col s6">
+								<input type="number" min="0" value="0" name="numRespiracionesPorMin" id="numRespiracionesPorMin">
+								<label for="numRespiracionesPorMin" class="blue-text text-darken-2">33. Numero De Respiraciones Por Minuto</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s3">
+								32. ¿Tiene Estridor?
+							</div>
+							<div class="input-field col s3">
+								<input class="with-gap" class="with-gap" type="radio" name="opTieneEstridor" id="opTieneEstridorSi" value="1">
+								<label for="opTieneEstridorSi">Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opTieneEstridor" id="opTieneEstridorNo" value="0">
+								<label for="opTieneEstridorNo" >No</label>
+							</div>
+							<div class="input-field col s3">
+								<br>
+								34. ¿Tiene Respiracion Rapida?
+								<br>
+								35. ¿Tiene Sibilancias?
+							</div>
+							<div class="input-field col s3">
+								<input class="with-gap" class="with-gap" type="radio" name="opRespiracionRapida" id="opRespiracionRapidaSi" value="1">
+								<label for="opRespiracionRapidaSi" >Si</label>
+								<input class="with-gap" class="with-gap" type="radio" name="opRespiracionRapida" id="opRespiracionRapidaNo" value="0">
+								<label for="opRespiracionRapidaNo" >No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opTieneSibilancias" id="opTieneSibilanciasSi" value="1">
+								<label for="opTieneSibilanciasSi" >Si</label>
+								<input class="with-gap" type="radio" name="opTieneSibilancias" id="opTieneSibilanciasNo" value="0">
+								<label for="opTieneSibilanciasNo">No</label>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Tercera Parte: Identificacion De Signos Generales De Riesgo</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s4">
+								36. ¿El Niño(a) Ha Estado en Contacto Con personas con TB?
+								<br>
+								38. ¿Tos Persistente con Mas De 21 Dias?
+							</div>
+							<div class="input-field col s2">
+								<input class="with-gap" type="radio" name="opContactoConPerTb" id="opContactoConPerTbSi" value="1">
+								<label for="opContactoConPerTbSi">Si</label>
+								<input class="with-gap" type="radio" name="opContactoConPerTb" id="opContactoConPerTbNo" value="0">
+								<label for="opContactoConPerTbNo">No</label>
+								<br><br>
+								<input class="with-gap" type="radio" name="opTosPersistenteMasDe21Dias" id="opTosPersistenteMasDe21DiasSi" value="1" value="1">
+								<label for="opTosPersistenteMasDe21DiasSi">Si</label>
+								<input class="with-gap" type="radio" name="opTosPersistenteMasDe21Dias" id="opTosPersistenteMasDe21DiasNo" value="0" value="2">
+								<label for="opTosPersistenteMasDe21DiasNo">No</label>
+							</div>
+							<div class="input-field col s4">
+								37. ¿El Niño(a) Ha Estado En contacto con Personas Sintomaticas Respiratorias?
+								<br>
+								39. ¿Perdida O Ganancia De Perso En Los Ultimos Tres Meses?
+							</div>
+							<div class="input-field col s2">
+								<input class="with-gap" type="radio" name="opContactoConPerSintomaticasResp" id="opContactoConPerSintomaticasRespSi" value="1">
+								<label for="opContactoConPerSintomaticasRespSi">Si</label>
+								<input class="with-gap" type="radio" name="opContactoConPerSintomaticasResp" id="opContactoConPerSintomaticasRespNo" value="0">
+								<label for="opContactoConPerSintomaticasRespNo">No</label>
+								<br><br>
+								<input class="with-gap" type="radio" name="opPerdidaOGananciaPesoUlt3Meses" id="opPerdidaOGananciaPesoUlt3MesesSi" value="1">
+								<label for="opPerdidaOGananciaPesoUlt3MesesSi">Si</label>
+								<input class="with-gap" type="radio" name="opPerdidaOGananciaPesoUlt3Meses" id="opPerdidaOGananciaPesoUlt3MesesNo" value="0">
+								<label for="opPerdidaOGananciaPesoUlt3MesesNo">No</label>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Cuarta Parte: Identificacion De Signos Generales De Riesgo</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s3">
+								<br>
+								40. ¿Tiene El Niño(a) Diarrea?
+								<br>
+								42. Fontanela O Molleja Hundida
+								<br>
+								44. ¿Hay Sangre En las Heces?
+								<br>
+								46. Ojos Undidos
+								<br>
+								48. Pliegue Cutaneo - Lento 2 seg o menor
+							</div>
+							<div class="input-field col s3">
+								<input class="with-gap" type="radio" name="opTieneDiarrea" id="opTieneDiarreaSi" value="1">
+								<label for="opTieneDiarreaSi" >Si</label>
+								<input class="with-gap" type="radio" name="opTieneDiarrea" id="opTieneDiarreaNo" checked="true" value="0">
+								<label for="opTieneDiarreaNo" >No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opFontanelaOMollejaHundida" id="opFontanelaOMollejaHundidaSi" value="1">
+								<label for="opFontanelaOMollejaHundidaSi">Si</label>
+								<input class="with-gap" type="radio" name="opFontanelaOMollejaHundida" id="opFontanelaOMollejaHundidaNo" value="0">
+								<label for="opFontanelaOMollejaHundidaNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opSangreEnHeces" id="opSangreEnHecesSi" value="1">
+								<label for="opSangreEnHecesSi">Si</label>
+								<input class="with-gap" type="radio" name="opSangreEnHeces" id="opSangreEnHecesNo" value="0">
+								<label for="opSangreEnHecesNo">No</label>
+								<br>
+								
+								<input class="with-gap" type="radio" name="opOjosUndidos" id="opOjosUndidosSi" value="1">
+								<label for="opOjosUndidosSi">Si</label>
+								<input class="with-gap" type="radio" name="opOjosUndidos" id="opOjosUndidosNo" value="0">
+								<label for="opOjosUndidosNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opPliegueCutaneoLento" id="opPliegueCutaneoLentoSi" value="1">
+								<label for="opPliegueCutaneoLentoSi">Si</label>
+								<input class="with-gap" type="radio" name="opPliegueCutaneoLento" id="opPliegueCutaneoLentoNo" value="0">
+								<label for="opPliegueCutaneoLentoNo">No</label>
+							</div>
+							<div class="input-field col s3" >
+								<!--Inicio De Validacion, Si la respuesta Anterior es SI-->
+								<div id="numDiasConDiarrea">
+									<input type="number" min="0" name="numDiasConDiarrea" id="numDiasConDiarrea" value="0">
+									<label  for="numDiasConDiarrea" class="blue-text text-darken-2">41. N° De Dias Con Diarrea</label>
+									<br><br>
+								</div>
+								43. Intranquilo O Irritable
+								<br>
+								45. Boca Seca O Mucha Sed
+								<br>
+								47. Pliegue Cutaneo - Muy Lento Mayor a 2 seg
+							</div>
+							<div class="input-field col s3">
+								<div id="numDiasConDiarreaCol2">
+									<p></p>
+								</div>
+								<input class="with-gap" type="radio" name="opIntranquiloOIrritable" id="opIntranquiloOIrritableSi" value="1">
+								<label for="opIntranquiloOIrritableSi">Si</label>
+								<input class="with-gap" type="radio" name="opIntranquiloOIrritable" id="opIntranquiloOIrritableNo"  value="0">
+								<label for="opIntranquiloOIrritableNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opBocaSecaOMuchaSed" id="opBocaSecaOMuchaSedSi" value="1">
+								<label for="opBocaSecaOMuchaSedSi">Si</label>
+								<input class="with-gap" type="radio" name="opBocaSecaOMuchaSed" id="opBocaSecaOMuchaSedNo"  value="0">
+								<label for="opBocaSecaOMuchaSedNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opPliegueCutaneoMuyLento" id="opPliegueCutaneoMuyLentoSi" value="1">
+								<label for="opPliegueCutaneoMuyLentoSi">Si</label>
+								<input class="with-gap" type="radio" name="opPliegueCutaneoMuyLento" id="opPliegueCutaneoMuyLentoNo"  value="0">
+								<label for="opPliegueCutaneoMuyLentoNo">No</label>
+								
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Quinta Parte: Identificacion De Signos Generales De Riesgo</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s4">
+								<br>
+								49. ¿El Niño(a) tiene fiebre?
+								<br><br>
+								<div id="textFiebre5Dias">
+									51. Fiebre De Mas De 5 Dias Todos Los Dias
+								</div>
+								53.Vive O Visito Zona De Riesgo De Dengue
+								<br>
+								55. Rigidez De Nuca
+								<br>
+								57. Piel Humeda Y Fria
+								<br>
+								59. Fiebre Mayor De 39°C
+								<br>
+								61. Coriza
+								<br>
+								63. Aspecto Toxico
+								<br>
+								65. Pulso Rapido Y Debil
+							</div>
+							<div class="input-field col s2">
+								<input class="with-gap" type="radio" name="opNiñoConFiebre" id="opNiñoConFiebreSi" value="1">
+								<label for="opNiñoConFiebreSi">Si</label>
+								<input class="with-gap" type="radio" name="opNiñoConFiebre" id="opNiñoConFiebreNo" value="0">
+								<label for="opNiñoConFiebreNo">No</label>
+								<br>
+								<br>
+								<div id="contFiebre5D">
+									<input class="with-gap" type="radio" name="opFiebreMasDe5DiasTodosLosDias" id="opFiebreMasDe5DiasTodosLosDiasSi" value="1">
+									<label for="opFiebreMasDe5DiasTodosLosDiasSi">Si</label>
+									<input class="with-gap" type="radio" name="opFiebreMasDe5DiasTodosLosDias" id="opFiebreMasDe5DiasTodosLosDiasNo" value="0">
+									<label for="opFiebreMasDe5DiasTodosLosDiasNo">No</label>
+									<br>
+								</div>
+								<input class="with-gap" type="radio" name="opViveVistZonaDenge" id="opViveVistZonaDengeSi" value="1">
+								<label for="opViveVistZonaDengeSi">Si</label>
+								<input class="with-gap" type="radio" name="opViveVistZonaDenge" id="opViveVistZonaDengeNo" value="0">
+								<label for="opViveVistZonaDengeNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opRigidezDeNuca" id="opRigidezDeNucaSi" value="1">
+								<label for="opRigidezDeNucaSi">Si</label>
+								<input class="with-gap" type="radio" name="opRigidezDeNuca" id="opRigidezDeNucaNo" value="0">
+								<label for="opRigidezDeNucaNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opPielHumedaYFria" id="opPielHumedaYFriaSi" value="1">
+								<label for="opPielHumedaYFriaSi">Si</label>
+								<input class="with-gap" type="radio" name="opPielHumedaYFria" id="opPielHumedaYFriaNo" value="0">
+								<label for="opPielHumedaYFriaNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opFiebreMayorDe39C" id="opFiebreMayorDe39CSi" value="1">
+								<label for="opFiebreMayorDe39CSi">Si</label>
+								<input class="with-gap" type="radio" name="opFiebreMayorDe39C" id="opFiebreMayorDe39CNo" value="0">
+								<label for="opFiebreMayorDe39CNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opCoriza" id="opCorizaSi" value="1">
+								<label for="opCorizaSi">Si</label>
+								<input class="with-gap" type="radio" name="opCoriza" id="opCorizaNo" value="0">
+								<label for="opCorizaNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opAspectoToxico" id="opAspectoToxicoSi" value="1">
+								<label for="opAspectoToxicoSi">Si</label>
+								<input class="with-gap" type="radio" name="opAspectoToxico" id="opAspectoToxicoNo" value="0">
+								<label for="opAspectoToxicoNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opPulsoRapidoYDebil" id="opPulsoRapidoYDebilSi" value="1">
+								<label for="opPulsoRapidoYDebilSi">Si</label>
+								<input class="with-gap" type="radio" name="opPulsoRapidoYDebil" id="opPulsoRapidoYDebilNo" value="0">
+								<label for="opPulsoRapidoYDebilNo">No</label>
+								
+							</div>
+							<div class="input-field col s4">
+								<div id="numDiasConFiebre">
+									<input type="number" min="0" value="0" name="numDiasConFiebre" id="numDiasConFiebre" size="8">
+									<label for="numDiasConFiebre" class="blue-text text-darken-2">50. N° Dias Con Fiebre</label>
+									
+								</div>
+								<p></p>
+								52. Vive O Visito Zona De Riesgo De Malaria
+								<br>
+								56. Manifestacion De Sangrado
+								<br>
+								58. Inquieto o Irritable
+								<br>
+								60. Tos
+								<br>
+								62. Ojos Rojos
+								<br>
+								64. Dolor Abdominal Continuo o Intenso
+								<br>
+								66. Erupcion Cutanea Y Generalizada
+							</div>
+							<div class="input-field col s2">
+								<br>
+								<select name="zonaVive" id="zonaVive">
+									<option value="" disabled selected>54. Zona</option>
+									<option value="">Urbana</option>
+									<option value="">Rural</option>
+									<option value="">Centros Poblados</option>
+								</select>
+								<br>
+								<input class="with-gap" type="radio" name="opViveOVisitoZonaMalaria" id="opViveOVisitoZonaMalariaSi" value="1">
+								<label for="opViveOVisitoZonaMalariaSi">Si</label>
+								<input class="with-gap" type="radio" name="opViveOVisitoZonaMalaria" id="opViveOVisitoZonaMalariaNo" value="0">
+								<label for="opViveOVisitoZonaMalariaNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opManifiestaSangrado" id="opManifiestaSangradoSi"  value="1">
+								<label for="opManifiestaSangradoSi">Si</label>
+								<input class="with-gap" type="radio" name="opManifiestaSangrado" id="opManifiestaSangradoNo" value="0">
+								<label for="opManifiestaSangradoNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opInquitoOIrritable" id="opInquitoOIrritableSi"   value="1">
+								<label for="opInquitoOIrritableSi">Si</label>
+								<input class="with-gap" type="radio" name="opInquitoOIrritable" id="opInquitoOIrritableNo" value="0">
+								<label for="opInquitoOIrritableNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opTieneTos" id="opTieneTosSi"  value="1">
+								<label for="opTieneTosSi">Si</label>
+								<input class="with-gap" type="radio" name="opTieneTos" id="opTieneTosNo" value="0">
+								<label for="opTieneTosNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opOjosRojos" id="opOjosRojosSi" value="1">
+								<label for="opOjosRojosSi">Si</label>
+								<input class="with-gap" type="radio" name="opOjosRojos" id="opOjosRojosNo"  value="0">
+								<label for="opOjosRojosNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opDolorAbdominalContOInt" id="opDolorAbdominalContOIntSi"  value="1">
+								<label for="opDolorAbdominalContOIntSi">Si</label>
+								<input class="with-gap" type="radio" name="opDolorAbdominalContOInt" id="opDolorAbdominalContOIntNo" value="0">
+								<label for="opDolorAbdominalContOIntNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opErupcionCutaneaYGeneral" id="opErupcionCutaneaYGeneralSi"  value="1">
+								<label for="opErupcionCutaneaYGeneralSi">Si</label>
+								<input class="with-gap" type="radio" name="opErupcionCutaneaYGeneral" id="opErupcionCutaneaYGeneralNo" value="0">
+								<label for="opErupcionCutaneaYGeneralNo">No</label>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Riesgo Para Cancer Infantil/Leucemias</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s4">
+								67. Fiebre Por Mas De 14 Dias Y/O Sudoracion
+								</br>
+								<div id="textContDespNiñ">
+									69. El Dolor De Cabeza Despierta Al Niño
+									
+									<br>
+									71. El Dolor De Cabeza Se Acompaña De Otro Sintoma Como Vomito
+									<br>
+								</div>
+								<div id="textDolHuesosIntrr">
+									73. Dolor De Huesos Interrumpe Las Actividades Del Niño
+									<br>
+								</div>
+								75. En Los Ultimos 3 Meses Ha Tenido Cambios Como Fatiga, Perdida De Apetito O Peso
+							</div>
+							<div class="input-field col s2">
+								<input class="with-gap" type="radio" name="opFiebreMasDe14Dias" id="opFiebreMasDe14DiasSi" value="1">
+								<label for="opFiebreMasDe14DiasSi">Si</label>
+								<input class="with-gap" type="radio" name="opFiebreMasDe14Dias" id="opFiebreMasDe14DiasNo" value="0">
+								<label for="opFiebreMasDe14DiasNo">No</label>
+								<br>
+								<div id="contOpDolorCabeza">
+									<input class="with-gap" type="radio" name="opDolorDeCabezaDespiertaAlNiño" id="opDolorDeCabezaDespiertaAlNiñoSi" value="1">
+									<label for="opDolorDeCabezaDespiertaAlNiñoSi">Si</label>
+									<input class="with-gap" type="radio" name="opDolorDeCabezaDespiertaAlNiño" id="opDolorDeCabezaDespiertaAlNiñoNo" value="0">
+									<label for="opDolorDeCabezaDespiertaAlNiñoNo">No</label>
+									<br>
+									
+									<input class="with-gap" type="radio" name="opDolorDeCabezaAcompañadoConVomito" id="opDolorDeCabezaAcompañadoConVomitoSi" value="1">
+									<label for="opDolorDeCabezaAcompañadoConVomitoSi">Si</label>
+									<input class="with-gap" type="radio" name="opDolorDeCabezaAcompañadoConVomito" id="opDolorDeCabezaAcompañadoConVomitoNo" value="0">
+									<label for="opDolorDeCabezaAcompañadoConVomitoNo">No</label>
+									<br>
+									<br>
+								</div>
+								<div id="contOpDolHuesIntrr">
+									
+									
+									<input class="with-gap" type="radio" name="opDolorHuesosInterrumpeActNiño" id="opDolorHuesosInterrumpeActNiñoSi" value="1">
+									<label for="opDolorHuesosInterrumpeActNiñoSi">Si</label>
+									<input class="with-gap" type="radio" name="opDolorHuesosInterrumpeActNiño" id="opDolorHuesosInterrumpeActNiñoNo" value="0">
+									<label for="opDolorHuesosInterrumpeActNiñoNo">No</label>
+								</div>
+								<br>
+								<br>
+								<input class="with-gap" type="radio" name="opUlt3MesesCambiosFatiga" id="opUlt3MesesCambiosFatigaSi" value="1">
+								<label for="opUlt3MesesCambiosFatigaSi">Si</label>
+								<input class="with-gap" type="radio" name="opUlt3MesesCambiosFatiga" id="opUlt3MesesCambiosFatigaNo" value="0">
+								<label for="opUlt3MesesCambiosFatigaSi">No</label>
+							</div>
+							<div class="input-field col s4">
+								<br>
+								68. Dolor De Cabeza Reciente Que Aumenta
+								<div class="row">
+									<div class="input-field" id="numDiasConDolorDeCabeza">
+										<input type="number" min="0" value="0" name="numDiasConDolorDeCabeza" id="numDiasConDolorDeCabeza">
+										<label for="numDiasConDolorDeCabeza" class="blue-text text-darken-2">70. Numero De Dias Que El Niño Tiene Dolor De Cabeza</label>
+									</div>
+								</div>
+								72. Ah Tenido Dolor De Huesos En El Ultimo Mes
+								<br>
+								<div id="textContDolHuesos">
+									74. El Dolor De Huesos Ha Ido En Aumento
+								</div>
+								<br>
+							</div>
+							<div class="input-field col s2">
+								<input class="with-gap" type="radio" name="opDolorDeCabezaRecAumenta" id="opDolorDeCabezaRecAumentaSi" value="1">
+								<label for="opDolorDeCabezaRecAumentaSi">Si</label>
+								<input class="with-gap" type="radio" name="opDolorDeCabezaRecAumenta" id="opDolorDeCabezaRecAumentaNo" value="0">
+								<label for="opDolorDeCabezaRecAumentaNo">No</label>
+								<div id="ContOtraColCabeza">
+									<p></p>
+									<br>
+								</div>
+								<br><br>
+								<input class="with-gap" type="radio" name="opDolorDeHuesosEnElUltimoMes" id="opDolorDeHuesosEnElUltimoMesSi" value="1">
+								<label for="opDolorDeHuesosEnElUltimoMesSi">Si</label>
+								<input class="with-gap" type="radio" name="opDolorDeHuesosEnElUltimoMes" id="opDolorDeHuesosEnElUltimoMesNo" value="0">
+								<label for="opDolorDeHuesosEnElUltimoMesNo">No</label>
+								<br><br>
+								<div id="opDolorHuesAumnet">
+									<input class="with-gap" type="radio" name="opDolorDeHuesosEnAumento" id="opDolorDeHuesosEnAumentoSi" value="1">
+									<label for="opDolorDeHuesosEnAumentoSi">Si</label>
+									<input class="with-gap" type="radio" name="opDolorDeHuesosEnAumento" id="opDolorDeHuesosEnAumentoNo" value="0">
+									<label for="opDolorDeHuesosEnAumentoNo">No</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Problemas De Oido</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s4">
+								<p>
+									76. El Niño(a) Tiene Problemas De Oido
+									<br>
+									78. Tiene Supuracion De Oido
+								</p>
+								<p>
+									80. Tumefaccion/Dolor Atras De La Oreja
+								</p>
+							</div>
+							<div class="input-field col s2">
+								<br>
+								<input class="with-gap" type="radio" name="opProblemasDeOido" id="opProblemasDeOidoSi" value="1">
+								<label for="opProblemasDeOidoSi">Si</label>
+								<input class="with-gap" type="radio" name="opProblemasDeOido" id="opProblemasDeOidoNo" value="0">
+								<label for="opProblemasDeOidoNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opSupuracionDeOido" id="opSupuracionDeOidoSi" value="1">
+								<label for="opSupuracionDeOidoSi">Si</label>
+								<input class="with-gap" type="radio" name="opSupuracionDeOido" id="opSupuracionDeOidoNo" value="0">
+								<label for="opSupuracionDeOidoNo">No</label>
+								<p></p>
+								<input class="with-gap" type="radio" name="opDolorAtrasDeLaOreja" id="opDolorAtrasDeLaOrejaSi" value="1">
+								<label for="opDolorAtrasDeLaOrejaSi">Si</label>
+								<input class="with-gap" type="radio" name="opDolorAtrasDeLaOreja" id="opDolorAtrasDeLaOrejaNo" value="0">
+								<label for="opDolorAtrasDeLaOrejaNo">No</label>
+							</div>
+							<div class="input-field col s3">
+								<div class="row">
+									<div class="input-field" id="numDeEpisodiosPrevios">
+										<input type="number" min="0" value="0" name="numDeEpisodiosPrevios" id="numDeEpisodiosPrevios">
+										<label for="numDeEpisodiosPrevios" class="blue-text text-darken-2">77. Numero De Episodios Previos</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field" id="numDiasConSupuracion">
+										<input type="number" min="0" value="0" name="numDiasConSupuracion" id="numDiasConSupuracion">
+										<label for="numDiasConSupuracion" class="blue-text text-darken-2">79. Hace cuantos Dias</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Problemas De Desnutricion</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s4">
+								<br>
+								81. El Niño(a) Tiene Desnutricion Y/O Anemia
+								<br>
+								82. Retraso En El Crecimiento
+								<br>
+								83. Valoracion De La Cara
+								<br>
+								84. Perdida De Tejido Muscular
+								<br>
+								85. El Sistema Oseo
+								<br>
+								86. Tejido Adiposo
+								<br>
+								87. Comportamiento
+								<br>
+								00. Apetito
+								<br>
+								88. Edema
+								<br>
+								89. Cabello
+							</div>
+							<div class="input-field col s7">
+								<input class="with-gap" type="radio" name="opNiñoDesnutricionOAnemia" id="opNiñoDesnutricionOAnemiaSi" value="1">
+								<label for="opNiñoDesnutricionOAnemiaSi">Si</label>
+								<input class="with-gap" type="radio" name="opNiñoDesnutricionOAnemia" id="opNiñoDesnutricionOAnemiaNo" value="0">
+								<label for="opNiñoDesnutricionOAnemiaNo">No</label>
+								<br>
+								<input class="with-gap" type="radio" name="opRetrasoDeCrecimiento" id="opRetrasoDeCrecimientoIntenso" value="1">
+								<label for="opRetrasoDeCrecimientoIntenso">Muy Intenso</label>
+								<input class="with-gap" type="radio" name="opRetrasoDeCrecimiento" id="opRetrasoDeCrecimientoMarcado"  value="0">
+								<label for="opRetrasoDeCrecimientoMarcado">Menos Marcado</label>
+								<br>
+								<input class="with-gap" type="radio" name="opValoracionDeCara" id="opValoracionDeCaraViejito"  value="1">
+								<label for="opValoracionDeCaraViejito">Cara De Viejito</label>
+								<input class="with-gap" type="radio" name="opValoracionDeCara" id="opValoracionDeCaraLunaLlena"  value="0">
+								<label for="opValoracionDeCaraLunaLlena">Cara De Luna Llena</label>
+								<br>
+								<input class="with-gap" type="radio" name="opPerdidaTejidoMusc" id="opPerdidaTejidoMuscMuyMarcada"  value="1">
+								<label for="opPerdidaTejidoMuscMuyMarcada">Muy Marcada</label>
+								<input class="with-gap" type="radio" name="opPerdidaTejidoMusc" id="opPerdidaTejidoMuscMarcada"  value="0">
+								<label for="opPerdidaTejidoMuscMarcada">Marcada</label>
+								<br>
+								<input class="with-gap" type="radio" name="opSistemaOseo" id="opSistemaOseoCostalVisible"  value="1">
+								<label for="opSistemaOseoCostalVisible">Rosario Costal Visible</label>
+								<input class="with-gap" type="radio" name="opSistemaOseo" id="opSistemaOseoPiernasDeSable"  value="0">
+								<label for="opSistemaOseoPiernasDeSable">Piernas De Sable</label>
+								<br>
+								<input class="with-gap" type="radio" name="opTejidoAdiposo" id="opTejidoAdiposoAusente"  value="1">
+								<label for="opTejidoAdiposoAusente">Ausente</label>
+								<input class="with-gap" type="radio" name="opTejidoAdiposo" id="opTejidoAdiposoPocoDisminuido"  value="1">
+								<label for="opTejidoAdiposoPocoDisminuido">Poco Disminuido</label>
+								<br>
+								<input class="with-gap" type="radio" name="opComportamiento" id="opComportamientoMirada"  value="1">
+								<label for="opComportamientoMirada">Mirada De Angustia</label>
+								<input class="with-gap" type="radio" name="opComportamiento" id="opComportamientoLlanto"  value="0">
+								<label for="opComportamientoLlanto">Llanto/Apatia</label>
+								<br>
+								<input class="with-gap" type="radio" name="opApetito" id="opApetitoDisminuido"  value="1">
+								<label for="opApetitoDisminuido">Disminuido</label>
+								<input class="with-gap" type="radio" name="opApetito" id="opApetitoAumentado"  value="0">
+								<label for="opApetitoAumentado">Aumentado</label>
+								<br>
+								<input class="with-gap" type="radio" name="opCabello" id="opCabelloEscaso"  value="1">
+								<label for="opCabelloEscaso">Escaso</label>
+								<input class="with-gap" type="radio" name="opCabello" id="opCabelloDebil"  value="0">
+								<label for="opCabelloDebil">Debil</label>
+								<br>
+								<input class="with-gap" type="radio" name="opEdema" id="opEdemaSi"  value="1">
+								<label for="opEdemaSi">Si</label>
+								<input class="with-gap" type="radio" name="opEdema" id="opEdemaNo"  value="0">
+								<label for="opEdemaNo">No</label>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Perimetro Braquial</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s7">
+								<!--Color:Marcar El Color Obtenido Al Medir La Circunferencia En El Punto Medio Del Brazo-->
+								
+								<select name="opMarcaDelColorBrazo" id="opMarcaDelColorBrazo">
+									<option value="" disabled selected>Perimetro Braquial</option>
+									<option value="8">Rojo</option>
+									<option value="9">Naranja</option>
+									<option value="10">Amarillo</option>
+									<option value="11">Verde</option>
+									
+								</select>
+								<label class="blue-text text-darken-2">90. Toma Del Perimetro Bracial</label>
+								
+							</div>
+							<div class="input-field col s4">
+								<div class="row">
+									<div class="input-field">
+										<input type="text" name="mediaMarcaColorBrazo" id="mediaMarcaColorBrazo">
+										<label for="mediaMarcaColorBrazo" class="blue-text text-darken-2">91. Media</label>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</li>
+				<li id="contMedidasProtecMenor6Meses" hidden="true">
+					<div class="collapsible-header teal darken-2 white-text text-white"  >Aplicacion De Medidas De Proteccion De Salud Niños Menores De 6 Meses</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s3">
+								92. ¿El Lactante Toma Seno?
+							</div>
+							<div class="input-field col s2">
+								<input class="with-gap" type="radio" name="opTomaSenoMen6Meses" id="opTomaSenoMen6MesesSi" value="1">
+								<label for="opTomaSenoMen6MesesSi">Si</label>
+								<input class="with-gap" type="radio" name="opTomaSenoMen6Meses" id="opTomaSenoMen6MesesNo" value="0">
+								<label for="opTomaSenoMen6MesesNo">No</label>
+							</div>
+							<div class="input-field col s3" id="numVecesTomaSenoDiaMen6Meses">
+								
+								<input type="number" min="0" value="0" name="numVecesTomaSenoDiaMen6Meses" id="numVecesTomaSenoDiaMen6Meses">
+								<label for="numVecesTomaSenoDiaMen6Meses" class="blue-text text-darken-2">93. ¿Cuantas Veces Toma Seno En El Dia?</label>
+								
+							</div>
+							<div class="input-field col s3" id="numVecesTomaSenoNocheMen6Meses">
+								
+								<input type="number" min="0" value="0" name="numVecesTomaSenoNocheMen6Meses" id="numVecesTomaSenoNocheMen6Meses">
+								<label for="numVecesTomaSenoNocheMen6Meses" class="blue-text text-darken-2">94. ¿Cuantas Veces Toma Seno En La Noche?</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6" id="posicionTomaSeno">
+								<p class="blue-text text-darken-2">
+									95. La Posicion:
+									<br><input type="checkbox" class="filled-in" name="posicionTomaSenoNum1" id="posicionTomaSenoNum1" value="12">
+									<label for="posicionTomaSenoNum1">El Lactante Esta En Direccion Al Pecho De La MAdre Con La Nariz Frente Al Pezon</label>
+									<br><input type="checkbox" class="filled-in" name="posicionTomaSenoNum2" id="posicionTomaSenoNum2" value="13">
+									<label for="posicionTomaSenoNum2">El Cuerpo Del Lactante Est Frente A La Madre</label>
+									<br><input type="checkbox" class="filled-in" name="posicionTomaSenoNum3" id="posicionTomaSenoNum3" value="14">
+									<label for="posicionTomaSenoNum3">La Madre Sostiene Todo el Cuerpo Del Niño(a)</label>
+								</p>
+							</div>
+							<div class="input-field col s6" id="agarreTomaSeno">
+								<p class="blue-text text-darken-2">
+									96. Agarre
+									<br><input type="checkbox" class="filled-in" name="agarreTomaSenoNum1" id="agarreTomaSenoNum1" value="15">
+									<label for="agarreTomaSenoNum1">El Menton Toca El Seno</label>
+									<br><input type="checkbox" class="filled-in" name="agarreTomaSenoNum2" id="agarreTomaSenoNum2" value="16">
+									<label for="agarreTomaSenoNum2">El Labio Inferior Esta Hacia Afuera</label>
+									<br><input type="checkbox" class="filled-in" name="agarreTomaSenoNum3" id="agarreTomaSenoNum3" value="17">
+									<label for="agarreTomaSenoNum3">Aureola Se Va Mas Arriba Que Abajo</label>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<p class="blue-text text-darken-2">
+									97. ¿Tiene Alguna Dificultad Para Amamantarlo?
+									<br>
+									<input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum1" id="dificultadParaAmamantarNum1" value="18">
+									<label for="dificultadParaAmamantarNum1">No Lacta</label>
+									<br><input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum2" id="dificultadParaAmamantarNum2" value="19">
+									<label for="dificultadParaAmamantarNum2">No Tiene Dificultad</label>
+									<br><input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum3" id="dificultadParaAmamantarNum3" value="20">
+									<label for="dificultadParaAmamantarNum3">Le Duele</label>
+									<br><input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum4" id="dificultadParaAmamantarNum4" value="21">
+									<label for="dificultadParaAmamantarNum4">No Le Baja Leche</label>
+									<br><input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum5" id="dificultadParaAmamantarNum5" value="22">
+									<label for="dificultadParaAmamantarNum5">Produce Mucha Leche</label>
+									<br><input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum6" id="dificultadParaAmamantarNum6" value="23">
+									<label for="dificultadParaAmamantarNum6">Laceracion Del Pezon</label>
+									<br><input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum7" id="dificultadParaAmamantarNum7" value="24">
+									<label for="dificultadParaAmamantarNum7">Hospitalizacion</label>
+									<br><input type="checkbox" class="filled-in" name="dificultadParaAmamantarNum8" id="dificultadParaAmamantarNum8" value="25">
+									<label for="dificultadParaAmamantarNum8">Otro</label>
+								</p>
+								<!--
+								<div class="row">
+								<div class="input-field col s8">
+							<input type="text" name="dificultadParaAmamantarOtro" id="dificultadParaAmamantarOtro">
+						<label for="dificultadParaAmamantarOtro">¿Cual?</label>
+																			</div>
+								</div>-->
+							</div>
+							<div class="input-field col s6">
+								<p class="blue-text text-darken-2">
+									98. ¿El Lactante Recibe Habitualmente Otros Alimentos?
+									<br><input type="checkbox" class="filled-in" name="lactRecibeOtrosAlimentosNum1" id="lactRecibeOtrosAlimentosNum1" value="26">
+									<label for="lactRecibeOtrosAlimentosNum1">Otra Leche</label>
+									<br><input type="checkbox" class="filled-in" name="lactRecibeOtrosAlimentosNum2" id="lactRecibeOtrosAlimentosNum2" value="27">
+									<label for="lactRecibeOtrosAlimentosNum2">Jugo</label>
+									<br><input type="checkbox" class="filled-in" name="lactRecibeOtrosAlimentosNum3" id="lactRecibeOtrosAlimentosNum3" value="28">
+									<label for="lactRecibeOtrosAlimentosNum3">Agua</label>
+									<br><input type="checkbox" class="filled-in" name="lactRecibeOtrosAlimentosNum4" id="lactRecibeOtrosAlimentosNum4" value="29">
+									<label for="lactRecibeOtrosAlimentosNum4">Colada</label>
+									<br><input type="checkbox" class="filled-in" name="lactRecibeOtrosAlimentosNum5" id="lactRecibeOtrosAlimentosNum5" value="30">
+									<label for="lactRecibeOtrosAlimentosNum5">Papillas</label>
+									<br><input type="checkbox" class="filled-in" name="lactRecibeOtrosAlimentosNum6" id="lactRecibeOtrosAlimentosNum6" value="31">
+									<label for="lactRecibeOtrosAlimentosNum6">No Recibe</label>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<p class="blue-text text-darken-2">
+									99. Estos Alimentos Contienen
+									<br><input type="checkbox" class="filled-in" name="alimentosContienenSal" id="alimentosContienenSal" value="32">
+									<label for="alimentosContienenSal">Sal</label>
+									<br><input type="checkbox" class="filled-in" name="alimentosContienenAzucar" id="alimentosContienenAzucar"  value="33">
+									<label for="alimentosContienenAzucar">Azucar</label>
+								</p>
+							</div>
+							<div class="input-field col s6">
+								<p class="blue-text text-darken-2">
+									100 ¿Que Utiliza Para Alimentar Al Lactante?
+									<br><input type="checkbox" class="filled-in" name="utilizaParaAlimentarNum1" id="utilizaParaAlimentarNum1" value="34">
+									<label for="utilizaParaAlimentarNum1">Tetero</label>
+									<br><input type="checkbox" class="filled-in" name="utilizaParaAlimentarNum2" id="utilizaParaAlimentarNum2" value="35">
+									<label for="utilizaParaAlimentarNum2">Tasa</label>
+									<br><input type="checkbox" class="filled-in" name="utilizaParaAlimentarNum3" id="utilizaParaAlimentarNum3" value="36">
+									<label for="utilizaParaAlimentarNum3">Cuchara</label>
+									<br><input type="checkbox" class="filled-in" name="utilizaParaAlimentarNum4" id="utilizaParaAlimentarNum4" value="37">
+									<label for="utilizaParaAlimentarNum4">Otro:</label>
+									<!--
+									<div class="row">
+																				<div class="input-field">
+				<input type="text" name="utilizaParaAlimentarOtro" id="utilizaParaAlimentarOtro">
+				<label for="utilizaParaAlimentarOtro">¿Cual?</label>
+																				</div>
+									</div>-->
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li id="contMedidasProtecMayor6Meses" hidden="true">
+					<div class="collapsible-header teal darken-2 white-text text-white">Aplicacion De Medidas De Proteccion De Salud Niños De 6 meses A 5 Años</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s4">
+								<p class="blue-text text-darken-2">
+									92. ¿El Niño(a) Toma Seno?
+									<br>
+									<input class="with-gap" type="radio" name="opTomaSenoMas6Meses" id="opTomaSenoMas6MesesSi" value="1">
+									<label for="opTomaSenoMas6MesesSi">Si</label>
+									<input class="with-gap" type="radio" name="opTomaSenoMas6Meses" id="opTomaSenoMas6MesesNo" value="0">
+									<label for="opTomaSenoMas6MesesNo">No</label>
+								</p>
+							</div>
+							<br>
+							<br>
+							<div class="input-field col s4" id="numVecesTomaSenoDiaMas6Meses">
+								<input type="number" min="0" value="0" name="numVecesTomaSenoDiaMas6Meses" id="numVecesTomaSenoDiaMas6Meses">
+								<label for="numVecesTomaSenoDiaMas6Meses" class="blue-text text-darken-2">93. ¿Cuantas Veces Toma Seno En El Dia?</label>
+							</div>
+							<div class="input-field col s4" id="numVecesTomaSenoNocheMas6Meses">
+								<input type="number" min="0" value="0" name="numVecesTomaSenoNocheMas6Meses" id="numVecesTomaSenoNocheMas6Meses">
+								<label for="numVecesTomaSenoNocheMas6Meses" class="blue-text text-darken-2">94. ¿Cuantas Veces Toma Seno En La Noche?</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s4">
+								<p class="blue-text text-darken-2">
+									95. ¿El Niño Usa biberon?
+									<br>
+									<input class="with-gap" type="radio" name="opUsaBiberon" id="opUsaBiberonSi" value="1">
+									<label for="opUsaBiberonSi">Si</label>
+									<input class="with-gap" type="radio" name="opUsaBiberon" id="opUsaBiberonNo" value="0">
+									<label for="opUsaBiberonNo">No</label>
+								</p>
+							</div>
+							<div class="input-field col s4">
+								<p class="blue-text text-darken-2">96. ¿Que Toma el Niño(a)?
+									<br><input type="checkbox" class="filled-in" name="queTomaElNiñoNum1" id="queTomaElNiñoNum1" value="38">
+									<label for="queTomaElNiñoNum1">Aguadepanela</label>
+									<br><input type="checkbox" class="filled-in" name="queTomaElNiñoNum2" id="queTomaElNiñoNum2" value="39">
+									<label for="queTomaElNiñoNum2">Leche</label>
+									<br><input type="checkbox" class="filled-in" name="queTomaElNiñoNum3" id="queTomaElNiñoNum3" value="40">
+									<label for="queTomaElNiñoNum3">Colada</label>
+									<br><input type="checkbox" class="filled-in" name="queTomaElNiñoNum4" id="queTomaElNiñoNum4" value="41">
+									<label for="queTomaElNiñoNum4">Sopa</label>
+									<br><input type="checkbox" class="filled-in" name="queTomaElNiñoNum5" id="queTomaElNiñoNum5" value="42">
+									<label for="queTomaElNiñoNum5">Gaseosa</label>
+									<br><input type="checkbox" class="filled-in" name="queTomaElNiñoNum6" id="queTomaElNiñoNum6" value="43">
+									<label for="queTomaElNiñoNum6">Otro:</label>
+								</p>
+								<!--
+								<input type="text" name="queTomaElNiñoOtro" id="queTomaElNiñoOtro">-->
+							</div>
+							<div class="input-field col s4">
+								<p class="blue-text text-darken-2">97. ¿Cual Es La Consistencia De Los Alimentos?
+									<br><input type="checkbox" class="filled-in" name="consistenciaDeAlimentosNum1" id="consistenciaDeAlimentosNum1" value="44">
+									<label for="consistenciaDeAlimentosNum1">Liquida</label>
+									<br><input type="checkbox" class="filled-in" name="consistenciaDeAlimentosNum2" id="consistenciaDeAlimentosNum2" value="45">
+									<label for="consistenciaDeAlimentosNum2">Crema</label>
+									<br><input type="checkbox" class="filled-in" name="consistenciaDeAlimentosNum3" id="consistenciaDeAlimentosNum3" value="46">
+									<label for="consistenciaDeAlimentosNum3">Papilla</label>
+									<br><input type="checkbox" class="filled-in" name="consistenciaDeAlimentosNum4" id="consistenciaDeAlimentosNum4" value="47">
+									<label for="consistenciaDeAlimentosNum4">Otro:</label>
+								</p>
+								<!--
+								<input type="text" name="consistenciaDeAlimentosOtro" id="consistenciaDeAlimentosOtro">-->
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s4">
+								<p class="blue-text text-darken-2">
+									98. ¿El Niño Come Solo?
+									<br>
+									<input class="with-gap" type="radio" name="opComeSolo" id="opComeSoloSi" value="1">
+									<label for="opComeSoloSi">Si</label>
+									<input class="with-gap" type="radio" name="opComeSolo" id="opComeSoloNo" value="0">
+									<label for="opComeSoloNo">No</label>
+								</p>
+							</div>
+							<div class="input-field col s4">
+								<input type="text" name="alimentosConMayorFrecuencia" id="alimentosConMayorFrecuencia">
+								<label for="alimentosConMayorFrecuencia" class="blue-text text-darken-2">99. ¿Que Alimentos Le Da Con Mayor Frecuencia Al Niño?</label>
+							</div>
+							<div class="input-field col s4">
+								<p class="blue-text text-darken-2">
+									100. Esta En Algun Programa De Recuperacion Nutricional
+									<br>
+									<input class="with-gap" type="radio" name="opProgramaRecuperacionNutri" id="opProgramaRecuperacionNutriSi" value="1">
+									<label for="opProgramaRecuperacionNutriSi">Si</label>
+									<input class="with-gap" type="radio" name="opProgramaRecuperacionNutri" id="opProgramaRecuperacionNutriNo" value="0">
+									<label for="opProgramaRecuperacionNutriNo">No</label>
+								</p>
+								
+								¿Cual?
+								<br><input type="text" name="programaRecuperacionNutri" id="programaRecuperacionNutri">
+							
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white" id="evaluaDesarrollo">Evalue El Desarrollo</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="input-field col s12">
+								<table class="bordered">
+									<tbody>
+										<tr id="1013Meses" hidden="true">
+											<td class="blue-text text-darken-2">
+												101. A Los 3 Meses Levanta La Cabeza
+											</td>
+											<td>
+												<input class="with-gap" type="radio" name="op3MesesLevantaCabeza" id="op3MesesLevantaCabezaSi" value="1">
+												<label for="op3MesesLevantaCabezaSi">Si</label>
+												<input class="with-gap" type="radio" name="op3MesesLevantaCabeza" id="op3MesesLevantaCabezaNo" value="0">
+												<label for="op3MesesLevantaCabezaNo">No</label>
+											</td>
+										</tr>
+										<tr id="1016Meses" hidden="true">
+											<td class="blue-text text-darken-2">101. A Los 6 Meses Se Sienta Con Apoyo</td>
+											<td>
+												<input class="with-gap" type="radio" name="op6MesesSeSientaConApoyo" id="op6MesesSeSientaConApoyoSi" value="1">
+												<label for="op6MesesSeSientaConApoyoSi">Si</label>
+												<input class="with-gap" type="radio" name="op6MesesSeSientaConApoyo" id="op6MesesSeSientaConApoyoNo" value="0">
+												<label for="op6MesesSeSientaConApoyoNo">No</label>
+											</td>
+										</tr>
+										<tr id="1019Meses" hidden="true">
+											<td class="blue-text text-darken-2">101. A los 9 Meses Se Sienta Por Si Solo</td>
+											<td>
+												<input class="with-gap" type="radio" name="op9MesesSeSientaPorSiSolo" id="op9MesesSeSientaPorSiSoloSi" value="1">
+												<label for="op9MesesSeSientaPorSiSoloSi">Si</label>
+												<input class="with-gap" type="radio" name="op9MesesSeSientaPorSiSolo" id="op9MesesSeSientaPorSiSoloNo" value="0">
+												<label for="op9MesesSeSientaPorSiSoloNo">No</label>
+											</td>
+										</tr>
+										<tr id="10112Meses" hidden="true">
+											<td class="blue-text text-darken-2">
+												101. A Los 12 Meses Camina Por si solo
+											</td>
+											<td>
+												<input class="with-gap" type="radio" name="op12MesesCaminaSolo" id="op12MesesCaminaSoloSi" value="1">
+												<label for="op12MesesCaminaSoloSi">Si</label>
+												<input class="with-gap" type="radio" name="op12MesesCaminaSolo" id="op12MesesCaminaSoloNo" value="0">
+												<label for="op12MesesCaminaSoloNo">No</label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="bordered">
+									<tbody>
+										<tr id="10116Meses" hidden="true">
+											<td class="blue-text text-darken-2">101. A Los 16 Meses Camina Solo</td>
+											<td>
+												<input class="with-gap" type="radio" name="op16MesesCaminaSolo" id="op16MesesCaminaSoloSi" value="1">
+												<label for="op16MesesCaminaSoloSi">Si</label>
+												<input class="with-gap" type="radio" name="op16MesesCaminaSolo" id="op16MesesCaminaSoloNo" value="0">
+												<label for="op16MesesCaminaSoloNo">No</label>
+											</td>
+										</tr>
+										<tr id="10120Meses" hidden="true">
+											<td class="blue-text text-darken-2">101. A Los 20 Meses Corre Rapido</td>
+											<td>
+												<input class="with-gap" type="radio" name="op20MesesCorreRapido" id="op20MesesCorreRapidoSi" value="1">
+												<label for="op20MesesCorreRapidoSi">Si</label>
+												<input class="with-gap" type="radio" name="op20MesesCorreRapido" id="op20MesesCorreRapidoNo" value="0">
+												<label for="op20MesesCorreRapidoNo">No</label>
+											</td>
+										</tr>
+										<tr id="10124Meses" hidden="true">
+											<td class="blue-text text-darken-2">101. A Los 24 Meses Patea La Pelota</td>
+											<td>
+												<input class="with-gap" type="radio" name="op24MesesPateaPelota" id="op24MesesPateaPelotaSi" value="1">
+												<label for="op24MesesPateaPelotaSi">Si</label>
+												<input class="with-gap" type="radio" name="op24MesesPateaPelota" id="op24MesesPateaPelotaNo" value="0">
+												<label for="op24MesesPateaPelotaNo">No</label>
+											</td>
+										</tr>
+										<tr id="10130Meses" hidden="true">
+											<td class="blue-text text-darken-2">
+											101. A Los 30 Meses Se Empina En Ambos Pies</td>
+											<td>
+												<input class="with-gap" type="radio" name="op30MesesSeEmpinaPies" id="op30MesesSeEmpinaPiesSi" value="1">
+												<label for="op30MesesSeEmpinaPiesSi">Si</label>
+												<input class="with-gap" type="radio" name="op30MesesSeEmpinaPies" id="op30MesesSeEmpinaPiesNo" value="0">
+												<label for="op30MesesSeEmpinaPiesNo">No</label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<table class="bordered">
+									<tbody>
+										<tr id="10136Meses" hidden="true">
+											<td class="blue-text text-darken-2">101. A Los 36 Meses Sube/Baja Escaleras Solo</td>
+											<td>
+												<input class="with-gap" type="radio" name="op36MesesSubeEscaleras" id="op36MesesSubeEscalerasSi" value="1">
+												<label for="op36MesesSubeEscalerasSi">Si</label>
+												<input class="with-gap" type="radio" name="op36MesesSubeEscaleras" id="op36MesesSubeEscalerasNo" value="0">
+												<label for="op36MesesSubeEscalerasNo">No</label>
+											</td>
+										</tr>
+										<tr id="10148Meses" hidden="true">
+											<td class="blue-text text-darken-2">101. A Los 48 Meses Lanza Y Atrapa La Pelota</td>
+											<td>
+												<input class="with-gap" type="radio" name="op48MesesLanzaPelota" id="op48MesesLanzaPelotaSi" value="1">
+												<label for="op48MesesLanzaPelotaSi">Si</label>
+												<input class="with-gap" type="radio" name="op48MesesLanzaPelota" id="op48MesesLanzaPelotaNo" value="0">
+												<label for="op48MesesLanzaPelotaNo">No</label>
+											</td>
+										</tr>
+										<tr id="10160Meses" hidden="true">
+											<td class="blue-text text-darken-2" >101. A Los 60 Meses Se Para Y Salta En Un Pie</td>
+											<td>
+												<input class="with-gap" type="radio" name="op60MesesSeParaYSalta1Pie" id="op60MesesSeParaYSalta1PieSi" value="1">
+												<label for="op60MesesSeParaYSalta1PieSi">Si</label>
+												<input class="with-gap" type="radio" name="op60MesesSeParaYSalta1Pie" id="op60MesesSeParaYSalta1PieNo" value="0">
+												<label for="op60MesesSeParaYSalta1PieNo">No</label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header teal darken-2 white-text text-white">Evalue La Aderencia Al Programa De Crecimiento Y Desarrollo</div>
+					<div class="collapsible-body">
+						<div class="row">
+							
+							<div class="input-field col s4">
+								<input type="number" min="0" value="0"  name="numConsultasCrecimiento" id="numConsultasCrecimiento">
+								<label for="numConsultasCrecimiento" class="blue-text text-darken-2">102. Numero De Consultas De Crecimiento y Desarrollo</label>
+							</div>
+							<div class="input-field col s4">
+								<p class="blue-text text-darken-2">103. Recibio Desparacitacion
+									<br>
+									<input class="with-gap" type="radio" name="opRecibioDesparacitacion" id="opRecibioDesparacitacionSi" value="1">
+									<label for="opRecibioDesparacitacionSi">Si</label>
+									<input class="with-gap" type="radio" name="opRecibioDesparacitacion" id="opRecibioDesparacitacionNo" value="0">
+									<label for="opRecibioDesparacitacionNo">No</label></p>
+								</div>
+								<div class="input-field col s4" id="fechaDeDesparacitacion">
+									<input type="text"  name="fechaDeDesparacitacion" id="fechaDeDesparacitacion" class="datepicker" placeholder="Seleccion Fecha">
+									<label for="fechaDeDesparacitacion" class="blue-text text-darken-2" >104. Fecha De Desparacitacion</label>
+								</div>
+								
+							</div>
+							<div class="row">
+								
+								<div class="input-field col s4">
+									<p class="blue-text text-darken-2">
+										105. ¿El Niño Recibe Micronutrientes?
+										<br>
+										<input class="with-gap" type="radio" name="opRecibeMicronutrientes" id="opRecibeMicronutrientesSi" value="1">
+										<label for="opRecibeMicronutrientesSi">Si</label>
+										<input class="with-gap" type="radio" name="opRecibeMicronutrientes" id="opRecibeMicronutrientesNo" value="0">
+										<label for="opRecibeMicronutrientesNo">No</label>
+									</p>
+								</div>
+								<div class="input-field col s4" id="descripcionMicronutrientes">
+									<input type="text" name="descripcionMicronutrientes" id="descripcionMicronutrientes">
+									<label for="descripcionMicronutrientes" class="blue-text text-darken-2">106. Cuales Son</label>
+								</div>
+								<div class="input-field col s4" id="fechaEntregaMicronutrientes">
+									
+									<input type="text" name="fechaEntregaMicronutrientes" id="fechaEntregaMicronutrientes" class="datepicker" placeholder="Seleccione Fecha">
+									<label for="fechaEntregaMicronutrientes" class="blue-text text-darken-2">107. Fecha De Ultima Entrega</label>
+								</div>
+								
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white">Evaluacion Del Buen Trato</div>
+						<div class="collapsible-body">
+							<div class="row">
+								<div class="input-field col s4">
+								<br>
+									108. Le Sonrien
+									<br>
+									110. Alzan O Arrulla Al Niño(a)
+									<br>
+									112. Se Preocupan Por La Higiene
+									<br>
+									114. Se Preocupan Por Su Salud
+								</div>
+								<div class="input-field col s2">
+									<input class="with-gap" type="radio" name="opLeSonrien" id="opLeSonrienSi" value="1">
+									<label for="opLeSonrienSi">Si</label>
+									<input class="with-gap" type="radio" name="opLeSonrien" id="opLeSonrienNo" value="0">
+									<label for="opLeSonrienNo">No</label>
+									<br>
+									<input class="with-gap" type="radio" name="opArrullan" id="opArrullanSi" value="1">
+									<label for="opArrullanSi">Si</label>
+									<input class="with-gap" type="radio" name="opArrullan" id="opArrullanNo" value="0">
+									<label for="opArrullanNo">No</label>
+									<br>
+									<input class="with-gap" type="radio" name="opPreocupanPorLaHigiene" id="opPreocupanPorLaHigieneSi" value="1">
+									<label for="opPreocupanPorLaHigieneSi">Si</label>
+									<input class="with-gap" type="radio" name="opPreocupanPorLaHigiene" id="opPreocupanPorLaHigieneNo" value="0">
+									<label for="opPreocupanPorLaHigieneNo">No</label>
+									<br>
+									<input class="with-gap" type="radio" name="opSePreocupanPorSalud" id="opSePreocupanPorSaludSi" value="1">
+									<label for="opSePreocupanPorSaludSi">Si</label>
+									<input class="with-gap" type="radio" name="opSePreocupanPorSalud" id="opSePreocupanPorSaludNo" value="0">
+									<label for="opSePreocupanPorSaludNo">No</label>
+								</div>
+								<div class="input-field col s4">
+								<br>
+									109. Lo Acompañan
+									<br>
+									111. Le Juegan O Permiten Que Juegue
+									<br>
+									113. Lo Castigan Con Correa, Palmadas, Patadas o Puños
+									<br>
+									115. Tiene Accidentes Frecuentes
+								</div>
+								<div class="input-field col s2">
+									<input class="with-gap" type="radio" name="opLeAcompañan" id="opLeAcompañanSi" value="1">
+									<label for="opLeAcompañanSi">Si</label>
+									<input class="with-gap" type="radio" name="opLeAcompañan" id="opLeAcompañanNo" value="0">
+									<label for="opLeAcompañanNo">No</label>
+									<br>
+									<input class="with-gap" type="radio" name="opJuegan" id="opJueganSi" value="1">
+									<label for="opJueganSi">Si</label>
+									<input class="with-gap" type="radio" name="opJuegan" id="opJueganNo" value="0">
+									<label for="opJueganNo">No</label>
+									<br>
+									<input class="with-gap" type="radio" name="opCastigan" id="opCastiganSi" value="1">
+									<label for="opCastiganSi">Si</label>
+									<input class="with-gap" type="radio" name="opCastigan" id="opCastiganNo" value="0">
+									<label for="opCastiganNo">No</label>
+									<br>
+									<input class="with-gap" type="radio" name="opAccidentesFrecuentes" id="opAccidentesFrecuentesSi" value="1">
+									<label for="opAccidentesFrecuentesSi">Si</label>
+									<input class="with-gap" type="radio" name="opAccidentesFrecuentes" id="opAccidentesFrecuentesNo" value="0">
+									<label for="opAccidentesFrecuentesNo">No</label>
+									
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white">Riesgos De Accidentes En El Hogar</div>
+						<div class="collapsible-body">
+							<div class="row">
+								<div class="input-field col s6">
+									<table class="bordered">
+										<tbody>
+											<tr>
+												<td class="blue-text text-darken-2">116. Esta Solo Tomandose el Tetero</td>
+												<td>
+													<input class="with-gap" type="radio" name="opSoloTomandoseTetero" id="opSoloTomandoseTeteroSi" value="1">
+													<label for="opSoloTomandoseTeteroSi">Si</label>
+													<input class="with-gap" type="radio" name="opSoloTomandoseTetero" id="opSoloTomandoseTeteroNo" value="0">
+													<label for="opSoloTomandoseTeteroNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">117. Objetos Pequeños Al Alcance De Los Niños</td>
+												<td>
+													<input class="with-gap" type="radio" name="opObjPequeñosAlAlcance" id="opObjPequeñosAlAlcanceSi" value="1">
+													<label for="opObjPequeñosAlAlcanceSi">Si</label>
+													<input class="with-gap" type="radio" name="opObjPequeñosAlAlcance" id="opObjPequeñosAlAlcanceNo" value="0">
+													<label for="opObjPequeñosAlAlcanceNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">118. Niños En La Cocina</td>
+												<td>
+													<input class="with-gap" type="radio" name="opNiñosEnCocina" id="opNiñosEnCocinaSi" value="1">
+													<label for="opNiñosEnCocinaSi">Si</label>
+													<input class="with-gap" type="radio" name="opNiñosEnCocina" id="opNiñosEnCocinaNo" value="0">
+													<label for="opNiñosEnCocinaNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">119. Cuchillos, Serruchos Tijeras Al Alcance De Los Niños</td>
+												<td>
+													<input class="with-gap" type="radio" name="opCuchillosAlAlcance" id="opCuchillosAlAlcanceSi" value="1">
+													<label for="opCuchillosAlAlcanceSi">Si</label>
+													<input class="with-gap" type="radio" name="opCuchillosAlAlcance" id="opCuchillosAlAlcanceNo" value="0">
+													<label for="opCuchillosAlAlcanceNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">120. Medicamentos-Insecticidas Al Alcance De Los Niños</td>
+												<td>
+													<input class="with-gap" type="radio" name="opMedicamentosAlAlcance" id="opMedicamentosAlAlcanceSi" value="1">
+													<label for="opMedicamentosAlAlcanceSi">Si</label>
+													<input class="with-gap" type="radio" name="opMedicamentosAlAlcance" id="opMedicamentosAlAlcanceNo" value="0">
+													<label for="opMedicamentosAlAlcanceNo">No</label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="input-field col s6">
+									<table class="bordered">
+										<tbody>
+											<tr>
+												<td class="blue-text text-darken-2">121. Escaleras-Terrazas Sin Barandas-Ventanas Sin Proteccion</td>
+												<td>
+													<input class="with-gap" type="radio" name="opEscalerasSinBarandas" id="opEscalerasSinBarandasSi" value="1">
+													<label for="opEscalerasSinBarandasSi">Si</label>
+													<input class="with-gap" type="radio" name="opEscalerasSinBarandas" id="opEscalerasSinBarandasNo" value="0">
+													<label for="opEscalerasSinBarandasNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">122. Velas Y Fosforos Al Alcance De Los Niños</td>
+												<td>
+													<input class="with-gap" type="radio" name="opVelasAlAlcance" id="opVelasAlAlcanceSi" value="1">
+													<label for="opVelasAlAlcanceSi">Si</label>
+													<input class="with-gap" type="radio" name="opVelasAlAlcance" id="opVelasAlAlcanceNo" value="0">
+													<label for="opVelasAlAlcanceNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">123. Agua Almacenada Sin Tapa</td>
+												<td>
+													<input class="with-gap" type="radio" name="opAguaAlmacenadaSinTapa" id="opAguaAlmacenadaSinTapaSi" value="1">
+													<label for="opAguaAlmacenadaSinTapaSi">Si</label>
+													<input class="with-gap" type="radio" name="opAguaAlmacenadaSinTapa" id="opAguaAlmacenadaSinTapaNo" value="0">
+													<label for="opAguaAlmacenadaSinTapaNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">124. Enchufes Y Cables Descubiertos</td>
+												<td>
+													<input class="with-gap" type="radio" name="opCablesDescubieros" id="opCablesDescubierosSi" value="1">
+													<label for="opCablesDescubierosSi">Si</label>
+													<input class="with-gap" type="radio" name="opCablesDescubieros" id="opCablesDescubierosNo" value="0">
+													<label for="opCablesDescubierosNo">No</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="blue-text text-darken-2">125. Existen Otros Riesgos Para El Niño En El Hogar</td>
+												<td>
+													<input class="with-gap" type="radio" name="opRiesgosEnElHogar" id="opRiesgosEnElHogarSi" value="1">
+													<label for="opRiesgosEnElHogarSi">Si</label>
+													<input class="with-gap" type="radio" name="opRiesgosEnElHogar" id="opRiesgosEnElHogarNo" value="0">
+													<label for="opRiesgosEnElHogarNo">No</label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white">Problemas Ambientales Y De Higiene</div>
+						<div class="collapsible-body">
+							<div class="row">
+								<div class="input-field col s12" class="blue-text text-darken-2">
+									126. Problemas Ambientales Y De Higiene
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s4">
+									<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum1" id="problemaAbientalYHigieneNum1" value="48">
+									<label for="problemaAbientalYHigieneNum1">Niños O Adultos Con ropa Sucia</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum2" id="problemaAbientalYHigieneNum2" value="49">
+									<label for="problemaAbientalYHigieneNum2">Niños O Adultos Con Manos y Uñas Sucias</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum3" id="problemaAbientalYHigieneNum3" value="50">
+									<label for="problemaAbientalYHigieneNum3">Niños Descalzos</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum4" id="problemaAbientalYHigieneNum4" value="51">
+									<label for="problemaAbientalYHigieneNum4">Basura Y Desorden De La Vivienda</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum5" id="problemaAbientalYHigieneNum5" value="52">
+									<label for="problemaAbientalYHigieneNum5">Alimentos Sin Almacenar Y No Cubiertos</label>
+								</div>
+								<div class="input-field col s4">
+									<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum6" id="problemaAbientalYHigieneNum6" value="53">
+									<label for="problemaAbientalYHigieneNum6">Personas Que Fuman Dentro De La Vivienda</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum7" id="problemaAbientalYHigieneNum7" value="54">
+									<label for="problemaAbientalYHigieneNum7">No Usan Toldillo</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum8" id="problemaAbientalYHigieneNum8" value="55">
+									<label for="problemaAbientalYHigieneNum8">Insectos Y Ratones En La Vivienda o Alrededores</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum9" id="problemaAbientalYHigieneNum9" value="56">
+									<label for="problemaAbientalYHigieneNum9">Manejo Adecuado De las Basuras/Recoleccion</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum10" id="problemaAbientalYHigieneNum10" value="57">
+									<label for="problemaAbientalYHigieneNum10">Se Consume Agua No Potable</label>
+								</div>
+								<div class="input-field col s4">
+									<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum11" id="problemaAbientalYHigieneNum11" value="58">
+									<label for="problemaAbientalYHigieneNum11">Estufa O Brasero Ubicado En La Habitacion</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum12" id="problemaAbientalYHigieneNum12" value="59">
+									<label for="problemaAbientalYHigieneNum12">Vivienda Sin Iluminacion y Ventilacion</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum13" id="problemaAbientalYHigieneNum13" value="60">
+									<label for="problemaAbientalYHigieneNum13">Evitan Cambios Bruscos De Temperatura</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum14" id="problemaAbientalYHigieneNum14" value="61">
+									<label for="problemaAbientalYHigieneNum14">Charcos, Zanjas Y Objetos Donde Se Acumula Agua</label>
+									<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum15" id="problemaAbientalYHigieneNum15" value="62">
+									<label for="problemaAbientalYHigieneNum15">Adultos Con Tos O Gripa, Que Cuidan/Alimentan Al Niño Sin Tapaboca</label>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white">Firma</div>
+						<div class="collapsible-body">
+							<div class="row">
+								<div class="input-field col s12">
+									<input type="text" name="nomGeCaVi" id="nomGeCaVi">
+									<label for="nomGeCaVi">Nombre Del Gestor De Calidad De Vida</label>
+								</div>
+								
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input type="text" name="firmaPersonaEncuestada" id="firmaPersonaEncuestada">
+									<label for="firmaPersonaEncuestada">Firma De La Persona Que Recibe La Visita </label>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+				  <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+				    <i class="material-icons right">send</i>
+				  </button>
+
+			</form>
+		</div>

@@ -1,0 +1,222 @@
+ <center><p class="titulo">TEST DE FINDRISK</p></center>
+
+	<form id="hogar" method="post" action="<?php echo BASE_URL; ?>findrisk/nuevo">
+		<input type="hidden" name="guardar" value="1" />
+		<input type="hidden" id="findriskResultado" name="findriskResultado" />
+        <div class="row">
+        	  <div class="input-field col l6"><br>
+				<input placeholder="" type="text" class="validate" disabled name="nom_Persona">
+			    <label for="" class="colorWhite" >Nombre</label>
+			</div>
+        </div>
+        <div class="row">
+              <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<label for="" class="preguntas  findrisk1">1. Edad <span class="obligatorio">*</span></label>	<br>				
+						<p>
+						<input name="findrisk1" type="radio" id="t1"  value="0"/>
+							<label class="respuestas" for="t1">Menos de 45 años </label>
+						</p>
+						<p>
+						<input name="findrisk1" type="radio" id="t2" value="2" />
+							<label class="respuestas" for="t2">Entre 45-54 años </label>
+						</p>
+						<p>
+						<input name="findrisk1" type="radio" id="t3" value="3"  />
+							<label class="respuestas" for="t3">  Entre 55-64 años </label>
+						</p>
+						<p>
+						<input name="findrisk1" type="radio" id="t4"  value="4" />
+							<label class="respuestas" for="t4">Más de 64 años</label>
+						</p>
+			   </div>
+			    <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<label for="" class="preguntas findrisk2">2. Índice de masa corporal (IMC) <span class="obligatorio">*</span></label>	
+						<br>				
+						<p>
+						<input name="findrisk2" type="radio" id="t5"  value="0"/>
+							<label class="respuestas" for="t5">Menos de 25  </label>
+						</p>
+						<p>
+						<input name="findrisk2" type="radio" id="t6" value="1" />
+							<label class="respuestas" for="t6">Entre 25-30 </label>
+						</p>
+						<p>
+						<input  name="findrisk2" type="radio" id="t7" value="3"  />
+							<label class="respuestas" for="t7">Más de 30 </label>
+						</p>
+						
+						
+			   </div>
+        </div>
+
+
+        <div class="row">
+              <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<label for="" class="preguntas findrisk3">3. Perímetro de la cintura medido a la altura del ombligo <span class="obligatorio">*</span></label>	<br>	<br><br>	
+						<div class="row">
+							
+                           <div class="col s12 l5">
+                           	
+                           	<h6 class="colorRed">VARONES</h6>		
+						<p>
+						<input name="findrisk3" type="radio" id="t8"  value="0"/>
+							<label class="respuestas" for="t8">  Menos de 94 cm             </label>
+						</p>
+						<p>
+						<input name="findrisk3" type="radio" id="t9" value="3" />
+							<label class="respuestas" for="t9">  Entre 94-102 cm             </label>
+						</p>
+						<p>
+						<input name="findrisk3" type="radio" id="t10" value="4"  />
+							<label class="respuestas" for="t10">  Más de 102 cm   </label>      
+						</p>
+                      <br>
+                    
+                           </div>
+                           	<div class="col hide-on-med-only l1">| <br>	
+                           	|<br>	
+                           	|<br>	
+                           	|<br>	
+                           	|<br>	
+                           	|<br>	
+                           	|
+                           </div>
+                           	<div class="col s12 l6">
+                           		
+
+                       <h6 class="colorRed">MUJERES</h6>
+
+						<p>
+						<input name="findrisk3" type="radio" id="t11"  value="0" />
+							<label class="respuestas" for="t11">  Menos de 80 cm  </label>
+						</p>
+						<p>
+						<input name="findrisk3" type="radio" id="t12"  value="3" />
+							<label class="respuestas" for="t12">  Entre 80-88 cm   </label>
+						</p>
+						<p>
+						<input name="findrisk3" type="radio" id="t13"  value="4" />
+							<label class="respuestas" for="t13">    Más de 88 cm     </label>
+						</p>
+                           	</div>	
+
+						</div>
+
+
+			   </div>
+			    <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<label for="" class="preguntas findrisk4">4 . ¿Normalmente practica usted 30 minutos cada día de actividad física en el trabajo y/o en su tiempo libre (incluida la actividad diaria normal)?<span class="obligatorio">*</span></label>	
+						<br>	<br>	<br>		
+						<p>
+						<input name="findrisk4" type="radio" id="t14"  value="0"/>
+							<label class="respuestas" for="t14">Si  </label>
+						</p>
+						<p>
+						<input name="findrisk4" type="radio" id="t15" value="2" />
+							<label class="respuestas" for="t15">No</label>
+						</p>
+					
+						
+						
+			   </div>
+        </div>
+
+       
+
+       <div class="row">
+              <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<label for="" class="preguntas findrisk5">5. ¿Con cuánta frecuencia come usted vegetales o frutas? <span class="obligatorio">*</span></label>	<br>				
+						<p>
+						<input name="findrisk5" type="radio" id="t16"  value="0"/>
+							<label class="respuestas" for="t16">Todos los días       </label>
+						</p>
+						<p>
+						<input name="findrisk5" type="radio" id="t17" value="1" />
+							<label class="respuestas" for="t17">  No todos los días    </label>
+						</p>
+					
+			   </div>
+			    <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<p><label for="" class="preguntas findrisk6">6. ¿Ha tomado usted medicación para la hipertensión con regularidad? <span class="obligatorio">*</span></label></p>	
+						<br>				
+					<p>
+						<input name="findrisk6" type="radio" id="t18"  value="0"/>
+							<label class="respuestas" for="t18">Todos los días       </label>
+						</p>
+						<p>
+						<input name="findrisk6" type="radio" id="t19" value="2" />
+							<label class="respuestas" for="t19">  No todos los días    </label>
+						</p>
+						
+						
+						
+			   </div>
+        </div>
+
+
+
+         <div class="row">
+              <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<label for="" class="preguntas findrisk7">7. ¿Le han encontrado alguna vez niveles altos de glucosa en sangre, por ejemplo, en un examen médico, durante una enfermedad, durante el embarazo? <span class="obligatorio">*</span></label>	<br>	<br>	<br>		
+						<p>
+						<input name="findrisk7" type="radio" id="t20"  value="0"/>
+							<label class="respuestas" for="t20">No      </label>
+						</p>
+						<p>
+						<input name="findrisk7" type="radio" id="t21" value="5" />
+							<label class="respuestas" for="t21">  Si   </label>
+						</p>
+					
+			   </div>
+			    <div class="input-field col s12 l6">
+                	
+					<br>
+
+						<label for="" class="preguntas findrisk8">8. ¿A algún miembro de su familia le han diagnosticado diabetes (tipo 1 o tipo 2)? <span class="obligatorio">*</span></label>	
+						<br>				
+						<p>
+						<input name="findrisk8" type="radio" id="t22"  value="0"/>
+							<label class="respuestas" for="t22">No</label>
+						</p>
+						<p>
+						<input name="findrisk8" type="radio" id="t23" value="3" />
+							<label class="respuestas" for="t23">Sí: Abuelos, tíos o primos-hermanos (pero no: padres, hermanos o hijos)                           </label>
+						</p>
+						<p>
+						<input name="findrisk8" type="radio" id="t24"  value="5"/>
+							<label class="respuestas" for="t24"> Sí: Padres, hermanos o hijos  </label>
+						</p>
+							
+			   </div>
+        </div>
+
+	<p id='respuestaRiesgo'></p>
+	<br>
+	<div>
+		<i id="calcular" >Calcular Test</i>
+	 	<input class=" btn boton-modificado" type="submit" value='Enviar' > </input>
+	</div>
+
+</form>
+<br><br>
