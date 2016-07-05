@@ -1,78 +1,138 @@
 
-		<div class="row">
+<div class="container2">
+		
 
-			<form action="u.html" id="hogar" method="GET">
+			<form action="<?php echo BASE_URL; ?>ficha_hogar/ingresar" id="hogar" method="post">
 
 				<ul class="collapsible" data-collapsible="accordion">
 
 					<li>
-						<div class="collapsible-header ">Ficha Hogar</div>
+						<div class="collapsible-header active ">Ficha Hogar</div>
 						<div class="collapsible-body">
 
 							<div class="container">
+<br>
 								<div class="row">
-									<br>
-									<div class="col s6">
-										<label for="first_name" class="colorBlue">1. Fecha Ingreso</label>
-										<input type="date" >
+								
+						<div class="input-field col l4">                              
+						    <?php if(isset($this->municipios)) : ?>
+						           <select name="municipio">
+						              <option value="" disabled selected></option>
+										<?php for($i = 0; $i < count($this->municipios); $i++): ?>												  
+		<option value="<?php echo $this->municipios[$i]['COD_DANE']; ?>"  ><?php echo $this->municipios[$i]['DES_MUNICIPIO']; ?></option>													   									 
+													<?php endfor;?>
+                                              </select>
+											<label class="colorBlue">2. Municipio</label>	 
+							      <?php endif; ?>
 
+                         </div> <div class="input-field col l4">
+									   
+										<input name="codigo_municipio" placeholder="Código del Municipio"  type="number" max='10' class="validate" disabled>
+										<label for="cod_municipio" class="colorWhite" >Codigo Municipio</label>
 									</div>
+
+
+							        <div class="input-field col l4 ">
+									   
+										<input id="codigo_hogar" name="codigo_hogar" placeholder="Código del hogar"  type="number" max='10' class="validate" required>
+										<label for="codHogar" class="colorWhite" >Código del hogar</label>
+									</div>
+
+
+                           </div>
+
+
+                           <div class="row">
+
+
+										<div class="input-field col l4">
+								    	
+														   <select name="tipoHogar"  >
+														      <option value="" disabled selected></option>
+														      <option value="54">1 | Nuclear</option>
+														      <option value="55">2 | Extenso</option>
+														      <option value="56">3 | Monopaternal</option>
+														      <option value="57">4 | Unipersonal</option>
+														    </select>
+												<label class="colorBlue">4. <?php echo $this->preguntas[0]['DES_PREGUNTA']; ?></label>
+								    	
+								    	</div>
+
+								    	<div class="input-field col l4">
+								    	
+														   <select name="jefeHogar">
+														      <option value="" disabled selected></option>
+														      <option value="58">1 | Padre</option>
+														      <option value="59">2 | Madre</option>
+														      <option value="60">3 | Hijo</option>
+														      <option value="63">4 | Hermano</option>
+														      <option value="64">5 | Abuelo(a)</option>
+														      <option value="65">6 | Otro familiar</option>
+														      <option value="66">7 | Personas no pariente</option>
+														    </select>
+												<label class="colorBlue">5. Jefe de hogar</label>
+								    	
+								    	</div>
+
+								    <div class="input-field col l4">
+									   
+										<input name="telefono_jefe_hogar" placeholder="telefono"  type="text" class="validate" required>
+										<label for="codHogar" class="colorWhite" >3. Telefono Jefe Hogar</label>
+									</div>
+
+
+
 								</div>
 
-								<div class="row">
-									<h6 class="subtitulos">Identificación del municipio</h6>
-									<div class="input-field col s6">
-										<input placeholder="Placeholder" type="text" class="validate">
-										<label for="municipio" class="colorWhite" >2. Municipio</label>
-									</div>
-									<div class="input-field col s6">
-										<input placeholder="Código municipio"  type="text" class="validate">
-										<label for="codMunicipio" class="colorWhite" >3. Código municipio</label>
-									</div>
-
-								</div>
-
-                                <div class="row">
-									<h6 class="subtitulos">Identificación del Hogar</h6>
-									<div class="input-field col s6">
-										<input placeholder="Código del hogar"  type="text" class="validate">
-										<label for="codHogar" class="colorWhite" >4. Código del hogar</label>
-									</div>
-
-								</div>
 
 
 								<div class="collapsible-header ">
-									<label for="" class="colorWhite" > UBICACIÓN HOGAR    </label>
+									<label for="" class="colorWhite" > 6. UBICACIÓN HOGAR    </label>
 								</div>
 
 														
-						      <input name="ubicacion" type="radio" id="urbana" />
-						      <label for="urbana" class="colorBlue">4. Zona Urbana</label>
-						      <input name="ubicacion" type="radio" id="rural" />
-						      <label for="rural" class="colorBlue">5. Zona Rural</label>
+						      <input name="ubicacion" type="radio" id="urbana"value="1" />
+						      <label for="urbana" class="colorBlue">6. Zona Urbana</label>
+						      <input name="ubicacion" type="radio" id="rural" value="2" />
+						      <label for="rural" class="colorBlue">7. Zona Rural</label>
 			
 						       <div  id="datosUrbano">
 								       <div class="row">
 								       	<br>
-											<div class="input-field col s6">
-												<input placeholder="Barrio Número" type="text" class="validate">
-												<label for="numBarrio" class="colorWhite" >5. Barrio Número</label>
+									
+
+											<div class="input-field col l6">                              
+												<?php if(isset($this->barrios)) : ?>
+													<select name="nombreBarrio">
+														<option value="" disabled selected></option>
+														<?php for($i = 0; $i < count($this->barrios); $i++): ?>		
+															<li><?php echo $this->barrios[$i]['ID_BARRIO']; ?></a></li>										  
+															<option value="<?php echo $this->barrios[$i]['ID_BARRIO']; ?>"><?php echo $this->barrios[$i]['DES_BARRIO']; ?></option>													   									 
+														<?php endfor;?>
+													</select>
+													<label class="colorBlue">2. Barrio</label>	 
+												<?php endif; ?>
+
 											</div>
-											<div class="input-field col s6">
-												<input placeholder="Nombre Barrio"  type="text" class="validate">
-												<label for="nomBarrio" class="colorWhite" >6. Nombre</label>
-											</div>
+
+											<div class="input-field col l6">
+									   
+										       <input name="codigo_barrio" placeholder="Código del Barrio" disabled type="text" class="validate">
+										       <label for="codHogar" class="colorWhite" > Código del Barrio</label>
+									        </div>
+
 								       </div>
-								       <div class="row">
-								    
-											<div class="input-field col s6">
-												<input placeholder="Nomenclatura" type="text" class="validate">
+								       <div class="row border-tabla">
+								             <br>
+											<div class="input-field col s6 nomenclaturaBarrio"><br>
+												<input name="nomenclaturaBarrio" placeholder="Nomenclatura" type="text" class="validate">
 												<label for="nomenclaturaBarrio" class="colorWhite" >5. Nomenclatura</label>
 											</div>
 											<div class="input-field col s6">
-												<input placeholder=""  type="text" class="validate">
-												<label for="noaplicaBarrio" class="colorWhite" >6. No aplica</label>
+												<p>
+								      			    <input name="noAplicaBarrio" type="checkbox" class="filled-in" id="noAplicaBarrio"  />
+								      				<label for="noAplicaBarrio">No Aplica .</label>
+								      			</p>
 											</div>
 								       </div>
 
@@ -83,23 +143,25 @@
 								       <div class="row">
 								       	<br>
 											<div class="input-field col s6">
-												<input placeholder="Vereda o inspección Número" type="text" class="validate">
+												<input name="numVereda" placeholder="Vereda o inspección Número" type="text" class="validate">
 												<label for="numVereda" class="colorWhite" >10.	Vereda o inspección Número</label>
 											</div>
 											<div class="input-field col s6">
-												<input placeholder="Nombre Vereda o inspección "  type="text" class="validate">
+												<input name="nomVereda" placeholder="Nombre Vereda o inspección "  type="text" class="validate">
 												<label for="nomVereda" class="colorWhite" >11. Nombre</label>
 											</div>
 								       </div>
-								       <div class="row">
-								    
-											<div class="input-field col s6">
-												<input placeholder="Nomenclatura" type="text" class="validate">
+								       <div class="row border-tabla">
+								    <br>
+											<div class="input-field col s6 nomenclaturaVereda"><br>
+												<input name="nomenclaturaVereda" placeholder="Nomenclatura" type="text" class="validate">
 												<label for="nomenclaturaVereda" class="colorWhite" >12. Nomenclatura</label>
 											</div>
 											<div class="input-field col s6">
-												<input placeholder=""  type="text" class="validate">
-												<label for="noaplicaVereda" class="colorWhite" >13. No aplica</label>
+												<p>
+								      			    <input name="noAplicavereda" type="checkbox" class="filled-in" id="noAplicavereda"  />
+								      				<label for="noAplicavereda">No Aplica .</label>
+								      			</p>
 											</div>
 								       </div>
 
@@ -110,114 +172,66 @@
 
 						</div>
 					</li>
+
+	
 					<li>
-						<div class="collapsible-header active">INDENTIFICAR MIEMBROS DEL HOGAR </div>
+						<div class="collapsible-header   ">INDENTIFICAR MIEMBROS DEL HOGAR </div>
 						<div class="collapsible-body">
 							
-                          <!--
-                             	<div class="row ">
-                             	<br>
-								<div class="input-field col s1">
-												<input placeholder=""  type="text" class="validate">
-												<label for="codigoPersona" class="colorWhite" >14. Codigo</label>
-								</div>
-								<div class="input-field col s3">
-												<input placeholder=""  type="text" class="validate">
-												<label for="nomPersona" class="colorWhite" >15. Nombres y apellidos</label>
-								</div>
-								<div class="col s2">
-										  <label for="" class="colorBlue">16. Fecha Nacimiento</label>
-										   <input type="date" >
-                                      
-								</div>
-                                
-                                  
-                                <div class="input-field col s1">
-										    <select>
-										      <option value="" disabled selected></option>
-										      <option value="1">M</option>
-										      <option value="2">F</option>
-										    </select>
-								<label class="colorBlue">18. Sexo</label>
-							   </div>
-
-							   <div class="input-field col s4">
-												<input placeholder=""  type="text" class="validate">
-												<label for="nomPersona" class="colorWhite" >19. Vinculación familiar con respecto al jefe del hogar</label>
-								</div>
-							    </div>
-                                 -->
+                       
                       <br>
                           <div class="row">
-                            	  <div class="input-field col s3">
-										   <br> <select>
-										      <option value="" disabled selected></option>
-										      <option value="1">1 | Nuclear</option>
-										      <option value="2">2 | Extenso</option>
-										      <option value="3">3 |	Monopaternal</option>
-										      <option value="2">4 |	Unipersonal</option>
-										    </select>
-								<label class="colorBlue">25. Tipo de Hogar</label>
-							   </div>
-							       <div class="input-field col s3">
-										   <br>  <select>
-										      <option value="" disabled selected></option>
-										      <option value="1">M</option>
-										      <option value="2">F</option>
-										    </select>
-								<label class="colorBlue">26. Jefe Hogar</label>
-							   </div>
-                               <div class="input-field col s3"><br>
-									<input placeholder="Telefono de contacto"  type="text" class="validate">
-								<label class="colorBlue">27. Teléfono de contacto</label>
-							   </div>
-							    <div class="input-field col s3"><br>
-									<input placeholder="Telefono de contacto"  type="text" class="validate">
-								<label class="colorBlue">27. Teléfono de contacto</label>
-							   </div>
+                            
 
-                            </div>
-
-
-                         <table id="tabledatosHogar">
+                         <table id="tabla-hogar">
+                          </label>	
+					
+										<div class="ventana ">
+								
+						</div>
 					        <thead>
 					          <tr>
-					              <th class="colorBlue">14. Codigo</th>
-					              <th class="colorBlue">15. Nombres y apellidos</th>
-					              <th class="colorBlue">16. Tipo Documento</th>
-					              <th class="colorBlue">17. Fecha Nacimiento</th>
-					              <th class="colorBlue">18. Edad</th>
-					              <th class="colorBlue">19. Sexo</th>
-					              <th class="colorBlue">20. Vinculación familiar con respecto al jefe del hogar</th>
+					              <th class="colorBlue">Documento de Identidad</th>
+					              <th class="colorBlue"> Nombres y apellidos</th>
+					              <th class="colorBlue"> Fecha Nacimiento</th>
+					              <th class="colorBlue"> Edad</th>
+					              <th class="colorBlue"> Sexo</th>
+					              <th class="colorBlue"> Vinculación familiar con respecto al jefe del hogar
+                                  
+					              </th>
 					          </tr>
 					        </thead>
 
 					        <tbody>
 
-					         <tr id="fila-nueva">
-					            <td><input placeholder="Codigo"  type="text" class="validate"></td>
-					            <td><input placeholder="Nombres y apellidos"  type="text" class="validate"></td>
-					            <td><input placeholder="Fecha de nacimiento"  type="date" class="validate"></td>
-					            <td><input placeholder="Edad"  type="text" class="validate"></td>
-					            <td>  <select id="seleccion" class="browser-default">
-										      <option value="" disabled selected></option>
-										      <option value="1">M</option>
-										      <option value="2">F</option>
-									  </select> </td>
-					            <td><input placeholder=""  type="text" class="validate"></td>
-					          </tr>
-
 					          <tr>
-					            <td><input placeholder="Codigo"  type="text" class="validate"></td>
-					            <td><input placeholder="Nombres y apellidos"  type="text" class="validate"></td>
-					            <td><input placeholder="Fecha de nacimiento"  type="date" class="validate"></td>
-					            <td><input placeholder="Edad"  type="text" class="validate"></td>
-					            <td>  <select class="browser-default">
+					            <td ><input name="docIdentidad[]" placeholder="Documento Identidad"  type="text" class="validate"></td>
+					            <td><input  name="nomApe[]" class="name1" placeholder="Nombres y apellidos"  type="text" class="validate"></td>
+					            <td><input name="dateNacimiento[]"placeholder="Fecha de nacimiento"  type="date" class="validate"></td>
+					            <td><input name="edad[]"placeholder="Edad"  type="text" class="validate"  onChange='calculaEdad();'></td>
+					            <td>  <select class="browser-default" name="sexo[]">
 										      <option value="" disabled selected></option>
-										      <option value="1">M</option>
-										      <option value="2">F</option>
-									  </select>       </td>
-					            <td><input placeholder=""  type="text" class="validate"></td>
+										      <option value="M">M</option>
+										      <option value="F">F</option>
+									  </select>      
+							    </td>
+							    
+							    <td>  <select class="browser-default"  name="vinculacionJefe[]">
+							    	<option value="" disabled selected></option>
+							    	<option value="285">1 | Jefe de hogar</option>
+							    	<option value="286">2 | Cónyuge</option>
+							    	<option value="287">3 | Madre</option>
+							    	<option value="288">4 | Padre</option>
+							    	<option value="289">5 | Hijo(a)</option>
+							    	<option value="290">6 | Hermano(a)</option>
+							    	<option value="291">7 | Abuelos(as)</option>
+							    	<option value="292">8 | Sobrinos</option>
+							    	<option value="293">9 | Madrastra</option>
+							    	<option value="294">10 | Padrastro</option>
+							    	<option value="295">11 | Otros parientes</option>
+							    	<option value="296">12 | Otros miembros no parientes</option>
+									  </select>      
+							   </td>
 					          </tr>
 
 					        
@@ -225,13 +239,21 @@
 					        </tbody>
 					      </table>
 
+
+
+
                          <a class="btn waves-effect waves-light" type="submit" id="agregarFamiliar">Agregar Familiar
+										 
+										  </a>
+
+						 <a class="btn waves-effect waves-light" type="submit" id="eliminarFamiliar">Eliminar Familiar
 										 
 										  </a>
 										  <br>
 										  <br>
 						</div>
 					</li>
+					
 					<li>
 						<div class="collapsible-header ">CARACTERÍSTICAS SOCIOECONÓMICAS DEL HOGAR  </div>
 						<div class="collapsible-body">
@@ -239,65 +261,129 @@
                          <table id="tablaSocioeconomica">
                          	<thead class="colorBlue">
                          		<tr>
-                         			<th>20. Código Miembro</th>
-                         			<th>21. Documento de Identidad</th>
-                         			<th>22. Escolaridad</th>
-                         			<th colspan="3">23.	Ocupación</th>
-                         			<th colspan="3">24.	Vinculación al SGSSS</th>
+                         		    <th></th>
+                         		    <th></th>
+                         		    <th></th>
+                         			<th colspan="3" class="border-tabla" ><center>	Ocupación</center></th>
+                         			<th colspan="4" class="border-tabla" ><center>Vinculación al SGSSS</center></th>
                          		</tr>
-                                 <tr>
-                                 <th></th>
-                                 <th></th>
-                                 <th></th>
-                                 <th>Tipo</th>
-                                 <th>Recive Pago</th>
-                                 <th>Aporta al hogar</th>
-                                 <th>Regimen</th>
-                                 <th>Tipo de Vinculacion </th>
-                                 <th>Nombre Eps</th>
+                                 <tr  class="border-tabla">
+                                 <th >Nombre</th>
+                         		 
+                         		 <th >Escolaridad</th>
+                                 <th >Tipo</th>
+                                 <th >Recive Pago</th>
+                                 <th >Aporta al hogar</th>
+                                 <th >Regimen</th>
+                                 <th >Tipo de Vinculacion </th>
+                                 <th >Nombre Eps</th>
                                  </tr>
 
                          	</thead>
 
                          	<tbody>
-                         		<tr>
-                         			<td><input placeholder="Codigo"  type="text" class="validate"></td>
-                         			<td><input placeholder="Documento Identidad"  type="text" class="validate"></td>
-                         			<td><input placeholder="Escolaridad"  type="text" class="validate"></td>
-                         			<td><input placeholder="Tipo"  type="text" class="validate"></td>
-                         			<td><input placeholder="Recive pago"  type="text" class="validate"></td>
-                         			<td><input placeholder="Aporta al hogar"  type="text" class="validate"></td>
-                         			<td><input placeholder="Regimen"  type="text" class="validate"></td>
-                         			<td><input placeholder="Tipo de Vinculacion "  type="text" class="validate"></td>
-                         			<td><input placeholder="Nombre Eps"  type="text" class="validate"></td>
-                         		</tr>
-                         		<tr>
-                         			<td><input placeholder="Codigo"  type="text" class="validate"></td>
-                         			<td><input placeholder="Documento Identidad"  type="text" class="validate"></td>
-                         			<td><input placeholder="Escolaridad"  type="text" class="validate"></td>
-                         			<td><input placeholder="Tipo"  type="text" class="validate"></td>
-                         			<td><input placeholder="Recive pago"  type="text" class="validate"></td>
-                         			<td><input placeholder="Aporta al hogar"  type="text" class="validate"></td>
-                         			<td><input placeholder="Regimen"  type="text" class="validate"></td>
-                         			<td><input placeholder="Tipo de Vinculacion "  type="text" class="validate"></td>
-                         			<td><input placeholder="Nombre Eps"  type="text" class="validate"></td>
+                         	    
+
+                         		<tr class="border-tabla">
+                         			<td ><input disabled placeholder="Nombre" class="name2" type="text" class="validate"></td>
+                         			
+                         				<td >  <select class="browser-default"  name="escolaridad[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="297">1 | No sabe leer ni escribir</option>
+										    	<option value="298">2 | Nunca fue a la escuela pero sabe leer y escribir</option>
+										    	<option value="299">3 | Preescolar</option>
+										    	<option value="300">4 | Primaria completa</option>
+										    	<option value="301">5 | Primaria incompleta</option>
+										    	<option value="302">6 | Secundaria completa</option>
+										    	<option value="303">7 | Secundaria incompleta</option>
+										    	<option value="304">8 | Técnico o Tecnológico</option>
+										    	<option value="305">9 | Universitario</option>
+										    
+												  </select>      
+							              </td>
+                         			     <td >  <select class="browser-default y"  name="tipoOcupacion[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="306">1 | Agricultura</option>
+										    	<option value="307">2 | Minería</option>
+										        <option value="308">3 | Ganadería</option>
+										    	<option value="309">4 | Pesca</option>
+										    	<option value="310">5 | Oficios del hogar</option>
+										    	<option value="311">6 | Estudiando</option>
+										    	<option value="312">7 | Jubilado / Pensionado</option>
+										    	<option value="313">8 | Empleado sector público</option>
+										    	<option value="314">9 | Empleado sector privado</option>
+										    	<option value="315">10 | Prestador servicios técnicos, tecnológicos o profesionales</option>
+										    	<option value="316">11 | No aplica por condición física o mental</option>
+										        <option value="317">12 | No aplica por edad</option>
+										        <option value="318">13 | Sin ocupación</option>
+										        <option value="319">14 | Otro</option>
+												  </select>
+											  <div class="input-field otratipoOcupacion ">
+										  		 <input name="otratipoOcupacions[]" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>      
+							              </td>
+
+                         			<td  >  <select class="browser-default"  name="recivepago[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="320">1 | si</option>
+										    	<option value="321">2 | no</option>
+										    	<option value="322">3 | NoAplica</option>
+										</select>      
+							         </td>
+							         <td  >  <select class="browser-default"  name="aportaHogar[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="323">1 | si</option>
+										    	<option value="324">2 | no</option>
+										    	<option value="325">3 | NoAplica</option>
+										</select>      
+							         </td>
+                                      <td >  <select class="browser-default"  name="regimen[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="326">1 | Contributivo</option>
+										    	<option value="327">2 | Subsidiado</option>
+										    	<option value="328">3 | Población pobre no asegurada (Vinculado)</option>
+										    	<option value="329">3 | Régimen especial</option>
+										</select>      
+							         </td >
+                         		      <td >   <select class="browser-default"  name="tipoVincuacion[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="330">1 | Cotizante</option>
+										    	<option value="331">2 | Beneficiario</option>
+										    	<option value="332">3 | No aplica</option>
+										    
+										</select>      
+							         </td>
+
+
+
+                         			<td  class="border-tabla">
+                                     
+						           <select name="nomEps[]" class="browser-default eps"  >
+						                     <option value="" disabled selected></option>
+                                             </select>
+											 
+							  
+                                             </td>
+
                          		</tr>
                          	</tbody>
                          </table>
-
-
 						</div>
 					</li>
+
+
+					
 					<li>
-						<div class="collapsible-header   ">CONDICIONES DE VULNERABILIDAD SOCIAL DEL HOGAR  </div>
+						<div class="collapsible-header ">CONDICIONES DE VULNERABILIDAD SOCIAL DEL HOGAR  </div>
 						<div class="collapsible-body">
 						<br>
 
 
-                          <table>
+                          <table id="tabla-vulnerabilidad">
                           	<thead class="colorBlue" >
-                          		<tr >
-                          			<th>28. Código miembro</th>
+                          		<tr class="border-tabla" >
+                          			<th>28. Nombre</th>
                           			<th>29. Etapa del ciclo vital</th>
                           			<th>30.	Condición de discapacidad</th>
                           			<th>31. Grupo étnico</th>
@@ -309,16 +395,1427 @@
                           		</tr>
                           	</thead>
                           	<tbody>
-                          		    
-                          	</tbody>
+                            
+                          	<tr class="border-tabla">
+                          	    <td><input disabled placeholder="Nombre" class="name3" type="text" class="validate"></td>
+                          		<td><select class="browser-default"  name="estapaCiclovital[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="333">1 | Primera infancia (de 0 a 5 años)</option>
+										    	<option value="334">2 | Infancia (de 6 a 11 años)</option>
+										    	<option value="335">3 | Adolescencia (de 12 a 17 años)</option>
+										    	<option value="336">4 | Joven (de 18 a 28 años)</option>
+										        <option value="337">5 | Adulto (de 29 a 59 años)</option>
+										        <option value="338">6 | Adulto mayor ( de 60 y más años) </option>
+
+										       
+									</select></td>
+                          		<td><select class="browser-default"  name="condicionDiscapacidad[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="339">1 | Motora</option>
+										    	<option value="340">3 | Auditiva</option>
+										        <option value="341">4 | Visual</option>
+										        <option value="342">5 | Cognitiva o mental</option>
+										        <option value="343">5 | No aplica</option>
+										        <option value="343" >6 | Otros </option>
+									</select>
+									<div class="input-field otracondicionDiscapacidad ">
+										  		 <input name="otracondicionDiscapacidad[]" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							         </div>  
+
+
+									</td>
+                          		<td><select class="browser-default"  name="grupoEtnico[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="344">1 | Indígena</option>
+										    	<option value="345">2 | Afrodescendiente</option>
+										    	<option value="346">3 | Mulato</option>
+										        <option value="347">4 | Gitano ROM</option>
+										        <option value="348">5 | No aplica</option>
+										        <option value="348">6 | Otros </option>
+									</select>
+                                      	<div class="input-field otragrupoEtnico">
+										  		 <input name="otragrupoEtnico[]" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							           </div>  
+									</td>
+                          		<td><select class="browser-default"  name="victimaConflicto[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="349">1 | Víctima de desplazamiento forzado</option>
+										    	<option value="350">2 | Víctima Herido o agredido en cualquier condición</option>
+										    	<option value="351">3 | Víctima de familiares asesinados y/o desaparecidos</option>
+										        <option value="352">4 | Víctima despojada de tierras</option>
+										        <option value="353">5 | Víctimas amenazado(a)</option>
+										        <option value="354">6 | Desmovilizado(a) </option>
+										        <option value="355">7 | No aplica</option>
+									</select></td>
+                          		<td><select class="browser-default"  name="poblacionLGBT[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="356">1 | Lesbiana</option>
+										    	<option value="357">2 | Gay</option>
+										    	<option value="358">3 | Bisexual</option>
+										        <option value="359">4 | Transexual</option>
+										        <option value="360">5 | Intersexual</option>
+										        <option value="361">6 | Varias de las anteriores </option>
+										        <option value="362">7 | No aplica.</option>
+									</select></td>
+                          		<td><select class="browser-default"  name="adolecentesEmbarazadas[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="363">1 | Adolescente menor de 15 años embarazada sin control prenatal</option>
+										    	<option value="364">2 | Adolescente menor de 15 años embarazada con control prenatal </option>
+										    	<option value="365">3 | Adolescente entre 15 y 19 años embarazada sin control prenatal</option>
+										        <option value="366">4 | Adolescente entre 15 y 19 años embarazada con control prenatal</option>
+										        <option value="367">5 | Adolescente entre 15 y 19 años embarazada con control prenatal catalogada de alto riesgo</option>
+										        <option value="368">6 | No aplica</option>
+									</select></td>
+                          		<td><select class="browser-default"  name="menorTrabajador[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="369">1 | Menor trabajador estudiando</option>
+										    	<option value="370">2 | Menor trabajador que no está estudiando </option>
+										    	<option value="371">3 | No aplica</option>
+										  
+									</select></td>
+                          		<td><select class="browser-default"  name="menoresDesercioescolar[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="372">1 | Desertor escolar por trabajar</option>
+										    	<option value="373">2 | Desertor escolar por violencia escolar</option>
+										    	<option value="374">3 | Desertor escolar por condiciones económicas</option>
+										        <option value="375">4 | Desertor escolar por desmotivación personal</option>
+										        <option value="376">5 | Desertor escolar por distancia al centro educativo</option>
+										        <option value="377">6 | Desertor escolar por otros motivos</option>
+										        <option value="378">7 | No aplica</option>
+									</select></td>
+                          	</tr>
+                       	</tbody>
                           </table>
+                            <br>
+                           <div class="input-field ">
+					          <input name="otrasCondicionesdeVulnerabilidad" placeholder="" id="" type="text" class="validate">
+					          <label for="textarea1">Otras condiciones de vulnerabilidad identificadas</label>
+					        </div>
+
+					        </div>
+
+
+					</li>
+
+
+
+                   <li>
+						<div class="collapsible-header ">Consumo y Higiene</div>
+						<div class="collapsible-body">
+
+							<div class="row">
+								<table id="tabla-adiccionHigiene">
+									<thead>
+										<tr class="border-tabla">
+										<th>Nombre</th>
+											<th>Consumo de Alcohol</th>
+											<th>Consumo de cigarrillo</th>						
+											<th>consumo de psicoactivos</th>
+											<th>Higiene corporal</th>
+											<th>Higiene bucal</th>
+											<th>Actividad física </th>
+											<th>Mujer Gestacion</th>
+											
+										</tr>
+									</thead>
+								
+								<tbody>
+									
+									<tr class="border-tabla">
+									<td><input disabled placeholder="Nombre" class="name4" type="text" class="validate"></td>
+									<td>
+                                   
+
+									<select    class="browser-default"  name="consumeAlcohol[]">
+									            <option value="" disabled selected></option>
+										    	<option value="379">1 | Todos los días.</option>
+										    	<option value="380">2 | Entre 5 y 6 días por semana.</option>
+										    	<option value="381">3 | Entre 3 y 4 días por semana</option>
+										        <option value="382">4 | Entre 1 y 2 días por semana.</option>
+										        <option value="383">5 | Entre 1 y 3 días por mes.</option>
+										        <option value="384">6 | Menos de una vez al mes.</option>
+										        <option value="385">7 | No aplica.</option>
+									</select>
+
+                                  </td>
+
+									<td><select class="browser-default"  name="consumeCigarrillo[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="386">1 | Consume un cigarrillo diario.</option>
+										    	<option value="387">2 | Consume más de un cigarrillo diario.</option>
+										    	<option value="388">3 | Consume entre 1 y 6 cigarrillos en una semana corriente</option>
+										        <option value="389">4 | No consume cigarrillo.</option>
+										      
+									</select></td>
+								
+									<td><select class="browser-default"  name="consumePsicoactivos[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="390">1 | Consume psicoactivos entre 1 y más veces al día</option>
+										    	<option value="391">2 | Consume psicoactivos con más de una vez en una semana corriente</option>
+										    	<option value="392">3 | Consume psicoactivos menos de una vez en una semana corriente</option>
+										        <option value="393">4 | No consume psicoactivos</option>
+									</select></td>
+
+									<td><select class="browser-default"  name="higieneCorporal[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="394">1 | Se realiza el baño de su cuerpo 1 vez al mes</option>
+										    	<option value="395">2 | Se realiza el baño de su cuerpo 1 vez a la semana</option>
+										    	<option value="396">3 | Se realiza el baño de su cuerpo 2 veces a la semana</option>
+										        <option value="397">4 | Se realizan el baño de su cuerpo a diario.</option>
+									</select></td>
+									<td><select class="browser-default"  name="higieneBucal[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="398">1 | Se lava los dientes al menos una vez al día con agua, crema y cepillo</option>
+										    	<option value="399">2 | Se lava los dientes al menos dos veces al día con agua, crema y cepillo</option>
+
+										    	<option value="400">2 | Se lava los dientes tres veces al día con agua, crema y cepillo</option>
+                                                <option value="401">3 | Solo se enjuga con agua los dientes.</option>
+                                                <option value="402">4 | No de lava los dientes.</option>						
+									</select></td>
+									<td><select class="browser-default"  name="actividadFisica[]">
+										    	<option value="" disabled selected></option>
+										    	<option value="403">1 | No realiza</option>
+										    	<option value="404">2 | 1 día a la semana</option>
+										    	<option value="405">3 | 2 y 3 a la semana.</option>
+										        <option value="406">4 | 4 y 5 a la semana.</option>
+										        <option value="407">5 | 6 y 7 a la semana.</option>
+									</select></td>
+									<td><select class="browser-default"  name="mujerGestacion[]">
+									            <option value="" disabled selected></option>
+										    	<option value="412">1 | Mujer en gestación con control prenatal</option>
+										    	<option value="413">2 | Mujer en gestación sin control prenatal.</option>
+										    	<option value="414">3 | No aplica.</option>				 							    
+									</select></td>
+								</tr>
+								</tbody>
+								</table>
 
 
 							</div>
+						
+                          </div>
 					</li>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<li>	
+							<div class="collapsible-header  ">CONDICIONES DE VULNERABILIDAD POR VIVIENDA DEL HOGAR</div>
+						<div class="collapsible-body">
+						<br>
+                              <div class="row">
+	                              	<div  class="input-field col l4">
+	                              	<br> <select name="tenenciaVivienda">
+										      <option value="" disabled selected></option>
+										      <option value="83">1 | Propia</option>
+										      <option value="84">2 | Arrendada </option>
+										      <option value="85">3 | Vivienda Familiar</option>
+										      <option value="86">4 | Otra </option>
+										    </select><br>
+								         <label class="colorBlue">Tenencia de Vivienda</label>
+
+								       <div class="input-field otratenenciaVivienda">
+									  		 <input name="otratenenciaVivienda" placeholder="Cual?" type="text" class="validate">
+								     		 <label for="" class="colorWhite" >Cual?</label>
+						               </div> 
+
+	                              	</div>
+	                              	<div  class="input-field col l4">
+	                              	<br> <select name="zonaVivienda">
+										      <option value="" disabled selected></option>
+										      <option value="91">1 | En zona habitable predefinida por ordenamiento territorial</option>
+										      <option value="92">2 | En zona habitable del sector rural</option>
+										      <option value="93">3 | En zona no determinada como habitable</option>
+										      <option value="94">4 | Zona inundable </option>
+										      <option value="95">5 | Margen de ríos (orilla)</option>
+										      <option value="96">6 | Zona de ladera o deslizamiento</option>
+										      <option value="97">7 | Falda de la montaña</option>
+								    	      <option value="98">8 | Relleno</option>
+										      <option value="99">9 | Otro</option>
+										    </select><br>
+								         <label class="colorBlue">Ubicación de la vivienda</label>
+                                          <div class="input-field otrazonaVivienda">
+									  		 <input name="otrazonaVivienda" placeholder="Cual?" type="text" class="validate">
+								     		 <label for="" class="colorWhite" >Cual?</label>
+						                 </div> 
+
+	                              	</div>
+
+	                              	 	<div  class="input-field col l4">
+	                              	<br> <select name="tipoVivienda">
+										      <option value="" disabled selected></option>
+										      <option value="87">1 | Casa</option>
+										      <option value="88">2 | Apartamento</option>
+										      <option value="89">3 | Habitación única dentro de una casa o apartamento</option>
+										      <option value="90">4 | Otra</option>
+										     
+										    </select><br>
+								         <label class="colorBlue">Tipo de vivienda</label>
+                                         <div class="input-field otratipoVivienda ">
+									  		 <input name="otratipoVivienda" placeholder="Cual?" type="text" class="validate">
+								     		 <label for="" class="colorWhite" >Cual?</label>
+						                 </div> 
+	                              	</div>
+
+	                              
+                              </div>
+							<div class="row">
+								<table id="">
+									<thead>
+										<tr >
+									
+												
+												<th class="titulo-tabla border-tabla" colspan="3"><center>Materiales de la vivienda</center></th>
+											
+												<th class="titulo-tabla border-tabla" colspan="5"><center>Abastecimiento de Agua</center></th>
+											
+										</tr >
+											<tr class="border-tabla">
+												<th>Techo</th>
+												<th>Paredes</th>
+												<th>Piso</th>
+												<th>Fuente </th>
+												<th>Tratamiento</th>
+												<th>Alamacenamiento</th>
+											</tr>
+										</tr>
+									</thead>
+								
+								<tbody>
+									<tr >
+							
+                                
+							
+								    </tr>
+
+
+								    <tr class="border-tabla">
+							
+                                       <td><select name="materialTecho">
+										      <option value="" disabled selected></option>
+										      <option value="100">1 | Teja de Eternit</option>
+										      <option value="101">2 | Teja de zinc</option>
+										      <option value="102">3 | Teja de barro</option>
+										      <option value="103">4 | Placa de concreto</option>
+										      <option value="104">5 | Paja y/u otros materiales naturales (bahareque)</option>
+										      <option value="105">6 | Cartón y/o plástico</option>
+										      <option value="106">7 | Otros</option>
+										    </select>
+                                             <div class="input-field otramaterialTecho">
+									  		 		<input name="otramaterialTecho" placeholder="Cual?" type="text" class="validate">
+								     		 		<label for="" class="colorWhite" >Cual?</label>
+						                     </div> 
+										    </td>
+                                       <td><select name="materialParedes">
+										      <option value="" disabled selected></option>
+										      <option value="107">1 | Ladrillo</option>
+										      <option value="108">2 | Madera</option>
+										      <option value="109">3 | Adobe</option>
+										      <option value="110">3 | Bahareque</option>
+										      <option value="111">4 | Plástico/cartón</option>
+										      <option value="112">5 | Desechos</option>
+										      <option value="113">5 | Otro</option>
+										    </select>
+                                            <div class="input-field otramaterialParedes ">
+									  		 		<input name="otramaterialParedes" placeholder="Cual?" type="text" class="validate">
+								     		 		<label for="" class="colorWhite" >Cual?</label>
+						                     </div> 
+										    </td>
+                                       <td><select name="materialPiso">
+										      <option value="" disabled selected></option>
+										      <option value="114">1 | Tierra</option>
+										      <option value="115">2 | Madera</option>
+										      <option value="116">3 | Cemento</option>
+										      <option value="117">4 | Baldosa</option>
+										      <option value="118">5 | Otro</option>
+										    </select>
+                                                   <div class="input-field otramaterialPiso">
+									  		 		<input name="otramaterialPiso" placeholder="Cual?" type="text" class="validate">
+								     		 		<label for="" class="colorWhite" >Cual?</label>
+						                          </div>
+										    </td>
+                                       <td><select name="abastecimientoFuente">
+										      <option value="" disabled selected></option>
+										      <option value="119">1 | Acueducto</option>
+										      <option value="120">2 | Pila </option>
+										      <option value="121">3 | Pozo</option>
+										      <option value="122">4 | Rio</option>
+										      <option value="123">5 | Lluvia</option>
+										      <option value="124">5 | Otro</option>
+										    </select>
+                                                     <div class="input-field  otraabastecimientoFuente">
+									  		 		<input name="otraabastecimientoFuente" placeholder="Cual?" type="text" class="validate">
+								     		 		<label for="" class="colorWhite" >Cual?</label>
+						                          </div>
+										    </td>
+                                       <td><select name="abastecimientoTratamiento">
+										      <option value="" disabled selected></option>
+										      <option value="125">1 | Tratada</option>
+										      <option value="126">2 | Filtrada</option>
+										      <option value="127">3 | Hervida</option>
+										      <option value="128">4 | Ninguno</option>
+										      <option value="129">5 | Otro</option> </select>
+										               <div class="input-field otraabastecimientoTratamiento">
+										  		 		<input name="otraabastecimientoTratamiento" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                          </div>
+										   </td>
+                                       <td><select name="abastecimientoAlmacenamiento">
+										      <option value="" disabled selected></option>
+										      <option value="130">1 | Tanque con tapa</option>
+										      <option value="131">2 | Tanque sin tapa</option>
+										      <option value="132">3 | Alberca</option>
+										      <option value="133">4 | Caneca</option>
+										      <option value="134">5 | Otro</option> </select>
+										           <div class="input-field otraabastecimientoAlmacenamiento">
+									  		 		<input name="otraabastecimientoAlmacenamiento" placeholder="Cual?" type="text" class="validate">
+								     		 		<label for="" class="colorWhite" >Cual?</label>
+						                          </div>
+										    
+									  </td>
+
+								    </tr>
+
+								</tbody>
+								</table>
+							</div>
+						<div class="row">
+							<table>
+								<thead>
+									<tr class="border-tabla">
+										<th colspan="2">Dispocicion de escretas</th>
+										<th colspan="2">Tratamiento de basuras</th>
+									
+								
+							            <th>Energia</th>
+										<th>Combustible</th>
+									</tr>
+									<tr class="border-tabla">
+										<th>Mecanismo</th>
+										<th>Disposicion</th>
+										<th>Recoleccion</th>
+										<th>Dispocicion</th>
+										<th></th>
+										<th></th>
+									
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="border-tabla">
+										<td><select name="disposicionMecanismo">
+										      <option value="" disabled selected></option>
+										      <option value="135">1 | Unidad sanitaria</option>
+										      <option value="136">2 | Letrina</option>
+										      <option value="137">3 | Campo abierto</option>
+										      <option value="138">4 | Otro</option>
+										    
+										 
+										    </select>
+                                            <div class="input-field otradisposicionMecanismo ">
+										  		 <input name="otradisposicionMecanismo" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+										    </td>
+										<td><select name="disposicionDispocicion">
+										      <option value="" disabled selected></option>
+										      <option value="139">1 | Alcantarillado</option>
+										      <option value="140">2 | Pozo séptico</option>
+										      <option value="141">3 | Campo de infiltración</option>
+										      <option value="142">4 | Incineración</option>
+										      <option value="143">5 | Otro</option>
+										 
+										    </select> 
+										    <div class="input-field otradisposicionDispocicion">
+										  		 <input name="otradisposicionDispocicion" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+										    </td>
+										<td><select name="disposicionRecolecion">
+										      <option value="" disabled selected></option>
+										      <option value="144">1 | Recolectada en recipiente dentro del hogar</option>
+										      <option value="145">2 | Recolectada en recipiente fuera del hogar</option>
+										      <option value="146">3 | Recolectada en abasto comunitario</option>
+										      <option value="147">3 |  No se recolecta</option>
+										      <option value="148">4 | Otro</option>
+										 
+										    </select> 
+										    <div class="input-field otradisposicionRecolecion">
+										  		 <input name="otradisposicionRecolecion" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+										    </td>
+										<td><select name="disposicionDisposicionbasuras">
+										      <option value="" disabled selected></option>
+										      <option value="149">1 | Recolectada por servicio de aseo municipal</option>
+										      <option value="150">2 | Enterrada</option>
+										      <option value="151">3 | Quemada</option>
+										      <option value="152">3 | Campo Abierto</option>
+										      <option value="153">4 | Otro</option>
+										 
+										    </select> 
+										    <div class="input-field otradisposicionDisposicionbasuras">
+										  		 <input name="otradisposicionDisposicionbasuras" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+										    </td>
+										<td  ><select name="Energia">
+										      <option value="" disabled selected></option>
+										      <option value="154">1 | Eléctrica</option>
+										      <option value="155">2 | Vela de cera</option>
+										      <option value="156">3 | Lámpara de petróleo</option>
+										      <option value="157">3 | Energía solar</option>
+										      <option value="158">3 | Planta Generadora</option>
+										      <option value="159">4 | Otro</option>
+										 
+										    </select> 
+										    <div class="input-field otraEnergia">
+										  		 <input name="otraEnergia" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+										    </td>
+										 <td><select name="Combustible">
+										      <option value="" disabled selected></option>
+										      <option value="160">1 | Gas natural</option>
+										      <option value="161">2 | Gasolina</option>
+										      <option value="162">3 | Leña</option>
+										      <option value="163">3 | Electricidad</option>
+										      <option value="164">3 | Gas propano</option>
+										      <option value="165">4 | Carbón mineral</option>
+										      <option value="166">4 | Otro</option>
+										  </select> 
+										  <div class="input-field otraCombustible">
+										  		 <input name="otraCombustible" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+										    </td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+							<div class="row">
+								<table id="">
+									<thead>
+										<tr >
+									
+												
+												<th class="titulo-tabla border-tabla" colspan="3"><center>Estructura de la vivienda</center></th>
+											
+												<th class="titulo-tabla border-tabla" colspan="6"><center>Riegos de la vivienda</center></th>
+											
+										</tr >
+											<tr class="border-tabla">
+												<th>Cocina separada de dormitorios</th>
+												<th>Número de dormitorios</th>
+												<th>Personas por dormitorio</th>
+												<th>Fisicos </th>
+												<th>Quimicos</th>
+												<th>Biologicos</th>
+												<th>Sociales</th>
+											</tr>
+										</tr>
+									</thead>
+								
+								<tbody>
+									<tr >
+							
+                                
+							
+								    </tr>
+
+
+								    <tr class="border-tabla">
+							
+                                       <td><select name="cocinaSeparada">
+										      <option value="" disabled selected></option>
+										      <option value="167">1 | Si</option>
+										      <option value="168">2 | No</option>
+										      <option value="169">3 | No cuenta con cocina</option>
+										 </select>
+                                            <div class="input-field otracocinaSeparada">
+										  		 <input name="otracocinaSeparada" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+
+										    </td>
+                                       <td><div class="input-field ">
+										  <input name="numDormitorios"  placeholder="Numero de Dormitorios" type="text" class="validate">
+									     
+							              </div>
+							           </td>
+                                       <td>
+                                       	<div  class="input-field ">
+									        <input name="numPersonaDormitorio" placeholder="Numero de personas por dormitorio" type="text" class="validate">
+									      
+							            </div> 
+                                       </td>
+                                       <td><select name="riegosFisicos">
+										      <option value="" disabled selected></option>
+										      <option value="170">1 | Por ubicación en zona de riesgo</option>
+										      <option value="171">2 | Por debilidad de la estructura general de la vivienda </option>
+										      <option value="172">3 | Por deterioro y antigüedad de la estructura.</option>
+										      <option value="173">4 | Por ruidos dentro y fuera de la vivienda.</option>
+										      <option value="174">5 | Por Iluminación inadecuada</option>
+										      <option value="175">6 | Por ventilación inadecuada</option>
+										      <option value="176">7 | Otro</option>
+										      <option value="177">8 | No aplica</option>
+										    </select><div class="input-field otrariegosFisicos">
+										  		 <input name="otrariegosFisicos" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div></td>
+
+
+
+                                       <td><select name="riesgosQuimicos">
+										      <option value="" disabled selected></option>
+										      <option value="178">1 | Almacenamiento de químicos utilizados en agricultura</option>
+										      <option value="179">2 | Almacenamiento de pólvora</option>
+										      <option value="180">3 | Combustible de cocina de alta combustión</option>
+										      <option value="181">4 | Almacenamiento de otro tipo de químicos</option>
+										      <option value="182">5 | Otro</option>
+										      <option value="183">5 | No aplica</option>
+										    </select><div class="input-field otrariesgosQuimicos">
+										  		 <input name="otrariesgosQuimicos" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div></td>
+
+
+                                       <td><select name="riesgosBiologicos">
+										      <option value="" disabled selected></option>
+										      <option value="184">1 | Alimentos sin refrigeración</option>
+										      <option value="185">2 | Mala manipulación de alimentos.</option>
+										      <option value="186">3 | Presencia de vectores (roedores e insectos)</option>
+										      <option value="187">4 | Dormitorios compartidos con animales</option>
+										      <option value="188">5 | Otro</option>
+										      <option value="189">6 | No aplica</option>
+										    </select><div class="input-field otrariesgosBiologicos ">
+										  		 <input name="otrariesgosBiologicos" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+									  </td>
+
+									  <td><select name="riesgosSociales">
+										      <option value="" disabled selected></option>
+										      <option value="190">1 | Cercanía o amenaza de presencia de grupos armados ilegales.</option>
+										      <option value="191">2 | Personas que realizan actividades ilícitas en cercanía a la vivienda</option>
+										      <option value="192">3 | Prácticas inadecuadas de los miembros del hogar que alteran la estructura de la vivienda</option>
+										      <option value="193">4 | Otro</option>
+										      <option value="194">5 | No aplica</option></select>
+										       <div class="input-field otrariesgosSociales">
+										  		 <input name="otrariesgosSociales" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+										    
+									  </td>
+
+								    </tr>
+
+								</tbody>
+								</table>
+										 <br>
+		                           <div class="input-field ">
+							          <input name="otrasCondicionesdeVulnerabilidadVivienda" placeholder="" id="" type="text" class="validate">
+							          <label for="textarea1">Otras condiciones de vulnerabilidad identificadas</label>
+					        </div>
+							</div>
+                       </div>
+
+					</li>
+
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<li>
+							<div class="collapsible-header ">Condiciones de vulnrabilidad por el entorno de la vivienda y el hogar</div>
+						<div class="collapsible-body">
+
+							<div class="row">
+
+
+
+							 <div class="input-field col l4">
+				                 
+					    	   <br>
+
+					    	        <select name="viasAcceso">
+										      <option value="" disabled selected></option>
+										      <option value="195">1 | Cuenta con vía de acceso tipo carretera o calle pavimentada a menos de 300 metros de la vivienda.</option>
+										      <option value="196">2 | Cuenta con vía de acceso tipo carretera o calle no pavimentada a menos de 300 metros de la vivienda</option>
+										      <option value="197">3 | Cuenta con vía de acceso tipo camino veredal a menos de 300 metros de la vivienda.</option>
+										      <option value="198">4 | Cuenta con vía de acceso tipo fluvial a menos de 300 metros de la vivienda (mar, rio o quebrada)</option>
+										      <option value="199">5 |  Otro tipo de acceso</option>
+										      <option value="200">6 |  No cuenta con ningún tipo de acceso</option>
+										    </select>
+
+								      <br>
+								<label class="colorBlue">Vías de acceso a la vivienda</label>
+								             <div class="input-field otraviasAcceso">
+										  		 <input name="otraviasAcceso" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+							
+	    	                  </div>
+
+	    	                   <div class="input-field col l4">
+				              <br>
+                                       <select name="transportePublico">
+										      <option value="" disabled selected></option>
+										      <option value="201">1 | Cuenta con algún tipo de transporte público tipo bus, colectivo o similar que lo deje a menos de 300 metrosde la vivienda.</option>
+										      <option value="202">2 | Cuenta con algún tipo de servicio público tipo motocicleta, caballar o similar que lo deje a menos de 300
+                                              metros de la vivienda.</option>
+										      <option value="203">3 | Cuenta con algún tipo de servicio público tipo ferri, yate, lancha o similar que lo deje a menos de 300
+                                              metros de la vivienda.</option>
+										      <option value="204">5 |  Otro tipo de transporte con el que cuenta</option>
+										      <option value="205">6 |  No cuenta con ningún tipo de transporte público</option>
+										    </select>
+					    	
+								      <br>
+								<label class="colorBlue">Transporte público</label>
+								 <div class="input-field otratransportePublico">
+										  		 <input name="otratransportePublico" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+							
+	    	                  </div>
+
+	    	                   <div class="input-field col l4">
+				                  <br>
+					    	         
+                                       <select name="telefono_publico">
+										      <option value="" disabled selected></option>
+										      <option value="206">1 | Cuenta con algún teléfono público pago en funcionamiento a menos de 300 metros de la vivienda.</option>
+										      <option value="207">2 | Cuenta con algún tipo de teléfono público gratuito en funcionamiento a menos de 300 metros de la vivienda.</option>
+										      <option value="208">3 | No cuenta con ningún tipo de teléfono público en funcionamiento.</option>
+								     </select>
+					    	
+								      <br>
+								<label class="colorBlue"> Teléfono público</label>
+							
+	    	                  </div>
+
+			
+							</div>
+
+							<div class="row">
+								 <div class="input-field col l4">
+				                 
+					    	         
+                                       <select name="hogares_infantiles">
+										      <option value="" disabled selected></option>
+										      <option value="209">1 | Cuenta con jardín infantil u hogar inicial para menores de cinco años en funcionamiento localizado a menos de 500 metros de distancia de la vivienda.</option>
+										      <option value="210">2 | Cuenta con jardín infantil u hogar inicial para menores de cinco años en funcionamiento, localizado entre 600 metros a 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="211">3 | No cuenta con jardines infantiles u hogar inicial en funcionamiento localizado a menos de un kilómetro de distancia de la vivienda.</option>
+										  
+										    </select>
+					    	
+								      
+								<label class="colorBlue"> Hogares infantiles</label>
+							
+	    	                  </div>
+
+
+	    	                   <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="ecuelas">
+										      <option value="" disabled selected></option>
+										      <option value="212">1 | Cuenta con escuela de educación básica y/o secundaria en funcionamiento localizada a menos de un kilómetro de distancia de la vivienda.</option>
+										      <option value="213">2 |Cuenta con escuela de educación básica y/o secundaria en funcionamiento localizada a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="214">3 | No cuenta con escuela en funcionamiento localizada a menos de un kilómetro de la vivienda</option>
+										  
+										    </select>
+					    	
+								     
+								<label class="colorBlue"> Escuelas</label>
+							
+	    	                  </div>
+
+	    	                 <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="centroSalud">
+										      <option value="" disabled selected></option>
+										      <option value="215">1 | Cuenta con Centro de atención de primer nivel y de urgencias en funcionamiento localizado a menos de 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="216">2 | Cuenta con centro de atención de primer nivel o de urgencias en funcionamiento localizado a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="217">3 | No cuenta con Centro de atención de primer nivel y de urgencias en funcionamiento a menos de dos kilómetros de distancia de la vivienda.</option>
+										  
+										    </select>
+					    	
+								     
+								<label class="colorBlue">  Centro de Salud</label>
+							
+	    	                  </div>
+
+
+
+
+							</div>
+
+							<div class="row">
+								  <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="bomberos">
+										      <option value="" disabled selected></option>
+										      <option value="218">1 | Cuenta con estación de bomberos en funcionamiento localizada a menos de 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="219">2 | Cuenta con estación de bomberos en funcionamiento localizada a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="220">3 | La estación de bomberos en funcionamiento está localizada a más de 2 kilómetros de distancia de la vivienda..</option>
+										      <option value="221">4 | No cuenta con estación de bomberos en funcionamiento en el municipio.</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">  Centro de Salud</label>
+							
+	    	                  </div>
+
+
+	    	                  <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="comisariaFamilia">
+										      <option value="" disabled selected></option>
+										      <option value="222">1 | Cuenta con comisaria de familia localizada a menos de 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="223">2 | Cuenta con comisaria de familia localizada a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="224">3 | La comisaria de familia queda localizada a más de 2 kilómetros de distancia de la vivienda.</option>
+										      <option value="225">4 | No cuenta con comisaria de familia en el municipio.</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">  Comisaria de Familia</label>
+							
+	    	                  </div>
+                               
+
+	    	                  <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="centroReligioso">
+										      <option value="" disabled selected></option>
+										      <option value="226">1 | Cuenta con centro religioso localizado a menos de 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="227">2 | Cuenta con centro religioso localizado a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="228">3 | El centro religioso está localizado a una distancia mayor a 2 kilómetros de la vivienda.</option>
+										      <option value="229">4 | No cuenta con centro religioso en el municipio</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">  Centro religioso</label>
+							
+	    	                  </div>
+
+	    	                   <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="centroDeportivo">
+										      <option value="" disabled selected></option>
+										      <option value="230">1 | Cuenta con centro o espacio deportivo localizado a menos de 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="231">2 | Cuenta con centro o espacio deportivo localizado a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="232">3 | El centro deportivo está localizado a una distancia mayor a 2 kilómetros de la vivienda.</option>
+										      <option value="233">4 | No cuenta con centro deportivo en el municipio.</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Centro  Deportivo</label>
+							
+	    	                  </div>
+
+	    	                   <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="centroCultural">
+										      <option value="" disabled selected></option>
+										      <option value="234">1 |  Cuenta con centro cultural localizado a menos de 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="235">2 | Cuenta con centro cultural localizado a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="236">3 | El centro cultural está localizado a una distancia mayor a 2 kilómetros de la vivienda. </option>
+										      <option value="237">4 | No cuenta con centro cultural en el municipio.</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Centro  Cultural</label>
+							
+	    	                  </div>
+                             <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="mercadoBasico">
+										      <option value="" disabled selected></option>
+										      <option value="238">1 | Cuenta con expendio de mercado básico localizado a menos de 1 kilómetro de distancia de la vivienda.</option>
+										      <option value="239">2 | Cuenta con expendio de mercado básico localizado a una distancia entre 1 y 2 kilómetros de la vivienda.</option>
+										      <option value="240">3 | El expendio de mercado básico está localizado a una distancia mayor a 2 kilómetros de la vivienda </option>
+										      <option value="241">4 | No cuenta con mercado básico en el municipio.</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Mercado Básico</label>
+							
+	    	                  </div>
+
+
+							</div>
+
+							<div class="row">
+								 <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="presenciaVectores">
+										      <option value="" disabled selected></option>
+										      <option value="250">1 | Zancudos (ya sea especie Aedes o especie Anopheles, u otros)</option>
+										      <option value="251">2 | Palomilla, manta blanca, quemador, pringador, jején, pito (flebótomos que causan la leishmaniasis)</option>
+										      <option value="252">3 |  Chinches (triatómidos, parasito que causa enfermedad de Chagas) </option>
+										      <option value="253">4 | Pulgas y/o piojos</option>
+										      <option value="254">5 | Garrapatas, cucarachas, hematófagos (murciélagos)</option>
+										      <option value="255">6 | Otros</option>
+										      <option value="256">7 | No aplica</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Presencia de vectores o plagas cerca o dentro de la vivienda</label>
+							           <div class="input-field otrapresenciaVectores">
+										  		 <input name="otrapresenciaVectores" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+	    	                  </div>
+							       <div class="input-field col l4">
+				                 
+					    	        
+                                       <select name="presenciaCentros">
+										      <option value="" disabled selected></option>
+										      <option value="242">1 | Cerca de la vivienda se encuentran expendios de drogas y/o otros psicoactivos</option>
+										      <option value="243">2 | Cerca de la vivienda se encuentran lugares de prostitución</option>
+										      <option value="244">3 | Cerca de vivienda se encuentran lugares de proxenetismo y pornografía </option>
+										      <option value="245">4 | Cerca de la vivienda se encuentran expendios de armas</option>
+										      <option value="246">5 | Cerca de la vivienda se encuentran lugares de acopio masivo de personas (estadios, discotecas, casinos,etc.)</option>
+										      <option value="247">6 | Cerca de la vivienda se encuentran fábricas o expendidos de pólvora</option>
+										      <option value="248">7 | Otro </option>
+										      <option value="249">8 | Ningún lugar de los anteriores que represente riesgo para el hogar</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Centros o zonas que representan riesgos para el hogar</label>
+							            <div class="input-field otrapresenciaCentros">
+										  		 <input name="otrapresenciaCentros" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							                  </div>
+	    	                  </div>
+							</div>
+                            <div class="input-field ">
+							          <input name="otrasCondicionesdeVulnerabilidadViviendaHogar" placeholder="" id="" type="text" class="validate">
+							          <label for="textarea1">Otras condiciones de vulnerabilidad identificadas</label>
+					        </div>
+
+
+						</div>
+
+					</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<li>	
+
+					<div class="collapsible-header ">CONDICIONES DE VULNERABILIDAD POR LOS HÁBITOS Y CONSTUMBRES DE LOS MIEMBROS DEL HOGAR</div>
+						<div class="collapsible-body">
+
+
+                        <div class="row">
+
+                        <div class="input-field col l6">
+				                 <br>
+					    	        
+                                       <select name="convivencia"><br>
+										      <option value="" disabled selected></option>
+										      <option value="257">1 | Se presentan malos tratos verbales entre algunos miembros del hogar</option>
+										      <option value="258">2 | Se presentan malos tratos físicos entre algunos miembros del hogar</option>
+										      <option value="259">3 | Las dos anteriores se presentan con alguna frecuencia en el hogar </option>
+										      <option value="260">4 | En el hogar no se presenta ningún tipo de malos tratos ni físicos ni verbales.</option>
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Convivencia</label>
+							
+	    	                  </div>
+
+                        	<div class="input-field col l6">
+				                 <br>
+					    	        
+                                       <select name="hijieneVivienda"><br>
+										      <option value="" disabled selected></option>
+										      <option value="261">1 | La vivienda es barrida, trapeada y/o lavada todos los días</option>
+										      <option value="262">2 | La vivienda es barrida, trapeada y/o lavada algunos días de la semana</option>
+										      <option value="263">3 | La vivienda es barrida, trapeada y/o lavada alguna vez por semana </option>
+										      <option value="264">4 | La vivienda es barrida, trapeada y/o lavada al menos una vez al mes</option>
+										      <option value="265">5 | La vivienda pasa más de un mes sin realizarle aseo de ningún tipo.</option>
+										      
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Hijiene vivienda</label>
+							       <div class="input-field otrahijieneVivienda">
+										  		 <input name="otrahijieneVivienda" placeholder="Cual?" type="text" class="validate">
+									     		 		<label for="" class="colorWhite" >Cual?</label>
+							          </div>
+	    	                  </div>
+	    	                 
+
+								
+
+
+
+	    	                  </div>
+                                     
+	    	                  <div class="row">	
+	    	                   <div class="input-field col l6">	
+	    	                   <br>	
+                                <select name="riesgosLaborales">
+										      <option value="" disabled selected></option>
+										      <option value="266">1 | Algún miembro del hogar desempeña sus labores bajo algún riesgo físico como altas temperaturas, bajas temperaturas, baja iluminación, exceso de ruido, en alturas sin protección, cargas pesadas, y demás trabajos que representen riesgos físicos</option>
+										      <option value="267">2 | Algún miembro del hogar desempeña sus labores bajo algún riesgo químico como: manipulación de químicos para la agricultura, manipulación de pinturas, pegantes y o sellantes de alta concentración en olor, maneja algunos químicos usados en salud y belleza, trabaja en la industria de producción de químicos, trabajos en la producción de pólvoras y otros explosivos, otros trabajos con químicos.</option>
+										      <option value="268">3 | Algún miembro del hogar desempeña sus labores bajo algún riesgo biológico como: manipulación de alimentos, cárnicos y/o bebidas, manipulación de residuos sólidos hospitalarios, manipulación de residuos provenientes de hogares, trabajos en limpieza de canteras, alcantarillados y cloacas, manipulación de cadáveres, otros trabajos que representen riesgos biológicos. </option>
+										    <option value="269">3 | Ningún miembro del hogar está expuesto a riesgos laborales. </option>
+										    </select>
+										     
+										    
+										    </select>
+					    	
+								    
+								      <label class="colorBlue">Riesgos Laborales</label>
+
+
+	    	                  </div>
+                                       
+	    	                 <div class="input-field col l6">
+				                 
+					    	        <br>
+					    	         <select name="animalesCasa">
+										      <option value="" disabled selected></option>
+										      <option value="1">1 | Si</option>
+										      <option value="0">2 | No</option>
+									
+								
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Tenencia de animales</label>
+                                   <div id="animales">
+
+                                       <p>
+									      <input name="animalesCasaTipo1" type="checkbox" class="filled-in" id="animalesCasaTipo1"  />
+									      <label for="animalesCasaTipo1">En el hogar tienen caninos vacunados</label>
+									    
+									    </p>
+									      <div class="input-field  animalesCasaTipo1">
+												<input name="otraanimalesCasaTipo1" placeholder="Cuantos ?" type="text" class="validate">
+											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+										  </div>
+
+
+						                <p>
+									      <input name="animalesCasaTipo2" type="checkbox" class="filled-in" id="animalesCasaTipo2"  />
+									      <label for="animalesCasaTipo2">En el hogar tienen felinos vacunados</label>
+									    </p>
+
+									     <div class="input-field animalesCasaTipo2 ">
+												<input name="otraanimalesCasaTipo2" placeholder="Cuantos ?" type="text" class="validate">
+											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+										  </div>
+
+
+									     <p>
+									      <input name="animalesCasaTipo3" type="checkbox" class="filled-in" id="animalesCasaTipo3"  />
+									      <label for="animalesCasaTipo3">En el hogar tienen caninos no vacunados</label>
+									    </p>
+
+									     <div class="input-field animalesCasaTipo3 ">
+												<input name="otraanimalesCasaTipo3" placeholder="Cuantos ?" type="text" class="validate">
+											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+										  </div>
+
+
+									     <p>
+									      <input name="animalesCasaTipo4" type="checkbox" class="filled-in" id="animalesCasaTipo4"  />
+									      <label for="animalesCasaTipo4">En el hogar tienen felinos no vacunados</label>
+									    </p>
+
+									     <div class="input-field  animalesCasaTipo4">
+												<input name="otraanimalesCasaTipo4" placeholder="Cuantos ?" type="text" class="validate">
+											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+										  </div>
+
+
+									     <p>
+									      <input name="animalesCasaTipo5" type="checkbox" class="filled-in" id="animalesCasaTipo5"  />
+									      <label for="animalesCasaTipo5"> En el hogar tienen otro tipo de animales como pájaros, peces, conejos o tortugas entre otros</label>
+									    </p>
+
+									     <div  class="input-field animalesCasaTipo5 ">
+												<input name="otraanimalesCasaTipo5" placeholder="Cuantos ?" type="text" class="validate">
+											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+										  </div>
+
+
+									     <p>
+									      <input name="animalesCasaTipo6" type="checkbox" class="filled-in" id="animalesCasaTipo6"  />
+									      <label for="animalesCasaTipo6">En el hogar tienen otro tipo de animales</label>
+									    </p>
+
+									    <div  class="input-field animalesCasaTipo6 ">
+												<input name="otraanimalesCasaTipo6" placeholder="Cuantos ?" type="text" class="validate">
+											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+										</div>
+
+
+
+
+                                    </div></div>
+
+
+                        </div>
+
+						</div>
+
+					</li>
+
+					 <li>
+						<div class="collapsible-header ">CONDICIONES DE VULNERABILIDAD POR SITUACIÓN DE SALUD DE LOS MIEMBROS DEL HOGAR</div>
+						<div class="collapsible-body">
+
+							<div class="row">
+                                <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="menoresEsquemaincompleto">
+										      <option value="" disabled selected></option>
+										      <option value="270">1 | En el hogar hay algún(os) menor(es) con esquema de vacunación incompleto</option>
+										      <option value="271">2 | En el hogar no hay menores con esquema de vacunación incompleto</option>
+										      <option value="272">2 | En el hogar no hay menores de 5 años</option>
+									
+								
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Menores de cinco años con esquema de vacunación incompleto</label>
+
+                                 </div>
+                                 <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="adultosEnfermedadcronica">
+										      <option value="" disabled selected></option>
+										      <option value="273">1 | En el hogar hay adultos con diagnóstico de enfermedad crónica no controlada</option>
+										      <option value="274">2 | En el hogar hay adultos con diagnóstico de enfermedad crónica controlada</option>
+										      <option value="275">2 | En el hogar no hay adultos con diagnóstico de enfermedad crónica</option>
+									
+								
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Adultos con diagnóstico de enfermedad crónica</label>
+
+                                 </div>
+                                  <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="miembrosSincontrolsexual">
+										      <option value="" disabled selected></option>
+										      <option value="276">1 | Miembros del hogar en edad reproductiva que no han asistido a asesoría de salud sexual y reproductiva en el último año</option>
+										      <option value="277">2 | Miembros del hogar en edad reproductiva que no han asistido a asesoría de salud sexual y reproductiva en los últimos seis meses.</option>
+										   
+									
+								
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Miembros del hogar sin control de salud sexual y reproductiva</label>
+
+                                 </div>
+
+
+		                   </div>
+
+		                   <div class="row">	
+                                 <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="alteracionesNutricionales">
+										      <option value="" disabled selected></option>
+										      <option value="278">1 | Algún miembro del hogar aparenta o relata estar con bajo peso para la edad.</option>
+										      <option value="279">2 | Algún miembro del hogar aparenta o relata estar en sobrepeso para la edad.</option>
+										      <option value="280">3 | Algún miembro de la edad relata disminución del apetito.</option>
+										      <option value="281">4 | Algún miembro del hogar relata preocupación excesiva por el peso actual.</option>
+										      <option value="282">5 | Algún miembro del hogar ingiere productos no comestibles (plástico, papel, metal, lápices, etc.).</option>
+										      <option value="283">6 | Algún miembro del hogar aparenta o relata alguna de las situaciones anteriores.</option>
+										      <option value="284">7 | Ningún miembro del hogar aparenta o relata alteraciones nutricionales.</option>
+										   
+									
+								
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Signos de alteraciones nutricionales en alguno de los miembros del hogar</label>
+
+                                 </div>
+
+                                  <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="consultaPorEnfermedad">
+										      <option value="" disabled selected></option>
+										      <option value="1">1 | Si.</option>
+										      <option value="0">2 | No.</option>				
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Algún miembro del hogar consulto en el último mes por enfermedad transmitida por vectores</label>
+
+                                 </div>
+
+
+                                  <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="lesionesPiel">
+										      <option value="" disabled selected></option>
+										      <option value="1">1 | Si.</option>
+										      <option value="0">2 | No.</option>				
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Algún miembro del hogar presenta lesiones en la piel
+                                     </label>
+
+                                 </div>
+
+
+
+
+		                   </div>
+		                   <div class="row">	
+                                <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="violenciaMiembros">
+										      <option value="" disabled selected></option>
+										      <option value="1">1 | Si.</option>
+										      <option value="0">2 | No.</option>				
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Signos de violencia en alguno de los miembros del hogar
+                                     </label>
+
+                                 </div>
+                                 <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="sinControlbucal">
+										      <option value="" disabled selected></option>
+										      <option value="1">1 | Si.</option>
+										      <option value="0">2 | No.</option>				
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Miembros del hogar sin control de salud bucal en los últimos seis meses
+                                     </label>
+
+                                 </div>
+                                 <div class="input-field col l4">
+				                 
+					    	        <br>
+					    	         <select name="sinAsistenciamedico">
+										      <option value="" disabled selected></option>
+										      <option value="1">1 | Si.</option>
+										      <option value="0">2 | No.</option>				
+										    </select>
+					    	
+								     
+								      <label class="colorBlue">Algún miembro del hogar sin asistencia a control médico en los últimos tres meses o más
+                                     </label>
+
+                                 </div>
+
+		                   </div>
+		                    <br>
+		                     <input value="<?php echo BASE_URL; ?>ficha_hogar/consultar" name="oculto" placeholder="" id="oculto" type="hidden" class="validate">
+
+                           <div class="input-field ">
+					          <input name="otrasCondicionesdeVulnerabilidadMiembros" placeholder="" id="" type="text" class="validate">
+					          <label for="textarea1">Otras condiciones de vulnerabilidad identificadas</label>
+					        </div>
+
+                       </div>
+					</li>
+
 				</ul>
-			</div>
-		</div>
-		
+
+
+
+
+           <input  name="send" id="send" type="submit" class="submit" value="Enviar formulario" />
+
+		<p class="waves-effect waves-light btn" id="create_account">Enviar</p>
 	</form>
+
+
 </div>
+
+
+<script type="text/javascript">
+
+
+var codigo_hogar = $('#codigo_hogar');
+function validateCodHogar(){  
+	if((codigo_hogar.val().length < 5)|| (!codigo_hogar.val().match(/^[0-9a-zA-Z]+$/))){  
+		codigo_hogar.addClass("error");
+
+        return false;  
+    }else{
+            codigo_hogar.removeClass("error");
+    	     return true; 
+    }
+
+}
+
+
+
+$("#hogar").submit(function(){  
+    if(validateCodHogar()) {
+        return true; } 
+    else  {
+    	alert("Ingrese Datos faltantes");
+        return false;  
+
+    }
+});  
+
+
+
+
+$("#tabla-hogar tbody tr:eq(0)  input[name='dateNacimiento[]']").change(function(){
+
+fecha = new Date($(this).val());
+hoy = new Date();
+var array_fecha = fecha.split("-")
+
+    var dia = array_fecha[0];
+    var mes = array_fecha[1];
+    var anio = array_fecha[2];
+
+
+alert('hola'+dia+mes+ano);
+
+});
+
+function calculaEdad(){
+	alert('hola');
+}
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function() {
+
+    $('#create_account').click(function(){
+
+          var dataString = $('#hogar').serialize();
+
+        alert('Datos serializados: '+dataString);
+
+        $.ajax({
+            type: "POST",
+             url: "/aps/ficha_hogar/ingresar",
+            data: dataString,
+            success: function(data) {
+         alert("Datos Enviados con exito");
+            }
+        });
+    });
+
+});
+
+       
+
+
+Eps("<?php echo BASE_URL; ?>ficha_hogar/consultar");
+
+</script>

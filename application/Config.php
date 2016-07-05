@@ -10,10 +10,10 @@ define('APP_COMPANY', '...');
 define('SESSION_TIME', 10);
 define('HASH_KEY', '4f6a6d832be79');
 
-define('DB_HOST', '192.168.0.102');
-define('DB_USER', 'mateo');
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'mydb');
+define('DB_NAME', 'hospital');
 define('DB_CHAR', 'utf8');
 
 ?>

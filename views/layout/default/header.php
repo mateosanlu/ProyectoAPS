@@ -52,10 +52,13 @@
                         } else {
                         $_item_style = '';
                         }
+/*
+  <li><a class="<?php echo $_item_style ." ".$_layoutParams['menu'][$i]['class']; ?>" href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><?php  echo $_layoutParams['menu'][$i]['titulo']; ?></a></li>
 
+*/
                         ?>
 
-                        <li><a class="<?php echo $_item_style ." ".$_layoutParams['menu'][$i]['class']; ?>" href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><?php  echo $_layoutParams['menu'][$i]['titulo']; ?></a></li>
+                      
 
                         <?php endfor; ?>
                     <?php endif; ?>
@@ -129,4 +132,4 @@
                  </form>
             </div>
 
-   
+   </div>
