@@ -3,7 +3,12 @@
 		
 
 			<form action="<?php echo BASE_URL; ?>ficha_hogar/ingresar" id="hogar" method="post">
-
+              <div class="row">
+		N° Ficha
+			<div class="num">
+				<div ><input id="codigo_hogar" name="codigo_hogar" type="text"  ></div>
+			</div>
+		</div>
 				<ul class="collapsible" data-collapsible="accordion">
 
 					<li>
@@ -16,7 +21,7 @@
 								
 						<div class="input-field col l4">                              
 						    <?php if(isset($this->municipios)) : ?>
-						           <select name="municipio">
+						           <select name="municipio" id="municipio" required="required">
 						              <option value="" disabled selected></option>
 										<?php for($i = 0; $i < count($this->municipios); $i++): ?>												  
 		<option value="<?php echo $this->municipios[$i]['COD_DANE']; ?>"  ><?php echo $this->municipios[$i]['DES_MUNICIPIO']; ?></option>													   									 
@@ -27,16 +32,11 @@
 
                          </div> <div class="input-field col l4">
 									   
-										<input name="codigo_municipio" placeholder="Código del Municipio"  type="number" max='10' class="validate" disabled>
-										<label for="cod_municipio" class="colorWhite" >Codigo Municipio</label>
-									</div>
+					<input  name="codigo_municipio" placeholder="Código del Municipio"  type="number"  class="validate" id="cod" disabled>
 
+										<label for="cod_municipio" class="colorWhite" >3. Codigo Municipio</label>
+					</div>
 
-							        <div class="input-field col l4 ">
-									   
-										<input id="codigo_hogar" name="codigo_hogar" placeholder="Código del hogar"  type="number" max='10' class="validate" required>
-										<label for="codHogar" class="colorWhite" >Código del hogar</label>
-									</div>
 
 
                            </div>
@@ -45,9 +45,9 @@
                            <div class="row">
 
 
-										<div class="input-field col l4">
+										<div class="input-field col l4" id="tipoHogar">
 								    	
-														   <select name="tipoHogar"  >
+														   <select name="tipoHogar"    >
 														      <option value="" disabled selected></option>
 														      <option value="54">1 | Nuclear</option>
 														      <option value="55">2 | Extenso</option>
@@ -75,9 +75,10 @@
 								    	</div>
 
 								    <div class="input-field col l4">
-									   
-										<input name="telefono_jefe_hogar" placeholder="telefono"  type="text" class="validate" required>
-										<label for="codHogar" class="colorWhite" >3. Telefono Jefe Hogar</label>
+									     <label for="codHogar" class="colorWhite" >6. Telefono Jefe Hogar</label>
+										<input name="telefono_jefe_hogar" placeholder="telefono"  type="text" class="validate" >
+
+										
 									</div>
 
 
@@ -87,14 +88,14 @@
 
 
 								<div class="collapsible-header ">
-									<label for="" class="colorWhite" > 6. UBICACIÓN HOGAR    </label>
+									<label for="" class="colorWhite" > 7. UBICACIÓN HOGAR    </label>
 								</div>
 
 														
-						      <input name="ubicacion" type="radio" id="urbana"value="1" />
-						      <label for="urbana" class="colorBlue">6. Zona Urbana</label>
+						      <input name="ubicacion" type="radio" id="urbana" value="1" />
+						      <label for="urbana" class="colorBlue">8. Zona Urbana</label>
 						      <input name="ubicacion" type="radio" id="rural" value="2" />
-						      <label for="rural" class="colorBlue">7. Zona Rural</label>
+						      <label for="rural" class="colorBlue">9. Zona Rural</label>
 			
 						       <div  id="datosUrbano">
 								       <div class="row">
@@ -103,14 +104,14 @@
 
 											<div class="input-field col l6">                              
 												<?php if(isset($this->barrios)) : ?>
-													<select name="nombreBarrio">
+													<select name="nombreBarrio" id="barrio">
 														<option value="" disabled selected></option>
 														<?php for($i = 0; $i < count($this->barrios); $i++): ?>		
 															<li><?php echo $this->barrios[$i]['ID_BARRIO']; ?></a></li>										  
 															<option value="<?php echo $this->barrios[$i]['ID_BARRIO']; ?>"><?php echo $this->barrios[$i]['DES_BARRIO']; ?></option>													   									 
 														<?php endfor;?>
 													</select>
-													<label class="colorBlue">2. Barrio</label>	 
+													<label class="colorBlue">10. Barrio</label>	 
 												<?php endif; ?>
 
 											</div>
@@ -118,7 +119,7 @@
 											<div class="input-field col l6">
 									   
 										       <input name="codigo_barrio" placeholder="Código del Barrio" disabled type="text" class="validate">
-										       <label for="codHogar" class="colorWhite" > Código del Barrio</label>
+										       <label for="codHogar" class="colorWhite" >11. Código del Barrio</label>
 									        </div>
 
 								       </div>
@@ -126,12 +127,12 @@
 								             <br>
 											<div class="input-field col s6 nomenclaturaBarrio"><br>
 												<input name="nomenclaturaBarrio" placeholder="Nomenclatura" type="text" class="validate">
-												<label for="nomenclaturaBarrio" class="colorWhite" >5. Nomenclatura</label>
+												<label for="nomenclaturaBarrio" class="colorWhite" >12. Nomenclatura</label>
 											</div>
 											<div class="input-field col s6">
 												<p>
 								      			    <input name="noAplicaBarrio" type="checkbox" class="filled-in" id="noAplicaBarrio"  />
-								      				<label for="noAplicaBarrio">No Aplica .</label>
+								      				<label for="noAplicaBarrio">13. No Aplica .</label>
 								      			</p>
 											</div>
 								       </div>
@@ -144,23 +145,23 @@
 								       	<br>
 											<div class="input-field col s6">
 												<input name="numVereda" placeholder="Vereda o inspección Número" type="text" class="validate">
-												<label for="numVereda" class="colorWhite" >10.	Vereda o inspección Número</label>
+												<label for="numVereda" class="colorWhite" >14.	Vereda o inspección Número</label>
 											</div>
 											<div class="input-field col s6">
 												<input name="nomVereda" placeholder="Nombre Vereda o inspección "  type="text" class="validate">
-												<label for="nomVereda" class="colorWhite" >11. Nombre</label>
+												<label for="nomVereda" class="colorWhite" >15. Nombre</label>
 											</div>
 								       </div>
 								       <div class="row border-tabla">
 								    <br>
 											<div class="input-field col s6 nomenclaturaVereda"><br>
 												<input name="nomenclaturaVereda" placeholder="Nomenclatura" type="text" class="validate">
-												<label for="nomenclaturaVereda" class="colorWhite" >12. Nomenclatura</label>
+												<label for="nomenclaturaVereda" class="colorWhite" >16. Nomenclatura</label>
 											</div>
 											<div class="input-field col s6">
 												<p>
 								      			    <input name="noAplicavereda" type="checkbox" class="filled-in" id="noAplicavereda"  />
-								      				<label for="noAplicavereda">No Aplica .</label>
+								      				<label for="noAplicavereda">17. No Aplica .</label>
 								      			</p>
 											</div>
 								       </div>
@@ -175,7 +176,7 @@
 
 	
 					<li>
-						<div class="collapsible-header   ">INDENTIFICAR MIEMBROS DEL HOGAR </div>
+						<div class="collapsible-header   ">Identificar miembros del hogar </div>
 						<div class="collapsible-body">
 							
                        
@@ -184,19 +185,15 @@
                             
 
                          <table id="tabla-hogar">
-                          </label>	
-					
-										<div class="ventana ">
-								
-						</div>
+           
 					        <thead>
 					          <tr>
-					              <th class="colorBlue">Documento de Identidad</th>
-					              <th class="colorBlue"> Nombres y apellidos</th>
-					              <th class="colorBlue"> Fecha Nacimiento</th>
-					              <th class="colorBlue"> Edad</th>
-					              <th class="colorBlue"> Sexo</th>
-					              <th class="colorBlue"> Vinculación familiar con respecto al jefe del hogar
+					              <th class="colorBlue">18. Documento de Identidad</th>
+					              <th class="colorBlue">19. Nombres y apellidos</th>
+					              <th class="colorBlue">20. Fecha Nacimiento</th>
+					              <th class="colorBlue">21. Edad</th>
+					              <th class="colorBlue">22. Sexo</th>
+					              <th class="colorBlue">23. Vinculación familiar con respecto al jefe del hogar
                                   
 					              </th>
 					          </tr>
@@ -255,7 +252,7 @@
 					</li>
 					
 					<li>
-						<div class="collapsible-header ">CARACTERÍSTICAS SOCIOECONÓMICAS DEL HOGAR  </div>
+						<div class="collapsible-header ">Características socioeconómicas del hogar </div>
 						<div class="collapsible-body">
 							
                          <table id="tablaSocioeconomica">
@@ -264,19 +261,19 @@
                          		    <th></th>
                          		    <th></th>
                          		    <th></th>
-                         			<th colspan="3" class="border-tabla" ><center>	Ocupación</center></th>
-                         			<th colspan="4" class="border-tabla" ><center>Vinculación al SGSSS</center></th>
+                         			<th colspan="3" class="border-tabla" ><center>	26. Ocupación</center></th>
+                         			<th colspan="4" class="border-tabla" ><center>  29. Vinculación al SGSSS</center></th>
                          		</tr>
                                  <tr  class="border-tabla">
                                  <th >Nombre</th>
                          		 
-                         		 <th >Escolaridad</th>
-                                 <th >Tipo</th>
-                                 <th >Recive Pago</th>
-                                 <th >Aporta al hogar</th>
-                                 <th >Regimen</th>
-                                 <th >Tipo de Vinculacion </th>
-                                 <th >Nombre Eps</th>
+                         		 <th >24. Escolaridad</th>
+                                 <th >25. Tipo</th>
+                                 <th >27. Recive Pago</th>
+                                 <th >28. Aporta al hogar</th>
+                                 <th >30. Regimen</th>
+                                 <th >31. Tipo de Vinculacion </th>
+                                 <th >32. Nombre Eps</th>
                                  </tr>
 
                          	</thead>
@@ -375,7 +372,7 @@
 
 					
 					<li>
-						<div class="collapsible-header ">CONDICIONES DE VULNERABILIDAD SOCIAL DEL HOGAR  </div>
+						<div class="collapsible-header ">Condiciones de vulnerabilidad social del hogar </div>
 						<div class="collapsible-body">
 						<br>
 
@@ -383,15 +380,15 @@
                           <table id="tabla-vulnerabilidad">
                           	<thead class="colorBlue" >
                           		<tr class="border-tabla" >
-                          			<th>28. Nombre</th>
-                          			<th>29. Etapa del ciclo vital</th>
-                          			<th>30.	Condición de discapacidad</th>
-                          			<th>31. Grupo étnico</th>
-                          			<th>32.	Vinculación con el conflicto armado</th>
-                          			<th>33.	Población LGBTI</th>
-                          			<th>34.	Adolescentes en embarazo dependientes</th>
-                          			<th>35.	Menor trabajador</th>
-                          			<th>36.	Menores en deserción escolar</th>
+                          			<th>33. Nombre</th>
+                          			<th>34. Etapa del ciclo vital</th>
+                          			<th>35.	Condición de discapacidad</th>
+                          			<th>36. Grupo étnico</th>
+                          			<th>37.	Vinculación con el conflicto armado</th>
+                          			<th>38.	Población LGBTI</th>
+                          			<th>39.	Adolescentes en embarazo dependientes</th>
+                          			<th>40.	Menor trabajador</th>
+                          			<th>41.	Menores en deserción escolar</th>
                           		</tr>
                           	</thead>
                           	<tbody>
@@ -507,16 +504,16 @@
 
 							<div class="row">
 								<table id="tabla-adiccionHigiene">
-									<thead>
+									<thead class="colorBlue">
 										<tr class="border-tabla">
 										<th>Nombre</th>
-											<th>Consumo de Alcohol</th>
-											<th>Consumo de cigarrillo</th>						
-											<th>consumo de psicoactivos</th>
-											<th>Higiene corporal</th>
-											<th>Higiene bucal</th>
-											<th>Actividad física </th>
-											<th>Mujer Gestacion</th>
+											<th>42. Consumo de Alcohol</th>
+											<th>43. Consumo de cigarrillo</th>						
+											<th>44. consumo de psicoactivos</th>
+											<th>45. Higiene corporal</th>
+											<th>46. Higiene bucal</th>
+											<th>47. Actividad física </th>
+											<th>48. Mujer Gestacion</th>
 											
 										</tr>
 									</thead>
@@ -619,7 +616,7 @@
 
 
 					<li>	
-							<div class="collapsible-header  ">CONDICIONES DE VULNERABILIDAD POR VIVIENDA DEL HOGAR</div>
+							<div class="collapsible-header  ">Condiciones de vulnerabilidad por vivienda del hogar</div>
 						<div class="collapsible-body">
 						<br>
                               <div class="row">
@@ -631,7 +628,7 @@
 										      <option value="85">3 | Vivienda Familiar</option>
 										      <option value="86">4 | Otra </option>
 										    </select><br>
-								         <label class="colorBlue">Tenencia de Vivienda</label>
+								         <label class="colorBlue">49. Tenencia de Vivienda</label>
 
 								       <div class="input-field otratenenciaVivienda">
 									  		 <input name="otratenenciaVivienda" placeholder="Cual?" type="text" class="validate">
@@ -652,7 +649,7 @@
 								    	      <option value="98">8 | Relleno</option>
 										      <option value="99">9 | Otro</option>
 										    </select><br>
-								         <label class="colorBlue">Ubicación de la vivienda</label>
+								         <label class="colorBlue">50. Ubicación de la vivienda</label>
                                           <div class="input-field otrazonaVivienda">
 									  		 <input name="otrazonaVivienda" placeholder="Cual?" type="text" class="validate">
 								     		 <label for="" class="colorWhite" >Cual?</label>
@@ -669,7 +666,7 @@
 										      <option value="90">4 | Otra</option>
 										     
 										    </select><br>
-								         <label class="colorBlue">Tipo de vivienda</label>
+								         <label class="colorBlue">51. Tipo de vivienda</label>
                                          <div class="input-field otratipoVivienda ">
 									  		 <input name="otratipoVivienda" placeholder="Cual?" type="text" class="validate">
 								     		 <label for="" class="colorWhite" >Cual?</label>
@@ -680,22 +677,22 @@
                               </div>
 							<div class="row">
 								<table id="">
-									<thead>
+									<thead class="colorBlue">
 										<tr >
 									
 												
-												<th class="titulo-tabla border-tabla" colspan="3"><center>Materiales de la vivienda</center></th>
+												<th class="titulo-tabla border-tabla" colspan="3"><center>52. Materiales de la vivienda</center></th>
 											
-												<th class="titulo-tabla border-tabla" colspan="5"><center>Abastecimiento de Agua</center></th>
+												<th class="titulo-tabla border-tabla" colspan="5"><center>56. Abastecimiento de Agua</center></th>
 											
 										</tr >
 											<tr class="border-tabla">
-												<th>Techo</th>
-												<th>Paredes</th>
-												<th>Piso</th>
-												<th>Fuente </th>
-												<th>Tratamiento</th>
-												<th>Alamacenamiento</th>
+												<th>53. Techo</th>
+												<th>54. Paredes</th>
+												<th>55. Piso</th>
+												<th>57. Fuente </th>
+												<th>58. Tratamiento</th>
+												<th>59. Alamacenamiento</th>
 											</tr>
 										</tr>
 									</thead>
@@ -800,20 +797,20 @@
 							</div>
 						<div class="row">
 							<table>
-								<thead>
+								<thead class="colorBlue">
 									<tr class="border-tabla">
-										<th colspan="2">Dispocicion de escretas</th>
-										<th colspan="2">Tratamiento de basuras</th>
+										<th colspan="2">60. Dispocicion de escretas</th>
+										<th colspan="2">63. Tratamiento de basuras</th>
 									
 								
-							            <th>Energia</th>
-										<th>Combustible</th>
+							            <th>66. Energia</th>
+										<th>67. Combustible</th>
 									</tr>
 									<tr class="border-tabla">
-										<th>Mecanismo</th>
-										<th>Disposicion</th>
-										<th>Recoleccion</th>
-										<th>Dispocicion</th>
+										<th>61. Mecanismo</th>
+										<th>62. Disposicion</th>
+										<th>64. Recoleccion</th>
+										<th>65. Dispocicion</th>
 										<th></th>
 										<th></th>
 									
@@ -914,23 +911,23 @@
 						</div>
 							<div class="row">
 								<table id="">
-									<thead>
+									<thead class="colorBlue">
 										<tr >
 									
 												
-												<th class="titulo-tabla border-tabla" colspan="3"><center>Estructura de la vivienda</center></th>
+												<th class="titulo-tabla border-tabla" colspan="3"><center>68. Estructura de la vivienda</center></th>
 											
-												<th class="titulo-tabla border-tabla" colspan="6"><center>Riegos de la vivienda</center></th>
+												<th class="titulo-tabla border-tabla" colspan="6"><center>72. Riegos de la vivienda</center></th>
 											
 										</tr >
 											<tr class="border-tabla">
-												<th>Cocina separada de dormitorios</th>
-												<th>Número de dormitorios</th>
-												<th>Personas por dormitorio</th>
-												<th>Fisicos </th>
-												<th>Quimicos</th>
-												<th>Biologicos</th>
-												<th>Sociales</th>
+												<th>69. Cocina separada de dormitorios</th>
+												<th>70. Número de dormitorios</th>
+												<th>71. Personas por dormitorio</th>
+												<th>73. Fisicos </th>
+												<th>74. Quimicos</th>
+												<th>75. Biologicos</th>
+												<th>76. Sociales</th>
 											</tr>
 										</tr>
 									</thead>
@@ -1092,7 +1089,7 @@
 										    </select>
 
 								      <br>
-								<label class="colorBlue">Vías de acceso a la vivienda</label>
+								<label class="colorBlue">77. Vías de acceso a la vivienda</label>
 								             <div class="input-field otraviasAcceso">
 										  		 <input name="otraviasAcceso" placeholder="Cual?" type="text" class="validate">
 									     		 		<label for="" class="colorWhite" >Cual?</label>
@@ -1114,7 +1111,7 @@
 										    </select>
 					    	
 								      <br>
-								<label class="colorBlue">Transporte público</label>
+								<label class="colorBlue">78. Transporte público</label>
 								 <div class="input-field otratransportePublico">
 										  		 <input name="otratransportePublico" placeholder="Cual?" type="text" class="validate">
 									     		 		<label for="" class="colorWhite" >Cual?</label>
@@ -1133,7 +1130,7 @@
 								     </select>
 					    	
 								      <br>
-								<label class="colorBlue"> Teléfono público</label>
+								<label class="colorBlue">79. Teléfono público</label>
 							
 	    	                  </div>
 
@@ -1153,7 +1150,7 @@
 										    </select>
 					    	
 								      
-								<label class="colorBlue"> Hogares infantiles</label>
+								<label class="colorBlue">80. Hogares infantiles</label>
 							
 	    	                  </div>
 
@@ -1170,7 +1167,7 @@
 										    </select>
 					    	
 								     
-								<label class="colorBlue"> Escuelas</label>
+								<label class="colorBlue">81. Escuelas</label>
 							
 	    	                  </div>
 
@@ -1186,7 +1183,7 @@
 										    </select>
 					    	
 								     
-								<label class="colorBlue">  Centro de Salud</label>
+								<label class="colorBlue">82.  Centro de Salud</label>
 							
 	    	                  </div>
 
@@ -1208,7 +1205,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">  Centro de Salud</label>
+								      <label class="colorBlue"> 83. Centro de Salud</label>
 							
 	    	                  </div>
 
@@ -1225,7 +1222,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">  Comisaria de Familia</label>
+								      <label class="colorBlue">84.  Comisaria de Familia</label>
 							
 	    	                  </div>
                                
@@ -1242,7 +1239,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">  Centro religioso</label>
+								      <label class="colorBlue">85.  Centro religioso</label>
 							
 	    	                  </div>
 
@@ -1258,7 +1255,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Centro  Deportivo</label>
+								      <label class="colorBlue">86. Centro  Deportivo</label>
 							
 	    	                  </div>
 
@@ -1274,7 +1271,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Centro  Cultural</label>
+								      <label class="colorBlue">87. Centro  Cultural</label>
 							
 	    	                  </div>
                              <div class="input-field col l4">
@@ -1289,7 +1286,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Mercado Básico</label>
+								      <label class="colorBlue">88. Mercado Básico</label>
 							
 	    	                  </div>
 
@@ -1312,7 +1309,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Presencia de vectores o plagas cerca o dentro de la vivienda</label>
+								      <label class="colorBlue">89. Presencia de vectores o plagas cerca o dentro de la vivienda</label>
 							           <div class="input-field otrapresenciaVectores">
 										  		 <input name="otrapresenciaVectores" placeholder="Cual?" type="text" class="validate">
 									     		 		<label for="" class="colorWhite" >Cual?</label>
@@ -1334,7 +1331,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Centros o zonas que representan riesgos para el hogar</label>
+								      <label class="colorBlue">90. Centros o zonas que representan riesgos para el hogar</label>
 							            <div class="input-field otrapresenciaCentros">
 										  		 <input name="otrapresenciaCentros" placeholder="Cual?" type="text" class="validate">
 									     		 		<label for="" class="colorWhite" >Cual?</label>
@@ -1387,10 +1384,10 @@
 
 					<li>	
 
-					<div class="collapsible-header ">CONDICIONES DE VULNERABILIDAD POR LOS HÁBITOS Y CONSTUMBRES DE LOS MIEMBROS DEL HOGAR</div>
+					<div class="collapsible-header ">Condiciones de vulnerabilidad por los hábitos y costumbres de los miembros del hogar</div>
 						<div class="collapsible-body">
 
-
+<br>
                         <div class="row">
 
                         <div class="input-field col l6">
@@ -1405,7 +1402,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Convivencia</label>
+								      <label class="colorBlue">91. Convivencia</label>
 							
 	    	                  </div>
 
@@ -1423,7 +1420,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Hijiene vivienda</label>
+								      <label class="colorBlue">92. Hijiene vivienda</label>
 							       <div class="input-field otrahijieneVivienda">
 										  		 <input name="otrahijieneVivienda" placeholder="Cual?" type="text" class="validate">
 									     		 		<label for="" class="colorWhite" >Cual?</label>
@@ -1452,7 +1449,7 @@
 										    </select>
 					    	
 								    
-								      <label class="colorBlue">Riesgos Laborales</label>
+								      <label class="colorBlue">93. Riesgos Laborales</label>
 
 
 	    	                  </div>
@@ -1469,72 +1466,72 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Tenencia de animales</label>
+								      <label class="colorBlue">94. Tenencia de animales</label>
                                    <div id="animales">
 
                                        <p>
 									      <input name="animalesCasaTipo1" type="checkbox" class="filled-in" id="animalesCasaTipo1"  />
-									      <label for="animalesCasaTipo1">En el hogar tienen caninos vacunados</label>
+									      <label for="animalesCasaTipo1">95. En el hogar tienen caninos vacunados</label>
 									    
 									    </p>
 									      <div class="input-field  animalesCasaTipo1">
 												<input name="otraanimalesCasaTipo1" placeholder="Cuantos ?" type="text" class="validate">
-											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+											    <label for="" class="colorWhite" >96. Cuantos animales tiene ?</label>
 										  </div>
 
 
 						                <p>
 									      <input name="animalesCasaTipo2" type="checkbox" class="filled-in" id="animalesCasaTipo2"  />
-									      <label for="animalesCasaTipo2">En el hogar tienen felinos vacunados</label>
+									      <label for="animalesCasaTipo2">97. En el hogar tienen felinos vacunados</label>
 									    </p>
 
 									     <div class="input-field animalesCasaTipo2 ">
 												<input name="otraanimalesCasaTipo2" placeholder="Cuantos ?" type="text" class="validate">
-											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+											    <label for="" class="colorWhite" >98. Cuantos animales tiene ?</label>
 										  </div>
 
 
 									     <p>
 									      <input name="animalesCasaTipo3" type="checkbox" class="filled-in" id="animalesCasaTipo3"  />
-									      <label for="animalesCasaTipo3">En el hogar tienen caninos no vacunados</label>
+									      <label for="animalesCasaTipo3">99. En el hogar tienen caninos no vacunados</label>
 									    </p>
 
 									     <div class="input-field animalesCasaTipo3 ">
 												<input name="otraanimalesCasaTipo3" placeholder="Cuantos ?" type="text" class="validate">
-											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+											    <label for="" class="colorWhite" >100. Cuantos animales tiene ?</label>
 										  </div>
 
 
 									     <p>
 									      <input name="animalesCasaTipo4" type="checkbox" class="filled-in" id="animalesCasaTipo4"  />
-									      <label for="animalesCasaTipo4">En el hogar tienen felinos no vacunados</label>
+									      <label for="animalesCasaTipo4">101. En el hogar tienen felinos no vacunados</label>
 									    </p>
 
 									     <div class="input-field  animalesCasaTipo4">
 												<input name="otraanimalesCasaTipo4" placeholder="Cuantos ?" type="text" class="validate">
-											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+											    <label for="" class="colorWhite" >102. Cuantos animales tiene ?</label>
 										  </div>
 
 
 									     <p>
 									      <input name="animalesCasaTipo5" type="checkbox" class="filled-in" id="animalesCasaTipo5"  />
-									      <label for="animalesCasaTipo5"> En el hogar tienen otro tipo de animales como pájaros, peces, conejos o tortugas entre otros</label>
+									      <label for="animalesCasaTipo5">103. En el hogar tienen otro tipo de animales como pájaros, peces, conejos o tortugas entre otros</label>
 									    </p>
 
 									     <div  class="input-field animalesCasaTipo5 ">
 												<input name="otraanimalesCasaTipo5" placeholder="Cuantos ?" type="text" class="validate">
-											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+											    <label for="" class="colorWhite" >104. Cuantos animales tiene ?</label>
 										  </div>
 
 
 									     <p>
 									      <input name="animalesCasaTipo6" type="checkbox" class="filled-in" id="animalesCasaTipo6"  />
-									      <label for="animalesCasaTipo6">En el hogar tienen otro tipo de animales</label>
+									      <label for="animalesCasaTipo6">105. En el hogar tienen otro tipo de animales</label>
 									    </p>
 
 									    <div  class="input-field animalesCasaTipo6 ">
 												<input name="otraanimalesCasaTipo6" placeholder="Cuantos ?" type="text" class="validate">
-											    <label for="" class="colorWhite" >Cuantos animales tiene ?</label>
+											    <label for="" class="colorWhite" >106. Cuantos animales tiene ?</label>
 										</div>
 
 
@@ -1550,8 +1547,9 @@
 					</li>
 
 					 <li>
-						<div class="collapsible-header ">CONDICIONES DE VULNERABILIDAD POR SITUACIÓN DE SALUD DE LOS MIEMBROS DEL HOGAR</div>
+						<div class="collapsible-header ">Condiciones de vulnerabilidad por situación de salud de los miembros del hogar</div>
 						<div class="collapsible-body">
+						<br>
 
 							<div class="row">
                                 <div class="input-field col l4">
@@ -1567,7 +1565,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Menores de cinco años con esquema de vacunación incompleto</label>
+								      <label class="colorBlue">107. Menores de cinco años con esquema de vacunación incompleto</label>
 
                                  </div>
                                  <div class="input-field col l4">
@@ -1583,7 +1581,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Adultos con diagnóstico de enfermedad crónica</label>
+								      <label class="colorBlue">108. Adultos con diagnóstico de enfermedad crónica</label>
 
                                  </div>
                                   <div class="input-field col l4">
@@ -1599,7 +1597,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Miembros del hogar sin control de salud sexual y reproductiva</label>
+								      <label class="colorBlue">109. Miembros del hogar sin control de salud sexual y reproductiva</label>
 
                                  </div>
 
@@ -1625,7 +1623,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Signos de alteraciones nutricionales en alguno de los miembros del hogar</label>
+								      <label class="colorBlue">110. Signos de alteraciones nutricionales en alguno de los miembros del hogar</label>
 
                                  </div>
 
@@ -1639,7 +1637,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Algún miembro del hogar consulto en el último mes por enfermedad transmitida por vectores</label>
+								      <label class="colorBlue">111. Algún miembro del hogar consulto en el último mes por enfermedad transmitida por vectores</label>
 
                                  </div>
 
@@ -1654,7 +1652,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Algún miembro del hogar presenta lesiones en la piel
+								      <label class="colorBlue">112. Algún miembro del hogar presenta lesiones en la piel
                                      </label>
 
                                  </div>
@@ -1674,7 +1672,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Signos de violencia en alguno de los miembros del hogar
+								      <label class="colorBlue">113. Signos de violencia en alguno de los miembros del hogar
                                      </label>
 
                                  </div>
@@ -1688,7 +1686,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Miembros del hogar sin control de salud bucal en los últimos seis meses
+								      <label class="colorBlue">114. Miembros del hogar sin control de salud bucal en los últimos seis meses
                                      </label>
 
                                  </div>
@@ -1702,7 +1700,7 @@
 										    </select>
 					    	
 								     
-								      <label class="colorBlue">Algún miembro del hogar sin asistencia a control médico en los últimos tres meses o más
+								      <label class="colorBlue">115. Algún miembro del hogar sin asistencia a control médico en los últimos tres meses o más
                                      </label>
 
                                  </div>
@@ -1724,9 +1722,9 @@
 
 
 
-           <input  name="send" id="send" type="submit" class="submit" value="Enviar formulario" />
+           <input  name="send" id="send" type="submit" class="submit waves-effect waves-light btn" value="Enviar Formato" />
 
-		<p class="waves-effect waves-light btn" id="create_account">Enviar</p>
+		<!--<p class="waves-effect waves-light btn" id="create_account">Enviar</p> -->
 	</form>
 
 
@@ -1735,10 +1733,40 @@
 
 <script type="text/javascript">
 
+ $("#hogar").validate({
+        rules: {
+            telefono_jefe_hogar: { required: true, minlength: 7},
+     
 
+       
+        },
+        messages: {
+            telefono_jefe_hogar: "Debe ingresar el telefono.",
+         
+
+            
+        },
+        submitHandler: function(form){
+        	 // var dataString = $('#hogar').serialize();
+alert("fddfs");
+        //alert('Datos serializados: '+dataString);
+/*
+        $.ajax({
+            type: "POST",
+             url: "/aps/ficha_hogar/ingresar",
+            data: dataString,
+            success: function(data) {
+
+         alert("Datos Enviados con exito");
+            }
+        });
+        */
+        }
+    });
+/*
 var codigo_hogar = $('#codigo_hogar');
 function validateCodHogar(){  
-	if((codigo_hogar.val().length < 5)|| (!codigo_hogar.val().match(/^[0-9a-zA-Z]+$/))){  
+	if((codigo_hogar.val().length < 3)|| (!codigo_hogar.val().match(/^[0-9a-zA-Z]+$/))){  
 		codigo_hogar.addClass("error");
 
         return false;  
@@ -1749,10 +1777,21 @@ function validateCodHogar(){
 
 }
 
+function validateSelect(){  
+	if(($("select[name=tipoHogar]").has('option').val() == null)){  
+	
+            $("#tipoHogar").addClass("error");
+        return false;  
+    }else{
+          $("#tipoHogar").addClass("error");
+    	     return true; 
+    }
+
+}
 
 
 $("#hogar").submit(function(){  
-    if(validateCodHogar()) {
+    if(validateCodHogar() && validateSelect()) {
         return true; } 
     else  {
     	alert("Ingrese Datos faltantes");
@@ -1762,7 +1801,7 @@ $("#hogar").submit(function(){
 });  
 
 
-
+*/
 
 $("#tabla-hogar tbody tr:eq(0)  input[name='dateNacimiento[]']").change(function(){
 
@@ -1806,7 +1845,8 @@ $(document).ready(function() {
              url: "/aps/ficha_hogar/ingresar",
             data: dataString,
             success: function(data) {
-         alert("Datos Enviados con exito");
+
+         alert("Datos Enviados con exito"+data);
             }
         });
     });

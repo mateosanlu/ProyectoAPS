@@ -15,8 +15,9 @@ class ficha_hogarController extends Controller
 
         $this->_view->titulo = 'Ficha hogar';
         $this->_view->setJs(array('ficha_hogar'));
-        //$this->_view->setJs(array('jquery-1.11.1'));
-        //$this->_view->setJs(array('jquery.validate.min'));  // cargar js
+        $this->_view->setJs(array('validate'));  
+        $this->_view->setJs(array('methods'));  
+       // cargar js
         $this->_view->municipios = $this->_ficha->getAll('municipios');
         $this->_view->barrios = $this->_ficha->getAll('barrios');
         $this->_view->eps = $this->_ficha->getAll('eps');
@@ -192,6 +193,8 @@ class ficha_hogarController extends Controller
                                         $this->getPostParam('codigo_hogar'),
                                         $result
                                          );
+
+
 
     }
 

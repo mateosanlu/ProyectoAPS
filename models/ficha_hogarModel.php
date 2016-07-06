@@ -80,8 +80,7 @@ function setFichaHogar(
 
 	{
 
-
-$ultimo=0;
+        $ultimo=0;
 		if ($ubicacion == '1') {
 		     $sql = "insert ficha_hogar values " . "('', '".$ubicacion."','".$nomenclaturaBarrio."', '1', '".$this->getMunicipio($cod_municipio)[0]."','".$nombreBarrio."', '', '','".$codigo_hogar."', CURRENT_TIMESTAMP);";
              $this->_db->query($sql);
@@ -344,9 +343,13 @@ $this->setDatosGrupales2($id_hogar,$ultimo, '80',$otrasCondicionesdeVulnerabilid
 
 for ($i=0; $i < count($nomApe); $i++) { 
 
+   $eps=$nomEps[$i];
+   if ($eps == null) {
+       $eps = 1;
+   }
 
    $consulta="INSERT INTO miembros_hogar VALUES 
-    (NULL, '".($id_hogar.($i+1))."', '".$ultimo."', '".$nomApe[$i]."', '".$dateNacimiento[$i]."', '".$docIdentidad[$i]."', '".$nomEps[$i]."', CURRENT_TIMESTAMP, '".$edad[$i]."', '".$sexo[$i]."')";
+    (NULL, '".($id_hogar.($i+1))."', '".$ultimo."', '".$nomApe[$i]."', '".$dateNacimiento[$i]."', '".$docIdentidad[$i]."', '".$eps."', CURRENT_TIMESTAMP, '".$edad[$i]."', '".$sexo[$i]."')";
    $this->_db->query($consulta);
 
    $id_miembro=$this->_db->lastInsertId();

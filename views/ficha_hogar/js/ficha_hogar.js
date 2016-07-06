@@ -6,33 +6,57 @@ $(document).ready(menu);
     $('#datosUrbano').hide();
     $('#datosRural').hide();
     $('#fila-nueva').hide();
-    /*
-    $('#tablaSocioeconomica tbody tr:eq(0)').hide();
-    $('#tabla-vulnerabilidad tbody tr:eq(0)').hide();
-    
-    $('#tabla-adiccionHigiene tbody tr:eq(0)').hide();
-    */
+
     $('select').not('.disabled').material_select();
-    
+
     $("input[name=ubicacion]").click(zonasHogares);
     $("#agregarFamiliar").click(function(){  agregarFamiliar($('#oculto').val()); });
     $("#eliminarFamiliar").click(eliminarFamiliar);
    
-     $("select[name=municipio]").change(function(){$("input[name=codigo_municipio]").val($(this).val()); });
-/*
-    $('input[name="nomApe[]"]').keyup(function(){
-
-   alert('dsd');
+     $("select[name=municipio]").change(function(){
+      $("input[name=codigo_municipio]").val($(this).val()); 
+      $("#codigo_hogar").val($(this).val());
     });
 
-      $('select[name=municipio]').change(function(){
-               alert($('select[name=municipio]:checked').attr('class'));
-             
-     });
 
-*/
+
+
+    $("select[name=nombreBarrio]").change(function(){
+
+        $("input[name=codigo_barrio]").val($(this).val()); 
+
+         if ( $('input:radio[name=ubicacion]:checked').val() == '1') {
+       
+         $("#codigo_hogar").val();
+         var v =   $("input[name=codigo_municipio]").val();
+         $("#codigo_hogar").val(v+$(this).val()); 
+
+
+      }
+     
       
+    });
 
+
+ $("input[name=numVereda]").keyup(function(){
+
+
+         if ( $('input:radio[name=ubicacion]:checked').val() == '2') {
+      
+         $("#codigo_hogar").val();
+         var v =   $("input[name=codigo_municipio]").val();
+         $("#codigo_hogar").val(v+$(this).val()); 
+
+
+      }
+     
+      
+    });
+
+
+    
+
+//alert( $("select[name=tipoHogar]").has('option').val());
    
      $('#tabla-hogar tbody tr:eq(0) .name1').keyup(function(){
      $('#tablaSocioeconomica tbody tr:eq(0) .name2').val($(this).val());
@@ -132,7 +156,7 @@ $(document).ready(menu);
 
 
  
-    $("select[name=nombreBarrio]").change(function(){$("input[name=codigo_barrio]").val($(this).val()); });
+
 
 
 
