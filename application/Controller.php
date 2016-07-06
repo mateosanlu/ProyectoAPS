@@ -109,6 +109,15 @@ abstract class Controller
         }
         
     }
+
+    protected function getNum($clave)
+    {
+        if(isset($_POST[$clave]) && !empty($_POST[$clave])){
+            $_POST[$clave] = (string) preg_replace('/[^0-9_]/i', '', $_POST[$clave]);
+            return trim($_POST[$clave]);
+        }
+        
+    }
     
     public function validarEmail($email)
     {

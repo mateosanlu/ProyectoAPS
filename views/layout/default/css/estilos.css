@@ -1,4 +1,4 @@
-           .colorWhite{
+.colorWhite{
             color           :#ecf0f1;
             font-size       : 15px;
             }
@@ -73,15 +73,14 @@
             height: 58px
        }
        .ventana{
-            position: absolute;
-
+            position: relative;
+            display: inline-block;
             background-color:  #64DD17;
             color:white;
             width:auto;
-            z-index: 455454;
+            z-index: 30;
             padding: 5px;
             float: right;
-
             border-radius: 5px;
        }
  
@@ -146,54 +145,13 @@
 
 
 
-#cod_municipio{
-  display: none;
-}
+
 
 
 
     
-div.container2{
+     div.container2{
       padding: 30px;
      }
+    
 
-.error{
-  background: #e74c3c;  
-  color: #e74c3c;
-    border-color: #e74c3c; 
-}
-
-select.error{
-  background: #e74c3c;  
-    border-color: #e74c3c; 
-}
-
-.error select{
-  background: #e74c3c;  
-    border-color: #e74c3c; 
-}
-
-
-input.error{  
-    background: #c0392b;  
-    border-color: #c0392b;  
-} 
- 
- .num > div > input{
-
-
-  color: White;
-  border-bottom: none;
-
-}
-
-.num {
-     height: 60px;
-      width: 200px;
-      border-radius: 5px;
-    background-color: #2cc36b;
-}
-
- .num > div {
-  padding:8px;
- }

@@ -13,7 +13,7 @@ define('HASH_KEY', '4f6a6d832be79');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'hospital');
+define('DB_NAME', 'mydb2');
 define('DB_CHAR', 'utf8');
 
 ?>

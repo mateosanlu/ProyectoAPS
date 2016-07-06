@@ -43,7 +43,7 @@ class loginController extends Controller
                 exit;
             }
             
-            if($row['estado'] != 1){
+            if($row['ESTADO'] != 1){
                 $this->_view->_error = 'Este usuario no esta habilitado';
                 $this->_view->renderizar('index','login');
                 exit;

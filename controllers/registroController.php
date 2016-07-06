@@ -8,6 +8,7 @@ class registroController extends Controller
         parent::__construct();
         
         $this->_registro = $this->loadModel('registro');
+        $this->_view->setJs(array('firma'));
     }
     
     public function index()
@@ -27,18 +28,18 @@ class registroController extends Controller
                 exit;
             }
             
-            if(!$this->getAlphaNum('usuario')){
-                $this->_view->_error = 'Debe introducir su nombre usuario';
+            if(!$this->getNum('documento')){
+                $this->_view->_error = 'Debe introducir su documento de identificaci&oacute;n';
                 $this->_view->renderizar('index', 'registro');
                 exit;
             }
             
-            if($this->_registro->verificarUsuario($this->getAlphaNum('usuario'))){
-                $this->_view->_error = 'El usuario ' . $this->getAlphaNum('usuario') . ' ya existe';
+            if($this->_registro->verificarDocumento($this->getNum('documento'))){
+                $this->_view->_error = 'El documento ' . $this->getNum('documento') . ' ya est&aacute; registrado';
                 $this->_view->renderizar('index', 'registro');
                 exit;
             }
-            
+            /*
             if(!$this->validarEmail($this->getPostParam('email'))){
                 $this->_view->_error = 'La direccion de email es inv&aacute;lida';
                 $this->_view->renderizar('index', 'registro');
@@ -49,7 +50,7 @@ class registroController extends Controller
                 $this->_view->_error = 'Esta direccion de correo ya esta registrada';
                 $this->_view->renderizar('index', 'registro');
                 exit;
-            }
+            }*/
             
             if(!$this->getSql('pass')){
                 $this->_view->_error = 'Debe introducir su password';
@@ -63,26 +64,28 @@ class registroController extends Controller
                 exit;
             }
             
-			$this->getLibrary('class.phpmailer');
-			$mail = new PHPMailer();
+			/*$this->getLibrary('class.phpmailer');
+			$mail = new PHPMailer();*/
 			
-            $this->_registro->registrarUsuario(
+            $result=$this->_registro->registrarUsuario(
                     $this->getSql('nombre'),
-                    $this->getAlphaNum('usuario'),
-                    $this->getSql('pass'),
-                    $this->getPostParam('email')
+                    $this->getAlphaNum('rol'),
+                    $this->getSql('firma'),
+                    $this->getSql('foto'),
+                    $this->getNum('documento'),
+                    $this->getSql('pass')
                     );
             
-			$usuario = $this->_registro->verificarUsuario($this->getAlphaNum('usuario'));
+			$usuario = $this->_registro->verificarDocumento($this->getNum('documento'));
 			
             if(!$usuario){
                 $this->_view->_error = 'Error al registrar el usuario';
                 $this->_view->renderizar('index', 'registro');
                 exit;
             }
-			
+			/*
 			$mail->From = 'www.i.com';
-			$mail->FromName = 'MVC';
+			$mail->FromName = 'APS';
 			$mail->Subject = 'Activacion de cuenta de usuario';
 			$mail->Body = 'Hola <strong>' . $this->getSql('nombre') . '</strong>,' .
 							'<p>Se ha registrado en... para activar ' .
@@ -94,7 +97,7 @@ class registroController extends Controller
 			
 			$mail->AltBody = 'Su servidor de correo no soporta html';
 			$mail->AddAddress($this->getPostParam('email'));
-			$mail->Send();
+			$mail->Send();*/
              
             $this->_view->datos = false;
             $this->_view->_mensaje = 'Registro Completado, revise su email para activar su cuenta';

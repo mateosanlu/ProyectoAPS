@@ -9,7 +9,16 @@ class registroModel extends Model
     public function verificarUsuario($usuario)
     {
         $id = $this->_db->query(
-                "select id, codigo from usuarios where usuario = '$usuario'"
+                "select id_usuario, codigo from usuarios where usuario = '$usuario'"
+                );
+        
+        return $id->fetch();
+    }
+
+    public function verificarDocumento($documento)
+    {
+        $id = $this->_db->query(
+                "SELECT ID_USUARIO FROM usuarios WHERE IDENTIFICACION='$documento'"
                 );
         
         return $id->fetch();
@@ -28,21 +37,13 @@ class registroModel extends Model
         return false;
     }
     
-    public function registrarUsuario($nombre, $usuario, $password, $email)
+    public function registrarUsuario($nombre, $rol, $firma, $foto, $identificacion, $password)
     {
-    	$random = rand(1782598471, 9999999999);
-		
-        $this->_db->prepare(
-                "insert into usuarios values" .
-                "(null, :nombre, :usuario, :password, :email, 'usuario', 0, now(), :codigo)"
-                )
-                ->execute(array(
-                    ':nombre' => $nombre,
-                    ':usuario' => $usuario,
-                    ':password' => Hash::getHash('sha1', $password, HASH_KEY),
-                    ':email' => $email,
-                    ':codigo' => $random
-                ));
+        $sql = "insert into usuarios values " . "('', '".$nombre."', '".$rol."', '".$firma."', '".$foto."', '".$identificacion."', '".Hash::getHash('sha1', $password, HASH_KEY)."', '0');";
+       
+        $this->_db->query($sql);
+
+
     }
     
     public function getUsuario($id, $codigo)
