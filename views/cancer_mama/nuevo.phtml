@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="card-content">
-		<h4 class="titulo" align="center">Cancer de mama</h4>
+		<h6 class="titulo" align="center" style = "font-size:35px; color:#2196f3">Cáncer de mama</h6>
 
 		<form action="<?php echo BASE_URL; ?>cancer_mama/nuevo" method="post" id="hogar" name="hogar" onsubmit="return(ValidaForm());">
 			<input type="hidden" name="guardar" value="1" />
@@ -8,21 +8,21 @@
 			<div class="row">
 				<div class="input-field col s12 l6">
 
-					<div class="input-field col s6 ">
+					<div class="input-field col s6">
 						<input id="nombre" type="text" class="validate" name="nombre">
 						<label for="nombre">Nombres</label>
 					</div>
 
-					<div class="input-field col s6 ">
+					<div class="input-field col s6">
 						<input id="apellido" type="text" class="validate" name="apellido">
 						<label for="">Apellidos</label>
 					</div>
 
-					<div class="input-field col s6">
+					<div class="input-field col s12">
 						<input id="documento" type="text" class="validate" name="documento" pattern="[0-9]*" title="Solo se aceptan números">
 						<label for="">N. documento de identidad</label>
 					</div>
-					<div class="input-field col s6">
+					<div class="input-field col s12">
 						<input id="email" type="email" class="validate" name="email">
 						<label for="">Email</label>
 					</div>	
@@ -80,7 +80,7 @@
 
 			<br>
 
-			<hr style="color:#607d8b">
+			<hr style="color:#2196f3">
 
 			<div class="row">
 				<div class="input-field col s12 l6">
@@ -146,7 +146,8 @@
 			<div class="row">
 				<div class="input-field col s12 l6">
 					<br>
-					<label for="" class="preguntas  cancerMama1">5. ¿Si tiene más de 50 años le han praticado alguna vez una mamografía?*</label>	<br>				
+					<label for="" class="preguntas  cancerMama1">5. ¿Si tiene más de 50 años le han praticado alguna vez una mamografía?*</label>	
+					<br><br>	<br>			
 					<p>
 						<input name="cancerMama5" type="radio" id="t13"  value="0"/>
 						<label class="respuestas" for="t13">No </label>
@@ -194,7 +195,7 @@
 			<br><br>
 
 			<h6 align="center">
-				<button class="btn waves-effect waves-light blue-grey" type="submit" name="action" onClick="validarFormulario()">Aceptar
+				<button class="btn waves-effect waves-light blue" type="submit" name="action" onClick="validarFormulario()">Aceptar
 					<i class="material-icons right">send</i>
 				</button>
 			</h6>

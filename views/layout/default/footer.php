@@ -1,6 +1,6 @@
 				<br><br>
 			    <div class="section"></div>
-            </div>          
+                      
         </div>
         <footer class="page-footer light-blue lighten-1">
 		    <div class="footer-copyright">

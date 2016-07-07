@@ -98,9 +98,7 @@
             <div id="mensaje"><?php echo $this->_mensaje; ?></div>
             <?php endif; ?>
 
-            <div id="login" class="modal">
-
-                
+            <div id="login" class="modal">                
                 <form name="form1" method="post" action="<?php echo BASE_URL; ?>login">
                     <div class="modal-content">
                         <div class="row">
@@ -128,5 +126,6 @@
                     </div>
                  </form>
             </div>
+        </div>
 
    

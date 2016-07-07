@@ -1,4 +1,4 @@
-<center><p class="titulo">Registro de Demanda Inducida</p></center>
+<center><p class="titulo" style = "font-size:35px; color:#2196f3" >Registro de demanda inducida</p></center>
 <form id="form" method="post" action="<?php echo BASE_URL; ?>demanda_inducida/nuevo">
 	<input type="hidden" name="guardar" value="1" />
 	<div class="row">
@@ -7,14 +7,12 @@
 				<tbody>
 					<?php if(isset($this->preguntas)) : ?>
 						<?php for($i = 0; $i < 6; $i++):?>
-							
 							<tr>
 								<td>
 									<input type="checkbox" class="filled-in" name="<?php echo 'selectDemanda'.$this->preguntas[$i]['NUM_PREGUNTA']; ?>" id="<?php echo 'selectDemanda'.$this->preguntas[$i]['NUM_PREGUNTA']; ?>" value="1">
 									<label for="<?php echo 'selectDemanda'.$this->preguntas[$i]['NUM_PREGUNTA']; ?>" class="black-text text-black"> <?php echo $this->preguntas[$i]['DES_PREGUNTA']; ?></label>
 								</td>
 							</tr>
-						 			  
 						<?php endfor;?>
 					<?php endif; ?>
 				</tbody>
@@ -25,25 +23,18 @@
 				<tbody>
 					<?php if(isset($this->preguntas)) : ?>
 						<?php for($i = 6; $i < 12; $i++):?>
-							
 							<tr>
 								<td>
 									<input type="checkbox" class="filled-in" name="<?php echo 'selectDemanda'.$this->preguntas[$i]['NUM_PREGUNTA']; ?>" id="<?php echo 'selectDemanda'.$this->preguntas[$i]['NUM_PREGUNTA']; ?>" value="1">
 									<label for="<?php echo 'selectDemanda'.$this->preguntas[$i]['NUM_PREGUNTA']; ?>" class="black-text text-black"> <?php echo $this->preguntas[$i]['DES_PREGUNTA']; ?></label>
 								</td>
 							</tr>
-						 			  
 						<?php endfor;?>
 					<?php endif; ?>
-
-					<tr>
-						<td>
-							<input type="submit" class="waves-effect waves-light btn" value="Guardar" />
-						</td>
-					</tr>
 				</tbody>
-			</table>	
+			</table>
+			<br><br><br>
+			<input type="submit" class="waves-effect waves-light btn-large blue" value="Guardar" />	
 		</div>
-		
 	</div>
 </form>

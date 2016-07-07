@@ -1,0 +1,880 @@
+	<?php
+
+	?>
+	<div class="row">
+		<form action="<?php echo BASE_URL; ?>kardes/nuevo" class="col s12" id="formKardes" name="formKardes" method="post">
+			<input type="hidden" name="guardar" value="1" />
+				<ul class="collapsible" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white white-text text-white">Primera Parte</div>
+						<div class="collapsible-body">
+							<div class="row">
+								<div class="input-field col l6"><br>
+									<input placeholder="" type="text" class="validate" name="nomGestante">
+									<label for="" class="colorWhite" >Nombre gestante o puerperas</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col l3">
+									
+									
+									
+									
+									<label class="colorBlue">Condicion <i class="tiny material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="I am tooltip">live_help</i></label>
+									<br>
+									
+									<input name="condicionMadres" type="radio" id="t3"  value='Gestante'/>
+									<label class="respuestas" for="t3">Gestante </label>
+									
+									<input name="condicionMadres" type="radio" id="t4"  value='Puerpera'/>
+									<label class="respuestas" for="t4">Puerpera</label>
+									
+									
+									
+								</div>
+								<div class="input-field col l3">
+									<br>
+									<input placeholder="" type="text" class="validate" name="fichaKardes">
+									<label for="" class="colorWhite" >Numero de ficha</label>
+								</div>
+								<div class="input-field col l3">
+									<br>
+									<input placeholder="" type="text" class="validate" name="ipsPrimariaAten">
+									<label for="" class="colorWhite" >Nombre Ips primaria de atencion</label>
+								</div>
+								<div class="input-field col l3">
+									
+									<br> <select name="condicionEspecial">
+										<option value="" disabled selected></option>
+										<option value="1">1 | Discapacidad</option>
+										<option value="2">2 | Desplazada </option>
+										<option value="3">3 |	Victima de Conflicto Armado</option>
+										<option value="4">4 |	Victima de Abuso Sexual</option>
+										<option value='5'>5 | Otro </option>
+									</select><br>
+									<label class="colorBlue">Condicion especial</label>
+									<div class="input-field condicionEspecial"><br>
+										<input placeholder="Cual?" type="text" class="validate" name="otroCondicionEspecial">
+										<label for="" class="colorWhite" >Cual?</label>
+									</div>
+								</div>
+								
+								
+							</div>
+							<div class="row">
+								<div class="input-field col l12">
+									<table class="border-tabla" >
+										<thead class="border-tabla" >
+											<tr>
+												<th>N° Gestaciones</th>
+												<th>N° Partos</th>
+												<th>N° cesareas</th>
+												<th>N° Abortos</th>
+												<th>N° Hijos Vivos</th>
+												<th>N° Hijos Muertos</th>
+											</tr>
+										</thead >
+										<tbody class="border-tabla" >
+											<tr>
+												<td> <input name="numGestaciones" placeholder="N° Gestaciones" type="text" class="validate" ></td>
+												<td> <input name="numPartos" placeholder="N° Partos" type="text" class="validate" ></td>
+												<td> <input name="numCesareas" placeholder="N° Cesareas" type="text" class="validate" ></td>
+												<td> <input name="numAbortos" placeholder="N° Abortos" type="text" class="validate" ></td>
+												<td> <input name="numHijos" placeholder="N° Hijos Vivos" type="text" class="validate" ></td>
+												<td> <input name="numHijosMuertos" placeholder="N° Hijos Muertos" type="text" class="validate" ></td>
+											</tr>
+										</tbody>
+									</table>
+									
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s3">
+									<label for="first_name" class="colorBlue">Fecha último parto</label>
+									<input name="fechaUltParto" type="text" class="datepicker" placeholder="Seleccione Fecha">
+								</div>
+								<div class="col s3">
+									<label for="first_name" class="colorBlue">Fecha última mestruacion</label>
+									<input name="fechaUltMenstr" type="text" class="datepicker" placeholder="Seleccione Fecha">
+								</div>
+								<div class="col s3">
+									<label for="first_name" class="colorBlue">Fecha probable de parto</label>
+									<input name="fechaProParto" type="text" class="datepicker" placeholder="Seleccione Fecha">
+								</div>
+								<div class="col s3">
+									<label for="first_name" class="colorBlue">Fecha de Parto</label>
+									<input name="fechaParto" type="text" class="datepicker" placeholder="Seleccione Fecha">
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white white-text text-white">Segunda Parte</div>
+						<div class="collapsible-body">
+<div class="row">
+					
+					<div class="input-field col l2">
+						<br> <br> <br> <select name="terminacionGestacion">
+							<option value="" disabled selected></option>
+							<option value="415">1 | Aborto</option>
+							<option value="416">2 | Espontaneo</option>
+							<option value="417">3 |	Instrumentado</option>
+							<option value="418">4 |	Cesarea</option>
+							<option value="419">5 | Otro</option>
+						</select><br>
+						<label class="colorBlue">Terminacion de la gestacion</label>
+					</div>
+					<div class="input-field col l2">
+						<br> <br> <br> <select name="atenParto">
+							<option value="" disabled selected></option>
+							<option value="1">1 | Instruccional</option>
+							<option value="2">2 | Partera</option>
+						</select><br>
+						<label class="colorBlue">Atencion del parto</label>
+					</div>
+					<div class="input-field col l2">
+						<br> <br> <br> <select name="atendidoEn" >
+							<option value="" disabled selected></option>
+							<option value="1">1 | Docimicilio</option>
+							<option value="2">2 | Institucion</option>
+						</select><br>
+						<label class="colorBlue">Atendido en </label>
+						<div class="input-field  atendidoEn"><br>
+							<input placeholder="Nombre IPS" type="text" class="validate" name="nombreIpsAtendido">
+							<label for="" class="colorWhite" >Nombre de IPS</label>
+						</div>
+					</div>
+					
+					<div class="input-field col l3">
+						<br><br>
+						
+						<label class="colorBlue">Recien nacido</label>
+						
+						
+						<input name="recienNacido" type="radio" id="t1"  value='1'/>
+						<label class="respuestas" for="t1"> Vivo </label>
+						
+						<p>
+							<input name="recienNacido" type="radio" id="t2"  value='0'/>
+							<label class="respuestas" for="t2"> Muerto </label>
+						</p>
+						<div class="parto">
+							<select class="" name="descMuerteRecienNacido">
+								<option value="0" disabled selected>Cuando?</option>
+								<option value="1">1 | Antes del parto </option>
+								<option value="2">2 | Durante el parto</option>
+								<option value="3">3 | Despues del parto</option>
+							</select>
+						</div>
+						
+						
+					</div>
+					<div class="input-field col l3">
+						<br> <br> <br> <select name="cordonUmbilical">
+							<option value="" disabled selected></option>
+							<option value="1">1 |  Sin signos de infección (SSI) </option>
+							<option value="2">2 |  Con signos de infección (CSI).</option>
+						</select><br>
+						<label class="colorBlue">Cordon Umbilical</label>
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					
+					<div class="col l12">
+						<table>
+							<thead class="colorBlue">
+								<tr><th></th>
+								<th></th>
+								<th></th>
+								
+								<th colspan="3" class="border-tabla" ><center>ASISTENCIA A CONTROL PRENATAL</center></th>
+							</tr>
+							<tr>
+								<th>N° de visita</th>
+								<th>Fecha de visita</th>
+								<th>Semanas gestacional actual</th>
+								<th class="border-tabla">N° de controles prenatales</th>
+								<th class="border-tabla">Fecha en la que asiste</th>
+								<th class="border-tabla">Semana gestacional a la fecha delcontrol</th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr></tr>
+						<tr>
+							<td><input placeholder="N° de visita" type="text" class="validate" name="numVisita"></td>
+							<td><input type="text" class="datepicker" placeholder=="Fecha De Visita" name="fechaVisita"></td>
+							<td><input placeholder="N° de semanas" type="text" class="validate" name="numSemanas"></td>
+							<td class="border-tabla"><input placeholder="N° de controles prenatales" type="text" class="validate" name="numControlesPrenatales"></td>
+							<td class="border-tabla"><input placeholder="Fecha" type="text" class="datepicker" name="fechaEnQueAsiste"></td>
+							<td class="border-tabla"><input placeholder="semana gestacional" type="text" class="validate" name="semGestacional"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div><br>
+		<div class="row">
+			<div class="input-field col l4">
+				<p>
+					<input type="checkbox" class="filled-in" id="carnet-materno" name="carnetMaterno"/>
+					<label for="carnet-materno">Carnet Materno</label>
+				</p>
+			</div>
+			<div class="input-field col l4 "><br>
+				<input placeholder="Semana Inicio Control" type="text" class="validate" name="semGestInicioCtrlPrenatal">
+				<label for="" class="colorWhite" >Semana gestacional al inicio del control prenatal</label>
+			</div>
+			<div class="  col l4   fecha">
+				<label for="" class="colorBlue">Fecha de ingreso a control prenatal</label>
+				<input type="text" class="datepicker" placeholder="Fecha De Ingreso" name="fechaIngrCtrlPrenatal">
+			</div>
+		</div>
+
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white white-text text-white">Tercera Parte</div>
+						<div class="collapsible-body">
+
+	<div class="row   border-tabla">
+			<center>  <label for="" class="colorBlue">CLASIFICACIÓN DEL RIESGO DE LA GESTANTE</label></center>
+			<div class="input-field col l3"><br>
+				<label for="" class="colorBlue">Antecedentes Obstétricos</label>
+				<p>
+					<input name="antecedentesObstetricos1" type="checkbox" class="filled-in" id="antecedentesObstetricos1" value="420" />
+					<label for="antecedentesObstetricos1">Edad de la Madre (Menor De 18 o Mayor De 35)</label>
+				</p>
+				<p>
+					<input name="antecedentesObstetricos2" type="checkbox" class="filled-in" id="antecedentesObstetricos2" value="421" />
+					<label for="antecedentesObstetricos2">Número De Partos: Ninguno o Mayor De 5</label>
+				</p>
+				<p>
+					<input name="antecedentesObstetricos3" type="checkbox" class="filled-in" id="antecedentesObstetricos3" value="422" />
+					<label for="antecedentesObstetricos3">Hemorragias Postparto</label>
+				</p>
+				<p>
+					<input name="antecedentesObstetricos4" type="checkbox" class="filled-in" id="antecedentesObstetricos4" value="423" />
+					<label for="antecedentesObstetricos4">Hipertensión</label>
+				</p>
+				<p>
+					<input name="antecedentesObstetricos5" type="checkbox" class="filled-in" id="antecedentesObstetricos5" value="424" />
+					<label for="antecedentesObstetricos5">Hospitalización En Gestaciones Previas</label>
+				</p>
+				<p>
+					<input name="antecedentesObstetricos6" type="checkbox" class="filled-in" id="antecedentesObstetricos6" value="425" />
+					<label for="antecedentesObstetricos6">Muerte Neonatal O Fetal Previa</label>
+				</p>
+				<p>
+					<input name="antecedentesObstetricos7" type="checkbox" class="filled-in" id="antecedentesObstetricos7" value="426" />
+					<label for="antecedentesObstetricos7">Amenaza De Aborto O Amenaza De Parto Prematuro.
+					</label>
+				</p>
+			</div>
+			<div class="input-field col l3 "><br>
+				<label for="" class="colorBlue">Condiciones Asociadas</label>
+				<p>
+					<input name="condicionesAsociadas1" type="checkbox" class="filled-in" id="condicionesAsociadas1" value="427" />
+					<label for="condicionesAsociadas1">Enfermedad Renal Crónica</label>
+				</p>
+				<p>
+					<input name="condicionesAsociadas2" type="checkbox" class="filled-in" id="condicionesAsociadas2" value="428" />
+					<label for="condicionesAsociadas2">Diabetes Gestacional</label>
+				</p>
+				<p>
+					<input name="condicionesAsociadas3" type="checkbox" class="filled-in" id="condicionesAsociadas3" value="429" />
+					<label for="condicionesAsociadas3">Diabetes Mellitus</label>
+				</p>
+				<p>
+					<input name="condicionesAsociadas4" type="checkbox" class="filled-in" id="condicionesAsociadas4" value="430" />
+					<label for="condicionesAsociadas4"> Enfermedad Cardiaca</label>
+				</p>
+				<p>
+					<input name="condicionesAsociadas5" type="checkbox" class="filled-in" id="condicionesAsociadas5" value="431" />
+					<label for="condicionesAsociadas5">E.T.S</label>
+				</p>
+				<p>
+					<input name="condicionesAsociadas6" type="checkbox" class="filled-in" id="condicionesAsociadas6" value="432" />
+					<label for="condicionesAsociadas6"> IVU Recurrente</label>
+				</p>
+				<p>
+					<input name="condicionesAsociadas7" type="checkbox" class="filled-in" id="condicionesAsociadas7" value="433" />
+					<label for="condicionesAsociadas7">Otros Trastornos Médicos Importantes (Lupus, Cáncer, Cardiopatías).
+					</label>
+				</p>
+			</div>
+			<div class="input-field col l3 "><br>
+				<label for="" class="colorBlue">Embarazo Actual</label>
+				<p>
+					<input name="embarazoActual1" type="checkbox" class="filled-in" id="embarazoActual1" value="434" />
+					<label for="embarazoActual1">1er Consulta Después 12 Semanas</label>
+				</p>
+				<p>
+					<input name="embarazoActual2" type="checkbox" class="filled-in" id="embarazoActual2" value="435" />
+					<label for="embarazoActual2">Desnutrición</label>
+				</p>
+				<p>
+					<input name="embarazoActual3" type="checkbox" class="filled-in" id="embarazoActual3" value="436" />
+					<label for="embarazoActual3"> Anemia</label>
+				</p>
+				<p>
+					<input name="embarazoActual4" type="checkbox" class="filled-in" id="embarazoActual4" value="437" />
+					<label for="embarazoActual4">  Hipertensión</label>
+				</p>
+				<p>
+					<input name="embarazoActual5" type="checkbox" class="filled-in" id="embarazoActual5" value="438" />
+					<label for="embarazoActual5">Toxoplasmosis</label>
+				</p>
+				<p>
+					<input name="embarazoActual6" type="checkbox" class="filled-in" id="embarazoActual6" value="439" />
+					<label for="embarazoActual6"> Hemorragia</label>
+				</p>
+				<p>
+					<input name="embarazoActual7" type="checkbox" class="filled-in" id="embarazoActual7" value="440" />
+					<label for="embarazoActual7">Embarazo  Múltiple
+					</label>
+				</p>
+				<p>
+					<input name="embarazoActual8" type="checkbox" class="filled-in" id="embarazoActual8" value="441" />
+					<label for="embarazoActual8"> Crecimiento Intrauterino Retardad</label>
+				</p>
+				<p>
+					<input name="embarazoActual9" type="checkbox" class="filled-in" id="embarazoActual9" value="442" />
+					<label for="embarazoActual9" >Ruptura Prematura De Membranas</label>
+				</p>
+				<p>
+					<input name="embarazoActual10" type="checkbox" class="filled-in" id="embarazoActual10" value="443" />
+					<label for="embarazoActual10"> Amenaza de Aborto o Amenaza de Parto Prematuro</label>
+				</p>
+				<p>
+					<input name="embarazoActual11" type="checkbox" class="filled-in" id="embarazoActual11" value="444" />
+					<label for="embarazoActual11"> Trabajo de  Parto Prolongado</label>
+				</p>
+				<br>
+			</div>
+			<div class="input-field col l3 "><br>
+				<label for="" class="colorBlue">Riesgo Psicosocial</label>
+				<p>
+					<input name="riegoPsicosocial1" type="checkbox" class="filled-in" id="riego-Psicosocial1" value="445" />
+					<label for="riego-Psicosocial1">Tensión Emocional (Llanto Fácil, Tensión Muscular, Sobresalto, Temblor, No Poder Quedarse Quieta)</label>
+				</p>
+				<p>
+					<input name="riegoPsicosocial2" type="checkbox" class="filled-in" id="riego-Psicosocial2" value="446" />
+					<label for="riego-Psicosocial2">Humor Depresivo (Insomnio, Falta de Interés, No Disfruta Pasatiempo, Depresión, Mal Genio)</label>
+				</p>
+				<p>
+					<input name="riegoPsicosocial3" type="checkbox" class="filled-in" id="riego-Psicosocial3" value="447" />
+					<label for="riego-Psicosocial3">Síntomas Neurovegetativos (Transpiración Manos, Boca Seca, Rubor, Palidez, Cefalea)</label>
+				</p>
+				<p>
+					<input name="riegoPsicosocial4" type="checkbox" class="filled-in" id="riego-Psicosocial4" value="448" />
+					<label for="riego-Psicosocial4"> Soporte Familiar</label>
+				</p>
+				
+			</div>
+			<div class="input-field col l1 "><br>
+				<p id='barra'></p>
+				<p>
+					<input type="checkbox" class="filled-in" id="ubicacionGeografica" name="ubicacionGeografica" value="449" />
+					<label for="ubicacionGeografica">Ubicación Geográfica</label>
+				</p>
+				
+			</div>
+		</div>
+
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white white-text text-white">Cuarta Parte</div>
+						<div class="collapsible-body">
+<div class="row">
+			<div class="input-field col l4">
+				
+				<label class="colorBlue">Signos de alarma antes de la semana 20 de gestacion</label><br><br>
+				<p>
+					<input name="antes20Semana1" type="checkbox" class="filled-in" id="antes20Semana1" value="450" />
+					<label for="antes20Semana1"> Vómito persistente .</label>
+				</p>
+				<p>
+					<input name="antes20Semana2" type="checkbox" class="filled-in" id="antes20Semana2" value="451" />
+					<label for="antes20Semana2"> Fiebre</label>
+				</p>
+				<p>
+					<input name="antes20Semana3" type="checkbox" class="filled-in" id="antes20Semana3" value="452" />
+					<label for="antes20Semana3"> Dolor fuerte en el bajo vientre.</label>
+				</p>
+				<p>
+					<input name="antes20Semana4" type="checkbox" class="filled-in" id="antes20Semana4" value="453" />
+					<label for="antes20Semana4"> Ardor o molestias al orinar.</label>
+				</p>
+				
+				
+				<p>
+					<input name="antes20Semana5" type="checkbox" class="filled-in" id="antes20Semana5" value="454" />
+					<label for="antes20Semana5">Sangrado vaginal .</label>
+				</p>
+				<p>
+					<input name="antes20Semana6" type="checkbox" class="filled-in" id="antes20Semana6" value="455" />
+					<label for="antes20Semana6">  Flujo vaginal de mal olor o que genere molestias y/o que tenga un color diferente (lechoso o amarillento) .</label>
+				</p>
+				<p>
+					<input name="antes20Semana7" type="checkbox" class="filled-in" id="antes20Semana7" value="456" />
+					<label for="antes20Semana7">No Aplica .</label>
+				</p>
+				
+			</div>
+			<div class="input-field col l4">
+				<br> <br>
+				<label class="colorBlue">Signos de alarma despues de la semana 20 de gestacion</label>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana1" name="despues20Semana1" value="457" />
+					<label for="despues20Semana1">  Dolor de cabeza, visión borrosa, ver lucecitas y escuchar pitidos  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana2" name="despues20Semana2" value="458" />
+					<label for="despues20Semana2"> Fiebre</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana3" name="despues20Semana3" value="459" />
+					<label for="despues20Semana3"> Hinchazón o inflamación en cara, manos o pies  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana4" name="despues20Semana4" value="460" />
+					<label for="despues20Semana4"> Dolor o ardor en la boca del estomago.</label>
+				</p>
+				
+				
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana5" name="despues20Semana5" value="461" />
+					<label for="despues20Semana5">Ausencia o disminución de los movimientos del bebé.</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana6" name="despues20Semana6" value="462" />
+					<label for="despues20Semana6"> Dolor en el bajo vientre .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana7" name="despues20Semana7" value="463" />
+					<label for="despues20Semana7">Ardor o molestias al orinar.</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana8" name="despues20Semana8" value="464" />
+					<label for="despues20Semana8">Salida de sangre (mancha café) o líquido vaginal .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana9" name="despues20Semana9" value="465" />
+					<label for="despues20Semana9">Presencia de  más de 4 contracciones en una hora .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana10" name="despues20Semana10" value="466" />
+					<label for="despues20Semana10"> Retraso en el inicio de los dolores del parto  de un día después de la fecha probable de parto .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="despues20Semana11" name="despues20Semana11" value="467" />
+					<label for="despues20Semana11">No Aplica .</label>
+				</p>
+				
+				
+			</div>
+			<div class="input-field col l4">
+				<br> <br>
+				<label class="colorBlue">Patologias de la gestion actual</label>
+				<p>
+					<input type="checkbox" class="filled-in" id="patologiasActules1" name="patologiasActules1" value="468" />
+					<label for="patologiasActules1">  Sifilis gestacional  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="patologiasActules2" name="patologiasActules2" value="469" />
+					<label for="patologiasActules2">  VIH Gestacional  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="patologiasActules3" name="patologiasActules3" value="470" />
+					<label for="patologiasActules3"> Anemia  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="patologiasActules4" name="patologiasActules4" value="471" />
+					<label for="patologiasActules4">  Hepatitis B  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="patologiasActules5" name="patologiasActules5" value="472" />
+					<label for="patologiasActules5">  Toxoplasmosis  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in patologiasActules" id="patologiasActules6" name="patologiasActules6" value="473" />
+					<label for="patologiasActules6">  Otra  .</label>
+				</p>
+				
+				
+				<br>
+				<div class="input-field patologiasActules"><br>
+					<input placeholder="Cual?" type="text" class="validate" name="otraPatologiasGestAct">
+					<label for="" class="colorWhite" >Cual?</label>
+				</div>
+			</div>
+		</div>
+
+
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white white-text text-white">Quinta Parte</div>
+						<div class="collapsible-body">
+
+<div class="row">
+			<div class="input-field col l3">
+				<p>
+					<input type="checkbox" class="filled-in" id="filled-in-box"  name="asistCursoMaternidad"/>
+					<label for="filled-in-box">Asiste al curso de maternidad/paternidad y parto</label>
+				</p>
+			</div>
+			<div class="input-field col l3">
+				<br> <br> <br> <select name="sumNutrientes">
+					<option value="" disabled selected></option>
+					<option value="474">1. | Calcio. </option>
+					<option value="475">2. | Hierro .</option>
+					<option value="476">3. | Acido Fólico  .</option>
+					<option value="477">4. | Calcio, Hierro y Acido Fólico  .</option>
+					<option value="478">5. | Ninguno . </option>
+					
+				</select><br>
+				<label class="colorBlue">Suministro de nutrientes</label>
+			</div>
+			
+			<div class="input-field col l3">
+				
+				<p>
+					<input type="checkbox" class="filled-in" id="morbilidad" name="morbilidad" />
+					<label for="morbilidad">Hopitalizacion por causa de morbilidad</label>
+				</p>
+				
+				
+			</div>
+			<div class="input-field col l3 morbilidad">
+				<br> <select name='tipoMorbilidadActual' >
+					<option value="" disabled selected></option>
+					<option value="479">1. | Trastorno Hipertensivo. </option>
+					<option value="480">2. | Complicaciones hemorragicas  .</option>
+					<option value="481">3. | Complicaciones del aborto  .</option>
+					<option value="482">4. | Sepsis de origen obstétrico , y no obstétrico .</option>
+					<option value="483">5. | Enfermedad preexistente que se complica. </option>
+					<option value="484">6. | Otro . </option>
+				</select><br>
+				<label class="colorBlue">Tipo de morbilidad extrema</label>
+				<div class="input-field cualTipoMorbilidad"><br>
+					<input placeholder="Cual?" type="text" class="validate">
+					<label for="" class="colorWhite" >Cual?</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col l2 "><br>
+				<br> <select name='apoyoPsicosocial' >
+					<option value="" disabled selected></option>
+					<option value="485">1. | Familia. </option>
+					<option value="486">2. | Pareja  .</option>
+					<option value="">3. | Ninguno  .</option>
+					<option value="487">4. | Otro.</option>
+				</select><br>
+				<label class="colorBlue">Apoyo Psicosocial</label>
+				<div class="input-field apoyoPsicosocial"><br>
+					<input placeholder="Cual?" type="text" class="validate">
+					<label for="" class="colorWhite" >Cual?</label>
+				</div>
+			</div>
+			<div class="input-field col l5 ">
+				
+				<label class="colorBlue">Eduacion Brindada</label><br>
+				
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada0" name="educacionBrindada0" value="488" />
+					<label for="educacionBrindada0"> Signos de Alarma .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada1" name="educacionBrindada1" value="489" />
+					<label for="educacionBrindada1">Autocuidado.</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada2" name="educacionBrindada2" value="490" />
+					<label for="educacionBrindada2">Nutrición - Alimentación</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada3" name="educacionBrindada3" value="491" />
+					<label for="educacionBrindada3"> Lactancia Materna.</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada4" name="educacionBrindada4" value="492" />
+					<label for="educacionBrindada4"> Vacunación.</label>
+				</p>
+				
+				
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada5" name="educacionBrindada5" value="493" />
+					<label for="educacionBrindada5">Derechos Sexuales y Reproductivos  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada6" name="educacionBrindada6" value="494" />
+					<label for="educacionBrindada6"> Cuidados del Recién Nacido (RN) .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada7" name="educacionBrindada7" value="495" />
+					<label for="educacionBrindada7"> Ninguno  .</label>
+				</p>
+				<p>
+					<input type="checkbox" class="filled-in" id="educacionBrindada8" name="educacionBrindada8" value="496" />
+					<label for="educacionBrindada8"> Otro.</label>
+				</p><br>
+				<div class="input-field educacionBrindada"><br>
+					<input placeholder="Cual?" type="text" class="validate" name="otraEducBrindada">
+					<label for="" class="colorWhite" >Cual?</label>
+				</div>
+				
+				
+				
+				
+			</div>
+			<div class="input-field col l5 ">
+				<div class="row">
+					<label class="colorBlue">Canalizacion a servicios</label><br>
+					<div class="input-field col l12">
+						
+						<p>
+							<input type="checkbox" class="filled-in" id="canalizacionServicios1" name="canalizacionServicios1" value="497" />
+							<label for="canalizacionServicios1">Control prenatal . </label>
+							
+							
+							<div   class="canalizacionServicios1">
+								<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios1Fecha">
+							</div>
+						</p>
+						<p>
+							<input type="checkbox" class="filled-in" id="canalizacionServicios2" name="canalizacionServicios2" value="498" />
+							<label for="canalizacionServicios2">Vacunación .</label>
+						</p>
+						
+						<div   class="canalizacionServicios2">
+							<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios2Fecha">
+						</div>
+						<p>
+							<input type="checkbox" class="filled-in" id="canalizacionServicios3" name="canalizacionServicios3" value="499" />
+							<label for="canalizacionServicios3"> Odontología</label>
+						</p>
+						
+						<div   class="canalizacionServicios3">
+							<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios3Fecha">
+						</div>
+						<p>
+							<input type="checkbox" class="filled-in" id="canalizacionServicios4" name="canalizacionServicios4" value="500" />
+							<label for="canalizacionServicios4"> Planificación familiar .</label>
+						</p>
+						
+						<div   class="canalizacionServicios4">
+							<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios4Fecha">
+						</div>
+						
+						
+						<p>
+							<input type="checkbox" class="filled-in" id="canalizacionServicios5" name="canalizacionServicios5" value="501" />
+							<label for="canalizacionServicios5">Control Puerperio.</label>
+						</p>
+						
+						<div   class="canalizacionServicios5">
+							<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios5Fecha">
+						</div>
+						<p>
+							<input type="checkbox" class="filled-in" id="canalizacionServicios6" name="canalizacionServicios6" value="502" />
+							<label for="canalizacionServicios6"> Curso de Preparación de maternidad .</label>
+						</p>
+						
+						<div   class="canalizacionServicios6">
+							<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios6Fecha">
+						</div>
+						<p>
+							<input type="checkbox" class="filled-in" id="canalizacionServicios7" name="canalizacionServicios7" value="534" />
+							<label for="canalizacionServicios7">Psicología  .</label>
+						</p>
+						
+						<div   class="canalizacionServicios7">
+							<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios7Fecha">
+						</div>
+						<p>
+							<input type="checkbox"  class="filled-in" id="canalizacionServicios8" name="canalizacionServicios8" value="535" />
+							<label for="canalizacionServicios8"> Otro .</label>
+						</p>
+						<br>
+						<div class="input-field canalizacionServicios"><br>
+							<input placeholder="Cual?" type="text" class="validate" name="otraCanalizacionServicios">
+							<label for="" class="colorWhite" >Cual?</label>
+						</div>
+						<div   class="canalizacionServicios8">
+							<input type="text" class="datepicker" placeholder="Fecha" name="canalizacionServicios8Fecha">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+						
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header teal darken-2 white-text text-white white-text text-white">Sexta Parte</div>
+						<div class="collapsible-body">
+
+<div class="row">
+			<div class="input-field col l4">
+				<br> <select name="vacunacionTTID">
+					<option value="" disabled selected></option>
+					<option value="503">1. | 1 dosis. </option>
+					<option value="504">2. | 2 dosis  .</option>
+					<option value="505">3. | 3 dosis  .</option>
+					<option value="506">4. | 4 dosis</option>
+					<option value="507">5. | 5 dosis</option>
+					<option value="508">6. | no esta vacunada</option>
+					
+				</select><br>
+				<label class="colorBlue">Vacunacion TT/ID embarazo actual</label>
+				
+			</div>
+			
+			<div class="input-field col l2">
+				<p>
+					<input type="checkbox" class="filled-in" id="apoyoTransporte" name="apoyoTransporte" />
+					<label for="apoyoTransporte">   Apoyo en transporte</label>
+				</p>
+			</div>
+			<div class="input-field col l6">
+				<div class="row" class="border-tabla">
+					
+					<div class="input-field col l6">  <br>  <br>
+						<br> <select name="clasfRiesgoPuerpera1">
+							<option value="" disabled selected></option>
+							<option value="509">1. |  Alto </option>
+							<option value="510">2. |  Bajo .</option>
+							
+						</select><br>
+						<label class="colorBlue">Clasificacion de riesgo para la puerpera</label>
+						
+					</div>
+					<div class="input-field col l6">  <br>  <br>
+						<br> <select name="clasfRiesgoPuerpera2">
+							<option value="" disabled selected></option>
+							<option value="511">1. |  Por Signos de Alarma </option>
+							<option value="512">2. |  Riesgo Psicosocial  .</option>
+							<option value="513">3. |  Patologia de la Puerpera  .</option>
+						</select><br>
+						<label class="colorBlue">Clasificacion de riesgo para la puerpera</label>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col l4">
+				<br> <select name="signosAlarmaPuerperio">
+					<option value="" disabled selected></option>
+					<option value="514">1. |  Liquios fétidos</option>
+					<option value="515">2. |  Fiebre .</option>
+					<option value="516">3. |  Sangrado abundante .</option>
+					<option value="517">4. |  Dolor en el bajo vientre</option>
+					<option value="518">5. |  Vómito  .</option>
+					<option value="519">6. |  Cefalea.</option>
+					<option value="520">7. |  Frecuencia cardiaca mayor de 100 por minuto.</option>
+					<option value="521">8. |  Dificultad al respirar  .</option>
+					<option value="522">9. |  Depresión Emocional (Llanto facíl y pensamientos suicidas).</option>
+					<option value="523">10. |  Signos de Mastitis</option>
+					<option value="524">111. |  Signos de Infección en área de sutura (Episiorrafia o Cesárea)</option>
+				</select><br>
+				<label class="colorBlue">Signos y síntomas de alarma del puerperio</label>
+				
+			</div>
+			
+			<div class="input-field col l4">
+				<p>
+					<input type="checkbox" class="filled-in" id="vacunacionPuerpera" name="vacunacionPuerpera" />
+					<label for="vacunacionPuerpera">   Vacunacion puerpera  (sarampión/rubeola)</label>
+				</p>
+			</div>
+			
+			<div class="input-field col l4">
+				<br> <select name="vacRecienNacido">
+					<option value="" disabled selected></option>
+					<option value="525">1. | BCG</option>
+					<option value="526">2. | Hepatitis .</option>
+					<option value="527">3. | No esta vacunado.</option>
+					
+				</select><br>
+				<label class="colorBlue">Vacunacion recien nacido</label>
+				
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="col l3  fecha ">
+				<label for="" class="colorBlue">Fecha control del recien nacido</label>
+				<input type="text" cLass="datepicker" placeholder="Fecha Control" name="fechControlRecNacido">
+			</div>
+			<div class="input-field col l3">
+				<input placeholder="Peso" type="text" class="validate" name="pesoRN">
+				<label for="" class="colorWhite" >Peso recien nacido</label>
+			</div>
+			<div class="input-field col l3">
+				<input placeholder="Talla" type="text" class="validate" name="tallaRN">
+				<label for="" class="colorWhite" >Talla recien nacido</label>
+			</div>
+			<div class="input-field col l3">
+				<p>
+					<input type="checkbox" class="filled-in" id="lactanciaRecienNacido" name="lactanciaRecienNacido" />
+					<label for="lactanciaRecienNacido">Lactancia materna</label>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="fecha col l3">
+				<label for="" class="colorBlue">Control postparto</label>
+				<input type="text" class="datepicker" name="ctrlPostParto" placeholder="Fecha">
+			</div>
+			<div class="fecha col l3">
+				<label for="" class="colorBlue">Control planificacion familiar</label>
+				<input type="text" class="datepicker" name="ctrlPlanificacionFam" placeholder="Fecha">
+			</div>
+			<div class="input-field col l5">
+				<br> <select name="metodoPlanificacionRecomendado">
+					<option value="" disabled selected></option>
+					<option value="528">1. | Oral</option>
+					<option value="529">2. | DIU</option>
+					<option value="530">3. | Ligadura de trompas.</option>
+					<option value="531">4. | Inyectable.</option>
+					<option value="532">5. | Ninguno.</option>
+					<option value="533">6. | Otro.</option>
+				</select>
+				<label class="colorBlue">Metodo de planificacion recomendado</label><br>
+				<div class="input-field metodoPlanificacionRecomendado"><br>
+					<input placeholder="Cual?" type="text" class="validate">
+					<label for="" class="colorWhite" >Cual?</label>
+				</div>
+			</div>
+		</div>
+		<p id='respuestaRiesgo'></p>
+		<div class="row">
+			<div class="input-field col s12">
+				<textarea id="observaciones" class="materialize-textarea" name="observaciones"></textarea>
+				<label for="textarea1">Observaciones</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col l6">
+				<input placeholder="" type="text" class="validate" name="promotor">
+				<label for="" class="colorWhite" >Promotor que realiza la visita</label>
+			</div>
+		</div>
+						
+						</div>
+					</li>
+				</ul>
+				
+				
+	
+		  <button class="btn waves-effect waves-light" type="submit" name="action" id="action">Enviar
+						    <i class="material-icons right">send</i>
+						  </button>
+			</form>
+		</div>

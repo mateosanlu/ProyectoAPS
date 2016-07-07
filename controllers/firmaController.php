@@ -11,7 +11,7 @@ class firmaController extends Controller
     
     public function index()
     {   
-        Session::accesoEstricto(array('usuario'));
+        //Session::accesoEstricto(array('usuario'));
 
         $this->_view->firmas = $this->_firma->getFirmas();
         $this->_view->firma = $this->_firma->getFirma(0);    

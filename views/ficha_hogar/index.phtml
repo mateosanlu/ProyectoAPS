@@ -188,7 +188,7 @@
            
 					        <thead>
 					          <tr>
-					              <th class="colorBlue">18. Documento de Identidad</th>
+					              <th class="colorBlue col l3">18. Documento de Identidad</th>
 					              <th class="colorBlue">19. Nombres y apellidos</th>
 					              <th class="colorBlue">20. Fecha Nacimiento</th>
 					              <th class="colorBlue">21. Edad</th>
@@ -202,7 +202,10 @@
 					        <tbody>
 
 					          <tr>
-					            <td ><input name="docIdentidad[]" placeholder="Documento Identidad"  type="text" class="validate"></td>
+					          <div class="row">
+					            <td class=" col l9"><input name="docIdentidad[]" placeholder="Documento Identidad"  type="text" class="validate">
+					            </td>
+					            </div>
 					            <td><input  name="nomApe[]" class="name1" placeholder="Nombres y apellidos"  type="text" class="validate"></td>
 					            <td><input name="dateNacimiento[]"placeholder="Fecha de nacimiento"  type="date" class="validate"></td>
 					            <td><input name="edad[]"placeholder="Edad"  type="text" class="validate"  onChange='calculaEdad();'></td>
@@ -1747,10 +1750,10 @@
             
         },
         submitHandler: function(form){
-        	 // var dataString = $('#hogar').serialize();
-alert("fddfs");
+        	var dataString = $('#hogar').serialize();
+
         //alert('Datos serializados: '+dataString);
-/*
+
         $.ajax({
             type: "POST",
              url: "/aps/ficha_hogar/ingresar",
@@ -1760,7 +1763,7 @@ alert("fddfs");
          alert("Datos Enviados con exito");
             }
         });
-        */
+        
         }
     });
 /*
