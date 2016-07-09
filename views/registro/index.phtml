@@ -5,84 +5,102 @@
             }
 </style>
 
-<h2>Registro</h2>
+<div class="container">
 
-<form name="form1" method="post" action="">
-    <input type="hidden" value="1" name="enviar" />
-    
-    <div class="input-field col s6 ">
-        <input id="nombre" type="text" class="validate" name="nombre" value="<?php if(isset($this->datos)) echo $this->datos['nombre']; ?>">
-        <label for="nombre">Nombre Completo</label>
-    </div>
+  <h2>Registro de usuarios</h2>
+  <br><br>
 
-    <div class="input-field col s6 ">
-        <input id="documento" type="text" class="validate" name="documento" value="<?php if(isset($this->datos)) echo $this->datos['documento']; ?>">
-        <label for="nombre">Identificaci&oacute;n:</label>
-    </div>
-       
-    <div class="">
-        <div class="input-field col s6">
-            <select id="rol" class="browser-default" class="validate" name="rol">
-              <option value="" disabled selected>Escoja un rol</option>
-              <option value="ADMINISTRADOR">Administrador</option>
-              <option value="USUARIO">Usuario</option>
-            </select>
+  <form name="form1" method="post" action="">
+      <input type="hidden" value="1" name="enviar" />
+      
+      <div class="row">
+        <div class="input-field col s6 ">
+            <input id="nombre" type="text" class="validate" name="nombre" value="<?php if(isset($this->datos)) echo $this->datos['nombre']; ?>">
+            <label for="nombre">Nombres</label>
         </div>
-    </div>
-    <script>  $('select').not('.disabled').material_select();   </script>
-    
-    <div class="input-field col s6 ">
-        <input id="firma" type="hidden" name="firma">
-        <label for="firma">Firma:</label>
-    </div>
-    <div class="input-field col s6 ">       
-        <canvas id="canvas" width="400" height="200"></canvas>
-        <img id="imagenFirma" src="" alt="">                      
-    </div>
-    <div class="switch">
-        <label>
-          Off
-          <input type="checkbox" id="canvasSwitch" onchange="OnChangeCheckbox()">
-          <span class="lever"></span>
-          On
-        </label>
-        <input type="button" value="Guardar" onclick="openNewWindow();">
-        <input type="button" value="Limpiar" onclick="limpiar();">
-    </div>
-    
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>Firma:</span>
-        <input type="file">
+
+        <div class="input-field col s6 ">
+            <input id="apellido" type="text" class="validate" name="apellido" value="<?php if(isset($this->datos)) echo $this->datos['apellido']; ?>">
+            <label for="apellido">Apellidos</label>
+        </div>
       </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+      
+      <div class="row">
+        <div class="input-field col s6 ">
+            <input id="documento" type="text" class="validate" name="documento" value="<?php if(isset($this->datos)) echo $this->datos['documento']; ?>">
+            <label for="nombre">Identificaci&oacute;n:</label>
+        </div>
+           
+        <div class="">
+            <div class="input-field col s6">
+                <select id="rol" class="browser-default" class="validate" name="rol">
+                  <option value="" disabled selected>Escoja un rol</option>
+                  <option value="ADMINISTRADOR">Administrador</option>
+                  <option value="USUARIO">Usuario</option>
+                </select>
+            </div>
+        </div>
       </div>
-    </div>
+      
+      <div class="row">
+        <div class="input-field col s6 ">
+            <input id="pass" type="password" class="validate" name="pass">
+            <label for="pass">Contraseña:</label>
+        </div>
 
-
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>Foto:</span>
-        <input name="foto" type="file">
+        <div class="input-field col s6 ">
+            <input id="confirmar" type="password" class="validate" name="confirmar">
+            <label for="confirmar">Confirmar:</label>
+        </div>
       </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+      
+      <script>  $('select').not('.disabled').material_select();   </script>
+      
+      <div class="input-field col s6 ">
+          <input id="firma" type="hidden" name="firma">
+          <label for="firma">Firma:</label>
       </div>
-    </div>
+      <div class="input-field col s6 ">       
+          <canvas id="canvas" width="400" height="200"></canvas>
+          <img id="imagenFirma" src="" alt="">                      
+      </div>
+      <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" id="canvasSwitch" onchange="OnChangeCheckbox()">
+            <span class="lever"></span>
+            On
+          </label>
+          <input type="button" value="Guardar" onclick="openNewWindow();">
+          <input type="button" value="Limpiar" onclick="limpiar();">
+      </div>
+      
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Firma:</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
 
 
-    <div class="input-field col s6 ">
-        <input id="pass" type="password" class="validate" name="pass">
-        <label for="pass">Contraseña:</label>
-    </div>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Foto:</span>
+          <input name="foto" type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
 
-    <div class="input-field col s6 ">
-        <input id="confirmar" type="text" class="validate" name="confirmar">
-        <label for="confirmar">Confirmar:</label>
-    </div>
-        
-    <p>
-        <input type="submit" value="Enviar" />
-    </p>
-</form>
+
+      
+          
+      <p>
+          <input type="submit" value="Enviar" class="btn" />
+      </p>
+  </form>
+</div>

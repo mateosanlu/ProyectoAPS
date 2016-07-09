@@ -13,17 +13,17 @@ class View
     }
     
     public function renderizar($vista, $item = false)
-    {
+    {   
         $menu = array(
             array(
-                'id' => 'inicio',
-                'titulo' => 'Inicio',
-                'enlace' => BASE_URL
+                'id' => 'perfil',
+                'titulo' => Session::get('nombre_usuario'),
+                'enlace' => BASE_URL . '#perfil'
                 ),
             array(
-                'id' => 'formatos',
-                'titulo' => 'Formatos',
-                'enlace' => '#formatos'
+                'id' => 'tablero',
+                'titulo' => 'Tablero',
+                'enlace' => 'tablero'
                 )
         );
 
@@ -68,13 +68,13 @@ class View
         if(Session::get('autenticado')){
             $menu[] = array(
                 'id' => 'login',
-                'titulo' => 'Cerrar Sesion',
+                'titulo' => 'Salir',
                 'enlace' => BASE_URL . 'login/cerrar'
                 );
         }else{
             $menu[] = array(
                 'id' => 'login',
-                'titulo' => 'Iniciar Sesion',
+                'titulo' => 'Iniciar sesión',
                 //'enlace' => BASE_URL . 'login',
                 'enlace' => '#login',
                 'class' => 'modal-trigger'

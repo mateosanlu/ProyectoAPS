@@ -27,7 +27,7 @@ class loginController extends Controller
             }
             
             if(!$this->getSql('pass')){
-                $this->_view->_error = 'Debe introducir su password';
+                $this->_view->_error = 'Debe introducir su contraseña';
                 $this->_view->renderizar('index','login');
                 exit;
             }
@@ -38,7 +38,7 @@ class loginController extends Controller
                     );
             
             if(!$row){
-                $this->_view->_error = 'Usuario y/o password incorrectos';
+                $this->_view->_error = 'Usuario y/o contraseña incorrectos';
                 $this->_view->renderizar('index','login');
                 exit;
             }
@@ -50,15 +50,17 @@ class loginController extends Controller
             }
                         
             Session::set('autenticado', true);
-            Session::set('level', $row['rol']);
-            Session::set('usuario', $row['usuario']);
-            Session::set('id_usuario', $row['id']);
+            Session::set('level', $row['ROL']);
+            Session::set('nombre_usuario', $row['NOMBRE_USUARIO']);
+            Session::set('apellido_usuario', $row['APELLIDO_USUARIO']);
+            Session::set('identificacion_usuario', $row['IDENTIFICACION']);
+            Session::set('id_usuario', $row['ID_USUARIO']);
             Session::set('tiempo', time());
             
-            $this->redireccionar();
+            $this->redireccionar('tablero');
         }
         
-        $this->_view->renderizar('index','login');
+        $this->_view->renderizar('index','tablero');
         
     }
     

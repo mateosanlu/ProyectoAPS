@@ -37,9 +37,9 @@ class registroModel extends Model
         return false;
     }
     
-    public function registrarUsuario($nombre, $rol, $firma, $foto, $identificacion, $password)
+    public function registrarUsuario($id, $nombre, $apellido, $rol, $firma, $foto, $identificacion, $password)
     {
-        $sql = "insert into usuarios values " . "('', '".$nombre."', '".$rol."', '".$firma."', '".$foto."', '".$identificacion."', '".Hash::getHash('sha1', $password, HASH_KEY)."', '0');";
+        $sql = "insert into usuarios values " . "('".$id."', '".$nombre."', '".$apellido."', '".$rol."', '".$firma."', '".$foto."', '".$identificacion."', '".Hash::getHash('sha1', $password, HASH_KEY)."', '1');";
        
         $this->_db->query($sql);
 

@@ -27,6 +27,12 @@ class registroController extends Controller
                 $this->_view->renderizar('index', 'registro');
                 exit;
             }
+
+            if(!$this->getSql('apellido')){
+                $this->_view->_error = 'Debe introducir su apellido';
+                $this->_view->renderizar('index', 'registro');
+                exit;
+            }
             
             if(!$this->getNum('documento')){
                 $this->_view->_error = 'Debe introducir su documento de identificaci&oacute;n';
@@ -68,7 +74,9 @@ class registroController extends Controller
 			$mail = new PHPMailer();*/
 			
             $result=$this->_registro->registrarUsuario(
+                    $this->setIdUsuario($this->getSql('nombre'),$this->getSql('documento')),
                     $this->getSql('nombre'),
+                    $this->getSql('apellido'),
                     $this->getAlphaNum('rol'),
                     $this->getSql('firma'),
                     $this->getSql('foto'),

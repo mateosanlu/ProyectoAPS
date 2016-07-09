@@ -39,27 +39,21 @@
     <nav class="light-blue lighten-1" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="<?php echo BASE_URL; ?>" class="brand-logo">
-                <img class="z-depth-1" src="<?php echo $_layoutParams['ruta_img']; ?>logo.jpg" style="height:111px;">
+                <img class="z-depth-1" src="<?php echo $_layoutParams['ruta_img']; ?>logo.png" style="height:111px; background-color: #fff;">
                 <?php //echo APP_NAME; ?>
             </a>
             <ul class="right hide-on-med-and-down">
                 <?php if(isset($_layoutParams['menu'])): ?>
-                        <?php for($i = 0; $i < count($_layoutParams['menu']); $i++): ?>
-                        <?php 
-
-                        if($item && $_layoutParams['menu'][$i]['id'] == $item ){ 
-                        $_item_style = 'current'; 
-                        } else {
-                        $_item_style = '';
-                        }
-
-                        ?>
+                    <?php if (Session::get('autenticado')): ?>
+                        <li><img src="<?php echo $_layoutParams['ruta_img']; ?>avatar.png" alt="" class="circle" style="height:40px; margin-top:12px;"></li>
+                    <?php endif ?>
+                    
+                    <?php for($i = 0; $i < count($_layoutParams['menu']); $i++): ?>
 
                         <li><a class="<?php echo $_item_style ." ".$_layoutParams['menu'][$i]['class']; ?>" href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><?php  echo $_layoutParams['menu'][$i]['titulo']; ?></a></li>
 
-                        <?php endfor; ?>
-                    <?php endif; ?>
-                <li><a href="">sass <span class="new badge">4</span></a></li>
+                    <?php endfor; ?>
+                <?php endif; ?>                 
             </ul>
           
           <ul id="nav-mobile" class="side-nav">
@@ -79,7 +73,6 @@
 
                     <?php endfor; ?>
                 <?php endif; ?>
-              <li><a href="">sass <span class="new badge">4</span></a></li>
           </ul>
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
@@ -90,12 +83,29 @@
         <div class="container">
             <br><br>
             <noscript><p>Para el correcto funcionamiento debe tener el soporte de javascript habilitado</p></noscript> 
+
+            <div id="modalError" class="modal">
+                <div class="modal-content">
+                  <h4>Error</h4>
+                  <p><?php echo $this->_error; ?></p>
+                </div>
+            </div>
+
+            <div id="modalMensaje" class="modal">
+                <div class="modal-content">
+                  <h4>Mensaje</h4>
+                  <p><?php echo $this->_mensaje; ?></p>
+                </div>
+            </div>
+
             <?php if(isset($this->_error)): ?>
-            <div id="error"><?php echo $this->_error; ?></div>
+            <div id="error"><?php //echo $this->_error; ?></div>
+            <script>$('#modalError').openModal();</script>
             <?php endif; ?>
 
              <?php if(isset($this->_mensaje)): ?>
-            <div id="mensaje"><?php echo $this->_mensaje; ?></div>
+            <div id="mensaje"><?php //echo $this->_mensaje; ?></div>
+            <script>$('#modalMensaje').openModal();</script>
             <?php endif; ?>
 
             <div id="login" class="modal">                

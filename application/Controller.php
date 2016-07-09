@@ -138,6 +138,27 @@ abstract class Controller
 
         return $output_file; 
     }
+
+    protected function setIdUsuario($nombre, $documento)
+    {
+        list($usec, $sec) = explode(" ", microtime());
+        $nombre = substr(strtoupper($nombre), 0, 2);
+        $documento = substr($documento, -4);
+        
+        return 'US'.$nombre.''.$documento.''.$sec.''.($usec*100000000);
+    }
+
+    protected function generarId($tabla)
+    {
+        $nombre = Session::get('nombre_usuario');
+        $documento = Session::get('identificacion_usuario');
+
+        list($usec, $sec) = explode(" ", microtime());
+        $nombre = substr(strtoupper($nombre), 0, 2);
+        $documento = substr($documento, -4);
+        
+        return $tabla.''.$nombre.''.$documento.''.$sec.''.($usec*100000000);
+    }
     
 }
 

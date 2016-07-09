@@ -34,3 +34,11 @@ Para incluir un JS a una vista:
 3. En el "metodo" del controlador requerido incluir la linea..
 	$this->_view->setJs(array('nuevo'));
    El contenido del array son todos los archivos js de ese controlador.
+
+
+
+USAR FUNCION GENERADORA DE ID
+
+Sólo puede ser usada desde los controladores:
+	$this->generarId('FH')
+El parámetro que recibe es el codigo de la tabla.
