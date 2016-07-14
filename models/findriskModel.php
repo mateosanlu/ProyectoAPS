@@ -6,7 +6,8 @@ class findriskModel extends Model
         parent::__construct();
     }
 
-	public function setTest($valorTest1, 
+	public function setTest($id,
+                        $valorTest1, 
                         $valorTest2, 
                         $valorTest3, 
                         $valorTest4, 
@@ -18,7 +19,7 @@ class findriskModel extends Model
                         $idUsuario,
                         $idMiembro)
 	{
-       $sql = "insert into test_findrisk values " . "('', '".$valorTest1."', '".$valorTest2."', '".$valorTest3."', '".$valorTest4."', '".$valorTest5."', '".$valorTest6."', '".$valorTest7."', '".$valorTest8."', '".$resultadoTest."', '".$idUsuario."', '".$idMiembro."');";
+       $sql = "insert into test_findrisk values " . "('".$id."', '".$valorTest1."', '".$valorTest2."', '".$valorTest3."', '".$valorTest4."', '".$valorTest5."', '".$valorTest6."', '".$valorTest7."', '".$valorTest8."', '".$resultadoTest."', '".$idUsuario."', '".$idMiembro."');";
         
         return $this->_db->query($sql);
     }

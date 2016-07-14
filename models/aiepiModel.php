@@ -7,7 +7,8 @@ class aiepiModel extends Model
     }
 
 	public function setAiepi(
-		$fechaDeAiepi
+		 $idGeneralAiepi
+		,$fechaDeAiepi
 		,$institucion
 		,$municipio
 		,$eps
@@ -147,8 +148,8 @@ class aiepiModel extends Model
 		,$nomGeCaVi
 		){
 		$sql="INSERT INTO general_aiepi values (
-	'NULL',
-	'1',
+	'".$idGeneralAiepi."',
+	'".$nomGeCaVi."',
 	'".$nombreAcompañante."',
 	'".$parentesco."',
 	'".$direccionAcomp."',
@@ -276,22 +277,31 @@ class aiepiModel extends Model
 , 	'".$opVelasAlAlcance."'
 , 	'".$nombreNiño."'
 ,NULL);";
- $this->_db->query($sql);
- return $this->_db->lastInsertId();
+ return $this->_db->query($sql);
 	}
-		public function setAiepiCheck($var,$idAiepi){
+	public function getLastIdAiepi(){
+		 $consulta = $this->_db->query('SELECT ID_GENERAL_AIEPI FROM general_aiepi ORDER BY ID_GENERAL_AIEPI  DESC LIMIT 1');
+		 if ($consulta!=false) {
+		 	foreach ($consulta as $row) {
+		 		$idLastAiepi=$row['ID_GENERAL_AIEPI'];
+		 	}
+		 	return $idLastAiepi;
+		 }
+}
+		
+public function setAiepiCheck($var,$idAiepi,$oterId){
 			if (empty($var)) {
 				return true;
 			}else{
 				$queryIdPregunta=$this->_db->query("SELECT PREGUNTAS_ID_PREGUNTA FROM `pregunta_respuesta_sc` WHERE ID_PREGUNTA_RESPUESTA_SC=$var");
 				if ($queryIdPregunta!=false) {
 					foreach ($queryIdPregunta as $row) {
-		        $idPregunta=$row['PREGUNTAS_ID_PREGUNTA'];
-		       
-				$insert="INSERT INTO aiepi VALUES (NULL, '$var', '$idAiepi', '$idPregunta',NULL);";
-				return $this->_db->query($insert);
-				}	
+		        		$idPregunta=$row['PREGUNTAS_ID_PREGUNTA'];
+				}
+				$insert="INSERT INTO aiepi VALUES ('".$oterId."', '".$var."', '".$idAiepi."', '".$idPregunta."',NULL);";
+				return $this->_db->query($insert);	
 			}
+			return true;
 		}
 	}
 }

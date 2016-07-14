@@ -1,0 +1,97 @@
+<div class="container">
+	<h2 class="center">Formatos adicionales</h2>
+	<br><br>
+	<?php if (!$this->kardex and !$this->cancer_mama and !$this->aiepi and !$this->findrisk and !$this->demanda_inducida): ?>
+		<center>
+			<p>Esta ficha no tiene formatos adicionales por diligenciar</p>
+			<a class="waves-effect waves-light btn-large blue" href="<?php echo BASE_URL . 'hoja_trabajo'; ?>">Terminar</a>
+		</center>
+	<?php else: ?>
+		<div class="row">
+			<div class="col s6">
+				<div class="row">
+					<div class="col">
+						<?php if($this->kardex  != false) : ?>
+							<h5>Kardex de gestantes</h5>
+							<ul>
+								<?php for($i = 0; $i < count($this->kardex); $i++):?>
+									<li>
+										<a href="<?php echo BASE_URL.'kardes/nuevo/'.$this->kardex[$i]['ID_TAREA'].'/'.$this->datos.'/'.$this->kardex[$i]['NOMBRE_MIEMBRO']; ?>">
+										<?php echo $this->kardex[$i]['NOMBRE_MIEMBRO']; ?></a>
+									</li>
+								<?php endfor;?>
+							</ul>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<?php if($this->cancer_mama  != false) : ?>
+							<h5>Cancer de mama</h5>
+							<ul>
+								<?php for($i = 0; $i < count($this->cancer_mama); $i++):?>
+									<li>
+										<a href="<?php echo BASE_URL.'cancer_mama/nuevo/'.$this->cancer_mama[$i]['ID_TAREA']; ?>">
+										<?php echo $this->cancer_mama[$i]['NOMBRE_MIEMBRO']; ?></a>
+									</li>
+								<?php endfor;?>
+							</ul>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<?php if($this->aiepi  != false) : ?>
+							<h5>Ficha AIEPI</h5>
+							<ul>
+								<?php for($i = 0; $i < count($this->aiepi); $i++):?>
+									<li>
+										<a href="<?php echo BASE_URL.'aiepi/nuevo/'.$this->aiepi[$i]['ID_TAREA'].'/'.$this->datos.'/'.$this->aiepi[$i]['NOMBRE_MIEMBRO']; ?>">
+										<?php echo $this->aiepi[$i]['NOMBRE_MIEMBRO']; ?></a>
+									</li>
+								<?php endfor;?>
+							</ul>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+			<div class="col s6">
+				<div class="row">
+					<div class="col">
+						<?php if($this->findrisk  != false) : ?>
+							<h5>Test de Findrisk</h5>
+							<ul>
+								<?php for($i = 0; $i < count($this->findrisk); $i++):?>
+									<li>
+										<a href="<?php echo BASE_URL.'findrisk/nuevo/'.$this->findrisk[$i]['ID_TAREA']; ?>">
+										<?php echo $this->findrisk[$i]['NOMBRE_MIEMBRO']; ?></a>
+									</li>
+								<?php endfor;?>
+							</ul>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<?php if($this->demanda_inducida  != false) : ?>
+							<h5>Demanda inducida</h5>
+							<ul>
+								<?php for($i = 0; $i < count($this->demanda_inducida); $i++):?>
+									<li>
+										<a href="<?php echo BASE_URL.'demanda_inducida/nuevo/'.$this->demanda_inducida[$i]['ID_TAREA']; ?>">
+										<?php echo $this->demanda_inducida[$i]['NOMBRE_MIEMBRO']; ?></a>
+									</li>
+								<?php endfor;?>
+							</ul>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<h5></h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif ?>
+</div>

@@ -7,7 +7,8 @@ class kardesModel extends Model{
     }
 
     public function setKardes(
-    	$nomGestante
+    	 $idNewKardes
+    	,$nomGestante
 		,$condicionMadres
 		,$fichaKardes
 		,$ipsPrimariaAten
@@ -63,7 +64,7 @@ class kardesModel extends Model{
 		,$obserbaciones){
 
     	$sql="INSERT INTO kardes  VALUES (
-	'NULL'
+	'".$idNewKardes."'
 ,'".$condicionMadres."'
 ,'".$fichaKardes."'
 ,'".$condicionEspecial."'
@@ -117,11 +118,18 @@ class kardesModel extends Model{
 ,'".$otraCanalizacionServicios."'
 ,'".$nomGestante."'
 ,NULL)";
- $this->_db->query($sql);
- return $this->_db->lastInsertId();
+return $this->_db->query($sql);
     }
-
-    function setKardesCheck($var,$idKardes){
+public function getLastIdKardes(){
+		 $consulta = $this->_db->query('SELECT ID_KARDES FROM kardes ORDER BY ID_KARDES  DESC LIMIT 1');
+		 if ($consulta!=false) {
+		 	foreach ($consulta as $row) {
+		 		$idLastAiepi=$row['ID_KARDES'];
+		 	}
+		 	return $idLastAiepi;
+		 }
+}
+    function setKardesCheck($var,$idKardes,$idKardesResp){
 	if (empty($var)) {
 		return true;
 	}else{
@@ -130,7 +138,7 @@ class kardesModel extends Model{
 					foreach ($queryIdPregunta as $row) {
 		        $idPregunta=$row['PREGUNTAS_ID_PREGUNTA'];
 		       
-				$insert="INSERT INTO respuesta_kardes VALUES (NULL, '$var', '$idPregunta', '$idKardes', null)";
+				$insert="INSERT INTO respuesta_kardes VALUES ('$idKardesResp', '$var', '$idPregunta', '$idKardes', null)";
 				return $this->_db->query($insert);
 				}	
 			}

@@ -23,7 +23,7 @@ class View
             array(
                 'id' => 'tablero',
                 'titulo' => 'Tablero',
-                'enlace' => 'tablero'
+                'enlace' => BASE_URL .'tablero'
                 )
         );
 

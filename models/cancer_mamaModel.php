@@ -6,24 +6,25 @@ class cancer_mamaModel extends Model
         parent::__construct();
     }
 
-	public function setGeneral($valorTest1, 
+	public function setGeneral($id,
+                        $valorTest1, 
                         $valorTest2, 
                         $valorTest3, 
                         $valorTest4, 
                         $idUsuario,
                         $idMiembro)
 	{
-       $sql = "insert into cancer_mama_general values " . "('', '".$valorTest1."', '".$valorTest2."', '".$valorTest3."', '".$valorTest4."', '".$idUsuario."', '".$idMiembro."', CURRENT_TIMESTAMP);";
+       $sql = "insert into cancer_mama_general values " . "('".$id."', '".$valorTest1."', '".$valorTest2."', '".$valorTest3."', '".$valorTest4."', '".$idUsuario."', '".$idMiembro."', CURRENT_TIMESTAMP);";
        
        $this->_db->query($sql);
 
-        return $this->_db->lastInsertId();
+        return $id;
         
     }
 
-    public function setDetalle($lastInsertId, $idPregunta, $valorCancerMama6)
+    public function setDetalle($id, $lastInsertId, $idPregunta, $valorCancerMama6)
     {
-       $sql = "insert into cancer_mama_detalle values " . "('', '".$lastInsertId."', '".$idPregunta."', '".$valorCancerMama6."', CURRENT_TIMESTAMP);";
+       $sql = "insert into cancer_mama_detalle values " . "('".$id."', '".$lastInsertId."', '".$idPregunta."', '".$valorCancerMama6."', CURRENT_TIMESTAMP);";
 
         return $this->_db->query($sql);
         

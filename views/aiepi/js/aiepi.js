@@ -3,26 +3,302 @@
 			$('select').material_select();
 
 			$('.datepicker').pickadate({
+			monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+				monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+				weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+				weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+				today: 'Hoy',
+				clear: 'Limpiar',
+				close: 'Escoger',
+				format: 'dd/m/yyyy',
+				formatSubmit: 'yyyy-mm-dd',
+				hiddenName: true,
 			selectMonths: true, // Creates a dropdown to control month
-			selectYears: 15 ,// Creates a dropdown of 15 years to control year
-			format: 'dd/m/yyyy'
+			selectYears: 100 // Creates a dropdown of 15 years to control year
 			});
 			$('#primeraParte').click(function(){ Materialize.toast('RECUERDE: el niño(a) debe estar presente en el momento de la visita para poder evaluarlo', 6000)});
-			for (var i = 1; i <= 5; i++) {
-				$('#tipSelecSignoRiesgoOp'+i).click(function(){ Materialize.toast('ATENCION: El Menor Se Debe Remitir URGENTEMENTE Al Servicio De Salud Y Asegurar La Consulta', 7000)});	
+			
+				var aler=true;
+			for (var i = 0; i <=5; i++) {
+				$('#tipSelecSignoRiesgoOp'+i).click(function(){
+					
+					if ($(this).prop("checked")) {
+						
+						if (aler) {
+							Materialize.toast('ATENCION: El menor se debe remitir URGENTEMENTE al servicio de salud y asegurar la consulta', 7000);
+							aler=false;
+						}
+						$('#tipSelecSignoRiesgoOp6').prop("disabled",true);
+						
+					}else{
+						for (var i = 1; i <= 5; i++) {
+							$('#tipSelecSignoRiesgoOp'+i).prop("checked",false);
+							aler=true;
+						}
+						$('#tipSelecSignoRiesgoOp6').prop("disabled",false)
+					}
+					
+				});
+			}
+			$('#tipSelecSignoRiesgoOp6').click(function(){
+				if ($(this).prop("checked")) {
+					for (var i = 1; i <=5; i++) {
+						$('#tipSelecSignoRiesgoOp'+i).prop("disabled",true);
+					}
+					
+				}else{
+					for (var i = 1; i <=5; i++) {
+					$('#tipSelecSignoRiesgoOp'+i).prop("disabled", false);
+				}
+				}
+				
+			});
+			
+			$('#opNiñoConTosNo').click(function(){
+				$('#tdNumDiasConTos').prop('hidden',true);
+				$('#numDiasConTos').val("");
+				$('#opTieneTosNo').prop('checked',true);
+				$('#opTieneTosNo').prop('disabled',false);
+				$('#opTieneTosSi').prop('disabled',true);
+
+			});
+			$('#opNiñoConTosSi').click(function(){
+				$('#tdNumDiasConTos').prop('hidden',false);
+				$('#opTieneTosSi').prop('checked',true);
+				$('#opTieneTosSi').prop('disabled',false);
+				$('#opTieneTosNo').prop('disabled',true);
+			});
+
+
+			$('#opDificultadParaRespirarSi').click(function(){
+				$('#tdNumDiasConDificultadParaRespirar').prop('hidden',false);
+			});
+			$('#opDificultadParaRespirarNo').click(function(){
+				$('#tdNumDiasConDificultadParaRespirar').prop('hidden',true);
+				$('#numDiasConDificultadParaRespirar').val("");
+			});
+
+			$('#opContactoConPerTbSi').click(function(){
+					Materialize.toast('ATENCION: Verifique al menor, redirigir URGENTEMENTE al servicio de salud y asegurar su consulta', 7000);
+			});
+
+			function alerDiarrea(){
+				var numDiasDiarrea=$('#numDiasConDiarrea').val();
+				if ($('#numDiasConDiarrea').val()>3) {
+					Materialize.toast('ATENCION:El menor se debe remitir URGENTEMENTE al servicio de salud y asegurar su consulta', 7000);
+				}
+			}
+			$('#opFontanelaOMollejaHundidaSi').click(alerDiarrea);
+			$('#opIntranquiloOIrritableSi').click(alerDiarrea);
+			$('#opSangreEnHecesSi').click(alerDiarrea);
+			$('#opBocaSecaOMuchaSedSi').click(alerDiarrea);
+			$('#opOjosUndidosSi').click(alerDiarrea);
+
+			$('#opPliegueCutaneoMuyLentoSi').click( function(){
+				$("input[name=opPliegueCutaneoLento]").prop('readonly',true);
+				$('#opPliegueCutaneoLentoSi').prop('checked',false);
+				$('#opPliegueCutaneoLentoNo').prop('checked',true);
+			});
+			$('#opPliegueCutaneoMuyLentoNo').click( function(){
+				$("input[name=opPliegueCutaneoLento]").prop('readonly',false);
+				$('#opPliegueCutaneoMuyLentoSi').prop('checked',false);
+				$("input[name=opPliegueCutaneoMuyLento]").prop('readonly',true);
+			});
+
+				$('#opPliegueCutaneoLentoSi').click( function(){
+				$("input[name=opPliegueCutaneoMuyLento]").prop('readonly',true);
+				$('#opPliegueCutaneoMuyLentoSi').prop('checked',false);
+				$('#opPliegueCutaneoMuyLentoNo').prop('checked',true);
+			});
+			$('#opPliegueCutaneoLentoNo').click( function(){
+				$("input[name=opPliegueCutaneoMuyLento]").prop('readonly',false);
+				$('#opPliegueCutaneoLentoSi').prop('checked',false);
+				$("input[name=opPliegueCutaneoLento]").prop('readonly',true);
+			});
+
+			$('#opNiñoConFiebreNo').click(function(){
+				$('#divNumDiasFiebre').prop('hidden',true);
+				$('#divFiebreMas5D').prop('hidden',true);
+				$('#numDiasConFiebre').val("");
+				$('#opFiebreMasDe5DiasTodosLosDiasSi').prop('checked',false);
+				$('#opFiebreMasDe5DiasTodosLosDiasNo').prop('checked',false);
+			});
+
+			$('#opNiñoConFiebreSi').click(function(){
+				$('#divNumDiasFiebre').prop('hidden',false);
+				$('#divFiebreMas5D').prop('hidden',false);
+			});
+			$('#numDiasConFiebre').change(function(){
+				if ($(this).val()>3) {
+					Materialize.toast('ATENCION:El menor debe ser valorado por un medico', 4000);
+				}
+				if ($(this).val()<5) {
+					$('#opFiebreMasDe5DiasTodosLosDiasNo').prop('checked',true);
+				}else{
+					$('#opFiebreMasDe5DiasTodosLosDiasSi').prop('checked',true);
+				}
+			});
+			$('#numDiasConFiebre').keyup(function(){
+				if ($(this).val()>3) {
+					Materialize.toast('ATENCION:El menor debe ser valorado por un medico', 4000);
+				}
+				if ($(this).val()<5) {
+					$('#opFiebreMasDe5DiasTodosLosDiasNo').prop('checked',true);
+				}else{
+					$('#opFiebreMasDe5DiasTodosLosDiasSi').prop('checked',true);
+				}
+			});
+			var alerRiesgoCancer=true;
+			function alertaRiesgoCancer(){
+				if (alerRiesgoCancer) {
+					Materialize.toast('ATENCION:El menor debe ser valorado por un medico', 7000);
+					alerRiesgoCancer=false;
+				}
+			}
+
+			$('#opFiebreMasDe14DiasSi').click(alertaRiesgoCancer);
+			$('#opDolorDeCabezaRecAumentaSi').click(alertaRiesgoCancer);
+			$('#opDolorDeCabezaDespiertaAlNiñoSi').click(alertaRiesgoCancer);
+			$('#opDolorDeCabezaAcompañadoConVomitoSi').click(alertaRiesgoCancer);
+			$('#opDolorDeHuesosEnElUltimoMesSi').click(alertaRiesgoCancer);
+			$('#opDolorHuesosInterrumpeActNiñoSi').click(alertaRiesgoCancer);
+			$('#opDolorDeHuesosEnAumentoSi').click(alertaRiesgoCancer);
+			$('#opUlt3MesesCambiosFatigaSi').click(alertaRiesgoCancer);
+			
+			$('#opDolorDeCabezaRecAumentaNo').click(function(){
+				$('#divDolorCaezaDespierta').prop('hidden',true);
+				$('#divNumDiasColCabeza').prop('hidden',true);
+				$('#divDolAcompVom').prop('hidden',true);
+				$('input[name=opDolorDeCabezaDespiertaAlNiño]').prop('disabled',true);
+				$('input[name=numDiasConDolorDeCabeza]').prop('disabled',true);
+				$('input[name=numDiasConDolorDeCabeza]').val("");
+				$('input[name=opDolorDeCabezaAcompañadoConVomitos]').prop('disabled',true);
+				$('#opDolorDeCabezaDespiertaAlNiñoSi').prop('checked',false);
+				$('#opDolorDeCabezaDespiertaAlNiñoNo').prop('checked',false);
+				$('#opDolorDeCabezaAcompañadoConVomitoSi').prop('checked',false);
+				$('#opDolorDeCabezaAcompañadoConVomitoNo').prop('checked',false);
+				
+			});
+			$('#opDolorDeCabezaRecAumentaSi').click(function(){
+				$('#divDolorCaezaDespierta').prop('hidden',false);
+				$('#divNumDiasColCabeza').prop('hidden',false);
+				$('#divDolAcompVom').prop('hidden',false);
+				$('input[name=opDolorDeCabezaDespiertaAlNiño]').prop('disabled',false);
+				$('input[name=numDiasConDolorDeCabeza]').prop('disabled',false);
+				$('input[name=opDolorDeCabezaAcompañadoConVomitos]').prop('disabled',false);
+				
+			});
+			$('#opDolorDeHuesosEnElUltimoMesNo').click(function(){
+				$('#divDolHuesosInterrupe').prop('hidden',true);
+				$('#dolHuesosAumento').prop('hidden',true);
+				$('#opDolorHuesosInterrumpeActNiñoSi').prop('checked',false);
+				$('#opDolorHuesosInterrumpeActNiñoNo').prop('checked',false);
+				$('#opDolorDeHuesosEnAumentoSi').prop('checked',false);
+				$('#opDolorDeHuesosEnAumentoNo').prop('checked',false);
+			});
+			$('#opDolorDeHuesosEnElUltimoMesSi').click(function(){
+				$('#divDolHuesosInterrupe').prop('hidden',false);
+				$('#dolHuesosAumento').prop('hidden',false);
+			});
+			var alerOido=true;
+			function alertOido(){
+				if (alerRiesgoCancer) {
+					Materialize.toast('ATENCION:El menor debe ser remitido al hospital', 500);
+					alerRiesgoCancer=false;
+				}
+			}
+			$('#opProblemasDeOidoSi').click(alertOido);
+			$('#opSupuracionDeOidoSi').click(alertOido);
+			$('#opProblemasDeOidoNo').click(function(){
+				$('#divNumEpiPreviosOido').prop('hidden',true);
+				$('#numDeEpisodiosPrevios').val("");
+			});
+			$('#opProblemasDeOidoSi').click(function(){
+				$('#divNumEpiPreviosOido').prop('hidden',false);
+			});
+			$('#opSupuracionDeOidoSi').click(function(){
+				$('#divNumDiasSupuracion').prop('hidden',false);
+			});
+			$('#opSupuracionDeOidoNo').click(function(){
+				$('#divNumDiasSupuracion').prop('hidden',true);
+				$('#numDiasConSupuracion').val("");
+			});
+			$('#opNiñoDesnutricionOAnemiaSi').click(function(){
+				Materialize.toast('ATENCION:El menor debe ser remitido al hospital', 5000);
+			});
+			function calcularEdad(){
+				var d = new Date();
+				var añoAct = d.getFullYear();
+				var mesAct =  d.getMonth() + 1;
+				var diaAct =  d.getDate();
+				var f1=document.getElementById("fechNacimientoNiño").value,f2=diaAct+'/'+mesAct+'/'+añoAct;
+				var aFecha1 = f1.split('/');
+				var aFecha2 = f2.split('/');
+				var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
+				var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+				var dif = fFecha2 - fFecha1;
+				var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+				return dias;
+			};
+			$('#op3MesesLevantaCabezaSi').click(function(){
+				alert(calcularEdad());
+			});
+			$('#opLeSonrienNo').click(function(){
+				if ($(this).prop('checked') && $('#opArrullanNo').prop('checked')) {
+					Materialize.toast('ATENCION:Brinde educacion para el buen trato del menor', 5000);
+				}
+			});
+			$('#opArrullanNo').click(function(){
+				if ($(this).prop('checked') && $('#opLeSonrienNo').prop('checked')) {
+					Materialize.toast('ATENCION: Brinde educacion para el buen trato del menor', 5000);
+				}
+			});
+			$('#opPreocupanPorLaHigieneNo').click(function(){
+				Materialize.toast('ATENCION: Brinde educacion para el buen trato del menor', 5000);
+			});
+			$('#opSePreocupanPorSaludNo').click(function(){
+				Materialize.toast('ATENCION: Brinde educacion para el buen trato del menor', 5000);
+			});
+			$('#opCastiganSi').click(function(){
+				Materialize.toast('ATENCION: Brinde educacion para el buen trato del menor', 5000);
+			});
+			$('#opAccidentesFrecuentesSi').click(function(){
+				Materialize.toast('ATENCION: Brinde educacion para el buen trato y cuidado del menor', 5000);
+			});
+			function msgRiesgos(){
+				Materialize.toast("ATENCION: Brinde educacion para minimizar los riesgos en el hogar", 5000);
+			}
+			function msgHigiene(){
+				Materialize.toast("ATENCION: Debe ejecutar un plan educativo para la familia del menor", 5000);
+			};
+			$('#opSoloTomandoseTeteroSi').click(msgRiesgos);
+			$('#opObjPequeñosAlAlcanceSi').click(msgRiesgos);
+			$('#opNiñosEnCocinaSi').click(msgRiesgos);
+			$('#opCuchillosAlAlcanceSi').click(msgRiesgos);
+			$('#opMedicamentosAlAlcanceSi').click(msgRiesgos);
+			$('#opEscalerasSinBarandasSi').click(msgRiesgos);
+			$('#opVelasAlAlcanceSi').click(msgRiesgos);
+			$('#opAguaAlmacenadaSinTapaSi').click(msgRiesgos);
+			$('#opCablesDescubierosSi').click(msgRiesgos);
+			$('#opRiesgosEnElHogarSi').click(msgRiesgos);
+			for (var i = 1; i<=15 ; i++) {
+				$('#problemaAbientalYHigieneNum'+i).click(msgHigiene);
 			}
 			
-				var checkTos= function(){
-					var tos=document.getElementById("numDiasConTos");
-					var noTos=document.getElementById("opNiñoConTosNo");
-				if (noTos.checked) {
-					tos.hidden=true;
-					tos.disabled=true;
-				}else{
-					tos.hidden=false;
-					tos.disabled=false;
+			function calcularPreguntas(idElemento){
+				var contPreguntas1=0;
+				var elementos=$('#'+idElemento+' input');
+				for (var i = 0; i <= elementos.length; i++) {
+					if (elementos.eq(i)) {}
+					if (elementos.eq(i).val().length) {
+
+					}
 				}
-			};
+				return contPreguntas1+" de "+elementos.length;
+				}
+				
+			$('#numPreguntas').text(calcularPreguntas("seccionBodyDatosUbicacion"));
+			$('#numPreguntasNiño').text(calcularPreguntas("contDatosNiño"));
 				var checkRespirar= function(){
 					var res=document.getElementById("numDiasConDificultadParaRespirar");
 					var noResp=document.getElementById("opDificultadParaRespirarNo");
@@ -35,95 +311,14 @@
 					}
 				};
 				var checkDiarrea=function(){
-					var diarr=document.getElementById("numDiasConDiarrea");
+					var diarr=document.getElementById("numDiasConDiarreaTd");
 					var diarNo=document.getElementById("opTieneDiarreaNo");
-					var diar2=document.getElementById("numDiasConDiarreaCol2");
 					if (diarNo.checked) {
 						diarr.hidden=true;
 						diarr.disabled=true;
-						diar2.hidden=true;
 					}else{
 						diarr.hidden=false;
 						diarr.disabled=false;
-						diar2.hidden=false;
-					}
-				};
-				var checkFiebre=function(){
-					var fiebre=document.getElementById("numDiasConFiebre");
-					var fiebreNo=document.getElementById("opNiñoConFiebreNo");
-					var fiebreMas=document.getElementById("contFiebre5D");
-					var febreText5D=document.getElementById("textFiebre5Dias");
-					if (fiebreNo.checked) {
-						febreText5D.hidden=true;
-						fiebre.hidden=true;
-						fiebre.disabled=true;
-						fiebreMas.hidden=true;
-					}else{
-						febreText5D.hidden=false;
-						fiebre.hidden=false;
-						fiebreMas.hidden=false;
-						fiebre.disabled=false;
-					}
-				};
-				var checkDolorCabeza=function(){
-					var dolorDespiera=document.getElementById("textContDespNiñ"),
-					numDiasConDolor=document.getElementById("numDiasConDolorDeCabeza"),
-					dolorConOtroSintoma=document.getElementById("contOpDolorCabeza"),dolorCabezaNo=document.getElementById("opDolorDeCabezaRecAumentaNo")
-					,dolCol2=document.getElementById("ContOtraColCabeza");
-					if (dolorCabezaNo.checked) {
-						dolorDespiera.hidden=true;
-						numDiasConDolor.hidden=true;
-						dolorConOtroSintoma.hidden=true;
-						dolCol2.hidden=true;
-						
-					}else{
-						dolCol2.hidden=false;
-						dolorDespiera.hidden=false;
-						numDiasConDolor.hidden=false;
-						dolorConOtroSintoma.hidden=false;
-					}
-				};
-				var checkHuesos=function(){
-					
-					var dolorHuesosNo=document.getElementById("opDolorDeHuesosEnElUltimoMesNo"),
-					dolHueInt=document.getElementById("opDolorHuesosInterrumpeActNiño"),
-					dolHueAument=document.getElementById("opDolorDeHuesosEnAumento"),
-					textDolHuesosIntrr=document.getElementById("textDolHuesosIntrr"),
-			contOpDolHuesIntrr=document.getElementById("contOpDolHuesIntrr"),
-			textContDolHuesos=document.getElementById("textContDolHuesos"),
-			opDolorHuesAumnet=document.getElementById("opDolorHuesAumnet");
-					if (dolorHuesosNo.checked) {
-						textDolHuesosIntrr.hidden=true;
-						contOpDolHuesIntrr.hidden=true;
-						textContDolHuesos.hidden=true;
-						opDolorHuesAumnet.hidden=true;
-						dolHueInt.hidden=true;
-						dolHueAument.hidden=true;
-					}else{
-						textDolHuesosIntrr.hidden=false;
-						contOpDolHuesIntrr.hidden=false;
-						textContDolHuesos.hidden=false;
-						opDolorHuesAumnet.hidden=false;
-						dolHueInt.hidden=false;
-						dolHueAument.hidden=false;
-					}
-				};
-				var chechkOido=function(){
-					var problemOidoNo=document.getElementById("opProblemasDeOidoNo"),numEpiPrev=document.getElementById("numDeEpisodiosPrevios");
-					if (problemOidoNo.checked) {
-						numEpiPrev.hidden=true;
-						numEpiPrev.disabled=true;
-					}else{
-						numEpiPrev.hidden=false;
-						numEpiPrev.disabled=false;
-					}
-					problemUsurpNo=document.getElementById("opSupuracionDeOidoNo"),diasConProblem=document.getElementById("numDiasConSupuracion");
-					if (problemUsurpNo.checked) {
-						diasConProblem.hidden=true;
-						diasConProblem.disabled=true;
-					}else{
-						diasConProblem.hidden=false;
-						diasConProblem.disabled=false;
 					}
 				};
 				var checkTomaSeno6Meses=function(){
@@ -182,57 +377,7 @@
 						fechaMicro.disabled=false;
 					}
 				};
-				var calcularEdad=function (){
-				var d = new Date();
-				var añoAct = d.getFullYear();
-				var mesAct =  d.getMonth() + 1;
-				var diaAct =  d.getDate();
-				var f1=document.getElementById("fechNacimientoNiño").value,f2=diaAct+'/'+mesAct+'/'+añoAct;
-				
-				var aFecha1 = f1.split('/');
-				var aFecha2 = f2.split('/');
-				var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
-				var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
-				var dif = fFecha2 - fFecha1;
-				var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
-				document.getElementById("1013Meses").hidden=true;
-				document.getElementById("1016Meses").hidden=true;
-				document.getElementById("1019Meses").hidden=true;
-				document.getElementById("10112Meses").hidden=true;
-				document.getElementById("10116Meses").hidden=true;
-				document.getElementById("10120Meses").hidden=true;
-				document.getElementById("10124Meses").hidden=true;
-				document.getElementById("10130Meses").hidden=true;
-				document.getElementById("10136Meses").hidden=true;
-				document.getElementById("10148Meses").hidden=true;
-				document.getElementById("10160Meses").hidden=true;
-				if (dias>= 0 && dias <= 91.250) {
-					document.getElementById("1013Meses").hidden=false;
-				}
-				if (dias >= 92 && dias <= 182.5) {
-					document.getElementById("1016Meses").hidden=false;
-				}
-				if (dias>=183 && dias <= 273.75) {
-					document.getElementById("1019Meses").hidden=false;
-				} if (dias >= 274 && dias <=365) {
-					document.getElementById("10112Meses").hidden=false;
-				}
-				if (dias >= 366 && dias <=486.667) {
-					document.getElementById("10116Meses").hidden=false;
-				}if (dias >= 487 && dias <=608.334) {
-					document.getElementById("10120Meses").hidden=false;
-				}if (dias >= 609 && dias <=730.001) {
-					document.getElementById("10124Meses").hidden=false;
-				}if (dias >= 731 && dias <=912.501) {
-					document.getElementById("10130Meses").hidden=false;
-				}if (dias >= 913 && dias <=1095) {
-					document.getElementById("10136Meses").hidden=false;
-				}if (dias >= 1096 && dias <=1460) {
-					document.getElementById("10148Meses").hidden=false;
-				}if (dias >= 1461 && dias <=1825) {
-					document.getElementById("10160Meses").hidden=false;
-				}
-				};
+		
 				var calcularRespiracionRapida=function(){
 					var resp=document.getElementById("numRespiracionesPorMin");
 					var d = new Date();
@@ -265,22 +410,10 @@
 					
 				};
 				
-				document.getElementById("opNiñoConTosNo").addEventListener("click", checkTos, true);
-				document.getElementById("opNiñoConTosSi").addEventListener("click", checkTos, true);
 				document.getElementById("opDificultadParaRespirarNo").addEventListener("click", checkRespirar, true);
 				document.getElementById("opDificultadParaRespirarSi").addEventListener("click", checkRespirar, true);
 				document.getElementById("opTieneDiarreaNo").addEventListener("click", checkDiarrea, true);
 				document.getElementById("opTieneDiarreaSi").addEventListener("click", checkDiarrea, true);
-				document.getElementById("opNiñoConFiebreNo").addEventListener("click", checkFiebre, true);
-				document.getElementById("opNiñoConFiebreSi").addEventListener("click", checkFiebre, true);
-				document.getElementById("opDolorDeCabezaRecAumentaNo").addEventListener("click", checkDolorCabeza, true);
-				document.getElementById("opDolorDeCabezaRecAumentaSi").addEventListener("click", checkDolorCabeza, true);
-				document.getElementById("opDolorDeHuesosEnElUltimoMesNo").addEventListener("click", checkHuesos, true);
-				document.getElementById("opDolorDeHuesosEnElUltimoMesSi").addEventListener("click", checkHuesos, true);
-				document.getElementById("opProblemasDeOidoNo").addEventListener("click", chechkOido, true);
-				document.getElementById("opProblemasDeOidoSi").addEventListener("click", chechkOido, true);
-				document.getElementById("opSupuracionDeOidoNo").addEventListener("click", chechkOido, true);
-				document.getElementById("opSupuracionDeOidoSi").addEventListener("click", chechkOido, true);
 				document.getElementById("opTomaSenoMen6MesesNo").addEventListener("click", checkTomaSeno6Meses, true);
 				document.getElementById("opTomaSenoMen6MesesSi").addEventListener("click", checkTomaSeno6Meses, true);
 				document.getElementById("opTomaSenoMas6MesesNo").addEventListener("click", checkTomaSenoMas6Meses, true);
@@ -289,10 +422,9 @@
 				document.getElementById("opRecibioDesparacitacionSi").addEventListener("click", checkDesparacitacion, true);
 				document.getElementById("opRecibeMicronutrientesNo").addEventListener("click", checkMicroNutrientes, true);
 				document.getElementById("opRecibeMicronutrientesSi").addEventListener("click", checkMicroNutrientes, true);
-				document.getElementById("evaluaDesarrollo").addEventListener("click", calcularEdad, true);
-				document.getElementById("numRespiracionesPorMin").addEventListener("blur", calcularRespiracionRapida, true);
+			
 });
-		$(document).ready(function() {
+			$(document).ready(function() {
 				var d = new Date();
 				var añoAct = d.getFullYear();
 				var mesAct =  d.getMonth() + 1;
@@ -314,3 +446,4 @@
 				}
 
 		})
+				

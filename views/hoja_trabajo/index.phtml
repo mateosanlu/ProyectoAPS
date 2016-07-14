@@ -1,0 +1,24 @@
+<div class="container">
+	<h2 class="center">Formatos adicionales</h2>
+	<div class="row">
+		<div class="input-field col">
+				<table class="highlight">
+					<tbody>
+						<?php if(isset($this->pendientes)) : ?>
+							<?php for($i = 0; $i < count($this->pendientes); $i++):?>
+								<tr>
+									<td>
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i]['FICHA_HOGAR_ID_FIC_HOGAR']; ?></a>
+									</td>
+									<td>
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i]['DES_FORMATO']; ?></a>
+									</td>
+								</tr>
+							<?php endfor;?>
+						<?php endif; ?>
+					</tbody>
+				</table>		
+			</div>
+	</div>
+	
+</div>

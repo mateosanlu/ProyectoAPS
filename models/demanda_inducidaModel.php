@@ -6,7 +6,8 @@ class demanda_inducidaModel extends Model
         parent::__construct();
     }
 
-	public function set($selectDemanda1, 
+	public function set($id,
+                        $selectDemanda1, 
                         $selectDemanda2, 
                         $selectDemanda3, 
                         $selectDemanda4, 
@@ -21,7 +22,7 @@ class demanda_inducidaModel extends Model
                         $idUsuario,
                         $idMiembro)
 	{
-       $sql = "insert into demanda_inducida values " . "('', CURRENT_TIMESTAMP, '".$selectDemanda1."', '".$selectDemanda2."', '".$selectDemanda3."', '".$selectDemanda4."', '".$selectDemanda5."', '".$selectDemanda6."', '".$selectDemanda7."', '".$selectDemanda8."', '".$selectDemanda9."', '".$selectDemanda10."', '".$selectDemanda11."', '".$selectDemanda12."', NULL, '".$idUsuario."', '".$idMiembro."');";
+       $sql = "insert into demanda_inducida values " . "('".$id."', CURRENT_TIMESTAMP, '".$selectDemanda1."', '".$selectDemanda2."', '".$selectDemanda3."', '".$selectDemanda4."', '".$selectDemanda5."', '".$selectDemanda6."', '".$selectDemanda7."', '".$selectDemanda8."', '".$selectDemanda9."', '".$selectDemanda10."', '".$selectDemanda11."', '".$selectDemanda12."', NULL, '".$idMiembro."', '".$idUsuario."');";
        
         return $this->_db->query($sql);
     }

@@ -95,3 +95,22 @@ function ValidaForm(){
 }
 
 $('.tooltipped').tooltip({delay: 50});
+
+
+$(function() {
+    //enable_cb();
+    $("#t21").click(disable_cb);
+});
+
+function disable_cb() {
+	$("input.group1").prop("disabled", this.checked);   
+}
+
+$(function() {
+    enable_cb();
+    $("input.group1").click(enable_cb);
+});
+
+function enable_cb() {
+	$("#t21").prop("disabled", this.checked);   
+}
