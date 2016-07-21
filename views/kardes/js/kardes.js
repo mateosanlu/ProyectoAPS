@@ -157,6 +157,11 @@ $(document).ready(function() {
 			$('#divFUP').show();
 		}
 	});
+	$('input[name=numPartos]').val("0");
+			$('input[name=numCesareas]').val("0");
+			$('input[name=numAbortos]').val("0");
+			$('input[name=numHijos]').val("0");
+			$('input[name=numHijosMuertos]').val("0");
 	function calcularNum(){
 
 		var numGest= $('#numGestaciones').val();
@@ -166,8 +171,11 @@ $(document).ready(function() {
 		var ele4= $('input[name=numHijos]').val();
 		var ele5= $('input[name=numHijosMuertos]').val();
 		var sum=parseInt(ele1)+parseInt(ele2)+parseInt(ele3)+parseInt(ele4)+parseInt(ele5);
-		if (sum>numGest) {
+		if (sum!=numGest) {
 			Materialize.toast('Error la suma de partos,cesarias,abortos,hijos vivos y hijos muertos es mayor que el numero de gestaciones', 7000);
+			/**/
+		}
+		if (sum>numGest) {
 			$('input[name=numPartos]').val("0");
 			$('input[name=numCesareas]').val("0");
 			$('input[name=numAbortos]').val("0");

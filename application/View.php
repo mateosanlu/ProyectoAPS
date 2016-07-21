@@ -19,11 +19,6 @@ class View
                 'id' => 'perfil',
                 'titulo' => Session::get('nombre_usuario'),
                 'enlace' => BASE_URL . '#perfil'
-                ),
-            array(
-                'id' => 'tablero',
-                'titulo' => 'Tablero',
-                'enlace' => BASE_URL .'tablero'
                 )
         );
 
@@ -67,6 +62,12 @@ class View
         
         if(Session::get('autenticado')){
             $menu[] = array(
+                'id' => 'tablero',
+                'titulo' => 'Tablero',
+                'enlace' => BASE_URL . 'tablero'
+                );
+
+            $menu[] = array(
                 'id' => 'login',
                 'titulo' => 'Salir',
                 'enlace' => BASE_URL . 'login/cerrar'
@@ -105,7 +106,8 @@ class View
             'menu' => $menu,
             'formatos' => $formatos,
             'js' => $js,
-            'css' => $css
+            'css' => $css,
+            'item' => $item
         );
         
         $rutaView = ROOT . 'views' . DS . $this->_controlador . DS . $vista . '.phtml';

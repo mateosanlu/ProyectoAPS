@@ -70,9 +70,9 @@ class Session
     
     public static function getLevel($level)
     {
-        $rol['admin'] = 3;
-        $rol['especial'] = 2;
-        $rol['usuario'] = 1;
+        $rol['ADMINISTRADOR'] = 3;
+        $rol['ESPECIAL'] = 2;
+        $rol['USUARIO'] = 1;
         
         if(!array_key_exists($level, $rol)){
             throw new Exception('Error de acceso');
@@ -92,7 +92,7 @@ class Session
         Session::tiempo();
         
         if($noAdmin == false){
-            if(Session::get('level') == 'admin'){
+            if(Session::get('level') == 'ADMINISTRADOR'){
                 return;
             }
         }
@@ -113,7 +113,7 @@ class Session
         }
         
         if($noAdmin == false){
-            if(Session::get('level') == 'admin'){
+            if(Session::get('level') == 'ADMINISTRADOR'){
                 return true;
             }
         }
@@ -137,7 +137,7 @@ class Session
             return;
         }
         
-        if(time() - Session::get('tiempo') > (SESSION_TIME * 60)){
+        if(time() - Session::get('tiempo') > (SESSION_TIME * 360)){
             Session::destroy();
             header('location:' . BASE_URL . 'error/access/8080');
         }

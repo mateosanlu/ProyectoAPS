@@ -15,6 +15,8 @@ class cancer_mamaController extends Controller
     
     public function index()
     {
+        Session::acceso('USUARIO');
+
         $this->_view->titulo = 'Cancer de mama';
         //$this->_view->renderizar('index', 'cancer_mama');
         $this->redireccionar('cancer_mama/nuevo');
@@ -22,7 +24,9 @@ class cancer_mamaController extends Controller
 
     public function nuevo($idTarea)
     {   
-        if(!$this->filtrarInt($idTarea)){
+        Session::acceso('USUARIO');
+        
+        if(!$idTarea){
             $this->redireccionar('hoja_trabajo');
         }
         //$this->_view->preguntas = $this->_formato->getPreguntas();
@@ -117,7 +121,7 @@ class cancer_mamaController extends Controller
 
             $update = $this->_general->formatoMiembroCheck($idTarea);
 
-            $this->_view->_error = 'Registro guardado exitosamente';
+            $this->_view->_mensaje = 'Registro guardado exitosamente';
             $this->redireccionar('hoja_trabajo/editar/'.$datos['ID_FICHA']);
         }       
         

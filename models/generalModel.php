@@ -14,13 +14,13 @@ class generalModel extends Model
 
     public function getMunicipios()
     {
-        $municipios = $this->_db->query("select * from municipios");
+        $municipios = $this->_db->query("select * from municipios order by DES_MUNICIPIO asc");
         return $municipios->fetchall();
     }
 
     public function getEps()
     {
-        $eps = $this->_db->query("select * from eps");
+        $eps = $this->_db->query("select * from eps order by DES_EPS asc");
         return $eps->fetchall();
     }
 
@@ -45,33 +45,14 @@ class generalModel extends Model
                                       hoja_trabajo.ID_MIEMBRO AS ID_MIEMBRO,
                                       hoja_trabajo._CHECK AS _CHECK,
                                       miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR AS ID_FICHA,
-                                      miembros_hogar.NOMBRE_MIEMBRO AS NOMBRE_MIEMBRO
+                                      miembros_hogar.NOMBRE_MIEMBRO AS NOMBRE_MIEMBRO,
+                                      miembros_hogar.APELLIDO_MIEMBRO AS APELLIDO_MIEMBRO
                                     FROM
                                       hoja_trabajo
                                     INNER JOIN
                                       miembros_hogar ON hoja_trabajo.ID_MIEMBRO = miembros_hogar.ID_MIEMBROS_HOGAR
                                     WHERE 
                                       hoja_trabajo.ID_TAREA = '$idTarea' AND 
-                                      hoja_trabajo._CHECK = '0'");
-        return $ficha->fetch();
-    }
-
-    public function getDatosFicha1($idUsuario, $idMiembro, $idFormato)
-    {
-        $ficha = $this->_db->query("SELECT
-                                      hoja_trabajo.ID_TAREA AS ID_TAREA,
-                                      hoja_trabajo.ID_MIEMBRO AS ID_MIEMBRO,
-                                      miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR AS ID_FICHA,
-                                      miembros_hogar.NOMBRE_MIEMBRO AS NOMBRE_MIEMBRO
-                                    FROM
-                                      hoja_trabajo
-                                    INNER JOIN
-                                      miembros_hogar ON hoja_trabajo.ID_MIEMBRO = miembros_hogar.ID_MIEMBROS_HOGAR
-                                    WHERE
-                                      hoja_trabajo.ID_USUARIO = '$idUsuario' AND 
-                                      miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR = '$idFicha' AND 
-                                      hoja_trabajo.ID_FORMATO = '$idFormato' AND 
-                                      hoja_trabajo.ID_MIEMBRO = '$idMiembro' AND 
                                       hoja_trabajo._CHECK = '0'");
         return $ficha->fetch();
     }
@@ -92,6 +73,34 @@ class generalModel extends Model
                                       barrios ON ficha_hogar.BARRIOS_ID_BARRIO = barrios.ID_BARRIO 
                                     WHERE
                                       miembros_hogar.ID_MIEMBROS_HOGAR = '$idMiembro'");
+        return $ficha->fetch();
+    }
+
+    public function getDatosFichaAiepi($idTarea)
+    {
+        $ficha = $this->_db->query("SELECT
+                                    hoja_trabajo.ID_TAREA AS ID_TAREA,
+                                    miembros_hogar.ID_MIEMBROS_HOGAR AS ID_MIEMBRO,
+                                    municipios.ID_MUNICIPIO AS ID_MUNICIPIO,
+                                    municipios.DES_MUNICIPIO AS DES_MUNICIPIO,
+                                    eps.ID_EPS AS ID_EPS,
+                                    eps.DES_EPS AS DES_EPS,
+                                    miembros_hogar.NOMBRE_MIEMBRO AS NOMBRE_MIEMBRO,
+                                    miembros_hogar.APELLIDO_MIEMBRO AS APELLIDO_MIEMBRO,
+                                    miembros_hogar.FECHA_NACIMIENTO AS FECHA_NACIMIENTO,
+                                    miembros_hogar.IDENTIFICACION_MIEMBRO_HOGAR AS IDENTIFICACION_MIEMBRO_HOGAR,
+                                    miembros_hogar.SEXO AS SEXO,
+                                    ficha_hogar.ID_ZONA AS ID_ZONA,
+                                    hoja_trabajo._CHECK AS _CHECK
+                                    FROM
+                                    hoja_trabajo
+                                    INNER JOIN miembros_hogar ON miembros_hogar.ID_MIEMBROS_HOGAR = hoja_trabajo.ID_MIEMBRO
+                                    INNER JOIN ficha_hogar ON ficha_hogar.ID_FIC_HOGAR = miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR
+                                    INNER JOIN municipios ON municipios.ID_MUNICIPIO = ficha_hogar.MUNICIPIOS_ID_MUNICIPIO
+                                    INNER JOIN eps ON eps.ID_EPS = miembros_hogar.EPS_ID_EPS
+                                    WHERE
+                                    hoja_trabajo.ID_TAREA ='$idTarea' AND 
+                                      hoja_trabajo._CHECK = '0'");
         return $ficha->fetch();
     }
 }

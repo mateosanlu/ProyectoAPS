@@ -1,7 +1,7 @@
 <center><p class="titulo" style = "font-size:35px; color:#2196f3" >Ficha kardex de gestantes y puérperas</p></center>
 <div class="container" id="contenido">
 	<div class="row">
-		<form action="<?php echo BASE_URL; ?>kardes/nuevo" class="col s12" id="formKardes" name="formKardes" method="post">
+		<form action="<?php echo BASE_URL.'kardes/nuevo/'.$this->datos['ID_TAREA'];?>" class="col s12" id="formKardes" name="formKardes" method="post">
 			<input type="hidden" name="guardar" value="1" />
 			<ul class="collapsible" data-collapsible="accordion">
 				
@@ -11,7 +11,7 @@
 						<div class="row">
 						<br>
 							<div class="input-field col l12">
-								<input type="text" class="validate requerido" placeholder="Nombre gestante o puérpera" name="nomGestante" id="nomGestante">
+								<input type="text" class="validate requerido" placeholder="Nombre gestante o puérpera" name="nomGestante" id="nomGestante" value="<?php echo $this->datos['NOMBRE_MIEMBRO'].' '.$this->datos['APELLIDO_MIEMBRO']; ?>" disabled>
 								<label for="nomGestante" class="blue-text text-darken-2 active"> <FONT COLOR="2196f3 "> Nombre gestante o puérpera</FONT></label>
 							</div>
 
@@ -23,7 +23,7 @@
 								<label class="respuestas" for="t3">Gestante</label>
 								
 								<input name="condicionMadres" type="radio" id="t4" value='Puerpera'/>
-								<label class="respuestas" for="t4">puérpera</label>
+								<label class="respuestas" for="t4">Puérpera</label>
 							</div>
 
 							<div class="input-field col l2">
@@ -814,12 +814,6 @@
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="input-field col l6">
-						<input placeholder="" type="text" class="validate" name="promotor">
-						<label for="" class="colorWhite" ><FONT COLOR="2196f3 ">Promotor que realiza la visita</FONT></label>
-					</div>
-				</div>
 			</div>
 		</li>
 	</ul>

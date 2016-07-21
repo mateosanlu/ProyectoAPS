@@ -13,9 +13,7 @@ class registroController extends Controller
     
     public function index()
     {
-        if(Session::get('autenticado')){
-            $this->redireccionar();
-        }
+        Session::acceso('ESPECIAL');
         
         $this->_view->titulo = 'Registro';
         

@@ -10,16 +10,14 @@ class ficha_hogarController extends Controller
     
     public function index()
     {
-        //$post = $this->loadModel('post'); //cargar modelo
-        //$this->_view->posts = $post->getPosts(); //  ejecutar metodos del modelo
+        Session::acceso('USUARIO');
 
         $this->_view->titulo = 'Ficha hogar';
-        $this->_view->setJs(array('ficha_hogar'));
-        $this->_view->setJs(array('validate'));  
-        $this->_view->setJs(array('methods'));  
+        $this->_view->setJs(array('ficha_hogar','firma','jquery.validate.min','additional-methods.min')); 
        // cargar js
         $this->_view->municipios = $this->_ficha->getAll('municipios');
-        $this->_view->barrios = $this->_ficha->getAll('barrios');
+        $this->_view->veredas = $this->_ficha->getAllBarrios('2');
+        $this->_view->barrios = $this->_ficha->getAllBarrios('1');
         $this->_view->eps = $this->_ficha->getAll('eps');
         $this->_view->preguntas = $this->_ficha->getPreguntas();
         $this->_view->renderizar('index', 'ficha_hogar');
@@ -34,12 +32,7 @@ class ficha_hogarController extends Controller
 
     public function ingresar(){
 
-    $this->_view->titulo = 'Ficha hogar';
-    $this->_view->setJs(array('ficha_hogar'));  // cargar js
-    $this->_view->municipios = $this->_ficha->getAll('municipios');
-    $this->_view->barrios = $this->_ficha->getAll('barrios');
-    $this->_view->preguntas = $this->_ficha->getPreguntas();
-    $this->_view->renderizar('index', 'ficha_hogar');
+        Session::acceso('USUARIO');
 
 
     $result=$this->_ficha->setFichaHogar(
@@ -55,9 +48,10 @@ class ficha_hogarController extends Controller
                                  $this->getPostParam('nomVereda'),
                                  $this->getPostParam('nomenclaturaVereda'),
                                  $this->getPostParam('noAplicavereda'),
-                                 $this->getPostParam('telefono_jefe_hogar')
+                                 $this->getPostParam('telefono_jefe_hogar'),
+                                 $this->getPostParam('firma'),
+                                 $this->getPostParam('miembroFirma')                             
                                  );
-
 
     $resulta=$this->_ficha->setPreguntasgrupales(
                                     $this->getPostParam('tenenciaVivienda'),
@@ -150,11 +144,14 @@ class ficha_hogarController extends Controller
                                         $this->getPostParam('sinAsistenciamedico'),
                                         $this->getPostParam('otrasCondicionesdeVulnerabilidadMiembros'),
                                         $this->getPostParam('codigo_hogar'),
-                                        $result
+                                        $result,
+                                        $this->getPostParam('consumoAlimentos'),
+                                        $this->getPostParam('otrasCondicionesdeVulnerabilidadMiembrosHabitos'),
+                                        $this->getPostParam('observaciones')
+                                        
 
 
          );
-
 
  $resultado=$this->_ficha->setDatosmiebros(
                                          $this->getPostParam('codigo'),
@@ -172,7 +169,6 @@ class ficha_hogarController extends Controller
                                        $this->getPostParam('regimen'),
                                        $this->getPostParam('tipoVincuacion'),
                                        $this->getPostParam('nomEps'),
-                                       $this->getPostParam('estapaCiclovital'),
                                        $this->getPostParam('condicionDiscapacidad'),
                                        $this->getPostParam('otracondicionDiscapacidad'),
                                        $this->getPostParam('grupoEtnico'),
@@ -191,16 +187,19 @@ class ficha_hogarController extends Controller
                                         $this->getPostParam('mujerGestacion'),
                                         $this->getPostParam('actividadFisica'),
                                         $this->getPostParam('codigo_hogar'),
-                                        $result
+                                        $result,
+                                        $this->getPostParam('efermedadCardioVacular'),
+                                        $this->getPostParam('Apellido')
                                          );
+   
 
 
+                                      //   echo 'Exito';
+
+    $this->_view->titulo = 'Tablero';
+    $this->redireccionar('hoja_trabajo/editar'.$result, 'ficha_hogar');
 
     }
-
-
-
- 
 }
 
 ?>

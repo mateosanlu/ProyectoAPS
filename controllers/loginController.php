@@ -54,6 +54,7 @@ class loginController extends Controller
             Session::set('nombre_usuario', $row['NOMBRE_USUARIO']);
             Session::set('apellido_usuario', $row['APELLIDO_USUARIO']);
             Session::set('identificacion_usuario', $row['IDENTIFICACION']);
+            Session::set('firma', $row['FIRMA']);
             Session::set('id_usuario', $row['ID_USUARIO']);
             Session::set('tiempo', time());
             

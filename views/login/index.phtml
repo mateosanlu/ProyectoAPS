@@ -1,21 +1,36 @@
-<div class="container">
-    <h2>Iniciar Sesi&oacute;n</h2>
 
-    <form name="form1" method="post" action="">
-        <input type="hidden" value="1" name="enviar" />
-        
-        <p>
-            <label>Usuario: </label>
-            <input type="text" name="usuario" value="<?php if(isset($this->datos)) echo $this->datos['usuario']; ?>" />
-        </p>
-        
-        <p>
-            <label>Password: </label>
-            <input type="password" name="pass" />
-        </p>
-        
-        <p>
-            <input class="waves-effect waves-light btn" type="submit" value="Ingresar" />
-        </p>
-    </form>
+<div class="container">
+    <div class="row">
+        <br>
+        <div class="col s6 offset-s3">
+          <div class="card white z-depth-2">
+            <div class="card-content black-text">
+                <center><span style="font-size: 45px; font-weight: normal;" class="card-title blue-text">  Iniciar sesi&oacute;n  </span></center>
+                <br>
+
+                <form name="form1" method="post" action="">
+                    <input type="hidden" value="1" name="enviar">
+
+                    <div class="row">
+                    <div class="input-field col s12">
+                       <label for="usuario">Usuario</label>
+                       <input type="text" id="usuario" name="usuario" value="<?php if(isset($this->datos)) echo $this->datos['usuario'];?>">
+                    </div>
+                    
+                     <br><br> <br><br>
+                    <div class="input-field col s12">
+                        <label for="pass">Contraseña</label>
+                        <input type="password" id="pass" name="pass" />
+                    </div>
+                
+                <center>
+                    <br><br> <br><br> <br><br> 
+                    <input class="waves-effect waves-light btn-large blue" type="submit" value="Ingresar">
+                </center>
+            </div> 
+        </form>
+    </div>
+</div>
+</div>
+</div>
 </div>

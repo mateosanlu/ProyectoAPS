@@ -14,6 +14,8 @@ class findriskController extends Controller
     
     public function index()
     {
+        Session::acceso('USUARIO');
+
         $this->_view->titulo = 'Find Risk';
         //$this->_view->renderizar('index', 'findrisk');
         $this->redireccionar('findrisk/nuevo');
@@ -21,7 +23,9 @@ class findriskController extends Controller
 
     public function nuevo($idTarea)
     {   
-        if(!$this->filtrarInt($idTarea)){
+        Session::acceso('USUARIO');
+        
+        if(!$idTarea){
             $this->redireccionar('hoja_trabajo');
         }
 
@@ -54,7 +58,7 @@ class findriskController extends Controller
 
             $update = $this->_general->formatoMiembroCheck($idTarea);
             
-            $this->_view->_error = 'Registro guardado exitosamente';
+            $this->_view->_mensaje = 'Registro guardado exitosamente';
             $this->redireccionar('hoja_trabajo/editar/'.$datos['ID_FICHA']);
         }       
         

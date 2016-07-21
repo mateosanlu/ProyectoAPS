@@ -7,13 +7,12 @@ class indexController extends Controller
     }
     
     public function index()
-    {
-        //$post = $this->loadModel('post'); //cargar modelo
-        
-        //$this->_view->posts = $post->getPosts(); //  ejecutar metodos del modelo
-        
+    {   
+    	if(Session::get('autenticado')){
+            $this->redireccionar('tablero');
+        }    
         $this->_view->titulo = 'Portada';
-        $this->_view->renderizar('index', 'inicio');
+        $this->_view->renderizar('index', 'landing');
     }
 }
 

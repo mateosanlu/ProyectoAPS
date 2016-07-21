@@ -23,8 +23,8 @@ define('DB_NAME', 'hospital_hogar');
 define('DB_CHAR', 'utf8');
 
 define('DBS_HOST', '192.168.0.108');
-define('DBS_USER', 'root');
-define('DBS_PASS', '');
+define('DBS_USER', 'user15');
+define('DBS_PASS', '1234');
 define('DBS_NAME', 'hospital_hogar');
 define('DBS_CHAR', 'utf8');
 

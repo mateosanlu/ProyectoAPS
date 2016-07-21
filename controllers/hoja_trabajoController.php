@@ -11,13 +11,23 @@ class hoja_trabajoController extends Controller
     
     public function index()
     {
-        $this->_view->pendientes = $this->_hoja_trabajo->getPendientes();
+        Session::acceso('USUARIO');
+
+        $idFichas = $this->_hoja_trabajo->getIdFichasConPendientes();
+        for ($i=0; $i < count($idFichas); $i++) { 
+
+            $this->_view->pendientes[$i] = $this->_hoja_trabajo->getPendientes($idFichas[$i]['ID_FIC_HOGAR']);
+
+        }
+
         $this->_view->titulo = 'Hoja de trabajo';
         $this->_view->renderizar('index', 'inicio');
     }
 
     public function editar($idFicha)
     {
+        Session::acceso('USUARIO');
+
         if(!$idFicha){
             $this->redireccionar('hoja_trabajo');
         }

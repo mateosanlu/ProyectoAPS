@@ -1,5 +1,5 @@
 <div class="container">
-		<h6 class="titulo" align="center" style = "font-size:35px; color:#2196f3">Cáncer de mama</h6>
+		<h6 class="titulo" align="center" style = "font-size:35px; color:#2196f3">CÁNCER DE MAMA</h6>
 
 		<form action="<?php echo BASE_URL.'cancer_mama/nuevo/'.$this->datos['ID_TAREA'];?>" method="post" id="hogar" name="hogar" onsubmit="return(ValidaForm());">
 			<input type="hidden" name="guardar" value="1" />
@@ -13,7 +13,7 @@
 					</div>
 
 					<div class="input-field col s6">
-						<input id="apellido" type="text" class="validate" name="apellido">
+						<input id="apellido" type="text" class="validate" name="apellido" value="<?php echo $this->datosMiembro['APELLIDO_MIEMBRO']; ?>">
 						<label for="">Apellidos</label>
 					</div>
 
@@ -199,8 +199,8 @@
 			<br><br>
 
 			<center>
-				<button class="btn waves-effect waves-light blue" type="submit" name="action" onClick="validarFormulario()">Aceptar
-					<i class="material-icons right">send</i>
+				<button class="btn-large waves-effect waves-light blue " type="submit" name="action" onClick="validarFormulario()">ENVIAR
+				<i class="material-icons right">send</i>
 				</button>
 			</center>
 		</form>

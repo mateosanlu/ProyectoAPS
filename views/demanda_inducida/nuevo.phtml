@@ -1,12 +1,12 @@
 <div class="container">
 
-	<center><p class="titulo" style = "font-size:35px; color:#2196f3" >Registro de demanda inducida</p></center>
+		<center><p class="titulo" style = "font-size:35px; color:#2196f3" >REGISTRO DEMANDA INDUCIDA</p></center>
 	<form id="form" method="post" action="<?php echo BASE_URL.'demanda_inducida/nuevo/'.$this->datos['ID_TAREA'];?>">
 		<input type="hidden" name="guardar" value="1" />
 
 		<div class="row">
 	 		<div class="input-field col s12">
-	 			<input placeholder="Nombre" type="text" class="validate" disabled name="nom_Persona" value="<?php echo $this->datos['NOMBRE_MIEMBRO']; ?>">
+	 			<input placeholder="Nombre" type="text" class="validate" disabled name="nom_Persona" value="<?php echo $this->datos['NOMBRE_MIEMBRO'].' '.$this->datos['APELLIDO_MIEMBRO']; ?>">
 	 			<label for="" class="colorWhite" >Nombre</label>
 	 		</div>
 	 	</div>
@@ -44,7 +44,9 @@
 					</tbody>
 				</table>
 				<br><br><br>
-				<input type="submit" class="waves-effect waves-light btn-large blue" value="Guardar" />	
+				<button class="btn-large waves-effect waves-light blue" type="submit" name="action">GUARDAR
+						<i class="material-icons right">send</i>
+				</button>
 			</div>
 		</div>
 	</form>

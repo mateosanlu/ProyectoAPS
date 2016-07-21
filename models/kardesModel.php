@@ -61,7 +61,8 @@ class kardesModel extends Model{
 		,$lactanciaRecienNacido
 		,$ctrlPostParto
 		,$ctrlPlanificacionFam
-		,$obserbaciones){
+		,$obserbaciones
+		,$nomUsuario){
 
     	$sql="INSERT INTO kardes  VALUES (
 	'".$idNewKardes."'
@@ -117,6 +118,7 @@ class kardesModel extends Model{
 ,'".$canalizacionServicios8Fecha."'
 ,'".$otraCanalizacionServicios."'
 ,'".$nomGestante."'
+,'".$nomUsuario."'
 ,NULL)";
 return $this->_db->query($sql);
     }

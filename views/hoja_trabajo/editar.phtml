@@ -1,5 +1,5 @@
 <div class="container">
-	<h2 class="center">Formatos adicionales</h2>
+	<h2 class="center">FORMATOS ADICIONALES</h2>
 	<br><br>
 	<?php if (!$this->kardex and !$this->cancer_mama and !$this->aiepi and !$this->findrisk and !$this->demanda_inducida): ?>
 		<center>
@@ -8,7 +8,7 @@
 		</center>
 	<?php else: ?>
 		<div class="row">
-			<div class="col s6">
+			<div class="col s12 m6">
 				<div class="row">
 					<div class="col">
 						<?php if($this->kardex  != false) : ?>
@@ -16,8 +16,8 @@
 							<ul>
 								<?php for($i = 0; $i < count($this->kardex); $i++):?>
 									<li>
-										<a href="<?php echo BASE_URL.'kardes/nuevo/'.$this->kardex[$i]['ID_TAREA'].'/'.$this->datos.'/'.$this->kardex[$i]['NOMBRE_MIEMBRO']; ?>">
-										<?php echo $this->kardex[$i]['NOMBRE_MIEMBRO']; ?></a>
+										<a href="<?php echo BASE_URL.'kardes/nuevo/'.$this->kardex[$i]['ID_TAREA']; ?>">
+										<?php echo $this->kardex[$i]['NOMBRE_MIEMBRO'].' '.$this->kardex[$i]['APELLIDO_MIEMBRO']; ?></a>
 									</li>
 								<?php endfor;?>
 							</ul>
@@ -32,7 +32,7 @@
 								<?php for($i = 0; $i < count($this->cancer_mama); $i++):?>
 									<li>
 										<a href="<?php echo BASE_URL.'cancer_mama/nuevo/'.$this->cancer_mama[$i]['ID_TAREA']; ?>">
-										<?php echo $this->cancer_mama[$i]['NOMBRE_MIEMBRO']; ?></a>
+										<?php echo $this->cancer_mama[$i]['NOMBRE_MIEMBRO'].' '.$this->cancer_mama[$i]['APELLIDO_MIEMBRO']; ?></a>
 									</li>
 								<?php endfor;?>
 							</ul>
@@ -46,8 +46,8 @@
 							<ul>
 								<?php for($i = 0; $i < count($this->aiepi); $i++):?>
 									<li>
-										<a href="<?php echo BASE_URL.'aiepi/nuevo/'.$this->aiepi[$i]['ID_TAREA'].'/'.$this->datos.'/'.$this->aiepi[$i]['NOMBRE_MIEMBRO']; ?>">
-										<?php echo $this->aiepi[$i]['NOMBRE_MIEMBRO']; ?></a>
+										<a href="<?php echo BASE_URL.'aiepi/nuevo/'.$this->aiepi[$i]['ID_TAREA']; ?>">
+										<?php echo $this->aiepi[$i]['NOMBRE_MIEMBRO'].' '.$this->aiepi[$i]['APELLIDO_MIEMBRO']; ?></a>
 									</li>
 								<?php endfor;?>
 							</ul>
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col s6">
+			<div class="col s12 m6">
 				<div class="row">
 					<div class="col">
 						<?php if($this->findrisk  != false) : ?>
@@ -64,7 +64,7 @@
 								<?php for($i = 0; $i < count($this->findrisk); $i++):?>
 									<li>
 										<a href="<?php echo BASE_URL.'findrisk/nuevo/'.$this->findrisk[$i]['ID_TAREA']; ?>">
-										<?php echo $this->findrisk[$i]['NOMBRE_MIEMBRO']; ?></a>
+										<?php echo $this->findrisk[$i]['NOMBRE_MIEMBRO'].' '.$this->findrisk[$i]['APELLIDO_MIEMBRO']; ?></a>
 									</li>
 								<?php endfor;?>
 							</ul>
@@ -79,7 +79,7 @@
 								<?php for($i = 0; $i < count($this->demanda_inducida); $i++):?>
 									<li>
 										<a href="<?php echo BASE_URL.'demanda_inducida/nuevo/'.$this->demanda_inducida[$i]['ID_TAREA']; ?>">
-										<?php echo $this->demanda_inducida[$i]['NOMBRE_MIEMBRO']; ?></a>
+										<?php echo $this->demanda_inducida[$i]['NOMBRE_MIEMBRO'].' '.$this->demanda_inducida[$i]['APELLIDO_MIEMBRO']; ?></a>
 									</li>
 								<?php endfor;?>
 							</ul>

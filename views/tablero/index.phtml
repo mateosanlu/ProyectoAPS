@@ -1,5 +1,95 @@
 <div class="container">
-	<h2>Tablero de actividades</h2>
-	<a href="<?php echo BASE_URL?>hoja_trabajo/">Formatos adicionales</a>
-	
+	<center><p class="titulo" style = "font-size:45px; color:#2196f3" ></p></center>
+
+	<div class="row">
+		
+		<div class="col s12 m6">
+			<div class="card deep-purple darken-2">
+				<div class="card-image">
+				<img src="<?php echo $_layoutParams['ruta_img']; ?>2.jpg">
+				</div>
+				<div class="card-content white-text">
+				<span class="card-title">FICHA HOGAR</span>
+					<p>Aquí podrá registar nuevos usuarios en el sistema.</p>
+				</div>
+				<div class="card-action">
+					<a class="white-text" href="<?php echo BASE_URL?>ficha_hogar">Clic aquí para ir</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m6">
+			<div class="card light-green darken-2">
+				<div class="card-image">
+				<img src="<?php echo $_layoutParams['ruta_img']; ?>3.jpg">
+				</div>
+				<div class="card-content white-text">
+				<span class="card-title">FORMATOS PENDIENTES</span>
+					<p>Aquí podra ver los formatos que hacen falta por diligenciar.</p>
+				</div>
+				<div class="card-action">
+					<a class="white-text" href="<?php echo BASE_URL?>hoja_trabajo/">Clic aquí para ir</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+		
+		<div class="col s12 m6">
+			<div class="card pink darken-2">
+				<div class="card-image">
+				<img src="<?php echo $_layoutParams['ruta_img']; ?>1.jpg">
+				</div>
+				<div class="card-content white-text">
+				<span class="card-title">CONSULTAS</span>
+					<p>Aquí podrá registar nuevos usuarios en el sistema.</p>
+				</div>
+				<div class="card-action">
+					<a class="white-text" href="<?php echo BASE_URL?>consultas">Clic aquí para ir</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m6">
+			<div class="card teal darken-2">
+				<div class="card-image waves-effect waves-block waves-light">
+				<img class="activator" src="<?php echo $_layoutParams['ruta_img']; ?>4.jpg">
+				</div>
+				<div class="card-content white-text">
+					<span class="card-title activator white-text">REPORTES<i class="material-icons right">more_vert</i></span>
+					<p>Aquí podra ver los reportes de las fichas ya diligenciadas.</p>
+				</div>
+				<div class="card-reveal teal darken-2">
+					<span class="card-title white-text">Reportes<i class="material-icons right">close</i></span>
+					<ul>
+					<li><a class="white-text" href="<?php echo BASE_URL?>reportesAiepi/pdf1/921226">Reporte AIEPI</a></li>
+					<li><a class="white-text" href="<?php echo BASE_URL?>reportesreportesreportes/generarFicha/NumeroFicha">Reporte Ficha hogar</a></li>
+					<li><a class="white-text" href="<?php echo BASE_URL?>reportesreportes/generarCancermama/MHMA7890146886569957175500">Reporte Cancer de Mama</a></li>
+					<li><a class="white-text" href="<?php echo BASE_URL?>reportes/generarFindrisk/MHMA7890146886569957175500">Reporte Findrisk</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		
+		<div class="col s12 m6">
+			<div class="card orange darken-2">
+				<div class="card-image">
+				<img src="http://farmacovigilancia.tv/blog/wp-content/uploads/2012/02/registro.png">
+					
+				</div>
+				<div class="card-content white-text">
+				<span class="card-title">REGISTRO DE USUARIOS</span>
+					<p>Aquí podrá registar nuevos usuarios en el sistema.</p>
+				</div>
+				<div class="card-action">
+					<a class="white-text" href="<?php echo BASE_URL?>registro/">Clic aquí para ir</a>
+				</div>
+			</div>
+		</div>		
+
+	</div>
 </div>

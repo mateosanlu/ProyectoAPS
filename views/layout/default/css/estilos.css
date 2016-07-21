@@ -158,25 +158,27 @@ div.container2{
      }
 
 .error{
-  background: #e74c3c;  
-  color: #e74c3c;
-    border-color: #e74c3c; 
+  background: #FDE3A7;  
+  color: #fff;
+  border-color:  #FDE3A7; 
 }
 
 select.error{
-  background: #e74c3c;  
-    border-color: #e74c3c; 
+   background: #FDE3A7;  
+   border-color:  #FDE3A7;
+   color: #000; 
 }
 
 .error select{
-  background: #e74c3c;  
-    border-color: #e74c3c; 
+   background: #FDE3A7;   
+   border-color:  #FDE3A7; 
+   color: #000; 
 }
 
 
 input.error{  
-    background: #c0392b;  
-    border-color: #c0392b;  
+    background: #FDE3A7;   
+    border-color: #FDE3A7;  
 } 
  
  .num > div > input{
@@ -186,6 +188,25 @@ input.error{
   border-bottom: none;
 
 }
+input.validate.error {
+    border-color: #FDE3A7; 
+
+  }
+
+input.name1.error {
+    border-color: #FDE3A7; 
+
+  }
+
+input.edad.error {
+    border-color: #FDE3A7; 
+
+  }
+
+input#dateNacimiento.datepicker.picker__input.error {
+    border-color: #FDE3A7; 
+  }
+
 
 .num {
      height: 60px;
@@ -197,3 +218,10 @@ input.error{
  .num > div {
   padding:8px;
  }
+
+
+
+            #canvas{
+                border: 1px solid  #000;
+                box-shadow: 2px 2px 10px #333;
+            }

@@ -9,19 +9,23 @@ class demanda_inducidaController extends Controller
         parent::__construct();
         $this->_formato = $this->loadModel('demanda_inducida'); //cargar modelo
         $this->_general = $this->loadModel('general');
+        $this->_view->setJs(array('demanda_inducida'));
     }
     
     public function index()
-    {       
+    {   
+        Session::acceso('USUARIO');
+
         $this->_view->titulo = 'Registro de Demanda Inducida';
-        $this->_view->setJs(array('demanda_inducida'));
         //$this->_view->renderizar('index', 'demanda_inducida');
         $this->redireccionar('demanda_inducida/nuevo');
     }
 
     public function nuevo($idTarea)
     {   
-        if(!$this->filtrarInt($idTarea)){
+        Session::acceso('USUARIO');
+        
+        if(!$idTarea){
             $this->redireccionar('hoja_trabajo');
         }
 
@@ -56,7 +60,7 @@ class demanda_inducidaController extends Controller
 
             $update = $this->_general->formatoMiembroCheck($idTarea);
 
-            $this->_view->_error = 'Registro guardado exitosamente';
+            $this->_view->_mensaje = 'Registro guardado exitosamente';
             $this->redireccionar('hoja_trabajo/editar/'.$datos['ID_FICHA']);
         }
 

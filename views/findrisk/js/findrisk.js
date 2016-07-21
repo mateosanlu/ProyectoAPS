@@ -7,10 +7,7 @@
    $('#calcular').click(calcular);
    }
 
-
-
   function calcular(){
-
 
         var valorTest= 0;
         $('#respuestaRiesgo').val('');
@@ -41,17 +38,22 @@
             $('#findriskResultado').val(valorTest);
          if (valorTest <= 7) {
                $('#respuestaRiesgo').html('RIESGO BAJO: UNA DE CADA 100 PERSONAS PUEDE DESARROLLAR DM2. Puntaje: '+valorTest);
+               $('#respuestaRiesgo').css({'color' : '#4caf50', 'font-size': '150%','text-align':'center'}) ;
          }else if (valorTest > 7  && valorTest <= 11){
                $('#respuestaRiesgo').html('RIESGO LIGERAMENTE ELEVADO: UNA DE CADA 25 PERSONAS PUEDE DESARROLLAR DM2. Puntaje: '+valorTest);
+               $('#respuestaRiesgo').css({'color' : '#cddc39', 'font-size': '150%','text-align':'center'}) ;
          }
          else if (valorTest > 11 && valorTest <= 14){
                $('#respuestaRiesgo').html('RIESGO MODERADO: UNA DE CADA 6 PERSONAS PUEDE DESARROLLAR DM2. Puntaje: '+valorTest);
+               $('#respuestaRiesgo').css({'color' : '#ffd600 ', 'font-size': '150%','text-align':'center'}) ;
          }
          else if (valorTest > 14 && valorTest <= 20){
                $('#respuestaRiesgo').html('RIESGO ALTO: UNA DE CADA 3 PERSONAS PUEDE DESARROLLAR DM2. Puntaje: '+valorTest);
+               $('#respuestaRiesgo').css({'color' : '#ff9800', 'font-size': '150%','text-align':'center'}) ;
          }
          else if (valorTest  > 20){
                $('#respuestaRiesgo').html('RIESGO MUY ALTO: UNA DE CADA 2  PERSONAS PUEDE DESARROLLAR DM2. Puntaje: '+valorTest);
+               $('#respuestaRiesgo').css({'color' : '#f44336', 'font-size': '150%','text-align':'center'}) ;
          } 
          $( ".boton-modificado" ).show();
          $( ".boton-modificado" ).prop( "disabled", false );
@@ -68,3 +70,5 @@
 
 
  }
+
+ Materialize.toast('I am a toast!', 4000)

@@ -285,20 +285,6 @@
 				$('#problemaAbientalYHigieneNum'+i).click(msgHigiene);
 			}
 			
-			function calcularPreguntas(idElemento){
-				var contPreguntas1=0;
-				var elementos=$('#'+idElemento+' input');
-				for (var i = 0; i <= elementos.length; i++) {
-					if (elementos.eq(i)) {}
-					if (elementos.eq(i).val().length) {
-
-					}
-				}
-				return contPreguntas1+" de "+elementos.length;
-				}
-				
-			$('#numPreguntas').text(calcularPreguntas("seccionBodyDatosUbicacion"));
-			$('#numPreguntasNiño').text(calcularPreguntas("contDatosNiño"));
 				var checkRespirar= function(){
 					var res=document.getElementById("numDiasConDificultadParaRespirar");
 					var noResp=document.getElementById("opDificultadParaRespirarNo");

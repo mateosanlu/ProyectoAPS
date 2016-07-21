@@ -1,17 +1,40 @@
 <div class="container">
-	<h2 class="center">Formatos adicionales</h2>
+	<h2 class="center">FORMATOS PENDIENTES</h2>
+	<br><br>
 	<div class="row">
-		<div class="input-field col">
-				<table class="highlight">
-					<tbody>
+		<div class="input-field col s12 m12">
+				<table class="striped">
+					<thead>
+						<tr>
+							<th># FICHA HOGAR</th>
+							<th>Kardex de Gestantes</th>
+							<th>Cancer de mama</th>
+							<th>Ficha AIEPI</th>
+							<th>Test Findrisk</th>
+							<th>Demanda Inducida</th>
+						</tr>
+					</thead>
+					<tbody class="center">
 						<?php if(isset($this->pendientes)) : ?>
 							<?php for($i = 0; $i < count($this->pendientes); $i++):?>
 								<tr>
-									<td>
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i]['FICHA_HOGAR_ID_FIC_HOGAR']; ?></a>
+									<td class="center">
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?></a>
 									</td>
-									<td>
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i]['DES_FORMATO']; ?></a>
+									<td class="center">
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['KARDES']; ?></a>
+									</td>
+									<td class="center">
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['CANCER_MAMA']; ?></a>
+									</td>
+									<td class="center">
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['AIEPI']; ?></a>
+									</td>
+									<td class="center">
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['DEMANDA_INDUCIDA']; ?></a>
+									</td>
+									<td class="center">
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['FINDRISK']; ?></a>
 									</td>
 								</tr>
 							<?php endfor;?>
@@ -20,5 +43,13 @@
 				</table>		
 			</div>
 	</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
 	
 </div>

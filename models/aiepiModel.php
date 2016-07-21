@@ -150,6 +150,7 @@ class aiepiModel extends Model
 		$sql="INSERT INTO general_aiepi values (
 	'".$idGeneralAiepi."',
 	'".$nomGeCaVi."',
+	'".$tipPoblacion."',
 	'".$nombreAcompañante."',
 	'".$parentesco."',
 	'".$direccionAcomp."',
@@ -222,8 +223,6 @@ class aiepiModel extends Model
 , 	'".$opRetrasoDeCrecimiento."',
 	'".$opValoracionDeCara."',
 	'".$opPerdidaTejidoMusc."',
-	'".$opSistemaOseo."'
-, 	'".$opComportamiento."',
 	'".$opTejidoAdiposo."',
 	'".$opApetito."',
 	'".$opEdema."',
@@ -303,6 +302,22 @@ public function setAiepiCheck($var,$idAiepi,$oterId){
 			}
 			return true;
 		}
+	}
+	public function getAiepi($fichaAiepi){
+		$query="SELECT *,FIRMA_JEFE,FIRMA,DES_EPS,concat_ws(' ',NOMBRE_MIEMBRO,APELLIDO_MIEMBRO) AS NOMBRE_MIEMBRO,IDENTIFICACION_MIEMBRO_HOGAR,FECHA_NACIMIENTO,SEXO,ID_ZONA  from general_aiepi 
+INNER JOIN miembros_hogar ON 
+miembros_hogar.ID_MIEMBROS_HOGAR=general_aiepi.MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR
+INNER JOIN eps ON eps.ID_EPS=miembros_hogar.EPS_ID_EPS
+INNER JOIN ficha_hogar ON ficha_hogar.ID_FIC_HOGAR=miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR
+INNER JOIN usuarios ON usuarios.ID_USUARIO=general_aiepi.USUARIOS_ID_USUARIO
+WHERE IDENTIFICACION_MIEMBRO_HOGAR='".$fichaAiepi."'";
+	$datosAiepi=$this->_db->query($query);
+	return $datosAiepi->fetchall();
+	}
+
+	public function getPreguntasRespuesta($query){
+		$datosPreguntaRespuesta=$this->_db->query($query);
+		return $datosPreguntaRespuesta->fetchall();
 	}
 }
  ?>

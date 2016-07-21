@@ -1,7 +1,7 @@
-<center><p class="titulo" style = "font-size:35px; color:#2196f3" >Formulario ficha AIEPI</p></center>
+<center><p class="titulo" style = "font-size:35px; color:#2196f3" >FORMULARIO FICHA AIEPI</p></center>
 <div class="container">
 	<div class="row">
-		<form action="<?php echo BASE_URL; ?>aiepi/nuevo" class="col s12" id="formAiepi" name="formAiepi" method="post">
+		<form action="<?php echo BASE_URL.'aiepi/nuevo/'.$this->datos['ID_TAREA'];?>" class="col s12" id="formAiepi" name="formAiepi" method="post">
 			<input type="hidden" name="guardar" value="1" />
 			<ul class="collapsible" data-collapsible="accordion" >
 				<li>
@@ -18,16 +18,16 @@
 								<label class="blue-text text-darken-2 active" for="nombreInstitucion">2. Institución</label>
 							</div>
 							<div class="input-field col s4">
-								<select name="nombreMunicipio" id="nombreMunicipio">
-									<option>Seleccione un municipio</option>
+								<select name="nombreMunicipio" id="nombreMunicipio" disabled="true">
+									<option><?php echo $this->datos['DES_MUNICIPIO']; ?></option>
 								</select>
 								<label  class="blue-text text-darken-2">3. Municipio</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
-								<select name="aseguradorAiepi" id="aseguradorAiepi">
-
+								<select name="aseguradorAiepi" id="aseguradorAiepi" disabled="true">
+									<option><?php echo $this->datos['DES_EPS']; ?></option>
 								</select>
 								<label for="aseguradorAiepi">4. Asegurador (EPS) <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="EPS a la cual esta afiliado">live_help</i></label>
 							</div>
@@ -52,36 +52,45 @@
 						<div class="row">
 							<br>
 							<div class="input-field col s12">
-								<input type="text" name="nombreNiño" placeholder="Nombres y apellidos" id="nombreNiño" class="validate" value="">
+								<input type="text" name="nombreNiño" placeholder="Nombres y apellidos" id="nombreNiño" class="validate" value="<?php echo $this->datos['NOMBRE_MIEMBRO'].' '.$this->datos['APELLIDO_MIEMBRO']; ?>" disabled>
 								<label class="blue-text text-darken-2 active" for="nombreNiño">6. Nombres y apellidos</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s4">
-								<input type="text" name="rcNiño" id="rcNiño" class="validate" placeholder="Registro civil">
+								<input type="text" name="rcNiño" id="rcNiño" class="validate" placeholder="Registro civil" value="<?php echo $this->datos['IDENTIFICACION_MIEMBRO_HOGAR']; ?>" disabled>
 								<label for="rcNiño" class="blue-text text-darken-2 active">7. Registro civil</label>
 							</div>
 							<div class="input-field col s4">
-								<input type="text" name="fechNacimientoNiño" id="fechNacimientoNiño" value="01/06/2013">
+								<input type="text" name="fechNacimientoNiño" id="fechNacimientoNiño" value="<?php echo $this->datos['FECHA_NACIMIENTO']; ?>" disabled>
 								<label for="fechNacimientoNiño" class="blue-text text-darken-2 active">8. Fecha De Nacimiento</label>
 							</div>
 							<label class="blue-text text-darken-2" style = "font-size:15px">9. Genero</label>
 							<div class="input-field col s4">
-								<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="masculinoGeneroAiepi" value="M">
-								<label for="masculinoGeneroAiepi">Masculino</label>
-								
-								<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="femeninoGeneroAiepi" value="F">
-								<label for="femeninoGeneroAiepi">Femenino</label>
+								<?php if ($this->datos['SEXO']=='M'): ?>
+									<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="masculinoGeneroAiepi" value="M" checked disabled>
+									<label for="masculinoGeneroAiepi">Masculino</label>
+									<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="femeninoGeneroAiepi" value="F" disabled>
+									<label for="femeninoGeneroAiepi">Femenino</label>
+								<?php else: ?>
+									<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="masculinoGeneroAiepi" value="M" disabled>
+									<label for="masculinoGeneroAiepi">Masculino</label>
+									<input class="with-gap" type="radio"  name="generoEncuestaAiepi" id="femeninoGeneroAiepi" value="F" checked disabled>
+									<label for="femeninoGeneroAiepi">Femenino</label>
+								<?php endif ?>
 							</div>
 						</div>
 						<div class="row">
 							<!-- Los Datos Se Traen De La Base De Datos -->
 							<div class="input-field col s6">
-								<select name="procedenciaAiepi" id="procedenciaAiepi">
-									<option value="" disabled selected>Seleccione una procedencia</option>
-									<option value="1">Urbana</option>
-									<option value="2">Rural</option>
-									<option value="3">Centros Poblados</option>
+								<select name="procedenciaAiepi" id="procedenciaAiepi" disabled>
+									<?php if ($this->datos['ID_ZONA'] == 1): ?>
+										<option value="1" selected>Urbana</option>
+									<?php elseif ($this->datos['ID_ZONA'] == 2): ?>
+										<option value="2" selected>Rural</option>
+									<?php else: ?>
+										<option value="3" selected>Centros Poblados</option>
+									<?php endif ?>
 								</select>
 								<label class="blue-text text-darken-2">10. Procedencia</label>
 							</div>
@@ -580,9 +589,9 @@
 														<div class="input-field">
 															<select name="zonaVive" id="zonaVive">
 																<option value="" disabled selected>Seleccione zona</option>
-																<option value="">Urbana</option>
-																<option value="">Rural</option>
-																<option value="">Centros poblados</option>
+																<option value="1">Urbana</option>
+																<option value="2">Rural</option>
+																<option value="3">Centros poblados</option>
 															</select>
 															<label for="zonaVive" class="blue-text text-darken-2" >54. Zona</label>
 														</div>
@@ -914,10 +923,10 @@
 														<tr>
 															<td>85. El sistema oseo</td>
 															<td>
-																<input class="with-gap" type="checkbox" name="opSistemaOseoCostalVisible" id="opSistemaOseoCostalVisible"  value="1">
+																<input class="with-gap" type="checkbox" name="opSistemaOseoCostalVisible" id="opSistemaOseoCostalVisible"  value="557">
 																<label for="opSistemaOseoCostalVisible">Rosario costal visible</label>
 																<br>
-																<input class="with-gap" type="checkbox" name="opSistemaOseoPiernasDeSable" id="opSistemaOseoPiernasDeSable"  value="0">
+																<input class="with-gap" type="checkbox" name="opSistemaOseoPiernasDeSable" id="opSistemaOseoPiernasDeSable"  value="558">
 																<label for="opSistemaOseoPiernasDeSable">Piernas de sable</label>
 															</td>
 														</tr>
@@ -926,17 +935,17 @@
 															<td>
 																<input class="with-gap" type="radio" name="opTejidoAdiposo" id="opTejidoAdiposoAusente"  value="1">
 																<label for="opTejidoAdiposoAusente">Ausente</label>
-																<input class="with-gap" type="radio" name="opTejidoAdiposo" id="opTejidoAdiposoPocoDisminuido"  value="1">
+																<input class="with-gap" type="radio" name="opTejidoAdiposo" id="opTejidoAdiposoPocoDisminuido"  value="0">
 																<label for="opTejidoAdiposoPocoDisminuido">Poco disminuido</label>
 															</td>
 														</tr>
 														<tr>
 															<td>87. Comportamiento</td>
 															<td>
-																<input class="with-gap" type="checkbox" name="opComportamientoMirada" id="opComportamientoMirada"  value="1">
+																<input class="with-gap" type="checkbox" name="opComportamientoMirada" id="opComportamientoMirada"  value="559">
 																<label for="opComportamientoMirada">Mirada de angustia</label>
 																<br>
-																<input class="with-gap" type="checkbox" name="opComportamientoLlanto" id="opComportamientoLlanto"  value="0">
+																<input class="with-gap" type="checkbox" name="opComportamientoLlanto" id="opComportamientoLlanto"  value="560">
 																<label for="opComportamientoLlanto">Llanto/Apatia</label>
 															</td>
 														</tr>
@@ -1646,58 +1655,40 @@
 								</div>
 								<div class="row">
 									<div class="input-field col s4">
-										<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum1" id="problemaAbientalYHigieneNum1" value="48">
+										<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum1" id="problemaAbientalYHigieneNum1" value="542">
 										<label for="problemaAbientalYHigieneNum1">Niños o adultos con ropa sucia</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum2" id="problemaAbientalYHigieneNum2" value="49">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum2" id="problemaAbientalYHigieneNum2" value="543">
 										<label for="problemaAbientalYHigieneNum2">Niños o adultos con manos y uñas sucias</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum3" id="problemaAbientalYHigieneNum3" value="50">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum3" id="problemaAbientalYHigieneNum3" value="544">
 										<label for="problemaAbientalYHigieneNum3">Niños descalzos</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum4" id="problemaAbientalYHigieneNum4" value="51">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum4" id="problemaAbientalYHigieneNum4" value="545">
 										<label for="problemaAbientalYHigieneNum4">Basura y desorden de la vivienda</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum5" id="problemaAbientalYHigieneNum5" value="52">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum5" id="problemaAbientalYHigieneNum5" value="546">
 										<label for="problemaAbientalYHigieneNum5">Alimentos sin almacenar y no cubiertos</label>
 									</div>
 									<div class="input-field col s4">
-										<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum6" id="problemaAbientalYHigieneNum6" value="53">
+										<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum6" id="problemaAbientalYHigieneNum6" value="547">
 										<label for="problemaAbientalYHigieneNum6">Personas que fuman dentro de la vivienda</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum7" id="problemaAbientalYHigieneNum7" value="54">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum7" id="problemaAbientalYHigieneNum7" value="548">
 										<label for="problemaAbientalYHigieneNum7">No usan toldillo</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum8" id="problemaAbientalYHigieneNum8" value="55">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum8" id="problemaAbientalYHigieneNum8" value="549">
 										<label for="problemaAbientalYHigieneNum8">Insectos y ratones en la vivienda o alrededores</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum9" id="problemaAbientalYHigieneNum9" value="56">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum9" id="problemaAbientalYHigieneNum9" value="550">
 										<label for="problemaAbientalYHigieneNum9">Manejo adecuado de las Basuras/Recolección</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum10" id="problemaAbientalYHigieneNum10" value="57">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum10" id="problemaAbientalYHigieneNum10" value="551">
 										<label for="problemaAbientalYHigieneNum10">Se consume agua no potable</label>
 									</div>
 									<div class="input-field col s4">
-										<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum11" id="problemaAbientalYHigieneNum11" value="58">
+										<input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum11" id="problemaAbientalYHigieneNum11" value="552">
 										<label for="problemaAbientalYHigieneNum11">Estufa o brasero ubicado nn la habitacion</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum12" id="problemaAbientalYHigieneNum12" value="59">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum12" id="problemaAbientalYHigieneNum12" value="553">
 										<label for="problemaAbientalYHigieneNum12">Vivienda sin iluminación y ventilación</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum13" id="problemaAbientalYHigieneNum13" value="60">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum13" id="problemaAbientalYHigieneNum13" value="554">
 										<label for="problemaAbientalYHigieneNum13">Evitan cambios bruscos de temperatura</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum14" id="problemaAbientalYHigieneNum14" value="61">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum14" id="problemaAbientalYHigieneNum14" value="555">
 										<label for="problemaAbientalYHigieneNum14">Charcos, zanjas y objetos donde se acumula agua</label>
-										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum15" id="problemaAbientalYHigieneNum15" value="62">
+										<br><input type="checkbox" class="filled-in" name="problemaAbientalYHigieneNum15" id="problemaAbientalYHigieneNum15" value="556">
 										<label for="problemaAbientalYHigieneNum15">Adultos con tos o gripa, que cuidan/alimentan al niño sin tapaboca</label>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="collapsible-header blue white-text text-white">Firma</div>
-							<div class="collapsible-body">
-								<div class="row">
-									<br>
-									<div class="input-field col s12">
-										<input type="text" name="nomGeCaVi" id="nomGeCaVi" placeholder="Nombre">
-										<label for="nomGeCaVi">Nombre del gestor de calidad de vida</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<input type="text" name="firmaPersonaEncuestada" id="firmaPersonaEncuestada" placeholder="Firma">
-										<label for="firmaPersonaEncuestada">Firma de la persona que recibe la visita </label>
 									</div>
 								</div>
 							</div>
