@@ -4,8 +4,8 @@
 		<form action="<?php echo BASE_URL.'aiepi/nuevo/'.$this->datos['ID_TAREA'];?>" class="col s12" id="formAiepi" name="formAiepi" method="post">
 			<input type="hidden" name="guardar" value="1" />
 			<ul class="collapsible" data-collapsible="accordion" >
-				<li>
-					<div class="collapsible-header blue white-text text-white white-text text-white" id="seccionDatosUbicacion">Datos de ubicación <div  class="right" id="numPreguntas"></div></div>
+				<li id="l1">
+					<div class="collapsible-header blue active white-text text-white white-text text-white" id="seccionDatosUbicacion">Datos de ubicación <div  class="right" id="numPreguntas"></div></div>
 					<div class="collapsible-body" id="seccionBodyDatosUbicacion">
 						<div class="row">
 							<br>
@@ -14,7 +14,7 @@
 								<label class="blue-text text-darken-2 active" for="fechaEncuestaAiepi" value="">1. Fecha</label>
 							</div>
 							<div class="input-field col s4">
-								<input type="text" name="nombreInstitucion" placeholder="Institución" id="nombreInstitucion" class="validate">
+								<input type="text" name="nombreInstitucion" id="nombreInstitucion" class="validate" value="HOSPITAL SAN RAFAEL">
 								<label class="blue-text text-darken-2 active" for="nombreInstitucion">2. Institución</label>
 							</div>
 							<div class="input-field col s4">
@@ -29,7 +29,7 @@
 								<select name="aseguradorAiepi" id="aseguradorAiepi" disabled="true">
 									<option><?php echo $this->datos['DES_EPS']; ?></option>
 								</select>
-								<label for="aseguradorAiepi">4. Asegurador (EPS) <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="EPS a la cual esta afiliado">live_help</i></label>
+								<label for="aseguradorAiepi">4. Asegurador (EPS) <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="EPS a la cual esta afiliado"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 							</div>
 							<!-- Los Tipos De Usuarios Se Traen De La Base De Datos -->
 							<div class="input-field col s6">
@@ -41,7 +41,7 @@
 									<option value="5">POBRE NO ASEGURADO</option>
 									<option value="6">ESPECIAL</option>
 								</select>
-								<label for="tipoDeUsuarioAiepi" class="blue-text text-darken-2" >5. Tipo de usuario <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Régimen de seguridad social al cual corresponde">live_help</i></label>
+								<label for="tipoDeUsuarioAiepi" class="blue-text text-darken-2" >5. Tipo de usuario <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Régimen de seguridad social al cual corresponde"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 							</div>
 						</div>
 					</div>
@@ -144,15 +144,15 @@
 									<option value="11">Otros Parientes</option>
 									<option value="12">Otros Miembros No Parientes</option>
 								</select>
-								<label class="blue-text text-darken-2">13. Parentesco <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Que Parentesco Tiene El Acompañante Con El Niño">live_help</i></label>
+								<label class="blue-text text-darken-2">13. Parentesco <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Que Parentesco Tiene El Acompañante Con El Niño"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 							</div>
 							<div class="input-field col s6">
 								<input type="text" name="direccionAiepi" placeholder="Dirección" id="direccionAiepi" >
-								<label for="direccionAiepi" class="blue-text text-darken-2 active">14. Dirección<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Direccion De Residencia Del acompañante">live_help</i></label>
+								<label for="direccionAiepi" class="blue-text text-darken-2 active">14. Dirección<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Direccion De Residencia Del acompañante"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 							</div>
 							<div class="input-field col s6">
 								<input type="text" name="TelefonoAiepi" placeholder="Teléfono" id="TelefonoAiepi">
-								<label for="TelefonoAiepi" class="blue-text text-darken-2 active">15. Teléfono <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Numero De Telefono Donde Se Pueda Ubicar">live_help</i></label>
+								<label for="TelefonoAiepi" class="blue-text text-darken-2 active">15. Teléfono <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Numero De Telefono Donde Se Pueda Ubicar"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 							</div>
 							<div class="input-field col s6">
 								<select name="evaluacionRealizadaAiepi" id="evaluacionRealizadaAiepi">
@@ -162,7 +162,7 @@
 									<option value="3">Por alto riesgo de la familia</option>
 									<option value="4">Enfermedad de alto riesgo</option>
 								</select>
-								<label  class="blue-text text-darken-2">16. Evaluacion realizada <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Realizacion De La Valoracion O Visita">live_help</i></label>
+								<label  class="blue-text text-darken-2">16. Evaluacion realizada <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Realizacion De La Valoracion O Visita"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 							</div>
 						</div>
 					</div>
@@ -172,7 +172,7 @@
 					<div class="collapsible-body">
 						<div class="row">
 							<div class="input-field col s4">
-								<label for="tipSelecSignoRiesgoOp1" class="blue-text text-darken-2">17. Identificacion de signos generales de riesgo  <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Inicie la valoracion del menor; pregunte, observe y seleccione si el menor presenta alguno de los signos mostrados, de lo contrario seleccion No Aplica">live_help</i></label></label>
+								<label for="tipSelecSignoRiesgoOp1" class="blue-text text-darken-2">17. Identificacion de signos generales de riesgo  <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Inicie la valoracion del menor; pregunte, observe y seleccione si el menor presenta alguno de los signos mostrados, de lo contrario seleccion No Aplica"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label></label>
 								<br><br>
 								<input type="checkbox" class="filled-in" name="tipSelecSignoRiesgoOp1" id="tipSelecSignoRiesgoOp1" value="1">
 								<label for="tipSelecSignoRiesgoOp1" class="black-text text-black"> No puede beber o tomar el pecho</label>
@@ -196,7 +196,7 @@
 								<table class="bordered">
 									<tbody>
 										<tr>
-											<td>18. ¿Tiene el niño o niña problemas de salud bucal? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Indage a la madre si el niño tiene problemas de salud bucal">live_help</i></td>
+											<td>18. ¿Tiene el niño o niña problemas de salud bucal? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Indage a la madre si el niño tiene problemas de salud bucal"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 											<td>
 												<input class="with-gap" class="with-gap" type="radio" name="opProblemaSaludBocal" id="opProblemaSaludBocalSi" value="1">
 												<label for="opProblemaSaludBocalSi">Si</label>
@@ -205,14 +205,14 @@
 											</td>
 										</tr>
 										<tr>
-											<td>19. ¿Tiene dolor o molestia al comer?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Realize la valoración de la boca, luego pregunte ¿Tiene dolor o molestia al comer?">live_help</i> </td>
+											<td>19. ¿Tiene dolor o molestia al comer?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Realize la valoración de la boca, luego pregunte ¿Tiene dolor o molestia al comer?"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i> </td>
 											<td><input class="with-gap" type="radio" name="opDolorAlComer" id="opDolorAlComerSi" value="1">
 												<label for="opDolorAlComerSi">Si</label>
 												<input class="with-gap" type="radio" name="opDolorAlComer" id="opDolorAlComerNo" value="0">
 												<label for="opDolorAlComerNo">No</label></td>
 											</tr>
 											<tr>
-												<td>20. ¿Ha tenido algun golpe en la boca?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Observe y pregunte ¿ha tenido algún golpe o trauma en la boca?">live_help</i></td>
+												<td>20. ¿Ha tenido algun golpe en la boca?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Observe y pregunte ¿ha tenido algún golpe o trauma en la boca?"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" class="with-gap" type="radio" name="opGolpeBoca" id="opGolpeBocaSi" value="1">
 													<label for="opGolpeBocaSi" >Si</label>
@@ -221,7 +221,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>21. ¿Durante la noche duerme sin cepillarse los dientes? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Observe y pregunte ¿Durante la noche duerme sin cepillarse los dientes?">live_help</i></td>
+												<td>21. ¿Durante la noche duerme sin cepillarse los dientes? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Observe y pregunte ¿Durante la noche duerme sin cepillarse los dientes?"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" class="with-gap" type="radio" name="opDuermeSinCepillarse" id="opDuermeSinCepillarseSi" value="1">
 													<label for="opDuermeSinCepillarseSi">Si</label>
@@ -230,7 +230,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>22. ¿Le supervisa el cepillado de dientes? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Indage a la madre y pregunte ¿Le supervisa el cepillado de dientes?">live_help</i></td>
+												<td>22. ¿Le supervisa el cepillado de dientes? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Indage a la madre y pregunte ¿Le supervisa el cepillado de dientes?"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" class="with-gap" type="radio" name="opSupervisaCepillado" id="opSupervisaCepilladoSi" value="1">
 													<label for="opSupervisaCepilladoSi">Si</label>
@@ -239,7 +239,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>23. ¿Le sangra la encia cuando se cepilla?  <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Observe y pregunte ¿Le sangra la encia cuando se cepilla?">live_help</i></td>
+												<td>23. ¿Le sangra la encia cuando se cepilla?  <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Observe y pregunte ¿Le sangra la encia cuando se cepilla?"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" class="with-gap" type="radio" name="opSangraCuandoCepilla" id="opSangraCuandoCepillaSi" value="1">
 													<label for="opSangraCuandoCepillaSi">Si</label>
@@ -256,18 +256,18 @@
 
 								<div class="input-field col s6">
 									<input type="number" placeholder="Número de valoraciones" min="0" name="numValOdontologicasAño" id="numValOdontologicasAño">
-									<label for="numValOdontologicasAño" class="blue-text text-darken-2 active">24. N° de valoraciones odontologicas en el último año<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Numero De Visitas al odontologo en el ultimo año">live_help</i></label>
+									<label for="numValOdontologicasAño" class="blue-text text-darken-2 active">24. N° de valoraciones odontologicas en el último año<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Numero De Visitas al odontologo en el ultimo año"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 								</div>
 								<div class="input-field col s6">
 									<input type="number" placeholder="Número de veces" min="0" name="numHigieneOralDia" id="numHigieneOralDia">
-									<label for="numHigieneOralDia" class="blue-text text-darken-2 active">25. ¿Cuantas veces hace higiene oral al dia?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Numero de Veces que le hace higiene oral al dia">live_help</i></label>
+									<label for="numHigieneOralDia" class="blue-text text-darken-2 active">25. ¿Cuantas veces hace higiene oral al dia?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Numero de Veces que le hace higiene oral al dia"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 								</div>
 
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input type="text" name="dascHigOral" id="dascHigOral" placeholder="Respuesta">
-									<label for="dascHigOral" class="blue-text text-darken-2 active">26. ¿Con qué hace la higienización oral?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Elementos con los que hace higiene oral al niño">live_help</i></label>
+									<input type="text" name="dascHigOral" id="dascHigOral" placeholder="Respuesta" length="15">
+									<label for="dascHigOral" class="blue-text text-darken-2 active">26. ¿Con qué hace la higienización oral?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Elementos con los que hace higiene oral al niño, Maximo 15 caracteres para la descripcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 								</div>
 							</div>
 						</div>
@@ -280,7 +280,7 @@
 									<table class="borderer">
 										<tbody>
 											<tr>
-												<td>27. ¿Tiene el niño o niña tos?</td>
+												<td>27. ¿Tiene el niño o niña tos? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Si la respuesta es NO se deshabilita el numero de dias que lleva con tos Pregunta N°28; la respuesta a esta pregunta responde automaticamente la pregunta N°60"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" type="radio" name="opNiñoConTos" id="opNiñoConTosSi" value="1">
 													<label for="opNiñoConTosSi">Si</label>
@@ -300,7 +300,7 @@
 
 											</tr>
 											<tr>
-												<td>29. ¿Tiene el niño(a) dificultado para respirar?</td>
+												<td>29. ¿Tiene el niño(a) dificultado para respirar?  <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Si la respuesta es NO se deshabilita el numero de dias con dificultad para respirar; Pregunta N°30"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" type="radio" name="opDificultadParaRespirar" id="opDificultadParaRespirarSi" value="1">
 													<label for="opDificultadParaRespirarSi">Si</label>
@@ -326,7 +326,7 @@
 									<table class="bordered">
 										<tbody>
 											<tr>
-												<td>31. ¿Tiene tiraje sucostal?</td>
+												<td>31. ¿Tiene tiraje sucostal? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Evalue al menor y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" class="with-gap" type="radio" name="opTirajeSucostal" id="opTirajeSucostalSi" value="1">
 													<label for="opTirajeSucostalSi" >Si</label>
@@ -335,7 +335,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>32. ¿Tiene estridor?</td>
+												<td>32. ¿Tiene estridor? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Evalue al menor y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" class="with-gap" type="radio" name="opTieneEstridor" id="opTieneEstridorSi" value="1">
 													<label for="opTieneEstridorSi">Si</label>
@@ -348,14 +348,14 @@
 
 													<div class="input-field">
 														<input type="number" min="30" max="99" placeholder="Número de respiraciones" name="numRespiracionesPorMin" id="numRespiracionesPorMin">
-														<label for="numRespiracionesPorMin" class="blue-text text-darken-2 active">33. Número de respiraciones por minuto</label>
+														<label for="numRespiracionesPorMin" class="blue-text text-darken-2 active">33. Número de respiraciones por minuto<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Cuente las respiraciones en un minuto y digite el resultado"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 													</div>
 
 												</td>
 
 											</tr>
 											<tr>
-												<td>34. ¿Tiene respiración rapida?</td>
+												<td>34. ¿Tiene respiración rapida?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Esta pregunta se responde automaticamente despues de que se digite el numero de respiraciones por minuto"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td>
 													<input class="with-gap" class="with-gap" type="radio" name="opRespiracionRapida" id="opRespiracionRapidaSi" value="1">
 													<label for="opRespiracionRapidaSi" >Si</label>
@@ -364,7 +364,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>35. ¿Tiene sibilancias?</td>
+												<td>35. ¿Tiene sibilancias?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Evalue al menor y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 												<td><input class="with-gap" type="radio" name="opTieneSibilancias" id="opTieneSibilanciasSi" value="1">
 													<label for="opTieneSibilanciasSi" >Si</label>
 													<input class="with-gap" type="radio" name="opTieneSibilancias" id="opTieneSibilanciasNo" value="0">
@@ -384,7 +384,7 @@
 										<table class="bordered">
 											<tbody>
 												<tr>
-													<td>36. ¿El niño(a) ha estado en cntacto con personas con TB?</td>
+													<td>36. ¿El niño(a) ha estado en cntacto con personas con TB?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona que esta siendo encuestada y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opContactoConPerTb" id="opContactoConPerTbSi" value="1">
 														<label for="opContactoConPerTbSi">Si</label>
@@ -393,7 +393,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>37. ¿El niño(a) ha estado en contacto conpersonas sintomaticas respiratorias?</td>
+													<td>37. ¿El niño(a) ha estado en contacto conpersonas sintomaticas respiratorias?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona que esta siendo encuestada y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opContactoConPerSintomaticasResp" id="opContactoConPerSintomaticasRespSi" value="1">
 														<label for="opContactoConPerSintomaticasRespSi">Si</label>
@@ -408,7 +408,7 @@
 										<table class="bordered">
 											<tbody>
 												<tr>
-													<td>38. ¿Tos persistente con mas de 21 dias?</td>
+													<td>38. ¿Tos persistente con mas de 21 dias?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona que esta siendo encuestada y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opTosPersistenteMasDe21Dias" id="opTosPersistenteMasDe21DiasSi" value="1" value="1">
 														<label for="opTosPersistenteMasDe21DiasSi">Si</label>
@@ -417,7 +417,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>39. ¿Perdida o ganancia de peso en los últimos tres meses?</td>
+													<td>39. ¿Perdida o ganancia de peso en los últimos tres meses?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona que esta siendo encuestada y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opPerdidaOGananciaPesoUlt3Meses" id="opPerdidaOGananciaPesoUlt3MesesSi" value="1">
 														<label for="opPerdidaOGananciaPesoUlt3MesesSi">Si</label>
@@ -439,7 +439,7 @@
 										<table class="bordered">
 											<tbody>
 												<tr>
-													<td>40. ¿Tiene el niño(a) diarrea?</td>
+													<td>40. ¿Tiene el niño(a) diarrea?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Si la respuesta es NO se deshabilita el numero de dias que lleva con diarrea; Pregunta N°41"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opTieneDiarrea" id="opTieneDiarreaSi" value="1">
 														<label for="opTieneDiarreaSi" >Si</label>
@@ -456,7 +456,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>42. Fontanela o molleja hundida</td>
+													<td>42. Fontanela o molleja hundida <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona encuestada y seleccione una opción"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opFontanelaOMollejaHundida" id="opFontanelaOMollejaHundidaSi" value="1">
 														<label for="opFontanelaOMollejaHundidaSi">Si</label>
@@ -465,7 +465,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>43. Intranquilo o irritable</td>
+													<td>43. Intranquilo o irritable<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona encuestada y seleccione una opción"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opIntranquiloOIrritable" id="opIntranquiloOIrritableSi" value="1">
 														<label for="opIntranquiloOIrritableSi">Si</label>
@@ -481,7 +481,7 @@
 										<table class="bordered">
 											<tbody>
 												<tr>
-													<td>44. ¿Hay sangre en las heces?</td>
+													<td>44. ¿Hay sangre en las heces? <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona encuestada, evalue al menor y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opSangreEnHeces" id="opSangreEnHecesSi" value="1">
 														<label for="opSangreEnHecesSi">Si</label>
@@ -490,7 +490,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>45. Boca seca o mucha sed</td>
+													<td>45. Boca seca o mucha sed  <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona encuestada, evalue al menor y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opBocaSecaOMuchaSed" id="opBocaSecaOMuchaSedSi" value="1">
 														<label for="opBocaSecaOMuchaSedSi">Si</label>
@@ -499,7 +499,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>46. Ojos hundidos</td>
+													<td>46. Ojos hundidos  <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Pregunte a la persona encuestada, evalue al menor y seleccione una opcion"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opOjosUndidos" id="opOjosUndidosSi" value="1">
 														<label for="opOjosUndidosSi">Si</label>
@@ -509,7 +509,7 @@
 												</tr>
 												<tr>
 													<td>
-														47. Pliegue cutaneo - muy lento mayor a 2 seg
+														47. Pliegue cutaneo - muy lento mayor a 2 seg <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Evalue el pliegue cutaneo si selecciona "SI", la pregunta N°48 quedara como "NO"'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i>
 													</td>
 													<td>
 														<input class="with-gap" type="radio" name="opPliegueCutaneoMuyLento" id="opPliegueCutaneoMuyLentoSi" value="1">
@@ -520,7 +520,7 @@
 												</tr>
 												<tr>
 													<td>
-														48. Pliegue cutaneo - lento 2 seg o menor
+														48. Pliegue cutaneo - lento 2 seg o menor <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Evalue el pliegue cutaneo si selecciona "SI", la pregunta N°47 quedara como "NO"'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i>
 													</td>
 													<td>
 														<input class="with-gap" type="radio" name="opPliegueCutaneoLento" id="opPliegueCutaneoLentoSi" value="1">
@@ -541,7 +541,7 @@
 										<div class="input-field col s6">
 											<table class="bordered">
 												<tr>
-													<td>49. ¿El niño(a) tiene fiebre?</td>
+													<td>49. ¿El niño(a) tiene fiebre?<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Indage a la persona encuestada, evalue al menor y seleccione una opcion; Si la respuesta es "NO" las preguntas N°50 y N°51 quedan deshabilitadas'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opNiñoConFiebre" id="opNiñoConFiebreSi" value="1">
 														<label for="opNiñoConFiebreSi">Si</label>
@@ -553,12 +553,12 @@
 													<td colspan="2">
 														<div class="input-field" id="divNumDiasFiebre">
 															<input type="number" min="0" placeholder="Número de dias" name="numDiasConFiebre" id="numDiasConFiebre" size="8">
-															<label for="numDiasConFiebre" class="blue-text text-darken-2 active">50. N° dias con fiebre</label>
+															<label for="numDiasConFiebre" class="blue-text text-darken-2 active">50. N° dias con fiebre<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Preungte a la persona encuestada, evalue al menor y digite el numero de dias que lleva el menor con fiebre'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 														</div>
 													</td>
 												</tr>
 												<tr id="divFiebreMas5D">
-													<td>51. Fiebre de mas de 5 dias todos los dias</td>
+													<td>51. Fiebre de mas de 5 dias todos los dias<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Esta pregunta se responde automaticamente despues de que digite el numero de dias que lleva con fiebre'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opFiebreMasDe5DiasTodosLosDias" id="opFiebreMasDe5DiasTodosLosDiasSi" value="1">
 														<label for="opFiebreMasDe5DiasTodosLosDiasSi">Si</label>
@@ -567,7 +567,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>52. Vive o visito zona de riesgo de malaria</td>
+													<td>52. Vive o visito zona de riesgo de malaria<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opViveOVisitoZonaMalaria" id="opViveOVisitoZonaMalariaSi" value="1">
 														<label for="opViveOVisitoZonaMalariaSi">Si</label>
@@ -576,7 +576,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>53.Vive o visito zona de riesgo de dengue</td>
+													<td>53.Vive o visito zona de riesgo de dengue<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opViveVistZonaDenge" id="opViveVistZonaDengeSi" value="1">
 														<label for="opViveVistZonaDengeSi">Si</label>
@@ -591,14 +591,13 @@
 																<option value="" disabled selected>Seleccione zona</option>
 																<option value="1">Urbana</option>
 																<option value="2">Rural</option>
-																<option value="3">Centros poblados</option>
 															</select>
-															<label for="zonaVive" class="blue-text text-darken-2" >54. Zona</label>
+															<label for="zonaVive" class="blue-text text-darken-2" >54. Zona<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Seleccione la zona en la que vive o visito en menor valorado'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 														</div>
 													</td>
 												</tr>
 												<tr>
-													<td>55. Rigidez de nuca</td>
+													<td>55. Rigidez de nuca<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opRigidezDeNuca" id="opRigidezDeNucaSi" value="1">
 														<label for="opRigidezDeNucaSi">Si</label>
@@ -607,7 +606,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>56. Manifestación de sangrado</td>
+													<td>56. Manifestación de sangrado <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opManifiestaSangrado" id="opManifiestaSangradoSi"  value="1">
 														<label for="opManifiestaSangradoSi">Si</label>
@@ -620,7 +619,7 @@
 										<div class="input-field col s6">
 											<table class="bordered">
 												<tr>
-													<td>57. Piel humeda y fria</td>
+													<td>57. Piel humeda y fria <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opPielHumedaYFria" id="opPielHumedaYFriaSi" value="1">
 														<label for="opPielHumedaYFriaSi">Si</label>
@@ -629,7 +628,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>58. Inquieto o irritable</td>
+													<td>58. Inquieto o irritable <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opInquitoOIrritable" id="opInquitoOIrritableSi"   value="1">
 														<label for="opInquitoOIrritableSi">Si</label>
@@ -638,7 +637,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>59. Fiebre mayor de 39°C</td>
+													<td>59. Fiebre mayor de 39°C <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opFiebreMayorDe39C" id="opFiebreMayorDe39CSi" value="1">
 														<label for="opFiebreMayorDe39CSi">Si</label>
@@ -647,7 +646,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>60. Tos</td>
+													<td>60. Tos<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Esta pregunta se responde automaticamente, si no esta respondida redirijase a la pregunta N°27'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opTieneTos" id="opTieneTosSi"  value="1">
 														<label for="opTieneTosSi">Si</label>
@@ -656,7 +655,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>61. Coriza</td>
+													<td>61. Coriza<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='"Coriza:inflamación de la mucosa de la nariz de evolución aguda", evalue este caso y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opCoriza" id="opCorizaSi" value="1">
 														<label for="opCorizaSi">Si</label>
@@ -665,7 +664,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>62. Ojos rojos</td>
+													<td>62. Ojos rojos<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opOjosRojos" id="opOjosRojosSi" value="1">
 														<label for="opOjosRojosSi">Si</label>
@@ -674,7 +673,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>63. Aspecto toxico</td>
+													<td>63. Aspecto toxico<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opAspectoToxico" id="opAspectoToxicoSi" value="1">
 														<label for="opAspectoToxicoSi">Si</label>
@@ -683,7 +682,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>64. Dolor abdominal continuo o intenso</td>
+													<td>64. Dolor abdominal continuo o intenso<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opDolorAbdominalContOInt" id="opDolorAbdominalContOIntSi"  value="1">
 														<label for="opDolorAbdominalContOIntSi">Si</label>
@@ -692,7 +691,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>65. Pulso rápido y debil</td>
+													<td>65. Pulso rápido y debil <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opPulsoRapidoYDebil" id="opPulsoRapidoYDebilSi" value="1">
 														<label for="opPulsoRapidoYDebilSi">Si</label>
@@ -701,7 +700,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>66. Erupción cutanea y generalizada</td>
+													<td>66. Erupción cutanea y generalizada<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 													<td>
 														<input class="with-gap" type="radio" name="opErupcionCutaneaYGeneral" id="opErupcionCutaneaYGeneralSi"  value="1">
 														<label for="opErupcionCutaneaYGeneralSi">Si</label>
@@ -722,7 +721,7 @@
 											<table class="bordered">
 												<tbody>
 													<tr>
-														<td>67. Fiebre por mas de 14 días y/o sudoración</td>
+														<td>67. Fiebre por mas de 14 días y/o sudoración<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opFiebreMasDe14Dias" id="opFiebreMasDe14DiasSi" value="1">
 															<label for="opFiebreMasDe14DiasSi">Si</label>
@@ -731,7 +730,7 @@
 														</td>
 													</tr>
 													<tr>
-														<td>68. Dolor de cabeza reciente que aumenta</td>
+														<td>68. Dolor de cabeza reciente que aumenta<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion, si la respuesta es "NO" las preguntas N°69, N°70 y N° 71 quedan deshabilitadas'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opDolorDeCabezaRecAumenta" id="opDolorDeCabezaRecAumentaSi" value="1">
 															<label for="opDolorDeCabezaRecAumentaSi">Si</label>
@@ -740,7 +739,7 @@
 														</td>
 													</tr>
 													<tr id="divDolorCaezaDespierta">
-														<td>69. El dolor de cabeza despierta al niño</td>
+														<td>69. El dolor de cabeza despierta al niño<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opDolorDeCabezaDespiertaAlNiño" id="opDolorDeCabezaDespiertaAlNiñoSi" value="1">
 															<label for="opDolorDeCabezaDespiertaAlNiñoSi">Si</label>
@@ -752,12 +751,12 @@
 														<td colspan="2" id="divNumDiasColCabeza">
 															<div class="input-field col s12" id="numDiasConDolorDeCabeza">
 																<input type="number" min="0" name="numDiasConDolorDeCabeza" placeholder="Número de dias" id="numDiasConDolorDeCabeza">
-																<label for="numDiasConDolorDeCabeza" class="blue-text text-darken-2 active">70. Número de dias que el niño tiene dolor de cabeza</label>
+																<label for="numDiasConDolorDeCabeza" class="blue-text text-darken-2 active">70. Número de dias que el niño tiene dolor de cabeza<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada y digite el numero de dias que el niño tiene dolor de cabeza'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 															</div>
 														</td>
 													</tr>
 													<tr id="divDolAcompVom">
-														<td>71. El dolor de cabeza se acompaña de otro sintoma como vomito</td>
+														<td>71. El dolor de cabeza se acompaña de otro sintoma como vomito<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opDolorDeCabezaAcompañadoConVomito" id="opDolorDeCabezaAcompañadoConVomitoSi" value="1">
 															<label for="opDolorDeCabezaAcompañadoConVomitoSi">Si</label>
@@ -773,7 +772,7 @@
 												<tbody>
 
 													<tr>
-														<td>72. Ah tenido dolor de huesos en el último mes</td>
+														<td>72. Ah tenido dolor de huesos en el último mes<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion; si la respuesta es "NO" las preguntas N°73 y N°74 quedaran deshabilitadas'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opDolorDeHuesosEnElUltimoMes" id="opDolorDeHuesosEnElUltimoMesSi" value="1">
 															<label for="opDolorDeHuesosEnElUltimoMesSi">Si</label>
@@ -782,7 +781,7 @@
 														</td>
 													</tr>
 													<tr id="divDolHuesosInterrupe">
-														<td>73. Dolor de huesos interrumpe las actividades del niño</td>
+														<td>73. Dolor de huesos interrumpe las actividades del niño<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opDolorHuesosInterrumpeActNiño" id="opDolorHuesosInterrumpeActNiñoSi" value="1">
 															<label for="opDolorHuesosInterrumpeActNiñoSi">Si</label>
@@ -791,7 +790,7 @@
 														</td>
 													</tr>
 													<tr id="dolHuesosAumento">
-														<td>74. El dolor de huesos ha ido en aumento</td>
+														<td>74. El dolor de huesos ha ido en aumento<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opDolorDeHuesosEnAumento" id="opDolorDeHuesosEnAumentoSi" value="1">
 															<label for="opDolorDeHuesosEnAumentoSi">Si</label>
@@ -800,12 +799,12 @@
 														</td>
 													</tr>
 													<tr>
-														<td>75. En los últimos 3 meses ha tenido cambios como fatiga, perdida de apetito o peso</td>
+														<td>75. En los últimos 3 meses ha tenido cambios como fatiga, perdida de apetito o peso<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte a la persona encuestada, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opUlt3MesesCambiosFatiga" id="opUlt3MesesCambiosFatigaSi" value="1">
 															<label for="opUlt3MesesCambiosFatigaSi">Si</label>
 															<input class="with-gap" type="radio" name="opUlt3MesesCambiosFatiga" id="opUlt3MesesCambiosFatigaNo" value="0">
-															<label for="opUlt3MesesCambiosFatigaSi">No</label>
+															<label for="opUlt3MesesCambiosFatigaNo">No</label>
 														</td>
 													</tr>
 												</tbody>
@@ -822,7 +821,7 @@
 											<table class="bordered">
 												<tbody>
 													<tr>
-														<td>76. El niño(a) tiene problemas de oido</td>
+														<td>76. El niño(a) tiene problemas de oido <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe, evalue al menor y seleccione una opción; si esocogio "NO" la pregunta N° 77 se deshabilita'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opProblemasDeOido" id="opProblemasDeOidoSi" value="1">
 															<label for="opProblemasDeOidoSi">Si</label>
@@ -834,7 +833,7 @@
 														<td colspan="2">
 															<div class="input-field col s10" id="divNumEpiPreviosOido">
 																<input type="number" min="0" placeholder="Número de episodios" name="numDeEpisodiosPrevios" id="numDeEpisodiosPrevios">
-																<label for="numDeEpisodiosPrevios" class="blue-text text-darken-2 active">77. Número de episodios previos</label>
+																<label for="numDeEpisodiosPrevios" class="blue-text text-darken-2 active">77. Número de episodios previos <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte al acompañante el numero de episodios previos y digite la respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 															</div>
 														</td>
 													</tr>
@@ -845,7 +844,7 @@
 											<table class="bordered">
 												<tbody>
 													<tr>
-														<td>78. Tiene supuración de oido</td>
+														<td>78. Tiene supuración de oido <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte al encuestado, evalue al menor y seleccione una opcion, si selecciona "NO" la pregunta N° 79 se deshabilitara'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opSupuracionDeOido" id="opSupuracionDeOidoSi" value="1">
 															<label for="opSupuracionDeOidoSi">Si</label>
@@ -857,12 +856,12 @@
 														<td colspan="2">
 															<div class="input-field col s10" id="divNumDiasSupuracion">
 																<input type="number" min="0" placeholder="Número de dias" name="numDiasConSupuracion" id="numDiasConSupuracion">
-																<label for="numDiasConSupuracion" class="blue-text text-darken-2 active">79. Hace cuantos dias</label>
+																<label for="numDiasConSupuracion" class="blue-text text-darken-2 active">79. Hace cuantos dias <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte al encuestado, y digite el resultado'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 															</div>
 														</td>
 													</tr>
 													<tr>
-														<td>80. Tumefacción/dolor atrás de la oreja</td>
+														<td>80. Tumefacción/dolor atrás de la oreja <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte al encuestado, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td>
 															<input class="with-gap" type="radio" name="opDolorAtrasDeLaOreja" id="opDolorAtrasDeLaOrejaSi" value="1">
 															<label for="opDolorAtrasDeLaOrejaSi">Si</label>
@@ -887,14 +886,14 @@
 											<table class="bordered">
 												<tbody>
 													<tr>
-														<td>81. El niño(a) tiene desnutrición y/o anemia</td>
+														<td>81. El niño(a) tiene desnutrición y/o anemia <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte al encuestado, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 														<td><input class="with-gap" type="radio" name="opNiñoDesnutricionOAnemia" id="opNiñoDesnutricionOAnemiaSi" value="1">
 															<label for="opNiñoDesnutricionOAnemiaSi">Si</label>
 															<input class="with-gap" type="radio" name="opNiñoDesnutricionOAnemia" id="opNiñoDesnutricionOAnemiaNo" value="0">
 															<label for="opNiñoDesnutricionOAnemiaNo">No</label></td>
 														</tr>
 														<tr>
-															<td>82. Retraso en el crecimiento</td>
+															<td>82. Retraso en el crecimiento <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue al menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="radio" name="opRetrasoDeCrecimiento" id="opRetrasoDeCrecimientoIntenso" value="1">
 																<label for="opRetrasoDeCrecimientoIntenso">Muy intenso</label>
@@ -903,7 +902,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>83. Valoración de la cara</td>
+															<td>83. Valoración de la cara <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue la cara del menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="radio" name="opValoracionDeCara" id="opValoracionDeCaraViejito"  value="1">
 																<label for="opValoracionDeCaraViejito">Cara de viejito</label>
@@ -912,7 +911,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>84. Perdida de tejido muscular</td>
+															<td>84. Perdida de tejido muscular <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue al menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="radio" name="opPerdidaTejidoMusc" id="opPerdidaTejidoMuscMuyMarcada"  value="1">
 																<label for="opPerdidaTejidoMuscMuyMarcada">Muy marcada</label>
@@ -921,7 +920,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>85. El sistema oseo</td>
+															<td>85. El sistema oseo <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue al menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="checkbox" name="opSistemaOseoCostalVisible" id="opSistemaOseoCostalVisible"  value="557">
 																<label for="opSistemaOseoCostalVisible">Rosario costal visible</label>
@@ -931,7 +930,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>86. Tejido adiposo</td>
+															<td>86. Tejido adiposo <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue al menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="radio" name="opTejidoAdiposo" id="opTejidoAdiposoAusente"  value="1">
 																<label for="opTejidoAdiposoAusente">Ausente</label>
@@ -940,7 +939,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>87. Comportamiento</td>
+															<td>87. Comportamiento <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue al menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="checkbox" name="opComportamientoMirada" id="opComportamientoMirada"  value="559">
 																<label for="opComportamientoMirada">Mirada de angustia</label>
@@ -950,7 +949,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>88. Apetito</td>
+															<td>88. Apetito <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Pregunte al encuestado, evalue al menor y seleccione una opcion'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="radio" name="opApetito" id="opApetitoDisminuido"  value="1">
 																<label for="opApetitoDisminuido">Disminuido</label>
@@ -959,7 +958,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>89. Edema</td>
+															<td>89. Edema <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue al menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="radio" name="opEdema" id="opEdemaSi"  value="1">
 																<label for="opEdemaSi">Si</label>
@@ -968,7 +967,7 @@
 															</td>
 														</tr>
 														<tr>
-															<td>90. Cabello</td>
+															<td>90. Cabello <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Observe y evalue el cabello del menor luego seleccione una respuesta'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></td>
 															<td>
 																<input class="with-gap" type="radio" name="opCabello" id="opCabelloEscaso"  value="1">
 																<label for="opCabelloEscaso">Escaso</label>
@@ -989,8 +988,11 @@
 									<div class="collapsible-header blue white-text text-white">Perimetro braquial</div>
 									<div class="collapsible-body">
 										<div class="row">
-											<br>
-											<div class="input-field col s7">
+											<div class="input-field col s4">
+												<input type="number" name="mediaMarcaColorBrazo" id="mediaMarcaColorBrazo" placeholder="Valor">
+												<label for="mediaMarcaColorBrazo" class="blue-text text-darken-2 active">92. Medida</label>
+											</div>
+											<div class="input-field col s7" id="colorPerimetro">
 												<!--Color:Marcar El Color Obtenido Al Medir La Circunferencia En El Punto Medio Del Brazo-->
 												<select name="opMarcaDelColorBrazo" id="opMarcaDelColorBrazo">
 													<option value="" disabled selected>Perimetro braquial</option>
@@ -999,12 +1001,9 @@
 													<option value="10">Amarillo</option>
 													<option value="11">Verde</option>
 												</select>
-												<label class="blue-text text-darken-2">91. Toma del perimetro bracial</label>
+												<label class="blue-text text-darken-2">91. Toma del perimetro bracial <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip='Esta pregunta se responde automaticamente, si no esta respondida redirijase a la pregunta N°27'><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></label>
 											</div>
-											<div class="input-field col s4">
-												<input type="number" name="mediaMarcaColorBrazo" id="mediaMarcaColorBrazo" placeholder="Valor">
-												<label for="mediaMarcaColorBrazo" class="blue-text text-darken-2 active">92. Medida</label>
-											</div>
+											
 										</div>
 									</div>
 								</li>
@@ -1230,7 +1229,7 @@
 											<input class="with-gap" type="radio" name="opProgramaRecuperacionNutri" id="opProgramaRecuperacionNutriNo" value="0">
 											<label for="opProgramaRecuperacionNutriNo">No</label>
 											<div class="row">
-												<div class="input-field col s12">
+												<div class="input-field col s12" id="programaNutri">
 													<label for="programaRecuperacionNutri">¿Cuál?</label>
 													<input type="text" name="programaRecuperacionNutri" id="programaRecuperacionNutri" placeholder="Descripción">
 												</div>
@@ -1409,7 +1408,7 @@
 														</div>
 													</td>
 												</tr>
-												<tr>
+												<tr id="divRecibiDesparacitacion">
 													<td>114. Recibió desparacitación</td>
 													<td >
 													<div class="input-field col s12">
@@ -1420,7 +1419,7 @@
 														</div>
 													</td>
 												</tr>
-												<tr>
+												<tr id="divFechaRecibeDesparitacion">
 													<td colspan="2">
 														<div class="input-field col s12" id="fechaDeDesparacitacion">
 															<input type="text" name="fechaDeDesparacitacion" id="fechaDeDesparacitacion" class="datepicker" placeholder="Seleccione fecha">
@@ -1709,3 +1708,18 @@
 				<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 			</div>
 		</div>
+
+<script>	
+$('#l1 .collapsible-header').removeClass('blue');
+$('#l1 .collapsible-header').addClass('visto');
+$('li .collapsible-header').click(function(){
+$(this).removeClass('blue');
+$(this).addClass('visto');
+});
+
+	</script>
+<style type="text/css">
+   .visto{
+   	background-color: #2e7d32;
+   }
+</style>

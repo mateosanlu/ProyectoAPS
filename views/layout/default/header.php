@@ -4,6 +4,7 @@
     <title><?php if(isset($this->titulo)) echo $this->titulo; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <link rel="icon" href="<?php echo $_layoutParams['ruta_img']; ?>favicon.png" type="image/png">
     <link href="<?php echo $_layoutParams['ruta_css']; ?>materialize.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo $_layoutParams['ruta_css']; ?>materialicons.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo $_layoutParams['ruta_css']; ?>estilos.css" rel="stylesheet" type="text/css" />
@@ -32,13 +33,13 @@
         $('.modal-trigger').leanModal();
     });
 </script>
-
+    
 </head>
 
 
-<body background="<?php echo $_layoutParams['ruta_img']; ?>fondo.jpg" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+<body style="background-image: url('<?php echo $_layoutParams['ruta_img']; ?>fondo.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-position: 85% 40%;"  oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     <?php if ($_layoutParams['item'] == 'landing'): ?>
-    
+ 
     <nav>
     <div class="nav-wrapper blue" style="height: 110px;">
       <a class="brand-logo center"><img src="<?php echo $_layoutParams['ruta_img']; ?>logo.png"></a>
@@ -89,6 +90,7 @@
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
+
     <?php endif ?>
 
     <div class="section no-pad-bot" id="index-banner">

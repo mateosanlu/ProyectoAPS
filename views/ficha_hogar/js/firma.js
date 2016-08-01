@@ -1,3 +1,4 @@
+var estoyDibujando = 0;
 function comenzar(){
 					
 	lienzo = document.getElementById('canvas');

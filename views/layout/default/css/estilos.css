@@ -225,3 +225,101 @@ input#dateNacimiento.datepicker.picker__input.error {
                 border: 1px solid  #000;
                 box-shadow: 2px 2px 10px #333;
             }
+   .visto{
+    background-color: #008a00;
+   }
+   input:required:valid{
+   box-shadow: 2px 2px 1px #4CAF50;
+   }
+   input:required:invalid{
+      background-color: #FDE3A7;
+   }
+   input[type="number"]:required:invalid{
+   
+   }
+   input[type="date"]:required:invalid{
+    background-color: #00BFA5;
+   }
+   select:required:invalid{
+    background-color: #FDE3A7;
+   }
+    select:required:valid{
+    box-shadow: 2px 2px 1px #4CAF50;
+   }
+    input#dateNacimiento.datepicker.picker__input{
+      background-color: #FDE3A7;
+   }
+
+  .v{
+    background-color: red;
+  }
+  .bus:focus{
+    background-color: red;
+  }
+  .buscar{
+    position:absolute;
+    border-color: green;
+    margin: 0px;
+    z-index: 22;
+    background-color: white;
+    
+  
+  }
+  .buscar input{
+    font-size: 15px;
+    color: #000;
+    border-bottom:#fff;
+    margin: 0px;
+  }
+
+  .buscar  input[type=text]:focus.valid {
+      border-bottom:#fff;
+      box-shadow: 0 1px 0 0 #fff;
+    margin: 0px;
+
+  }
+
+  #est .bus{
+    display: block;
+    height: 10px;
+    border-color: none;
+    border:none;
+    width: 28rem;
+    cursor: pointer;
+    margin: 3px;
+  }
+
+  #est .bus:focus{
+           background-color: blue;
+           border-color: #fff;
+           padding-top: 1px;
+           padding-bottom: 1px;
+  }
+   #radios{
+    background-color: #FDE3A7;
+   }
+   #imagenFirma{
+    box-shadow: 2px 2px 10px #333;
+   }
+   .bluOptions{
+   background-color: #3498db;
+   }
+     .completo{
+   width: 100%;
+   height: 30px;
+     box-shadow: 2px 2px 1px #4CAF50;
+   }
+   .incompleto{
+   width: 100%;
+   height: 30px;
+   background-color:#FDE3A7; 
+   }
+   .opccional{
+   width: 100%;
+   height: 30px;
+   background-color: #3498db;
+   }
+   .l-campos{
+    color: rgb(33, 150, 243);
+    font-size: 15px
+   }

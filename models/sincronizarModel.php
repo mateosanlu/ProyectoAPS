@@ -1,9 +1,12 @@
 <?php
 
-class sincronizarModel extends Model
+class sincronizarModel extends ModelServer
 {
     public function __construct() {
         parent::__construct();
+        if ($this->_dbserver == false) {
+          return false;
+        }
     }
     
   function getConsultarTablaLocal($tabla){
@@ -63,7 +66,8 @@ class sincronizarModel extends Model
                  '".$miembros_hogar[$i]['EPS_ID_EPS']."',
                  '".$miembros_hogar[$i]['FECHA_REGISTRO']."', 
                  '".$miembros_hogar[$i]['EDAD']."', 
-                 '".$miembros_hogar[$i]['SEXO']."')";
+                 '".$miembros_hogar[$i]['SEXO']."',
+                 '".$miembros_hogar[$i]['TIPO_DOCUMENTO']."')";                 
               $this->_dbserver->query($subirMiembro);
          	}else{
          		$subirMiembro="INSERT INTO miembros_hogar VALUES  
@@ -77,7 +81,8 @@ class sincronizarModel extends Model
                  NULL,
                  '".$miembros_hogar[$i]['FECHA_REGISTRO']."', 
                  '".$miembros_hogar[$i]['EDAD']."', 
-                 '".$miembros_hogar[$i]['SEXO']."')";
+                 '".$miembros_hogar[$i]['SEXO']."',
+                 '".$miembros_hogar[$i]['TIPO_DOCUMENTO']."')";
               $this->_dbserver->query($subirMiembro);
          	}
           
@@ -188,7 +193,8 @@ for ($i=0; $i <count($testFindrisk); $i++) {
                  '".$testFindrisk[$i]['DIABETES_FAMILIAR']."',
                  '".$testFindrisk[$i]['RESULTADO_TEST']."',
                  '".$testFindrisk[$i]['USUARIOS_ID_USUARIO']."',
-                 '".$testFindrisk[$i]['MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR']."')";
+                 '".$testFindrisk[$i]['MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR']."',
+                 '".$testFindrisk[$i]['FECH_REGISTRO']."')";
              $this->_dbserver->query($subirTestFindRisk);
        // }
   }
@@ -212,7 +218,9 @@ for ($i=0; $i <count($testFindrisk); $i++) {
                  '".$cancerMama[$i]['SI_TIENE_MAS_50_LE_HAN_PTACTICADO_MAMOGRAFIA']."', 
                  '".$cancerMama[$i]['USUARIOS_ID_USUARIO']."',
                  '".$cancerMama[$i]['MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR']."',
-                 '".$cancerMama[$i]['FECHA_REGISTRO']."')";
+                 '".$cancerMama[$i]['FECHA_REGISTRO']."',
+                 '".$cancerMama[$i]['EMAIL']."',
+                 '".$cancerMama[$i]['TELEFONO']."')";
              $this->_dbserver->query($subirTestCancerMama);
       
   }
@@ -326,6 +334,8 @@ for ($i=0; $i <count($usuarios); $i++) {
                         $subirAiepi="INSERT INTO general_aiepi VALUES (
                         '".$aiepiGeneral[$i]['ID_GENERAL_AIEPI']."', 
                         '".$aiepiGeneral[$i]['USUARIOS_ID_USUARIO']."', 
+                        '".$aiepiGeneral[$i]['TIPO_USUARIO_AIEPI']."', 
+                        '".$aiepiGeneral[$i]['TIPO_POBLACION_AIEPI']."', 
                         '".$aiepiGeneral[$i]['ACOMPAÑANTE_AIEPI']."', 
                         '".$aiepiGeneral[$i]['PARENTESCO_ACOMPAÑANTE_AIEPI']."',
                         '".$aiepiGeneral[$i]['DIRECCION_ACOMPAÑANTE']."',
@@ -522,6 +532,7 @@ for ($i=0; $i <count($usuarios); $i++) {
                         '".$kardes[$i]['CANALIZACION_SERVICIOS_8']."',
                         '".$kardes[$i]['OTRA_CANALIZACION_SERVICIOS']."',
                         '".$kardes[$i]['miembros_hogar_ID_MIEMBROS_HOGAR']."',
+                        '".$kardes[$i]['USUARIOS_ID_USUARIO']."',
                         '".$kardes[$i]['FECHA_REGISTRO']."'
                          );";
                         $this->_dbserver->query($subirKardes);  
@@ -590,7 +601,8 @@ for ($i=0; $i <count($miembrosHogarServer); $i++) {
                  '".$miembrosHogarServer[$i]['EPS_ID_EPS']."',
                  '".$miembrosHogarServer[$i]['FECHA_REGISTRO']."', 
                  '".$miembrosHogarServer[$i]['EDAD']."', 
-                 '".$miembrosHogarServer[$i]['SEXO']."')";
+                 '".$miembrosHogarServer[$i]['SEXO']."',
+                 '".$miembrosHogarServer[$i]['TIPO_DOCUMENTO']."')";
               $this->_db->query($bajarMiembro);
          	}else{
          		$bajarMiembro="INSERT INTO miembros_hogar VALUES  
@@ -604,7 +616,8 @@ for ($i=0; $i <count($miembrosHogarServer); $i++) {
                   NULL,
                  '".$miembrosHogarServer[$i]['FECHA_REGISTRO']."', 
                  '".$miembrosHogarServer[$i]['EDAD']."', 
-                 '".$miembrosHogarServer[$i]['SEXO']."')";
+                 '".$miembrosHogarServer[$i]['SEXO']."',
+                 '".$miembrosHogarServer[$i]['TIPO_DOCUMENTO']."')";
               $this->_db->query($bajarMiembro);
          	}
           
@@ -709,7 +722,8 @@ for ($i=0; $i <count($testFindriskServer); $i++) {
                  '".$testFindriskServer[$i]['DIABETES_FAMILIAR']."',
                  '".$testFindriskServer[$i]['RESULTADO_TEST']."',
                  '".$testFindriskServer[$i]['USUARIOS_ID_USUARIO']."',
-                 '".$testFindriskServer[$i]['MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR']."')";
+                 '".$testFindriskServer[$i]['MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR']."',
+                 '".$testFindriskServer[$i]['FECH_REGISTRO']."')";
              $this->_db->query($bajarTestFindRisk);
        
   }
@@ -731,7 +745,9 @@ for ($i=0; $i <count($testFindriskServer); $i++) {
                  '".$cancerMamaServer[$i]['SI_TIENE_MAS_50_LE_HAN_PTACTICADO_MAMOGRAFIA']."', 
                  '".$cancerMamaServer[$i]['USUARIOS_ID_USUARIO']."',
                  '".$cancerMamaServer[$i]['MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR']."',
-                 '".$cancerMamaServer[$i]['FECHA_REGISTRO']."')";
+                 '".$cancerMamaServer[$i]['FECHA_REGISTRO']."',
+                 '".$cancerMamaServer[$i]['EMAIL']."',
+                 '".$cancerMamaServer[$i]['TELEFONO']."')";
              $this->_db->query($subirTestCancerMama);
      
   }
@@ -845,6 +861,8 @@ $aiepiGeneralBajada= $this->getConsultarTablaServer("general_aiepi");
                         $bajarAiepi="INSERT INTO general_aiepi VALUES (
                         '".$aiepiGeneralBajada[$i]['ID_GENERAL_AIEPI']."', 
                         '".$aiepiGeneralBajada[$i]['USUARIOS_ID_USUARIO']."', 
+                        '".$aiepiGeneralBajada[$i]['TIPO_USUARIO_AIEPI']."', 
+                        '".$aiepiGeneralBajada[$i]['TIPO_POBLACION_AIEPI']."',
                         '".$aiepiGeneralBajada[$i]['ACOMPAÑANTE_AIEPI']."', 
                         '".$aiepiGeneralBajada[$i]['PARENTESCO_ACOMPAÑANTE_AIEPI']."',
                         '".$aiepiGeneralBajada[$i]['DIRECCION_ACOMPAÑANTE']."',
@@ -1040,6 +1058,7 @@ $aiepiGeneralBajada= $this->getConsultarTablaServer("general_aiepi");
                         '".$kardesBajada[$i]['CANALIZACION_SERVICIOS_8']."',
                         '".$kardesBajada[$i]['OTRA_CANALIZACION_SERVICIOS']."',
                         '".$kardesBajada[$i]['miembros_hogar_ID_MIEMBROS_HOGAR']."',
+                        '".$kardesBajada[$i]['USUARIOS_ID_USUARIO']."',
                         '".$kardesBajada[$i]['FECHA_REGISTRO']."'
                          );";
                         $this->_db->query($bajarKardes);  

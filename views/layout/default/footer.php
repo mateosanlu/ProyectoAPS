@@ -5,7 +5,7 @@
         <footer class="page-footer blue">
 		    <div class="footer-copyright">
 		      <div class="container">
-		      Made by <a class="grey-text text-lighten-3" href="http://materializecss.com"><?php echo APP_COMPANY; ?></a>&copy;
+		      Desarrollado por <a class="grey-text text-lighten-3" href=""><?php echo APP_COMPANY; ?></a>&copy;
 		      </div>
 		 	</div>
 		 </footer>

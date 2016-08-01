@@ -10,8 +10,7 @@ class Model
             $this->_db = new Database(); //deshabilitar instancia DB
         	//$this->_dbserver = new DatabaseServer();
         } catch (Exception $e) {
-        	echo "No hay conexion al servidor";
-
+        	echo "Model- No hay conexion al servidor";
         }
          
     }

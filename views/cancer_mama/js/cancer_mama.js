@@ -48,11 +48,7 @@ function ValidaForm(){
 		document.hogar.documento.value='';
 		document.hogar.documento.focus();
 		return false;
-	}else if (document.hogar.email.value==''){
-		alert('Debe ingresar su email.');
-		document.hogar.email.value='';
-		document.hogar.email.focus();
-		return false;
+	}
 	}else if (document.hogar.direccion.value==''){
 		alert('Debe ingresar su dirección.');
 		document.hogar.direccion.value='';

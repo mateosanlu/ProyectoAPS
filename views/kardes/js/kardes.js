@@ -162,6 +162,7 @@ $(document).ready(function() {
 			$('input[name=numAbortos]').val("0");
 			$('input[name=numHijos]').val("0");
 			$('input[name=numHijosMuertos]').val("0");
+/*
 	function calcularNum(){
 
 		var numGest= $('#numGestaciones').val();
@@ -173,7 +174,7 @@ $(document).ready(function() {
 		var sum=parseInt(ele1)+parseInt(ele2)+parseInt(ele3)+parseInt(ele4)+parseInt(ele5);
 		if (sum!=numGest) {
 			Materialize.toast('Error la suma de partos,cesarias,abortos,hijos vivos y hijos muertos es mayor que el numero de gestaciones', 7000);
-			/**/
+			
 		}
 		if (sum>numGest) {
 			$('input[name=numPartos]').val("0");
@@ -182,7 +183,7 @@ $(document).ready(function() {
 			$('input[name=numHijos]').val("0");
 			$('input[name=numHijosMuertos]').val("0");
 		}
-	}
+	}*/
 	function bloquearGestante(){
 		
 		if ($('#t3').prop("checked")) {
@@ -330,9 +331,4 @@ $(document).ready(function() {
 	});
 	$('#t3').click(bloquearGestante);
 	$('#t4').click(bloquearGestante);
-	$('input[name=numPartos]').blur(calcularNum);
-	$('input[name=numCesareas]').blur(calcularNum);
-	$('input[name=numAbortos]').blur(calcularNum);
-	$('input[name=numHijos]').blur(calcularNum);
-	$('input[name=numHijosMuertos]').blur(calcularNum);
 });

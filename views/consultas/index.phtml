@@ -3,6 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="card">
+		<input type="text" hidden="true" value="<?php echo BASE_URL; ?>" id="urlReportes">
 			<div class="card-content">
 				<span class="card-title blue-text">Opciones de búsqueda:</span>
 				<form action="<?php echo BASE_URL; ?>consultas/consultar" method="Post" name="consultForm" id="consultForm">
@@ -76,8 +77,8 @@
 					</div>
 
 					<center>
-						<button class="btn-large waves-effect waves-light blue" type="submit" name="action">CONSULTAR
-							<i class="material-icons right">search</i>
+						<button class="btn-large waves-effect waves-light blue" type="submit" name="action" id="btnConsultar">CONSULTAR
+							<i class="material-icons right" id="logoSearch">search</i>
 						</button>
 					</center>
 
@@ -92,7 +93,7 @@
 					<table class="centered bordered">
 						<thead>
 							<tr>
-								<th data-field="id"><FONT COLOR="2196f3 ">Identificación<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="De clic en el número de documento de identidad para ver los formatos asociados">live_help</i></FONT></th>
+								<th data-field="id"><FONT COLOR="2196f3 ">Identificación<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="De clic en el número de documento de identidad para ver los formatos asociados"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></th>
 								<th data-field="name"><FONT COLOR="2196f3 ">Nombre</FONT></th>
 								<th data-field="price"><FONT COLOR="2196f3 ">EPS</FONT></th>
 								<th data-field="price"><FONT COLOR="2196f3 ">Ficha hogar</FONT></th>
@@ -103,7 +104,7 @@
 							<tbody>
 								<tr>
 									<td>
-										<button class="waves-effect btn blue modal-trigger" href="#modal1" id="h<?php echo $i;?>" value="<?php echo $this->fichaHogar[$i]['IDENTIFICACION_MIEMBRO_HOGAR'];?>"><?php echo $this->fichaHogar[$i]['IDENTIFICACION_MIEMBRO_HOGAR'];?>
+										<button class="waves-effect btn blue modal-trigger" href="#modal1" id="h<?php echo $i;?>" value="<?php echo $this->fichaHogar[$i]['ID_MIEMBRO'];?>"><?php echo $this->fichaHogar[$i]['IDENTIFICACION_MIEMBRO_HOGAR'];?>
 										</button>
 									</td>
 									<td><?php echo $this->fichaHogar[$i]['NOMBRE_MIEMBRO'];?></td>
@@ -128,6 +129,8 @@
 <input type="text" hidden="true" id="contador" value="<?php echo $i;?>">
 		<div class="row">
 			<div id="modal1" class="modal">
+			<div class="modal-content" id="conFicha" style="margin:0px;">
+			</div>
 				<div class="modal-content" id="contFormatos">
 				</div>
 				<div class="modal-footer">

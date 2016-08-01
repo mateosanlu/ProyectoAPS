@@ -4,16 +4,18 @@ class sincronizarController extends Controller
 {
     public function __construct() {
         parent::__construct();
-
-         $this->_sincronizar = $this->loadModel('sincronizar');
+        $this->_sincronizar = $this->loadModel('sincronizar');
+        if ($this->_sincronizar) {
+            $this->_view->_error = 'No hay conexión con el servidor';
+        }
     }
 
    
 
      public function index(){
 
-     	$this->_view->titulo = 'Ficha hogar';
-     	$this->_view->renderizar('index', 'sincronizar');
+     	$this->_view->titulo = 'Sincronización';
+     	$this->_view->renderizar('index', 'tablero');
      }
 
      public function sincronizarm(){

@@ -43,6 +43,7 @@ class kardesController extends Controller
                  $this->generarId('KA'),
                 $datos['ID_MIEMBRO'],
                 //$this->getPostParam('nomGestante'),
+                $this->getPostParam('telefonoGestante'),
                 $this->getPostParam('condicionMadres'),
                 $this->getPostParam('fichaKardes'),
                 $this->getPostParam('ipsPrimariaAten'),

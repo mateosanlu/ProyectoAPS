@@ -1,7 +1,10 @@
 	$(document).ready(function() {
-
+				var d = new Date();
+				var añoAct = d.getFullYear();
+				var mesAct =  d.getMonth() + 1;
+				var diaAct =  d.getDate();
+				$('#fechaEncuestaAiepi').val(añoAct+'-'+mesAct+'-'+diaAct);
 			$('select').material_select();
-
 			$('.datepicker').pickadate({
 			monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
 				monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
@@ -17,7 +20,25 @@
 			selectYears: 100 // Creates a dropdown of 15 years to control year
 			});
 			$('#primeraParte').click(function(){ Materialize.toast('RECUERDE: el niño(a) debe estar presente en el momento de la visita para poder evaluarlo', 6000)});
+			$('#numDiasConTos').change(function(){
+				if ($(this).val()>30) {
+					Materialize.toast('ATENCION: El menor debe ser valorado por un medico ', 4000);
+				}
+			});
+			$('#numDiasConDificultadParaRespirar').change(function(){
+				if ($(this).val()>30) {
+					Materialize.toast('ATENCION: El menor debe ser valorado por un medico ', 4000);
+				}
+			});
+			$('#opTirajeSucostalSi').click(function(){
+				Materialize.toast('ATENCION: El menor debe ser valorado por un medico ', 4000);
+			});
+			$('#opTieneEstridorSi').click(function(){
+				Materialize.toast('ATENCION: El menor debe ser valorado por un medico ', 4000);
+			});
+		
 			
+
 				var aler=true;
 			for (var i = 0; i <=5; i++) {
 				$('#tipSelecSignoRiesgoOp'+i).click(function(){
@@ -240,9 +261,6 @@
 				var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
 				return dias;
 			};
-			$('#op3MesesLevantaCabezaSi').click(function(){
-				alert(calcularEdad());
-			});
 			$('#opLeSonrienNo').click(function(){
 				if ($(this).prop('checked') && $('#opArrullanNo').prop('checked')) {
 					Materialize.toast('ATENCION:Brinde educacion para el buen trato del menor', 5000);
@@ -284,7 +302,48 @@
 			for (var i = 1; i<=15 ; i++) {
 				$('#problemaAbientalYHigieneNum'+i).click(msgHigiene);
 			}
-			
+			$('#opRecibioDesparacitacionNo').click(function(){
+				Materialize.toast("ATENCION: El menor debe recibir canalizacion de desparacitacion", 5000);
+			});
+			$('#numRespiracionesPorMin').change(function(){
+				
+				var d = new Date();
+				var añoAct = d.getFullYear();
+				var mesAct =  d.getMonth() + 1;
+				var diaAct =  d.getDate();
+				var f1=$('#fechNacimientoNiño').val(),f2=añoAct+'-'+mesAct+'-'+diaAct;
+				
+				var aFecha1 = f1.split('-');
+				var aFecha2 = f2.split('-');
+				var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]);
+				var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]);
+				var dif = fFecha2 - fFecha1;
+				var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+					if ($(this).val()>60 && dias <= 60.8334) {
+						$('#opRespiracionRapidaSi').prop('checked',true);
+					}else{
+						if (dias>60.8334 && dias <= 334.584 && $(this).val() >50) {
+						$('#opRespiracionRapidaSi').prop('checked',true);
+					}else{
+						if (dias > 365 && dias <= 1825 && $(this).val()>40) {
+						$('#opRespiracionRapidaSi').prop('checked',true);
+					}else{
+						$('#opRespiracionRapidaNo').prop('checked',true);
+					}
+					}
+						
+					}
+			});
+			$('#formAiepi').keypress(function(event){
+				if (event.which == 13) {
+					var envia=confirm('¿Desea Enviar El Formato Aiepi?');
+					if (envia==true) {
+						$('#formAiepi').submit();
+					}else{
+						event.preventDefault();
+					}
+				}
+			});
 				var checkRespirar= function(){
 					var res=document.getElementById("numDiasConDificultadParaRespirar");
 					var noResp=document.getElementById("opDificultadParaRespirarNo");
@@ -364,37 +423,7 @@
 					}
 				};
 		
-				var calcularRespiracionRapida=function(){
-					var resp=document.getElementById("numRespiracionesPorMin");
-					var d = new Date();
-				var añoAct = d.getFullYear();
-				var mesAct =  d.getMonth() + 1;
-				var diaAct =  d.getDate();
-				var f1=document.getElementById("fechNacimientoNiño").value,f2=diaAct+'/'+mesAct+'/'+añoAct;
 				
-				var aFecha1 = f1.split('/');
-				var aFecha2 = f2.split('/');
-				var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
-				var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
-				var dif = fFecha2 - fFecha1;
-				var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
-					if (resp.value>60 && dias <= 60.8334) {
-						document.getElementById("opRespiracionRapidaSi").checked=true;
-					}else{
-						if (dias>60.8334 && dias <= 334.584 && resp.value >50) {
-						document.getElementById("opRespiracionRapidaSi").checked=true;
-					}else{
-						if (dias > 365 && dias <= 1825 && resp.value>40) {
-						document.getElementById("opRespiracionRapidaSi").checked=true;
-					}else{
-						document.getElementById("opRespiracionRapidaNo").checked=true;
-					}
-					}
-						
-					}
-					
-					
-				};
 				
 				document.getElementById("opDificultadParaRespirarNo").addEventListener("click", checkRespirar, true);
 				document.getElementById("opDificultadParaRespirarSi").addEventListener("click", checkRespirar, true);
@@ -415,21 +444,25 @@
 				var añoAct = d.getFullYear();
 				var mesAct =  d.getMonth() + 1;
 				var diaAct =  d.getDate();
-				var f1=document.getElementById("fechNacimientoNiño").value,f2=diaAct+'/'+mesAct+'/'+añoAct;
-				var aFecha1 = f1.split('/');
-				var aFecha2 = f2.split('/');
-				var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
-				var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+				var f1=document.getElementById("fechNacimientoNiño").value,f2=añoAct+'-'+mesAct+'-'+diaAct;
+				var aFecha1 = f1.split('-');
+				var aFecha2 = f2.split('-');
+				var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]);
+				var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]);
 				var dif = fFecha2 - fFecha1;
 				var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
-					document.getElementById("contMedidasProtecMayor6Meses").hidden=true;
-					document.getElementById("contMedidasProtecMenor6Meses").hidden=true;
+				$('#contMedidasProtecMayor6Meses').hide();
+				$('#contMedidasProtecMenor6Meses').hide();
 					if (dias >= 0 && dias <= 182.5) {
-					document.getElementById("contMedidasProtecMenor6Meses").hidden=false;
+					$('#contMedidasProtecMenor6Meses').show();
 					}
 					if (dias>=183) {
-					document.getElementById("contMedidasProtecMayor6Meses").hidden=false;
+					$('#contMedidasProtecMayor6Meses').show();
+				}
+				if (dias<=730.5) {
+					$('#divRecibiDesparacitacion').hide();;
+					$('#divFechaRecibeDesparitacion').hide();
 				}
 
-		})
+		});
 				

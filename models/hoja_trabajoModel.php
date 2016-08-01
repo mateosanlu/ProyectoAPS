@@ -39,6 +39,7 @@ class hoja_trabajoModel extends Model
     {
         $datos = $this->_db->query(
                 "SELECT DISTINCT
+                  ficha_hogar.ID_HOGAR,
                   (
                     tb1.FICHA_HOGAR_ID_FIC_HOGAR
                   ),
@@ -150,7 +151,9 @@ class hoja_trabajoModel extends Model
                     WHERE
                       miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR = '$idFicha'
                     AND hoja_trabajo._CHECK = 0
-                  ) AS tb1"
+                  ) AS tb1
+                  INNER JOIN ficha_hogar ON tb1.FICHA_HOGAR_ID_FIC_HOGAR = ficha_hogar.ID_FIC_HOGAR"
+
                 );
         
         return $datos->fetchall();

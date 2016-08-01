@@ -46,7 +46,8 @@ class generalModel extends Model
                                       hoja_trabajo._CHECK AS _CHECK,
                                       miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR AS ID_FICHA,
                                       miembros_hogar.NOMBRE_MIEMBRO AS NOMBRE_MIEMBRO,
-                                      miembros_hogar.APELLIDO_MIEMBRO AS APELLIDO_MIEMBRO
+                                      miembros_hogar.APELLIDO_MIEMBRO AS APELLIDO_MIEMBRO,
+                                      miembros_hogar.SEXO AS SEXO
                                     FROM
                                       hoja_trabajo
                                     INNER JOIN
@@ -62,7 +63,9 @@ class generalModel extends Model
         $ficha = $this->_db->query("SELECT
                                       miembros_hogar.*,
                                       municipios.DES_MUNICIPIO,
-                                      barrios.DES_BARRIO
+                                      barrios.DES_BARRIO,
+                                      eps.ID_EPS AS ID_EPS,
+                                      eps.DES_EPS AS DES_EPS
                                     FROM
                                       miembros_hogar
                                     INNER JOIN
@@ -71,6 +74,8 @@ class generalModel extends Model
                                       municipios ON ficha_hogar.MUNICIPIOS_ID_MUNICIPIO = municipios.ID_MUNICIPIO
                                     INNER JOIN
                                       barrios ON ficha_hogar.BARRIOS_ID_BARRIO = barrios.ID_BARRIO 
+                                    INNER JOIN 
+                                      eps ON eps.ID_EPS = miembros_hogar.EPS_ID_EPS
                                     WHERE
                                       miembros_hogar.ID_MIEMBROS_HOGAR = '$idMiembro'");
         return $ficha->fetch();
@@ -79,6 +84,7 @@ class generalModel extends Model
     public function getDatosFichaAiepi($idTarea)
     {
         $ficha = $this->_db->query("SELECT
+                                    miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR AS ID_FICHA,
                                     hoja_trabajo.ID_TAREA AS ID_TAREA,
                                     miembros_hogar.ID_MIEMBROS_HOGAR AS ID_MIEMBRO,
                                     municipios.ID_MUNICIPIO AS ID_MUNICIPIO,

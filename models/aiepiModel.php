@@ -97,7 +97,6 @@ class aiepiModel extends Model
 		,$opApetito
 		,$opCabello
 		,$opEdema
-		,$opMarcaDelColorBrazo
 		,$mediaMarcaColorBrazo
 		,$opTomaSenoMen6Meses
 		,$numVecesTomaSenoDiaMen6Meses
@@ -147,9 +146,11 @@ class aiepiModel extends Model
 		,$opRiesgosEnElHogar
 		,$nomGeCaVi
 		){
+			
 		$sql="INSERT INTO general_aiepi values (
 	'".$idGeneralAiepi."',
 	'".$nomGeCaVi."',
+	'".$tipoUsuario."',
 	'".$tipPoblacion."',
 	'".$nombreAcompañante."',
 	'".$parentesco."',
@@ -310,7 +311,7 @@ miembros_hogar.ID_MIEMBROS_HOGAR=general_aiepi.MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR
 INNER JOIN eps ON eps.ID_EPS=miembros_hogar.EPS_ID_EPS
 INNER JOIN ficha_hogar ON ficha_hogar.ID_FIC_HOGAR=miembros_hogar.FICHA_HOGAR_ID_FIC_HOGAR
 INNER JOIN usuarios ON usuarios.ID_USUARIO=general_aiepi.USUARIOS_ID_USUARIO
-WHERE IDENTIFICACION_MIEMBRO_HOGAR='".$fichaAiepi."'";
+WHERE MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$fichaAiepi."'";
 	$datosAiepi=$this->_db->query($query);
 	return $datosAiepi->fetchall();
 	}

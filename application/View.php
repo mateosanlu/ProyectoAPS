@@ -100,6 +100,7 @@ class View
         }
         
         $_layoutParams = array(
+            'ruta_layout' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/',
             'ruta_css' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/css/',
             'ruta_img' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/img/',
             'ruta_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/js/',

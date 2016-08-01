@@ -12,9 +12,11 @@ class cancer_mamaModel extends Model
                         $valorTest3, 
                         $valorTest4, 
                         $idUsuario,
-                        $idMiembro)
+                        $idMiembro,
+                        $email,
+                        $telefono)
 	{
-       $sql = "insert into cancer_mama_general values " . "('".$id."', '".$valorTest1."', '".$valorTest2."', '".$valorTest3."', '".$valorTest4."', '".$idUsuario."', '".$idMiembro."', CURRENT_TIMESTAMP);";
+       $sql = "insert into cancer_mama_general values " . "('".$id."', '".$valorTest1."', '".$valorTest2."', '".$valorTest3."', '".$valorTest4."', '".$idUsuario."', '".$idMiembro."', CURRENT_TIMESTAMP , '".$email."', '".$telefono."');";
        
        $this->_db->query($sql);
 

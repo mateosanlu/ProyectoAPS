@@ -1,12 +1,12 @@
-<div class="container">
-	<h2 class="center">FORMATOS PENDIENTES</h2>
+;<div class="container">
+	<h2 class="center" style="color:#2196f3" >FORMATOS PENDIENTES</h2>
 	<br><br>
 	<div class="row">
 		<div class="input-field col s12 m12">
-				<table class="striped">
+				<table class="bordered centered bordered">
 					<thead>
 						<tr>
-							<th># FICHA HOGAR</th>
+							<th>N&uacute;mero Ficha Hogar</th>
 							<th>Kardex de Gestantes</th>
 							<th>Cancer de mama</th>
 							<th>Ficha AIEPI</th>
@@ -14,28 +14,52 @@
 							<th>Demanda Inducida</th>
 						</tr>
 					</thead>
+					
 					<tbody class="center">
+						<?php $cero = 'blue lighten-4';
+							$masdeuno = 'pink lighten-3' ?>
 						<?php if(isset($this->pendientes)) : ?>
 							<?php for($i = 0; $i < count($this->pendientes); $i++):?>
 								<tr>
 									<td class="center">
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?></a>
+										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['ID_HOGAR']; ?></a>
 									</td>
-									<td class="center">
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['KARDES']; ?></a>
+									
+									<?php if ($this->pendientes[$i][0]['KARDES'] != 0) { $color = $masdeuno;
+									}else{	$color = $cero; } ?>
+
+									<td class="center <?php echo $color; ?>">
+										<a class="black-text" href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['KARDES']; ?></a>
 									</td>
-									<td class="center">
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['CANCER_MAMA']; ?></a>
+									
+									<?php if ($this->pendientes[$i][0]['CANCER_MAMA'] != 0) { $color = $masdeuno;
+									}else{	$color = $cero; } ?>
+
+									<td class="center <?php echo $color; ?>">
+										<a class="black-text" href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['CANCER_MAMA']; ?></a>
 									</td>
-									<td class="center">
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['AIEPI']; ?></a>
+
+									<?php if ($this->pendientes[$i][0]['AIEPI'] != 0) { $color = $masdeuno;
+									}else{	$color = $cero; } ?>
+
+									<td class="center <?php echo $color; ?>">
+										<a class="black-text" href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['AIEPI']; ?></a>
 									</td>
-									<td class="center">
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['DEMANDA_INDUCIDA']; ?></a>
+
+									<?php if ($this->pendientes[$i][0]['FINDRISK'] != 0) { $color = $masdeuno;
+									}else{	$color = $cero; } ?>
+
+									<td class="center <?php echo $color; ?>">
+										<a class="black-text" href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['FINDRISK']; ?></a>
 									</td>
-									<td class="center">
-										<a href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['FINDRISK']; ?></a>
+
+									<?php if ($this->pendientes[$i][0]['DEMANDA_INDUCIDA'] != 0) { $color = $masdeuno;
+									}else{	$color = $cero; } ?>
+
+									<td class="center <?php echo $color; ?>">
+										<a class="black-text" href="<?php echo BASE_URL.'hoja_trabajo/editar/'.$this->pendientes[$i][0]['FICHA_HOGAR_ID_FIC_HOGAR']; ?>"><?php echo $this->pendientes[$i][0]['DEMANDA_INDUCIDA']; ?></a>
 									</td>
+									
 								</tr>
 							<?php endfor;?>
 						<?php endif; ?>

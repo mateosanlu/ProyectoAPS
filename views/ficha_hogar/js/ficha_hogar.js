@@ -15,17 +15,23 @@ $(document).ready(menu);
    
      $("select[name=municipio]").change(function(){
 
-           $("input[name=codigo_municipio]").val($(this).val()); 
-           $("#codigo_hogar").val($(this).val());
+           $("input[name=codigo_municipio]").val($(this).val());
+           barrio=$("input[name=codigo_barrio]").val(); 
+           Identidad=$('#ficha_doc').val();
+           $("#codigo_hogar").val($(this).val()+barrio+'-'+Identidad);
+           $('#cod_').removeClass('blue');
+           $('#cod_').addClass('visto');
     
 
     });
 
 
 
-$("select[name=nombreBarrio]").change(function(){
+/*
+$("input[name=buscar]").change(function(){
 
-        $("input[name=codigo_barrio]").val($(this).val()); 
+
+        $("input[name=codigo_barrio]").val($(this).attr('id')); 
 
          if ( $('input:radio[name=ubicacion]:checked').val() == '1') {
        
@@ -35,11 +41,21 @@ $("select[name=nombreBarrio]").change(function(){
 
 
       }
-     
+  
       
     });
 
+*/
+/*
 
+ $('#tabla-adiccionHigiene tbody tr:eq(0) select[name="consumePsicoactivos[]"] ').change(function(){
+          if ($(this).val() !='393') {
+             Materialize.toast('ATENCION: Brindar valoración por psicología', 7000);
+        }
+         
+          });
+
+*/
  $("select[name=nombreVereda]").change(function(){
 
 
@@ -47,9 +63,9 @@ $("select[name=nombreBarrio]").change(function(){
       
          $("#codigo_hogar").val();
          var v =   $("input[name=codigo_municipio]").val();
-         $("#codigo_hogar").val(v+$(this).val()); 
+         Identidad=$('#ficha_doc').val();
          $("input[name=numVereda]").val($(this).val()); 
-
+         $("#codigo_hogar").val(v+$(this).val()+'-'+Identidad); 
 
       }
      
@@ -62,7 +78,7 @@ $("select[name=nombreBarrio]").change(function(){
       
              $("#codigo_hogar").val();
              var m =   $("input[name=codigo_municipio]").val();
-             var b =   $("select[name=nombreBarrio]").val();  
+             var b =   $("input[name=codigo_barrio]").val();  
              $("#codigo_hogar").val(m+b+"-"+$(this).val()); 
 
         }else if($('input:radio[name=ubicacion]:checked').val() == '2'){
@@ -76,7 +92,7 @@ $("select[name=nombreBarrio]").change(function(){
       
     });
 
-  $("#guardar-form" ).prop( "disabled", true );
+  $("#create_account" ).prop( "disabled", true );
   $('#guardarFirma').click(ActivarBotonGuardar); 
 
 //alert( $("select[name=tipoHogar]").has('option').val());
@@ -179,12 +195,14 @@ $("select[name=nombreBarrio]").change(function(){
 
 
  
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
 
 
 
-
-    $('input[name=noAplicaBarrio]').click(function(){ aplicaNomenclatura($(this).is(':checked') ,'.nomenclaturaBarrio');});
-    $('input[name=noAplicavereda]').click(function(){ aplicaNomenclatura($(this).is(':checked') ,'.nomenclaturaVereda');});
+    $('input[name=noAplicaBarrio]').click(function(){ aplicaNomenclatura($(this).is(':checked') ,'nomenclaturaBarrio');});
+    $('input[name=noAplicavereda]').click(function(){ aplicaNomenclatura($(this).is(':checked') ,'nomenclaturaVereda');});
 
     $('#animales').hide();
     $("select[name=animalesCasa]").change(function(){ VentaInOut($(this).val(),'1','#animales');});
@@ -211,23 +229,26 @@ $("select[name=nombreBarrio]").change(function(){
     $('.animalesCasaTipo6').hide();
     $('#animalesCasaTipo6').click(function(){ otroCheck(   $(this).is(':checked') ,'.animalesCasaTipo6');});
 
+    $('.animalesCasaTipo7').hide();
+    $('#animalesCasaTipo7').click(function(){ otroCheck(   $(this).is(':checked') ,'.animalesCasaTipo7');});
 
-   /* $("select[name='opccionesAlcohol[]']").hide();
+  $('#buscar').keyup(function(){
+    $('.buscar').html('')
+    $.post('/ProyectoAPS/ficha_hogar/buscador',{
+          id:$(this).val()
+    },function(datos){
+        datos = $.parseJSON(datos);
+        
+        for (var i = datos.length - 1; i >= 0; i--) {
+            $('.buscar').append('<input class="bus" id="'+datos[i]['ID_BARRIO']+'"  value="'+datos[i]['DES_BARRIO']+'"  onclick=v(this.value,this.id,this)  onkeypress=v(this.value,this.id,this) readonly></input>')
+        }
+       
+    })
 
-    $("select[name='consumeAlcohol[]']").change(function(){
+    
+  });
 
 
-     //VentaInOut($(this).val(),'1',"select[name='opccionesAlcohol[]']");
-alert("SDsd");
-
-   });
-     
-*/
-
-
- /*   $('.otraCondicionespecial').hide();
-    $("select[name=estapaCiclovital[] ]").change(function(){cualOpccion('6','.otraCondicionespecial',$(this).val());});
-   */
    }
 
 function VentaInOut(valor_select,comparador,id){
@@ -252,19 +273,37 @@ function VentaInOut(valor_select,comparador,id){
 
  function aplicaNomenclatura(check,clase){
     if (check) {
-                $(clase).hide();
+                $('.'+clase).hide();
+                $('.'+clase+' > input').val("");
+                $('input[name='+clase+']').prop('required',false);
       }else{
-        $(clase).show();
-                $(clase+' > input').val("");
+                $('.'+clase).show();
+                $('.'+clase+' > input').val("");
+                $('input[name='+clase+']').prop('required',true);
       }
  }
 
+//$("input[name=buscar]").val();
 
   function zonasHogares(){
         if ($(this).attr('id')=='urbana') {
-        $('#datosRural').hide();
+          $("select[name=nombreBarrio]").prop('required',true);
+          $("input[name=buscar]").prop('required',true);
+          $("input[name=nomenclaturaBarrio]").prop('required',true);
+
+
+          $("select[name=nombreVereda]").prop('required',false);
+          $("input[name=nomenclaturaVereda]").prop('required',false);
+          $('#datosRural').hide();
           $('#datosUrbano').show();
       }else{
+
+        $("select[name=nombreVereda]").prop('required',true);
+        $("input[name=nomenclaturaVereda]").prop('required',true);
+
+        $("input[name=codigo_barrio]").prop('required',false);
+        $("input[name=nomenclaturaBarrio]").prop('required',false);
+        $("input[name=buscar]").prop('required',false);
         $('#datosUrbano').hide();
           $('#datosRural').show();
       }
@@ -278,7 +317,15 @@ function VentaInOut(valor_select,comparador,id){
 
 $('#ts  > tr:last').after('<tr>'+
                                     '<td WIDTH="600"><input id="ficha_doc" name="docIdentidad[]" placeholder="Documento Identidad"  type="number" class="validate" required></td>'+
-
+                                    '<td WIDTH="400"> '+ 
+                                      '<select class="browser-default" name="tipoDoc[]" required>'+
+                                        '<option value="" disabled selected>Tipo Documento</option>'+
+                                        '<option value="Cedula de ciudadanía">1| Cedula de ciudadanía</option>'+
+                                        '<option value="Tarjeta de identidad">2| Tarjeta de identidad</option>'+
+                                        '<option value="Registro civil">3| Registro civil </option>'+
+                                        '<option value="Cedula de extranjería">4| Cedula de extranjería </option>'+
+                                      '</select>'+
+                                    '</td>'+
                                     '<td WIDTH="600"><input  name="nomApe[]" class="name1" placeholder="Nombres"  type="text" class="validate" required></td>'+
 
                                     '<td WIDTH="600"><input  name="Apellido[]" placeholder="Apellidos"  type="text" class="validate" required></td>'+
@@ -288,10 +335,10 @@ $('#ts  > tr:last').after('<tr>'+
                                     '<td WIDTH="300"><input class="edad" name="edad[]" placeholder="Edad" type="text"   class="validate"  required readonly></td>'+
 
                                     '<td WIDTH="400">  '+
-                                     ' <select class="browser-default" name="sexo[]">'+
+                                     ' <select class="browser-default" name="sexo[]" required>'+
                                        ' <option value="" disabled selected>Genero</option>'+
-                                        '<option value="M">Masculino</option>'+
-                                        '<option value="F">Femenino</option>'+
+                                        '<option value="M">1| Masculino</option>'+
+                                        '<option value="F">2| Femenino</option>'+
                                       '</select>    '+
                                     '</td>'+
 
@@ -317,7 +364,7 @@ $('#ts  > tr:last').after('<tr>'+
 $('#tablaSocioeconomica tr:last').after(
                               ''+
                                ' <tr>'+
-                                 ' <td width="600"600 style="vertical-align:top;"><input disabled placeholder="Nombre" class="name2" type="text" class="validate"></td>'+
+                                 ' <td width="600"600 style="vertical-align:top;"><input readonly placeholder="Nombre" class="name2" type="text" class="validate"  name="nombres"></td>'+
                                   '<td width="600" style="vertical-align:top;">  '+
                                    ' <select class="browser-default" name="escolaridad[]" required>'+
                                     '  <option value="" disabled selected>Escolaridad</option>'+
@@ -373,18 +420,19 @@ $('#tablaSocioeconomica tr:last').after(
                                ' </td>'+
 
                                ' <td width="600" style="vertical-align:top;">  '+
-                                 ' <select class="browser-default" name="regimen[]" >'+
-                                   ' <option value="" disabled selected>Regimen</option>'+
+                                 ' <select class="browser-default bluOptions" name="regimen[]" >'+
+                                   ' <option value="561" selected>Seleccione una opción </option>'+
                                    ' <option value="326">1 | Contributivo</option>'+
                                   '  <option value="327">2 | Subsidiado</option>'+
                                    ' <option value="328">3 | Población pobre no asegurada (Vinculado)</option>'+
-                                   ' <option value="329">3 | Régimen especial</option>'+
+                                   ' <option value="329">4 | Régimen especial</option>'+
+                                   '<option  value="561">5 | No aplica</option>'+
                                  ' </select>      '+
                                ' </td >'+
 
                                 '<td width="500" style="vertical-align:top;">  '+
-                                 ' <select class="browser-default" name="tipoVincuacion[]" >'+
-                                   ' <option value="" disabled selected>Tipo de vinculación</option>'+
+                                 ' <select class="browser-default bluOptions" name="tipoVincuacion[]" >'+
+                                   ' <option value="332" selected>Seleccione una opción </option>'+
                                    ' <option value="330">1 | Cotizante</option>'+
                                    ' <option value="331">2 | Beneficiario</option>'+
                                    ' <option value="332">3 | No aplica</option>'+
@@ -392,8 +440,8 @@ $('#tablaSocioeconomica tr:last').after(
                                ' </td>'+
 
                                ' <td width="500" style="vertical-align:top;">'+
-                                  '<select class="browser-default eps" name="nomEps[]" >'+
-                                   ' <option value="" disabled selected>EPS</option>'+
+                                  '<select class="browser-default eps bluOptions" name="nomEps[]" >'+
+                                   ' <option value="201" selected>Seleccione una EPS</option>'+
                                 '  </select>'+
                                ' </td>'+
                 
@@ -419,7 +467,7 @@ for (var i = ($("#tabla-hogar tr").length) - 1; i >= 0; i--) {
   
  
 $('#tabla-vulnerabilidad tr:last').after('<tr>'+
-                                      '<td width="600" style="vertical-align:top;"><input disabled placeholder="Nombre" class="name3" type="text" class="validate"></td>'+
+                                      '<td width="600" style="vertical-align:top;"><input readonly placeholder="Nombre" class="name3" type="text" class="validate"  name="nombres"></td>'+
                                 
 
                                         '<td width="600" style="vertical-align:top;">'+
@@ -429,8 +477,8 @@ $('#tabla-vulnerabilidad tr:last').after('<tr>'+
                                          '   <option value="340">3 | Auditiva</option>'+
                                         '    <option value="341">4 | Visual</option>'+
                                         '    <option value="342">5 | Cognitiva o mental</option>'+
-                                         '   <option value="343">5 | No aplica</option>'+
-                                         '   <option value="343" >6 | Otros </option>'+
+                                         '   <option value="537">6 | No aplica</option>'+
+                                         '   <option value="343" >7 | Otros </option>'+
                                         '  </select>'+
                                          ' <div class="input-field col s12 otracondicionDiscapacidad ">'+
                                          '   <input name="otracondicionDiscapacidad[]" placeholder="¿Cuál?" type="text" class="validate">'+
@@ -444,7 +492,7 @@ $('#tabla-vulnerabilidad tr:last').after('<tr>'+
                                          '   <option value="345">2 | Afrodescendiente</option>'+
                                          '   <option value="346">3 | Mulato</option>'+
                                           '  <option value="347">4 | Gitano ROM</option>'+
-                                         '   <option value="348">5 | No aplica</option>'+
+                                         '   <option value="536">5 | No aplica</option>'+
                                           '  <option value="348">6 | Otros </option>'+
                                          ' </select>'+
                                          ' <div class="input-field otragrupoEtnico">'+
@@ -476,32 +524,32 @@ $('#tabla-vulnerabilidad tr:last').after('<tr>'+
                                             '  <option value="362">7 | No aplica</option>'+
                                           '  </select></td>'+
 
-                                           ' <td width="600" style="vertical-align:top;"><select class="browser-default" name="adolecentesEmbarazadas[]" required>'+
-                                            '  <option value="" disabled selected> Adolescentes en embarazo dependientes</option>'+
+                                           ' <td width="600" style="vertical-align:top;"><select class="browser-default bluOptions" name="adolecentesEmbarazadas[]" required>'+
+                                            '  <option value="368" selected> Seleccione una opción </option>'+
                                             '  <option value="363">1 | Adolescente menor de 15 años embarazada sin control prenatal</option>'+
                                             '  <option value="364">2 | Adolescente menor de 15 años embarazada con control prenatal </option>'+
                                             '  <option value="365">3 | Adolescente entre 15 y 19 años embarazada sin control prenatal</option>'+
                                             '  <option value="366">4 | Adolescente entre 15 y 19 años embarazada con control prenatal</option>'+
                                             '  <option value="367">5 | Adolescente entre 15 y 19 años embarazada con control prenatal catalogada de alto riesgo</option>'+
-                                            '  <option value="368">6 | No aplica</option>'+
+                                            '  <option value="368" >6 | No aplica</option>'+
                                            ' </select></td>'+
 
-                                           ' <td width="600" style="vertical-align:top;"><select class="browser-default" name="menorTrabajador[]" required>'+
-                                           '   <option value="" disabled selected>Menor trabajador</option>'+
+                                           ' <td width="600" style="vertical-align:top;"><select class="browser-default bluOptions"  name="menorTrabajador[]" required>'+
+                                           '   <option value="371" selected >Seleccione una opción </option>'+
                                              ' <option value="369">1 | Menor trabajador estudiando</option>'+
                                             '  <option value="370">2 | Menor trabajador que no está estudiando </option>'+
-                                           '   <option value="371">3 | No aplica</option>'+
+                                           '   <option value="371" >3 | No aplica</option>'+
                                            ' </select></td>'+
 
-                                           ' <td width="600" style="vertical-align:top;"><select class="browser-default" name="menoresDesercioescolar[]" required>'+
-                                             ' <option value="" disabled selected>Menores en deserción escolar</option>'+
+                                           ' <td width="600" style="vertical-align:top;"><select class="browser-default bluOptions" name="menoresDesercioescolar[]" required>'+
+                                             ' <option value="378" selected >Seleccione una opción </option>'+
                                             '  <option value="372">1 | Desertor escolar por trabajar</option>'+
                                              ' <option value="373">2 | Desertor escolar por violencia escolar</option>'+
                                              ' <option value="374">3 | Desertor escolar por condiciones económicas</option>'+
                                             '  <option value="375">4 | Desertor escolar por desmotivación personal</option>'+
                                             '  <option value="376">5 | Desertor escolar por distancia al centro educativo</option>'+
                                             '  <option value="377">6 | Desertor escolar por otros motivos</option>'+
-                                            '  <option value="378">7 | No aplica</option>'+
+                                            '  <option value="378" >7 | No aplica</option>'+
                                          '   </select></td>'+
                                         '  </tr>');
 
@@ -511,7 +559,7 @@ $('#tabla-vulnerabilidad tr:last').after('<tr>'+
 
 
 $('#tabla-adiccionHigiene tr:last').after('<tr>'+
-                                               '<td width="600"><input disabled placeholder="Nombre" class="name4" type="text" class="validate"></td>'+
+                                               '<td width="600"><input readonly placeholder="Nombre" class="name4" type="text" class="validate"  name="nombres"></td>'+
                                               ' <td width="600">'+
                                                  '<select class="browser-default" name="consumeAlcohol[]" required>'+
                                                  '  <option value="" disabled selected>Consumo de alcohol</option>'+
@@ -535,7 +583,7 @@ $('#tabla-adiccionHigiene tr:last').after('<tr>'+
 
                                               ' </select></td>'+
 
-                                              ' <td width="600"><select class="browser-default" name="consumePsicoactivos[]" required>'+
+                                              ' <td width="600"><select class="browser-default" name="consumePsicoactivos[]" required onchange="mensageSelect(this.value)" >'+
                                                 ' <option value="" disabled selected>Consumo de psicoactivos</option>'+
                                                 ' <option value="390">1 | Consume psicoactivos entre 1 y más veces al día</option>'+
                                                 ' <option value="391">2 | Consume psicoactivos con más de una vez en una semana corriente</option>'+
@@ -555,9 +603,9 @@ $('#tabla-adiccionHigiene tr:last').after('<tr>'+
                                                 ' <option value="398">1 | Se lava los dientes al menos una vez al día con agua, crema y cepillo</option>'+
                                                 ' <option value="399">2 | Se lava los dientes al menos dos veces al día con agua, crema y cepillo</option>'+
 
-                                                 '<option value="400">2 | Se lava los dientes tres veces al día con agua, crema y cepillo</option>'+
-                                                 '<option value="401">3 | Solo se enjuga con agua los dientes.</option>'+
-                                                ' <option value="402">4 | No de lava los dientes.</option>            '+
+                                                 '<option value="400">3 | Se lava los dientes tres veces al día con agua, crema y cepillo</option>'+
+                                                 '<option value="401">4 | Solo se enjuga con agua los dientes.</option>'+
+                                                ' <option value="402">5 | No de lava los dientes.</option>            '+
                                               ' </select></td>'+
                                               ' <td width="600"><select class="browser-default" name="actividadFisica[]" required>'+
                                                ' <option value="" disabled selected>Actividad física</option>'+
@@ -567,15 +615,15 @@ $('#tabla-adiccionHigiene tr:last').after('<tr>'+
                                                 ' <option value="406">4 | 4 y 5 a la semana</option>'+
                                                '  <option value="407">5 | 6 y 7 a la semana</option>'+
                                               ' </select></td>'+
-                                               '<td width="600"><select class="browser-default" name="mujerGestacion[]" required>'+
-                                                 '<option value="" disabled selected>Mujer gestación</option>'+
+                                               '<td width="600"><select class="browser-default bluOptions" name="mujerGestacion[]" required>'+
+                                                 '<option value="414" selected>Seleccione un opción </option>'+
                                                 ' <option value="412">1 | Mujer en gestación con control prenatal</option>'+
                                                 ' <option value="413">2 | Mujer en gestación sin control prenatal</option>'+
                                                '  <option value="414">3 | No aplica</option>'+
                                               ' </select></td>'+
                                              ' <td  width="600">'+
                                             ' <select class="browser-default"  name="efermedadCardioVacular[]" required>'+
-                                                     '    <option value="" disabled  selected></option>'+
+                                                     '    <option value="" disabled  selected>Diabetes e Hipertencion</option>'+
                                                     ' <option value="538">1 | Diabetes</option>'+
                                                    '  <option value="539">2 | Hipertensión </option>'+
                                                     ' <option value="540">3 | Diabetes e Hipertensión.</option>'+
@@ -611,17 +659,20 @@ for (var i = ($("#ts > tr").length) - 1; i >= 0; i--) {
              repetirNombre(i);
              otroOpccionInvividual(i);
              fechaNacimiento(i);
-            
+             repetir(i);
 }
 
 
 
 }
+
 var fechaActual = new Date();
 function fechaNacimiento(i){
 
 $(' #ts > tr:eq('+i+') input[name="dateNacimiento[]"]').change(function(){ 
 
+$(this).css(  "box-shadow" , "2px 2px 1px #4CAF50" );
+$(this).css(  "background-color" , "white" );
 var myDate = new Date();
 arreglo = $(this).val().split('/');
 var ano =arreglo[2];
@@ -630,19 +681,81 @@ var dia =arreglo[0];
 
 
 x=edad(ano,mes,dia);
-//alert(x);
+anos=x.split(' ');
+
+
+if ((anos[1] == 'Años' && anos[0] <= 18 ) || anos[1]== 'Meses' || anos[1]=='Dias') {
+
+
+ 
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menorTrabajador[]"]').show();
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menoresDesercioescolar[]"]').show();
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menorTrabajador[]"]').prop('required',true);
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menoresDesercioescolar[]"]').prop('required',true);
+} 
+else{
+    $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menorTrabajador[]"]').hide();
+      $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menoresDesercioescolar[]"]').hide();
+      $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menorTrabajador[]"]').prop('required',false);
+      $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="menoresDesercioescolar[]"]').prop('required',false);
+
+}
+
+if((anos[1] == 'Años') && (anos[0] >= 15  && anos[0] <= 19) ){
+    $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').show();
+      $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').prop('required',true);
+}else{
+    $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').hide();
+      $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').prop('required',false);
+}
+
+if ($(' #ts > tr:eq('+i+') select[name="sexo[]"]').val() == 'M') {
+    $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').hide();
+      $('#tabla-adiccionHigiene tbody tr:eq('+i+') select[name="mujerGestacion[]"]').prop('required',false);
+}
+
+
 
                 $('#ts > tr:eq('+(i)+') .edad ').val(x);
 });
 
 }
 
-
+       
    function repetirNombre($dato){
       $('#ts > tr:eq('+$dato+') .name1').keyup(function(){
       $('#tablaSocioeconomica tbody tr:eq('+$dato+') .name2').val($(this).val());
       $('#tabla-vulnerabilidad tbody tr:eq('+$dato+') .name3').val($(this).val());
       $('#tabla-adiccionHigiene tbody tr:eq('+$dato+') .name4').val($(this).val());});
+   }
+
+   function repetir(i){
+$(' #ts > tr:eq('+i+') select[name="sexo[]"]').change(function(){ 
+   if ($(this).val() == 'M') {
+   $('#tabla-adiccionHigiene tbody tr:eq('+i+') select[name="mujerGestacion[]"]').hide();
+   $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').hide();
+   $('#tabla-adiccionHigiene tbody tr:eq('+i+') select[name="mujerGestacion[]"]').prop('required',false);
+   $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').prop('required',false);
+
+
+   }else{
+   $('#tabla-adiccionHigiene tbody tr:eq('+i+') select[name="mujerGestacion[]"]').show();
+   $('#tabla-adiccionHigiene tbody tr:eq('+i+') select[name="mujerGestacion[]"]').prop('required',true);
+   $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').show();
+   $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').prop('required',true);
+  var anos=$(' #ts > tr:eq('+i+') input[name="edad[]"]').val().split(' ');
+  
+   if((anos[1] == 'Años') && (anos[0] >= 15  && anos[0] <= 19) ){
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').show();
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').prop('required',true);
+   }else{
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').hide();
+       $('#tabla-vulnerabilidad  tbody tr:eq('+i+') select[name="adolecentesEmbarazadas[]"]').prop('required',false);
+   }
+   }
+});
+
+
    }
 
    function otroOpccionInvividual($dato){
@@ -659,16 +772,24 @@ x=edad(ano,mes,dia);
      $("#tabla-vulnerabilidad  tbody tr:eq("+$dato+") select[name='grupoEtnico[]']").change(function(){
                  cualOpccion2('348','.otragrupoEtnico ',$(this).val(),'#tabla-vulnerabilidad  tbody tr:eq('+$dato+')');});
 
+    
+ $('#tabla-adiccionHigiene tbody tr:eq('+$dato+') select[name="consumePsicoactivos[]"] ').change(function(){
+          if ($(this).val() !='393') {
+             Materialize.toast('ATENCION: Brindar valoración por psicología', 7000);
+        }
+         
+         
+     });
 
    }
 
 function  ActivarBotonGuardar(){
-  if ($( "#guardar-form" ).prop({disabled: true})) {
+  if ($( "#create_account" ).prop({disabled: true})) {
 
-      $( "#guardar-form" ).prop( "disabled", false );
+      $( "#create_account" ).prop( "disabled", false );
 
   }else{
-     $( "#guardar-form" ).prop( "disabled", true );
+     $( "#create_account" ).prop( "disabled", true );
   }
 
 } 
@@ -723,5 +844,132 @@ function  ActivarBotonGuardar(){
 
    }
 
+$("input[name=buscar]").removeData();
+   
+  function v(val,id,x){
+     
+  
+    if (val != 'buscar') {
+     $('input[name=buscar]').val(val);
+     $('input[name=codigo_barrio]').val(id);
+     $('.buscar').html('');
+     
+     //$("#codigo_hogar").val();
+     var municipio = $("input[name=codigo_municipio]").val();
+     Identidad=$('#ficha_doc').val();
+     $("#codigo_hogar").val(municipio+id+'-'+Identidad); 
+    }
+
+  
+        
+  }
 
 
+function validarFaltantes(){
+  var val='';
+    
+      
+      if ($('select[name=municipio] option:selected').val() == '') {val=val+'preg2 -';}
+      if ($('select[name=tipoHogar] option:selected').val() == '') {val=val+'preg4 -';}
+      if ($('select[name=jefeHogar] option:selected').val() == '') {val=val+'preg5 -';}
+      if ($('input[name=telefono_jefe_hogar]').val() == '') { val=val+'preg6 -';}
+      if (!$('input[name=ubicacion]').is(':checked')) { val=val+'(preg 8 o preg 9) -';}
+  
+      if ($('input:radio[name=ubicacion]:checked').val() == '1') {
+      if ($('input[name=buscar]').val() == '') { val=val+'preg10 -';}
+      if ($('#noAplicaBarrio').prop('checked')){}else{ if ($('input[name=nomenclaturaBarrio]').val() == '') { val=val+'preg12 -';}}}
+      else{
+      if ($('select[name=nombreVereda] option:selected').val() == '') { val=val+'preg14 -';}
+      if ($('#noAplicavereda').prop('checked')){}else{ if ($('input[name=nomenclaturaVereda]').val() == '') { val=val+'preg16 -';}}
+      }
+
+
+      $($('input[name="docIdentidad[]"]')).each(function( index ) {if ($(this).val()== '') { val=val+'preg18 -';} }); 
+      $($('select[name="tipoDoc[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg19 -';} });
+      $($('input[name="nomApe[]"]')).each(function( index ) {if ($(this).val()== '') { val=val+'preg20 -';} }); 
+      $($('input[name="Apellido[]"]')).each(function( index ) {if ($(this).val()== '') { val=val+'preg21 -';} });
+      $($('input[name="dateNacimiento[]"]')).each(function( index ) {if ($(this).val()== '') { val=val+'preg22 -';} });  
+      $($('input[name="edad[]"]')).each(function( index ) {if ($(this).val()== '') { val=val+'preg23 -';} });
+      $($('select[name="sexo[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg24 -';} }); 
+      $($('select[name="vinculacionJefe[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg25 -';} });  
+     
+
+      $($('select[name="escolaridad[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg26 -';} });
+      $($('select[name="tipoOcupacion[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg27 -';} });  
+      $($('select[name="recivepago[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg28 -';} });  
+      $($('select[name="aportaHogar[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg29 -';} }); 
+
+
+      $($('select[name="condicionDiscapacidad[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg33 -';} });
+      $($('select[name="grupoEtnico[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg34 -';} });
+      $($('select[name="victimaConflicto[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg35 -';} });
+      $($('select[name="poblacionLGBT[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg36 -';} });
+      
+      $($('select[name="consumeAlcohol[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg41 -';} }); 
+      $($('select[name="consumeCigarrillo[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg42 -';} }); 
+      $($('select[name="consumePsicoactivos[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg43 -';} }); 
+      $($('select[name="higieneCorporal[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg44 -';} }); 
+      $($('select[name="higieneBucal[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg45 -';} }); 
+      $($('select[name="actividadFisica[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg46 -';} }); 
+      $($('select[name="efermedadCardioVacular[]"] option:selected')).each(function( index ) {if ($(this).val()== '') { val=val+'preg48 -';} }); 
+
+
+       if ($('select[name=tenenciaVivienda] option:selected').val() == '') { val=val+'preg49 -';}
+       if ($('select[name=zonaVivienda] option:selected').val() == '') { val=val+'preg50 -';}
+       if ($('select[name=tipoVivienda] option:selected').val() == '') { val=val+'preg51 -';}
+       if ($('select[name=materialTecho] option:selected').val() == '') { val=val+'preg52 -';}
+       if ($('select[name=materialParedes] option:selected').val() == '') { val=val+'preg53 -';}
+       if ($('select[name=materialPiso] option:selected').val() == '') { val=val+'preg54 -';}
+       if ($('select[name=abastecimientoFuente] option:selected').val() == '') { val=val+'preg55 -';}
+       if ($('select[name=abastecimientoTratamiento] option:selected').val() == '') { val=val+'preg56 -';}
+       if ($('select[name=abastecimientoAlmacenamiento] option:selected').val() == '') { val=val+'preg57 -';}
+       if ($('select[name=disposicionMecanismo] option:selected').val() == '') { val=val+'preg58 -';}
+       if ($('select[name=disposicionDispocicion] option:selected').val() == '') { val=val+'preg59 -';}
+       if ($('select[name=disposicionRecolecion] option:selected').val() == '') { val=val+'preg60 -';}
+       if ($('select[name=disposicionDisposicionbasuras] option:selected').val() == '') { val=val+'preg61 -';}
+       if ($('select[name=Energia] option:selected').val() == '') { val=val+'preg62 -';}
+       if ($('select[name=Combustible] option:selected').val() == '') { val=val+'preg63 -';}
+       if ($('select[name=cocinaSeparada] option:selected').val() == '') { val=val+'preg64 -';}
+       if ($('input[name=numDormitorios]').val() == '') { val=val+'preg65 -';}
+       if ($('input[name=numPersonaDormitorio]').val() == '') { val=val+'preg66 -';}
+       if ($('select[name=riegosFisicos] option:selected').val() == '') { val=val+'preg67 -';}
+       if ($('select[name=riesgosQuimicos] option:selected').val() == '') { val=val+'preg68 -';}
+       if ($('select[name=riesgosBiologicos] option:selected').val() == '') { val=val+'preg69 -';}
+       if ($('select[name=riesgosSociales] option:selected').val() == '') { val=val+'preg70 -';}
+       if ($('select[name=viasAcceso] option:selected').val() == '') { val=val+'preg72 -';}
+       if ($('select[name=transportePublico] option:selected').val() == '') { val=val+'preg73 -';}
+       if ($('select[name=telefono_publico] option:selected').val() == '') { val=val+'preg74 -';}
+       if ($('select[name=hogares_infantiles] option:selected').val() == '') { val=val+'preg75 -';}
+       if ($('select[name=ecuelas] option:selected').val() == '') { val=val+'preg76 -';}
+       if ($('select[name=centroSalud] option:selected').val() == '') { val=val+'preg77 -';}
+       if ($('select[name=bomberos] option:selected').val() == '') { val=val+'preg78 -';}
+       if ($('select[name=comisariaFamilia] option:selected').val() == '') { val=val+'preg79 -';}
+       if ($('select[name=centroReligioso] option:selected').val() == '') { val=val+'preg80 -';}
+       if ($('select[name=centroDeportivo] option:selected').val() == '') { val=val+'preg81 -';}
+       if ($('select[name=centroCultural] option:selected').val() == '') { val=val+'preg82 -';}
+       if ($('select[name=mercadoBasico] option:selected').val() == '') { val=val+'preg83 -';}
+       if ($('select[name=presenciaVectores] option:selected').val() == '') { val=val+'preg84 -';}
+       if ($('select[name=presenciaCentros] option:selected').val() == '') { val=val+'preg85 -';}
+       if ($('select[name=convivencia] option:selected').val() == '') { val=val+'preg88 -';}
+       if ($('select[name=hijieneVivienda] option:selected').val() == '') { val=val+'preg89 -';}
+       if ($('select[name=riesgosLaborales] option:selected').val() == '') { val=val+'preg90 -';}
+       if ($('select[name=consumoAlimentos] option:selected').val() == '') { val=val+'preg91 -';}
+       if ($('select[name=animalesCasa] option:selected').val() == '') { val=val+'preg92 -';}
+       if ($('select[name=menoresEsquemaincompleto] option:selected').val() == '') { val=val+'preg101 -';}
+       if ($('select[name=adultosEnfermedadcronica] option:selected').val() == '') { val=val+'preg102 -';}
+       if ($('select[name=miembrosSincontrolsexual] option:selected').val() == '') { val=val+'preg103 -';}
+       if ($('select[name=alteracionesNutricionales] option:selected').val() == '') { val=val+'preg104 -';}
+       if ($('select[name=consultaPorEnfermedad] option:selected').val() == '') { val=val+'preg105 -';}
+       if ($('select[name=lesionesPiel] option:selected').val() == '') { val=val+'preg106 -';}
+       if ($('select[name=violenciaMiembros] option:selected').val() == '') { val=val+'preg107 -';}
+       if ($('select[name=sinControlbucal] option:selected').val() == '') { val=val+'preg108 -';}
+       if ($('select[name=sinAsistenciamedico] option:selected').val() == '') { val=val+'preg109 -';}
+       if ($('select[name=miembroFirma] option:selected').val() == '') { val=val+'preg111 ';}
+
+      
+     return val;
+}
+
+
+
+  

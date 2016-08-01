@@ -8,6 +8,8 @@ class reportesController extends Controller
         parent::__construct();
         $this->_dom = $this->loadModel('reportes');
         $this->getLibrary('autoload.inc');
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $this->_view->titulo = $actual_link;
           
     }
     public function index(){}
@@ -239,12 +241,14 @@ $html.='
          <th></th>
          <th></th>
          <th></th>
+         <th></th>
             <th colspan="3" background="silver"><center>23.OCUPACIÓN</center></th>
             <th colspan="3" background="silver" ><center>24.VINCULACIÓN AL SGSSS</center></th>
         </tr>
           <tr class="table">
             <th>20.CÓDIGO MIEMBRO</th>
             <th>21. DOCUMENTO  IDENTIDAD</th>
+            <th>21. TIPO DOCUMENTO </th>
             <th>22. ESCOLARIDAD</th>
             <th>TIPO</th>
             <th>RECIBE PAGO</th>
@@ -260,8 +264,9 @@ $html.='
 
          for ($i=0; $i < count($miembros); $i++) { 
             $html.=' <tr class="table">
-        
+            <th class="bnone">'.($this->calcularCodigo($miembros[$i]["ID_MIEMBRO"])).'</th>
             <th class="bnone">'.$miembros[$i]["IDENTIFICACION_MIEMBRO_HOGAR"].'</th>
+            <th class="bnone">'.$miembros[$i]["TIPO_DOCUMENTO"].'</th>
             <th class="bnone">'.$this->_dom->getRespuesta($miembros[$i]["ID_MIEMBROS_HOGAR"],'106').'</th>
             <th class="bnone">'.$this->_dom->getRespuesta($miembros[$i]["ID_MIEMBROS_HOGAR"],'107').'</th>
             <th class="bnone">'.$this->_dom->getRespuesta($miembros[$i]["ID_MIEMBROS_HOGAR"],'108').'</th>
@@ -319,7 +324,7 @@ $html.='
         <thead>
           <tr class="table">
             <th>37.OTRAS CONDICIONES DE VULNERABILIDAD IDENTIICADAS</th>
-            <th class="bnone">'.$this->_dom->getRespuestasGrupalesSinOpccion($id_Ficha,'92').'</th>
+            <th class="bnone">'.$this->_dom->getRespuestasGrupalesSinOpccion($id_Ficha,'80').'</th>
     </tr>
      </table>
       <table width="100%" class="sections">
@@ -453,9 +458,9 @@ $html.='
         </tr>
         </thead>
         <tbody>
+            <th class="bnone">'.$this->_dom->getRespuestasGrupales($id_Ficha,'61').'</th>
             <th class="bnone">'.$this->_dom->getRespuestasGrupalesSinOpccion($id_Ficha,'103').'</th>
             <th class="bnone">'.$this->_dom->getRespuestasGrupalesSinOpccion($id_Ficha,'104').'</th>
-            <th class="bnone">'.$this->_dom->getRespuestasGrupales($id_Ficha,'61').'</th>
             <th class="bnone">'.$this->_dom->getRespuestasGrupales($id_Ficha,'62').'</th>
             <th class="bnone">'.$this->_dom->getRespuestasGrupales($id_Ficha,'63').'</th>
             <th class="bnone">'.$this->_dom->getRespuestasGrupales($id_Ficha,'64').'</th>
@@ -700,53 +705,54 @@ $dompdf->stream($hora['year'].$hora['mon'].$hora['wday'].'.pdf', array("Attachme
   function generarFindRisk($id_miembro){
 
 $miembro=$this->_dom->getMiembroFindRisk($id_miembro);
-$realizoEncuesta=$this->_dom->getUsuario($miembro[21]);
-//var_dump($miembro[12]);
-//exit();
-$fecha=explode('-',$miembro[23]);
+
+
+$realizoEncuesta=$this->_dom->getUsuario($miembro[22]);
+
+$fecha=explode('-',$miembro[24]);
 $Dia=explode(' ',$fecha[2])[0]; 
 $Mes=$fecha[1];
 $Año=$fecha[0];
 
-if($miembro[12]==0) {$rep1='Menos de 45 años';}elseif ($miembro[12]==2) {$rep1='Entre 45-54 años';}
-elseif ($miembro[12]==3) {$rep1='Entre 55-64 años';}elseif ($miembro[12]==4) {$rep1='Más de 64 años';}
+if($miembro[13]==0) {$rep1='Menos de 45 años';}elseif ($miembro[13]==2) {$rep1='Entre 45-54 años';}
+elseif ($miembro[13]==3) {$rep1='Entre 55-64 años';}elseif ($miembro[13]==4) {$rep1='Más de 64 años';}
 
-if ($miembro[13]==0) {$rep2='Menos de 25';}elseif ($miembro[13]==1) {$rep2='Entre 25-30';}elseif ($miembro[13]==3) {$rep2='Más de 30';}
+if ($miembro[14]==0) {$rep2='Menos de 25';}elseif ($miembro[14]==1) {$rep2='Entre 25-30';}elseif ($miembro[14]==3) {$rep2='Más de 30';}
 if ($miembro[10]=='M') {
-    if ($miembro[14]==0) {$rep3='Menos de 80 cm';}elseif ($miembro[14]==3) { $rep3='Entre 80-88 cm';}elseif ($miembro[14]==4) {$rep3='Más de 88 cm 4';}
+    if ($miembro[15]==0) {$rep3='Menos de 80 cm';}elseif ($miembro[15]==3) { $rep3='Entre 80-88 cm';}elseif ($miembro[15]==4) {$rep3='Más de 88 cm 4';}
 }else{
-    if ($miembro[14]==0) {$rep3='Menos de 94 cm';}elseif ($miembro[14]==3) {$rep3='Entre 94-102 cm';}elseif ($miembro[14]==4) {$rep3='Más de 102 cm';}
-}
-
-if ($miembro[15]==0) {
-    $rep4='Sí';
-}elseif ($miembro[15]==2) {
-    $rep4='No';
+    if ($miembro[15]==0) {$rep3='Menos de 94 cm';}elseif ($miembro[15]==3) {$rep3='Entre 94-102 cm';}elseif ($miembro[15]==4) {$rep3='Más de 102 cm';}
 }
 
 if ($miembro[16]==0) {
-    $rep5='Todos los días';
-}elseif ($miembro[16]==1) {
-    $rep5='No todos los días';
+    $rep4='Sí';
+}elseif ($miembro[16]==2) {
+    $rep4='No';
 }
 
 if ($miembro[17]==0) {
-     $rep6='No';
-}elseif ($miembro[17]==2) {
-     $rep6='Sí';
+    $rep5='Todos los días';
+}elseif ($miembro[17]==1) {
+    $rep5='No todos los días';
 }
 
 if ($miembro[18]==0) {
-    $rep7='No';
-}elseif ($miembro[18]==5) {
-    $rep7='Sí';
+     $rep6='No';
+}elseif ($miembro[18]==2) {
+     $rep6='Sí';
 }
 
 if ($miembro[19]==0) {
-    $rep8='No';
-}elseif ($miembro[19]==3) {
-    $rep8='SÍ: Abuelos, tíos o primos-hermanos (pero no:padres, hermanos o hijos)';
+    $rep7='No';
 }elseif ($miembro[19]==5) {
+    $rep7='Sí';
+}
+
+if ($miembro[20]==0) {
+    $rep8='No';
+}elseif ($miembro[20]==3) {
+    $rep8='SÍ: Abuelos, tíos o primos-hermanos (pero no:padres, hermanos o hijos)';
+}elseif ($miembro[20]==5) {
     $rep8='SÍ: Padres, hermanos o hijos';
 }
 
@@ -840,43 +846,43 @@ $html='
             <tr>
                 <td class="bnone">1. Edad</td>
                 <td class="bnone">'.$rep1.'</td>
-                <td class="bnone">'.$miembro[12].'</td>
+                <td class="bnone">'.$miembro[13].'</td>
             </tr>
             <tr class="par">
                 <td class="bnone">2. Índice de masa corporal (IMC)</td>
                 <td class="bnone">'.$rep2.'</td>
-                <td class="bnone">'.$miembro[13].'</td>
+                <td class="bnone">'.$miembro[14].'</td>
             </tr>
             <tr>
                 <td class="bnone">3. Perímetro de la cintura medido a la altura del
                  ombligo</td>
                 <td class="bnone">'.$rep3.'</td>
-                <td class="bnone">'.$miembro[14].'</td>
+                <td class="bnone">'.$miembro[15].'</td>
             </tr>
              <tr class="par">
                 <td class="bnone">4. ¿Normalmente practica usted 30 minutos cadadía de actividad física en el trabajo y/o en sutiempo libre (incluida la actividad diaria normal)?</td>
                 <td class="bnone">'.$rep4.'</td>
-                <td class="bnone">'.$miembro[15].'</td>
+                <td class="bnone">'.$miembro[16].'</td>
             </tr>
             <tr>
                 <td class="bnone">5. ¿Con cuánta frecuencia come usted vegetales o frutas?</td>
                 <td class="bnone">'.$rep5.'</td>
-                <td class="bnone">'.$miembro[16].'</td>
+                <td class="bnone">'.$miembro[17].'</td>
             </tr>
              <tr class="par">
                 <td class="bnone">6. ¿Ha tomado usted medicación para la hipertensión con regularidad?</td>
                 <td class="bnone">'.$rep6.'</td>
-                <td class="bnone">'.$miembro[17].'</td>
+                <td class="bnone">'.$miembro[18].'</td>
             </tr>
             <tr>
                 <td class="bnone">7. ¿Le han encontrado alguna vez niveles altos de glucosa en sangre, por ejemplo, en un examen médico, durante una enfermedad, durante el embarazo?</td>
                 <td class="bnone">'.$rep7.'</td>
-                <td class="bnone">'.$miembro[18].'</td>
+                <td class="bnone">'.$miembro[19].'</td>
             </tr>
             <tr class="par">
                 <td class="bnone">8. ¿A algún miembro de su familia le han diagnosticado diabetes (tipo 1 o tipo 2)?</td>
                 <td class="bnone">'.$rep8.'</td>
-                <td class="bnone">'.$miembro[19].'</td>
+                <td class="bnone">'.$miembro[20].'</td>
             </tr>
       </tbody>
     </table>
@@ -884,7 +890,7 @@ $html='
     <table width="100%" >
         <tr class="table">
             <td>Puntaje</td>
-            <td class="bnone">'.$miembro[20].'</td>
+            <td class="bnone">'.$miembro[21].'</td>
         </tr>
     </table>
 <br>
@@ -962,47 +968,43 @@ $dompdf->stream($hora['year'].$hora['mon'].$hora['wday'].'.pdf', array("Attachme
     function generarCancerMama($id_miembro){
 
 $miembroCancer=$this->_dom->getGenerarCancerMama($id_miembro);
-$realizoEncuesta=$this->_dom->getUsuario($miembroCancer[16]);
+$realizoEncuesta=$this->_dom->getUsuario($miembroCancer[17]);
 
-//var_dump($realizoEncuesta);
-//exit();
+$miembroSignosCancer=$this->_dom->getSignosCancer($miembroCancer['ID_CANCER_MAMA']);
 
-$miembroSignosCancer=$this->_dom->getSignosCancer($miembroCancer[11]);
-
-
-$fecha=explode('-',$miembroCancer[18]);
+$fecha=explode('-',$miembroCancer[19]);
 $Dia=explode(' ',$fecha[2])[0]; 
 $Mes=$fecha[1];
 $Año=$fecha[0];
 
-if ($miembroCancer[12] == 1) {
+if ($miembroCancer[13] == 1) {
     $rep1='Si';
-}elseif($miembroCancer[12] == 0) {
+}elseif($miembroCancer[13] == 0) {
     $rep1='No';
-}elseif($miembroCancer[12] == 2) {
+}elseif($miembroCancer[13] == 2) {
     $rep1='No sabe';
 }
 
 
-if ($miembroCancer[13] == 1) {
+if ($miembroCancer[14] == 1) {
     $rep2='Si';
-}elseif($miembroCancer[13] == 0) {
+}elseif($miembroCancer[14] == 0) {
     $rep2='No';
 }
 
-if ($miembroCancer[14] == 1) {
+if ($miembroCancer[15] == 1) {
     $rep3='Si';
-}elseif($miembroCancer[14] == 0) {
+}elseif($miembroCancer[15] == 0) {
     $rep3='No';
-}elseif($miembroCancer[14] == 2) {
+}elseif($miembroCancer[15] == 2) {
     $rep3='No sabe';
 }
 
-if ($miembroCancer[15] == 1) {
+if ($miembroCancer[16] == 1) {
     $rep4='Si';
-}elseif($miembroCancer[15] == 0) {
+}elseif($miembroCancer[16] == 0) {
     $rep4='No';
-}elseif($miembroCancer[15] == 2) {
+}elseif($miembroCancer[16] == 2) {
     $rep4='Sí, hace mas de dos años';
 }
 
@@ -1083,9 +1085,9 @@ $html='
         </tr>
          <tr class="table">
             <td>EMAIL</td>
-            <td class="bnone"></td>
+            <td class="bnone">'.$miembroCancer[20].'</td>
             <td>TELEFONO</td>
-            <td class="bnone"></td>
+            <td class="bnone">'.$miembroCancer[21].'</td>
         </tr>
         <tr class="table">
             <td>DIRECCION</td>
@@ -1310,8 +1312,7 @@ $html='
         <tbody >';
   for ($i=0; $i < count($DemandaInducida); $i++) { 
      $html.='<tr >
-        <td class="bnone letra-tabla">'.$DemandaInducida[$i][12].'</td>
-        <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][13]).'</td>
+        <td class="bnone letra-tabla">'.$DemandaInducida[$i][13].'</td>
         <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][14]).'</td>
         <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][15]).'</td>
         <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][16]).'</td>
@@ -1323,6 +1324,7 @@ $html='
         <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][22]).'</td>
         <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][23]).'</td>
         <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][24]).'</td>
+        <td class="bnone letra-tabla">'.$this->getTransformar($DemandaInducida[$i][25]).'</td>
         <td class="bnone letra-tabla"><img width=150px  height=80px src="'.$this->_dom->getBarrioMunicpio($DemandaInducida[0][0])['FIRMA_JEFE'].'"></td>
       
         </tr>';

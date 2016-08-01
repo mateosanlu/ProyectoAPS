@@ -13,7 +13,7 @@
 					</div>
 
 					<div class="input-field col s6">
-						<input id="apellido" type="text" class="validate" name="apellido" value="<?php echo $this->datosMiembro['APELLIDO_MIEMBRO']; ?>">
+						<input id="apellido" type="text" class="validate" name="apellido" value="<?php echo $this->datosMiembro['APELLIDO_MIEMBRO']; ?>" disabled>
 						<label for="">Apellidos</label>
 					</div>
 
@@ -21,14 +21,11 @@
 						<input id="documento" type="text" class="validate" name="documento" value="<?php echo $this->datosMiembro['IDENTIFICACION_MIEMBRO_HOGAR']; ?>" disabled pattern="[0-9]*" title="Solo se aceptan números">
 						<label for="">N. documento de identidad</label>
 					</div>
-					<div class="input-field col s12">
-						<input id="email" type="email" class="validate" name="email">
-						<label for="">Email</label>
-					</div>	
+					
 						
 
 					<div class="input-field col s6">
-						<input id="barrio" type="text" class="validate" name="barrio" value="<?php echo $this->datosMiembro['DES_BARRIO']; ?>" disabled>
+						<input id="barrio" type="text" class="validate" name="barrio" disabled value="<?php echo $this->datosMiembro['DES_BARRIO']; ?>" >
 						<label for="">Barrio</label>
 					</div>	
 
@@ -40,40 +37,21 @@
 
 				<div class="input-field col s12 l6">
 
-					<br>
-					<label for="" class="preguntas cancerMama0">Tipo de afiliación al sistema de salud* 
-						<i id='p0' class="tooltipped material-icons" data-delay="50" data-tooltip="Ayuda" data-position="right">help</i>
-					</label>	
+					<div class="input-field col s12">
+						<input id="email" type="email" class="validate" name="email" >
+						<label for="">Email</label>
+					</div>
 
-					<br>				
-					<p>
-						<input name="cancerMama0" type="radio" id="t1"  value="1"/>
-						<label class="respuestas" for="t1">Contributivo	</label>
-						<br class="contributivo"> <br class="contributivo">
-						<div class="input-field  contributivo">
-							<input placeholder="" name="contributivo" id="contributivo" type="text" class="validate">
-							<label for="">¿Cual?</label>
-						</div>
-					</p>
+					<div class="input-field col s12">
+						<input id="telefono" type="number"  pattern="[0-9]*" class="validate" name="telefono" required >
+						<label for="">Telefono</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="eps" type="text"  class="validate" name="eps"  value="<?php echo $this->datosMiembro['DES_EPS']; ?>" >
+						<label for="">EPS</label>
+					</div>	
 
-					<p>
-						<input name="cancerMama0" type="radio" id="t2" value="2" />
-						<label class="respuestas" for="t2"> Subsidiado      </label>
-						<br class="subsidiado"> <br class="subsidiado">
-						<div class="input-field subsidiado">
-							<input placeholder="" name="subsidiado" id="subsidiado" type="text" class="validate">
-							<label for="">¿Cual?</label>
-						</div>
-					</p>
-
-					<p>
-						<input name="cancerMama0" type="radio" id="t3"  value="3"/>
-						<label class="respuestas" for="t3"> No tengo afiliación </label>
-					</p>
-					<p>
-						<input name="cancerMama0" type="radio" id="t4"  value="4"/>
-						<label class="respuestas" for="t4"> Vinculado </label>
-					</p>
+					
 				</div>
 			</div>
 
@@ -95,7 +73,7 @@
 					<label for="" class="preguntas findrisk2">2.¿Ha tenido cáncer de seno su mamá?*</label>	
 					<br>				
 					<p>
-						<input name="cancerMama2" type="radio" id="t5"  value="1"/>
+						<input name="cancerMama2" type="radio" id="t5"  value="1" onclick="Materialize.toast('Consulta medica', 4000)"/>
 						<label class="respuestas" for="t5">Si </label>
 					</p>
 					<p>
@@ -114,7 +92,7 @@
 					<br>
 					<label for="" class="preguntas  cancerMama1">3. ¿Le han practicado biopsia en el seno?*</label>	<br>				
 					<p>
-						<input name="cancerMama3" type="radio" id="t8"  value="1"/>
+						<input name="cancerMama3" type="radio" id="t8"  value="1" onclick="Materialize.toast('Consulta medica', 4000)"/>
 						<label class="respuestas" for="t8">Si </label>
 					</p>
 					<p>
@@ -128,7 +106,7 @@
 					<label for="" class="preguntas findrisk2">4. ¿ Ha tenido cáncer de mama su hermana(o)?*</label>	
 					<br>				
 					<p>
-						<input name="cancerMama4" type="radio" id="t10"  value="1"/>
+						<input name="cancerMama4" type="radio" id="t10"  value="1" onclick="Materialize.toast('Consulta medica', 4000)"/>
 						<label class="respuestas" for="t10">Si </label>
 					</p>
 					<p>
@@ -152,11 +130,11 @@
 						<label class="respuestas" for="t13">No </label>
 					</p>
 					<p>
-						<input name="cancerMama5" type="radio" id="t14" value="l" />
+						<input name="cancerMama5" type="radio" id="t14" value="l" onclick="Materialize.toast('Consulta medica', 4000)"/>
 						<label class="respuestas" for="t14">Si, hace menos de dos años </label>
 					</p>
 					<p>
-						<input name="cancerMama5" type="radio" id="t15" value="2" />
+						<input name="cancerMama5" type="radio" id="t15" value="2" onclick="Materialize.toast('Consulta medica', 4000)" />
 						<label class="respuestas" for="t15">Sí, hace mas de dos años </label>
 					</p>
 				</div>
@@ -166,23 +144,23 @@
 					<label for="" class="preguntas findrisk2">6. De los signos descritos a continuación se le ha presentado:*</label>	
 					<br>				
 					<p>
-						<input name="cancerMama6-1" type="checkbox" id="t16"  value="48" class="group1" />
+						<input name="cancerMama6-1" type="checkbox" id="t16"  value="48" class="group1"  onclick="Materialize.toast('Consulta medica', 4000)"/>
 						<label class="respuestas" for="t16">Aparición de un bulto o masas en los senos </label>
 					</p>
 					<p>
-						<input name="cancerMama6-2" type="checkbox" id="t17" value="49" class="group1">
+						<input name="cancerMama6-2" type="checkbox" id="t17" value="49" class="group1" onclick="Materialize.toast('Consulta medica', 4000)" />
 						<label class="respuestas" for="t17">Aumento en el tamaño de un bulto o masas en los senos </label>
 					</p>
 					<p>
-						<input name="cancerMama6-3" type="checkbox" id="t18" value="50" class="group1">
+						<input name="cancerMama6-3" type="checkbox" id="t18" value="50" class="group1" onclick="Materialize.toast('Consulta medica', 4000)">
 						<label class="respuestas" for="t18">Secreción o sangrado en los senos </label>
 					</p>
 					<p>
-						<input name="cancerMama6-4" type="checkbox" id="t19" value="51" class="group1">
+						<input name="cancerMama6-4" type="checkbox" id="t19" value="51" class="group1" onclick="Materialize.toast('Consulta medica', 4000)">
 						<label class="respuestas" for="t19">Aumento en el tamaño de los senos</label>
 					</p>
 					<p>
-						<input name="cancerMama6-5" type="checkbox" id="t20" value="52" class="group1">
+						<input name="cancerMama6-5" type="checkbox" id="t20" value="52" class="group1" onclick="Materialize.toast('Consulta medica', 4000)" />
 						<label class="respuestas" for="t20">Cambio de posición del pezón</label>
 					</p>
 					<p>

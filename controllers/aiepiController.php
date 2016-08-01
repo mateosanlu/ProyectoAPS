@@ -135,7 +135,6 @@ class aiepiController extends Controller
                 $this->getPostParam('opApetito'),
                 $this->getPostParam('opCabello'),
                 $this->getPostParam('opEdema'),
-                $this->getPostParam('opMarcaDelColorBrazo'),
                 $this->getPostParam('mediaMarcaColorBrazo'),
                 $this->getPostParam('opTomaSenoMen6Meses'),
                 $this->getPostParam('numVecesTomaSenoDiaMen6Meses'),
@@ -263,6 +262,14 @@ class aiepiController extends Controller
                         $this->_view->renderizar('nuevo','aiepi');
                     }
 
+                    $idNewID = $this->generarId('A'); 
+                    ////--------------INSERTANDO CHECKBOX DE POSICION TOMA SENO-------/////////
+                    $opMarcaDelColorBrazo=$this->getPostParam('opMarcaDelColorBrazo');
+                    $result=$this->_formato->setAiepiCheck($opMarcaDelColorBrazo,$idLastAiepi,$idNewID);
+                    if ($result==false) {
+                        $this->_view->_error="Ha ocurrido un error al guardar posicionTomaSeno1".$result;
+                        $this->_view->renderizar('nuevo','aiepi');
+                    }
 
                     $idNewID = $this->generarId('A'); 
                     ////--------------INSERTANDO CHECKBOX DE POSICION TOMA SENO-------/////////

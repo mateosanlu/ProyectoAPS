@@ -1,22 +1,25 @@
-<center><p class="titulo" style = "font-size:35px; color:#2196f3" >Ficha kardex de gestantes y puérperas</p></center>
+<center><p class="titulo" style = "font-size:35px; color:#2196f3" >FICHA INDIVIDUAL KARDEX DE GESTANTES Y PU&Eacute;RPERAS</p></center>
 <div class="container" id="contenido">
 	<div class="row">
 		<form action="<?php echo BASE_URL.'kardes/nuevo/'.$this->datos['ID_TAREA'];?>" class="col s12" id="formKardes" name="formKardes" method="post">
 			<input type="hidden" name="guardar" value="1" />
 			<ul class="collapsible" data-collapsible="accordion">
 				
-				<li>
-					<div class="collapsible-header blue white-text text-white white-text text-white">Primera parte</div>
+				<li id="l1">
+					<div class="collapsible-header blue active white-text text-white white-text text-white">Primera parte</div>
 					<div class="collapsible-body" >
 						<div class="row">
 						<br>
-							<div class="input-field col l12">
+							<div class="input-field col l8">
 								<input type="text" class="validate requerido" placeholder="Nombre gestante o puérpera" name="nomGestante" id="nomGestante" value="<?php echo $this->datos['NOMBRE_MIEMBRO'].' '.$this->datos['APELLIDO_MIEMBRO']; ?>" disabled>
 								<label for="nomGestante" class="blue-text text-darken-2 active"> <FONT COLOR="2196f3 "> Nombre gestante o puérpera</FONT></label>
 							</div>
-
+							<div class="input-field col l4">
+								<input type="number" class="validate requerido" placeholder="Telefono" name="telefonoGestante" id="telefonoGestante">
+								<label for="telefonoGestante" class="blue-text text-darken-2 active"> <FONT COLOR="2196f3 "> Telefono</FONT></label>
+							</div>
 							<div class="input-field col l3">
-								<label for="condicionMadres"><FONT COLOR="2196f3 ">Condicion<i class="tiny material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="Condición de la persona a la que se le realiza la visita">live_help</i></FONT></label>
+								<label for="condicionMadres"><FONT COLOR="2196f3 ">Condicion<i class="tiny material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="Condición de la persona a la que se le realiza la visita"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 								<br>
 								
 								<input name="condicionMadres" type="radio" id="t3" value='Gestante'/>
@@ -45,7 +48,7 @@
 									<option value="4">4 | Victima de abuso sexual</option>
 									<option value='5'>5 | Otro </option>
 								</select>
-								<label><FONT COLOR="2196f3 ">Condicion especial<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione la opción correspondiente según condición especial de la gestante o puérpera">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Condicion especial<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione la opción correspondiente según condición especial de la gestante o puérpera"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 								<div class="input-field condicionEspecial"><br>
 									<input placeholder="¿Cuál?" type="text" class="validate" name="otroCondicionEspecial">
 								</div>
@@ -56,12 +59,12 @@
 								<table class="centered bordered">
 									<thead>
 										<tr>
-											<th><FONT COLOR="2196f3 "> N° Gestaciones<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Número de embarazos, teniendo en cuenta el actual">live_help</i></th>
+											<th><FONT COLOR="2196f3 "> N° Gestaciones<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Número de embarazos, teniendo en cuenta el actual"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
 											<th id="divNumPartosTh"><FONT COLOR="2196f3 "> N° Partos</th>
 											<th id="divNumCesariasTh"><FONT COLOR="2196f3 "> N° Cesareas</th>
 											<th id="divNumAbortosTh"><FONT COLOR="2196f3 "> N° Abortos</th>
-											<th id="divNumHijosTh"><FONT COLOR="2196f3 "> N° Hijos vivos<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Número de hijos nacidos vivos">live_help</i></th>
-											<th id="divNumMuertosTh"><FONT COLOR="2196f3 "> N° Hijos muertos<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Número de nacidos muertos por encima de la semana 20 o recién nacido vivo que muere antes de los 7 días de vida">live_help</i></th>
+											<th id="divNumHijosTh"><FONT COLOR="2196f3 "> N° Hijos vivos<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Número de hijos nacidos vivos"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
+											<th id="divNumMuertosTh"><FONT COLOR="2196f3 "> N° Hijos muertos<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Número de nacidos muertos por encima de la semana 20 o recién nacido vivo que muere antes de los 7 días de vida"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
 										</tr>
 									</thead >
 									<tbody>
@@ -113,7 +116,7 @@
 									<option value="418">4 |	Cesarea</option>
 									<option value="419">5 | Otro</option>
 								</select><br>
-								<label><FONT COLOR="2196f3 ">Terminacion de la gestación<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número según la situación presentada de la terminación de la gestación">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Terminacion de la gestación<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número según la situación presentada de la terminación de la gestación"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 							</div>
 
 							<div class="input-field col l2">
@@ -122,7 +125,7 @@
 									<option value="1">1 | Instruccional</option>
 									<option value="2">2 | Partera</option>
 								</select><br>
-								<label><FONT COLOR="2196f3 ">Atencion del parto<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número según condición de atención del parto">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Atencion del parto<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número según condición de atención del parto"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 							</div>
 
 							<div class="input-field col l2">
@@ -131,7 +134,7 @@
 									<option value="1">1 | Docimicilio</option>
 									<option value="2">2 | Institución</option>
 								</select><br>
-								<label><FONT COLOR="2196f3 ">Atendido en <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione según corresponda el sitio donde fue atendido el parto">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Atendido en <i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione según corresponda el sitio donde fue atendido el parto"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 								<div class="input-field  atendidoEn"><br>
 									<input placeholder="Nombre IPS" type="text" class="validate" name="nombreIpsAtendido">
 									<label for="" class="colorWhite" >Nombre de IPS</label>
@@ -140,7 +143,7 @@
 							
 							<div class="input-field col l3">
 								<br>
-								<label><FONT COLOR="2196f3 ">Recien nacido<i class="tiny material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="Seleccione la condición del recién nacido">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Recien nacido<i class="tiny material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="Seleccione la condición del recién nacido"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 								<input name="recienNacido" type="radio" id="t1"  value='1'/>
 								<label class="respuestas" for="t1"> Vivo </label>
 
@@ -163,7 +166,7 @@
 									<option value="1">1 |  Sin signos de infección (SSI) </option>
 									<option value="2">2 |  Con signos de infección (CSI).</option>
 								</select><br>
-								<label><FONT COLOR="2196f3 ">Cordon umbilical<i class="tiny material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="Seleccione el estado del muñón umbilical del recién nacido">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Cordon umbilical<i class="tiny material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="Seleccione el estado del muñón umbilical del recién nacido"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 							</div>
 						</div>
 						
@@ -177,12 +180,12 @@
 										<th colspan="3"><center>ASISTENCIA A CONTROL PRENATAL</center></th>
 									</tr>
 									<tr>
-										<th>N° de visita<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre el número de visita que realiza, teniendo en cuenta la secuencialidad entre las visitas">live_help</i></th>
+										<th>N° de visita<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre el número de visita que realiza, teniendo en cuenta la secuencialidad entre las visitas"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
 										<th>Fecha de visita</th>
-										<th id="divSemaGestActTxt">Semana gestacional actual<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre el número de semanas de gestación en la cual se encuentra la gestante el día de la visita teniendo como referencia la fecha de la última menstruación">live_help</i></th>
-										<th id="divNumCtrlPreTxt">N° de controles prenatales<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre el número de controles prenatales realizados hasta la fecha de la visita">live_help</i></th>
-										<th id="divFechaAsistCtrlPreTxt">Fecha en la que asiste<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Fecha en el cual asiste la gestante">live_help</i></th>
-										<th id="divSemGestALaFecCtrlTxt">Semana gestacional a la fecha del control<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre la semana gestacional a la fecha del control prenatal">live_help</i></th>
+										<th id="divSemaGestActTxt">Semana gestacional actual<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre el número de semanas de gestación en la cual se encuentra la gestante el día de la visita teniendo como referencia la fecha de la última menstruación"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
+										<th id="divNumCtrlPreTxt">N° de controles prenatales<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre el número de controles prenatales realizados hasta la fecha de la visita"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
+										<th id="divFechaAsistCtrlPreTxt">Fecha en la que asiste<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Fecha en el cual asiste la gestante"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
+										<th id="divSemGestALaFecCtrlTxt">Semana gestacional a la fecha del control<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre la semana gestacional a la fecha del control prenatal"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -202,7 +205,7 @@
 				<div class="row" style="width:1500px;">
 					<div class="input-field col l2">
 							<input type="checkbox" class="filled-in" id="carnet-materno" name="carnetMaterno"/>
-							<label for="carnet-materno">Carnet materno<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Si tiene el carnet materno verifique que este diligenciado completamente de  acuerdo con las semanas de gestación,  en caso de no ser así, realizar la respectiva observación">live_help</i></FONT></label>
+							<label for="carnet-materno">Carnet materno<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Si tiene el carnet materno verifique que este diligenciado completamente de  acuerdo con las semanas de gestación,  en caso de no ser así, realizar la respectiva observación"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 
 					<div class="input-field col l5 ">
@@ -221,7 +224,7 @@
 			<div class="collapsible-header blue white-text text-white white-text text-white" id="contClasfRiesgoGestanteHeader">Tercera Parte</div>
 			<div class="collapsible-body" id="contClasfRiesgoGestanteBody">
 			<div class="row">
-			<center>  <label class="colorBlue"><FONT COLOR="2196f3 ">CLASIFICACIÓN DEL RIESGO DE LA GESTANTE<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Recuerde que el riesgo tanto para la gestante como para la puérpera es dinámico, por esta razón se debe evaluar en cada seguimiento realizado y  en todos los controles prenatales">live_help</i></FONT></label></center>
+			<center>  <label class="colorBlue"><FONT COLOR="2196f3 ">CLASIFICACIÓN DEL RIESGO DE LA GESTANTE<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Recuerde que el riesgo tanto para la gestante como para la puérpera es dinámico, por esta razón se debe evaluar en cada seguimiento realizado y  en todos los controles prenatales"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label></center>
 			<div class="input-field col l3"></div>
 				<div class="input-field col l6">
 				Clasificación
@@ -495,7 +498,7 @@
 							<option value="477">4. | Calcio, Hierro y Acido Fólico  .</option>
 							<option value="478">5. | Ninguno . </option>
 						</select>
-						<label for="sumNutrientes" class="colorBlue"><FONT COLOR="2196f3 ">Suministro de micronutrientes<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione si la gestante esta recibiendo suministro de micronutrientes en la gestación">live_help</i></FONT></label>
+						<label for="sumNutrientes" class="colorBlue"><FONT COLOR="2196f3 ">Suministro de micronutrientes<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione si la gestante esta recibiendo suministro de micronutrientes en la gestación"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 					
 					<div class="input-field col l4">
@@ -536,7 +539,7 @@
 					</div>
 
 					<div class="input-field col l4">
-						<label class="colorBlue"><FONT COLOR="2196f3 ">Eduacion brindada<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número de los temas de educación brindada a la gestante o puérpera">live_help</i></FONT></label><br>
+						<label class="colorBlue"><FONT COLOR="2196f3 ">Eduacion brindada<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número de los temas de educación brindada a la gestante o puérpera"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label><br>
 						<p>
 							<input type="checkbox" class="filled-in" id="educacionBrindada0" name="educacionBrindada0" value="488" />
 							<label for="educacionBrindada0"> Signos de alarma</label>
@@ -581,7 +584,7 @@
 
 					<div class="input-field col l4">
 						<div class="row">
-							<label class="colorBlue"><FONT COLOR="2196f3 ">Canalización a servicios<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número de los servicios a los cuales es canalizada  la usuaria de acuerdo a los hallazgos">live_help</i></FONT></label><br>
+							<label class="colorBlue"><FONT COLOR="2196f3 ">Canalización a servicios<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número de los servicios a los cuales es canalizada  la usuaria de acuerdo a los hallazgos"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label><br>
 							<div class="input-field col l12">
 								<p>
 									<input type="checkbox" class="filled-in" id="canalizacionServicios1" name="canalizacionServicios1" value="497" />
@@ -686,7 +689,7 @@
 					
 					<div class="input-field col l3">
 						<input type="checkbox" class="filled-in" id="apoyoTransporte" name="apoyoTransporte" />
-						<label for="apoyoTransporte">Apoyo en transporte<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Indague y verifique si la gestante ha recibido apoyo para el traslado a la institución primaria (en caso de presencia de signos y síntomas de alarma, realización de exámenes, entre otros). Si es puérpera indagar si recibió apoyo en el traslado  para la atención del parto">live_help</i></FONT></label>
+						<label for="apoyoTransporte">Apoyo en transporte<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Indague y verifique si la gestante ha recibido apoyo para el traslado a la institución primaria (en caso de presencia de signos y síntomas de alarma, realización de exámenes, entre otros). Si es puérpera indagar si recibió apoyo en el traslado  para la atención del parto"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 
 					<div class="input-field col l6">
@@ -698,7 +701,7 @@
 									<option value="509">1. |  Alto</option>
 									<option value="510">2. |  Bajo</option>
 								</select>
-								<label><FONT COLOR="2196f3 ">Clasificación de riesgo para la puérpera<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Recuerde que el riesgo tanto para la gestante como para la puérpera es dinámico, por esta razón se debe evaluar en la primera y segunda visita">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Clasificación de riesgo para la puérpera<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Recuerde que el riesgo tanto para la gestante como para la puérpera es dinámico, por esta razón se debe evaluar en la primera y segunda visita"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 							</div>
 
 							<div class="input-field col l8" id="divClasfRiesgoPuerpera2">
@@ -709,7 +712,7 @@
 									<option value="512">2. |  Riesgo psicosocial</option>
 									<option value="513">3. |  Patologia de la puérpera</option>
 								</select>
-								<label><FONT COLOR="2196f3 ">Clasificación de riesgo para la puérpera<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número de la condición que clasifica el riesgo de la puérpera">live_help</i></FONT></label>
+								<label><FONT COLOR="2196f3 ">Clasificación de riesgo para la puérpera<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número de la condición que clasifica el riesgo de la puérpera"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 							</div>
 						</div>
 					</div>
@@ -732,12 +735,12 @@
 							<option value="523">10. |  Signos de mastitis</option>
 							<option value="524">111. |  Signos de infección en área de sutura (episiorrafia o cesárea)</option>
 						</select>
-						<label><FONT COLOR="2196f3 ">Signos y síntomas de alarma del puerperio<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Debe seleccionar el número de acuerdo a su clasificación realizada durante la visita">live_help</i></FONT></label>
+						<label><FONT COLOR="2196f3 ">Signos y síntomas de alarma del puerperio<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Debe seleccionar el número de acuerdo a su clasificación realizada durante la visita"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 					
 					<div class="input-field col l3">
 						<input type="checkbox" class="filled-in" id="vacunacionPuerpera" name="vacunacionPuerpera" />
-						<label for="vacunacionPuerpera"> Vacunacion puérpera (sarampión/rubeola)<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione si tiene la vacuna bivalente">live_help</i></FONT></label>
+						<label for="vacunacionPuerpera"> Vacunacion puérpera (sarampión/rubeola)<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione si tiene la vacuna bivalente"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 					
 					<div class="input-field col l4">
@@ -748,13 +751,13 @@
 							<option value="526">2. | Hepatitis</option>
 							<option value="527">3. | No esta vacunado</option>
 						</select>
-						<label class="colorBlue"><FONT COLOR="2196f3 ">Vacunación recien nacido<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número si el recién nacido esta vacunado">live_help</i></FONT></label>
+						<label class="colorBlue"><FONT COLOR="2196f3 ">Vacunación recien nacido<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número si el recién nacido esta vacunado"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 				</div>
 
 				<div class="row"  id="seccionPuerperia2">
 					<div class="col l4  input-fiel ">
-						<label for="fechControlRecNacido" class="colorBlue"><FONT COLOR="2196f3 ">Fecha control del recien nacido<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione la fecha del control del recién nacido. Si no ha asistidio al control se debe canalizar y remitir a la IPS de atención">live_help</i></FONT></label>
+						<label for="fechControlRecNacido" class="colorBlue"><FONT COLOR="2196f3 ">Fecha control del recien nacido<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione la fecha del control del recién nacido. Si no ha asistidio al control se debe canalizar y remitir a la IPS de atención"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 						<input type="text" cLass="datepicker" placeholder="Fecha control" name="fechControlRecNacido">
 					</div>
 
@@ -770,18 +773,18 @@
 
 					<div class="input-field col l3">
 							<input type="checkbox" class="filled-in" id="lactanciaRecienNacido" name="lactanciaRecienNacido" />
-							<label for="lactanciaRecienNacido">Lactancia materna<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione si el recien nacido recibe lactancia materna">live_help</i></FONT></label>
+							<label for="lactanciaRecienNacido">Lactancia materna<FONT COLOR="2196f3 "><i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione si el recien nacido recibe lactancia materna"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 				</div>
 
 				<div class="row" id="seccionPuerperia3">
 					<div class="input-field col l3">
-						<label for="" class="colorBlue"><FONT COLOR="2196f3 ">Control postparto<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre la fecha de la cita o consulta al control de puerperio. Según norma 412/00 a los siete (7) días postparto">live_help</i></FONT></label>
+						<label for="" class="colorBlue"><FONT COLOR="2196f3 ">Control postparto<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre la fecha de la cita o consulta al control de puerperio. Según norma 412/00 a los siete (7) días postparto"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 						<input type="text" class="datepicker" name="ctrlPostParto" placeholder="Fecha">
 					</div>
 
 					<div class="input-field col l3">
-						<label for="" class="colorBlue"><FONT COLOR="2196f3 ">Control planificación familiar<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre la fecha de la cita del control de planificación familiar">live_help</i></FONT></label>
+						<label for="" class="colorBlue"><FONT COLOR="2196f3 ">Control planificación familiar<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Registre la fecha de la cita del control de planificación familiar"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 						<input type="text" class="datepicker" name="ctrlPlanificacionFam" placeholder="Fecha">
 					</div>
 
@@ -795,7 +798,7 @@
 							<option value="532">5. | Ninguno.</option>
 							<option value="533">6. | Otro.</option>
 						</select>
-						<label for="metodoPlanificacionRecomendado" class="colorBlue"><FONT COLOR="2196f3 ">Método de planificación recomendado<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número del método recomendado  como método de planificación familiar">live_help</i></FONT></label><br>
+						<label for="metodoPlanificacionRecomendado" class="colorBlue"><FONT COLOR="2196f3 ">Método de planificación recomendado<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="Seleccione el número del método recomendado  como método de planificación familiar"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label><br>
 						<div class="input-field metodoPlanificacionRecomendado"><br>
 							<input placeholder="¿Cuál?" type="text" class="validate">
 						</div>
@@ -810,7 +813,7 @@
 				<div class="row">
 					<div class="input-field col s12">
 						<textarea id="observaciones" class="materialize-textarea" name="observaciones"></textarea>
-						<label for="observaciones"><FONT COLOR="2196f3 ">Observaciones<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="En esta casilla se registra los datos relevantes encontrados en la visita, que no se hayan registrado anteriormente, por ejemplo: entorno familiar y comunitario, educación, hallazgos en el carnet materno, etc. Igualmente escriba el sexo del recién nacido y el tipo de aseguramiento">live_help</i></FONT></label>
+						<label for="observaciones"><FONT COLOR="2196f3 ">Observaciones<i class="tiny material-icons tooltipped" data-position="top"  data-delay="50" data-tooltip="En esta casilla se registra los datos relevantes encontrados en la visita, que no se hayan registrado anteriormente, por ejemplo: entorno familiar y comunitario, educación, hallazgos en el carnet materno, etc. Igualmente escriba el sexo del recién nacido y el tipo de aseguramiento"><img class="" src="<?php echo $_layoutParams['ruta_img']; ?>help.png"></i></FONT></label>
 					</div>
 				</div>
 
@@ -834,3 +837,18 @@
 </form>
 </div>
 </div>
+
+<script>	
+$('#l1 .collapsible-header').removeClass('blue');
+$('#l1 .collapsible-header').addClass('visto');
+$('li .collapsible-header').click(function(){
+$(this).removeClass('blue');
+$(this).addClass('visto');
+});
+
+	</script>
+<style type="text/css">
+   .visto{
+   	background-color: #2e7d32;
+   }
+</style>

@@ -50,7 +50,7 @@ class cancer_mamaController extends Controller
                     $this->generarId('CM'),
                     $this->getPostParam('cancerMama2'),  $this->getPostParam('cancerMama3'),  
                     $this->getPostParam('cancerMama4'),  $this->getPostParam('cancerMama5'),   
-                    Session::get('id_usuario'), $datos['ID_MIEMBRO']
+                    Session::get('id_usuario'), $datos['ID_MIEMBRO'], $this->getPostParam('email'), $this->getPostParam('telefono')
                     );
 
             if ($this->getPostParam('cancerMama6-1') == 0) {

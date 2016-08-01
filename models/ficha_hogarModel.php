@@ -26,6 +26,10 @@ function getAllBarrios($idTipoBarrio){
 
 }
 
+function getEps(){
+  $consulta = $this->_db->query('SELECT DISTINCT ID_EPS,DES_EPS FROM eps ORDER BY DES_EPS DESC');
+   return $consulta ->fetchall(); 
+}
 function getPreguntas(){
 	    $consulta = $this->_db->query('SELECT * FROM preguntas WHERE FORMATO_ID_FORMATO = "1" order by ID_PREGUNTA Asc');
         return $consulta ->fetchall();  
@@ -41,6 +45,13 @@ function getMunicipio($cod_municipio){
             return $consulta ->fetch();  
         }
 }
+
+ public function buscarBarrios($id)
+  { 
+    $id=strtoupper($id);
+    $preguntas = $this->_db->query("SELECT * FROM barrios WHERE  BARRIO_VEREDA = 1 AND DES_BARRIO like '%".$id."%' LIMIT 0,10   ");
+        return $preguntas->fetchall();
+  }
 
 function getPregunta($respuesta){
     if (isset($respuesta)) {
@@ -251,6 +262,8 @@ function hojaTrabajo($usuario,$id_miembro,$formulario){
                                  ,$consumoAlimentos
                                  ,$otrasCondicionesdeVulnerabilidadMiembrosHabitos
                                  ,$observaciones
+                                 ,$animalesCasaTipo7
+                                 ,$otraanimalesCasaTipo7
                                  )
             {
 
@@ -312,7 +325,7 @@ $this->setDatosGrupales2($id_hogar,$ultimo, '99', $this->check($animalesCasaTipo
 $this->setDatosGrupales2($id_hogar,$ultimo, '100',$this->check($animalesCasaTipo4),  $otraanimalesCasaTipo4);
 $this->setDatosGrupales2($id_hogar,$ultimo, '101', $this->check($animalesCasaTipo5), $otraanimalesCasaTipo5);
 $this->setDatosGrupales2($id_hogar,$ultimo, '102', $this->check($animalesCasaTipo6), $otraanimalesCasaTipo6);
-
+$this->setDatosGrupales2($id_hogar,$ultimo, '155', $this->check($animalesCasaTipo7), $otraanimalesCasaTipo7);
 
 
 $this->setDatosGrupales($id_hogar,$ultimo,$this->getPregunta($menoresEsquemaincompleto)[0], '',$menoresEsquemaincompleto, '');
@@ -376,6 +389,7 @@ public function setDatosmiebros(
                                 ,$ultimo
                                 ,$efermedadCardioVacular
                                 ,$Apellido
+                                ,$tipoDoc
                             ){
 
 
@@ -397,11 +411,11 @@ $id_personal=($id_user)."-".($codigo_hogar).($i+1);
 
    if ($nomEps[$i] == NULL) {
     $consulta="INSERT INTO miembros_hogar VALUES 
-    ( '".$id_miembro."', '".$id_personal."', '".$ultimo."', '".$nomApe[$i]."', '".$Apellido[$i]."', '".$fecha."', '".$docIdentidad[$i]."', NULL, CURRENT_TIMESTAMP, '".$edad[$i]."', '".$sexo[$i]."')";
+    ( '".$id_miembro."', '".$id_personal."', '".$ultimo."', '".$nomApe[$i]."', '".$Apellido[$i]."', '".$fecha."', '".$docIdentidad[$i]."', NULL, CURRENT_TIMESTAMP, '".$edad[$i]."', '".$sexo[$i]."', '".$tipoDoc[$i]."')";
      $this->_db->query($consulta);
    }else{
      $consulta="INSERT INTO miembros_hogar VALUES 
-    ( '".$id_miembro."', '".$id_personal."', '".$ultimo."', '".$nomApe[$i]."', '".$Apellido[$i]."', '".$fecha."', '".$docIdentidad[$i]."', '".$nomEps[$i]."', CURRENT_TIMESTAMP, '".$edad[$i]."', '".$sexo[$i]."')";
+    ( '".$id_miembro."', '".$id_personal."', '".$ultimo."', '".$nomApe[$i]."', '".$Apellido[$i]."', '".$fecha."', '".$docIdentidad[$i]."', '".$nomEps[$i]."', CURRENT_TIMESTAMP, '".$edad[$i]."', '".$sexo[$i]."', '".$tipoDoc[$i]."')";
      $this->_db->query($consulta);
    }
 //Demanda Inducida
@@ -409,12 +423,17 @@ $id_personal=($id_user)."-".($codigo_hogar).($i+1);
    
 
 //Kardes
-    if ( ( $mujerGestacion[$i] == '412' || $mujerGestacion[$i] == '413' ) 
-          || ((int)$adolecentesEmbarazadas[$i] == 363 
+    if ( ( 
+             $mujerGestacion[$i] == '412' 
+          || $mujerGestacion[$i] == '413'  
+          || (int)$adolecentesEmbarazadas[$i] == 363 
           || (int)$adolecentesEmbarazadas[$i]  == 364
           || (int)$adolecentesEmbarazadas[$i]  == 365
           || (int)$adolecentesEmbarazadas[$i]  == 366
-          || (int)$adolecentesEmbarazadas[$i]  == 367 and $sexo[$i] == 'F' ) 
+          || (int)$adolecentesEmbarazadas[$i]  == 367  ) && $sexo[$i] == 'F' 
+
+          
+
          ) {
           $this->hojaTrabajo($usuario,$id_miembro,'2');
     }
@@ -451,8 +470,8 @@ $id_personal=($id_user)."-".($codigo_hogar).($i+1);
        }
      }
 //Aiepi
-     if ( ($soloNumAnos[1] == 'Meses' && ((int)$soloNumAnos[0]) <= 12 ) || 
-          ($soloNumAnos[1] == 'Dias' && ((int)$soloNumAnos[0]) <= 31) || 
+     if ( ($soloNumAnos[1] == 'Meses' && ((int)$soloNumAnos[0]) <= 12 )  ||   
+          ($soloNumAnos[1] == 'Dias' && ((int)$soloNumAnos[0]) <= 31)  ||
           ($soloNumAnos[1] == 'Años' && ((int)$soloNumAnos[0]) <= 5) ) {
 
              $this->hojaTrabajo($usuario,$id_miembro,'4'); 
@@ -476,17 +495,20 @@ if (isset($mujerGestacion[$i])) {
     if ( ( (int)$soloNumAnos[0] >= 6 ) && ( (int)$soloNumAnos[0] <= 11 )) {
          $this->validarAgregar($ultimo,$this->getPregunta('334')[0],'334',$id_miembro,'');
     }else if ( ((int)$soloNumAnos[0] >= 12 ) && ((int)$soloNumAnos[0] <= 17 ) ) {
-         $this->validarAgregar($ultimo,$this->getPregunta('335')[0],'334',$id_miembro,'');
+         $this->validarAgregar($ultimo,$this->getPregunta('335')[0],'335',$id_miembro,'');
     }else if ( ((int)$soloNumAnos[0] >= 18 ) && ((int)$soloNumAnos[0] <= 28 ) ) {
-         $this->validarAgregar($ultimo,$this->getPregunta('336')[0],'334',$id_miembro,'');
+         $this->validarAgregar($ultimo,$this->getPregunta('336')[0],'336',$id_miembro,'');
     }else if ( ((int)$soloNumAnos[0] >= 29 ) && ((int)$soloNumAnos[0] <= 59 ) ) {
-         $this->validarAgregar($ultimo,$this->getPregunta('337')[0],'334',$id_miembro,'');
+         $this->validarAgregar($ultimo,$this->getPregunta('337')[0],'337',$id_miembro,'');
     }else if ( ((int)$soloNumAnos[0] >= 60 )) {
-         $this->validarAgregar($ultimo,$this->getPregunta('338')[0],'334',$id_miembro,'');
+         $this->validarAgregar($ultimo,$this->getPregunta('338')[0],'338',$id_miembro,'');
+    }else if((int)$soloNumAnos[0] <= 5 ){
+          $this->validarAgregar($ultimo,$this->getPregunta('333')[0],'333',$id_miembro,'');
     }
  }else{
     $this->validarAgregar($ultimo,$this->getPregunta('333')[0],'333',$id_miembro,'');
  }
+
    $this->validarAgregar($ultimo,$this->getPregunta($victimaConflicto[$i])[0],$victimaConflicto[$i],$id_miembro,'');
    $this->validarAgregar($ultimo,$this->getPregunta($poblacionLGBT[$i])[0],$poblacionLGBT[$i],$id_miembro,'');
    $this->validarAgregar($ultimo,$this->getPregunta($adolecentesEmbarazadas[$i])[0],$adolecentesEmbarazadas[$i],$id_miembro,'');

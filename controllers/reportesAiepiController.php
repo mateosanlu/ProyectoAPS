@@ -68,19 +68,19 @@ for ($i=0; $i < count($datos); $i++) {
     $P='';//TIPO DE USUARIO
     $E='';//TIPO DE USUARIO
     switch ($datos[$i]['TIPO_USUARIO_AIEPI']) {
-        case '1':
+        case '2':
             $C='X';//TIPO DE USUARIO
             break;
-            case '2':
+            case '3':
             $S='X';//TIPO DE USUARIO
             break;
-            case '3':
+            case '4':
             $V='X';//TIPO DE USUARIO
             break;
-            case '4':
+            case '5':
             $P='X';//TIPO DE USUARIO
             break;
-            case '5':
+            case '6':
             $E='X';//TIPO DE USUARIO
             break;
         
@@ -254,7 +254,9 @@ switch ($datos[$i]['EVALUACION_REALIZADA_AIEPI']) {
         
         break;
 }
-$datosPreguntaRespuesta=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=1 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPreguntaRespuesta=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi`
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI 
+ WHERE PREGUNTAS_ID_PREGUNTA=1 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 //EVALUAR Y COMPLETAR LA INFORMACIÓN MARCANDO CON UNA X TODOS LOS SIGNOS QUE PRESENTE EL NIÑO
 $NO_PUEDE_BEBER_PECHO='';//NO_PUEDE_BEBER_PECHO
 $NINGUNA_DE_LAS_ANTERIORES='';//NINGUNA_DE_LAS_ANTERIORES
@@ -290,427 +292,432 @@ for ($j=0; $j < count($datosPreguntaRespuesta); $j++) {
 }
 $SI_PROBLEMAS_DE_SALUD_ORAL='';//SI_PROBLEMAS_DE_SALUD_ORAL
 $NO_PROBLEMAS_DE_SALUD_ORAL='';//NO_PROBLEMAS_DE_SALUD_ORAL
-if ($datos[$i]['PROBLEMA_SALUD_BUCAL']==1) {
-    $NO_PROBLEMAS_DE_SALUD_ORAL='X';//NO_PROBLEMAS_DE_SALUD_ORAL
-}elseif ($datos[$i]['PROBLEMA_SALUD_BUCAL']==0) {
-   $NO_PROBLEMAS_DE_SALUD_ORAL='X';//NO_PROBLEMAS_DE_SALUD_ORAL
+if ($datos[$i]['PROBLEMA_SALUD_BUCAL']=='1') {
+   $SI_PROBLEMAS_DE_SALUD_ORAL='X';//NO_PROBLEMAS_DE_SALUD_ORAL
 }
+if ($datos[$i]['PROBLEMA_SALUD_BUCAL']=='0') {
+     $NO_PROBLEMAS_DE_SALUD_ORAL='X';//NO_PROBLEMAS_DE_SALUD_ORAL
+}
+
 
 $N_DE_VALORACIONES_ODONTOLOGICAS_EN_EL_AÑO=$datos[$i]['NUMERO_VALORACIONES_ODONTO_365'];//N_DE_VALORACIONES_ODONTOLOGICAS_EN_EL
 
 $SI_HA_TENIDO_ALGÚN_GOLPE_EN_LA_BOCA='';//HA_TENIDO_ALGÚN_GOLPE_EN_LA_BOCA
 $NO_HA_TENIDO_ALGÚN_GOLPE_EN_LA_BOCA='';
-if ($datos[$i]['ALGUN_GOLPE_BOCA']==1) {
+if ($datos[$i]['ALGUN_GOLPE_BOCA']=='1') {
     $SI_HA_TENIDO_ALGÚN_GOLPE_EN_LA_BOCA='X';//HA_TENIDO_ALGÚN_GOLPE_EN_LA_BOCA
-}elseif ($datos[$i]['ALGUN_GOLPE_BOCA']==0) {
+}elseif ($datos[$i]['ALGUN_GOLPE_BOCA']=='0') {
     $NO_HA_TENIDO_ALGÚN_GOLPE_EN_LA_BOCA='X';//HA_TENIDO_ALGÚN_GOLPE_EN_LA_BOCA
-
+}
 $SI_DURANTE_LA_NOCHE_DUERME_SIN_CEPILLARSE_LOS_DIENTES='';//DURANTE_LA_NOCHE_DUERME_SIN_CEPILLARSE_LOS_DIENTES
 $NO_DURANTE_LA_NOCHE_DUERME_SIN_CEPILLARSE_LOS_DIENTES='';
 //DURANTE_LA_NOCHE_DUERME_SIN_CEPILLARSE_LOS_DIENTE
-if ($datos[$i]['NOCHE_DUERME_SINCEPILLA_BOCA']==1) {
+if ($datos[$i]['NOCHE_DUERME_SINCEPILLA_BOCA']=='1') {
     $SI_DURANTE_LA_NOCHE_DUERME_SIN_CEPILLARSE_LOS_DIENTES='X';//DURANTE_LA_NOCHE_DUERME_SIN_CEPILLARSE_LOS_DIENTES
-}elseif ($datos[$i]['NOCHE_DUERME_SINCEPILLA_BOCA']==0) {
+}elseif ($datos[$i]['NOCHE_DUERME_SINCEPILLA_BOCA']=='0') {
     $NO_DURANTE_LA_NOCHE_DUERME_SIN_CEPILLARSE_LOS_DIENTES='X';
 }
 
 $SI_LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA='';//LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA
 $NO_LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA='';//LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA
-if ($datos[$i]['SANGRA_ENCIA_CEPILLA']==1) {
+if ($datos[$i]['SANGRA_ENCIA_CEPILLA']=='1') {
     $SI_LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA='X';//LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA
-}elseif ($datos[$i]['SANGRA_ENCIA_CEPILLA']==0) {
+}elseif ($datos[$i]['SANGRA_ENCIA_CEPILLA']=='0') {
     $NO_LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA='X';//LE_SANGRA_LA_ENCIA_CUANDO_SE_CEPILLA
 }
 $CUANTAS_VECES_HACE_HIGIANE_ORAL_AL_DIA=$datos[$i]['NUMERO_VECESHIGIENE_ORAL'];//CUANTAS_VECES_HACE_HIGIANE_ORAL_AL_DIA
 //LE_SUPERVISA_EL_CEPILLADO_DE_DIENTES
 $SI_LE_SUPERVISA_EL_CEPILLADO_DE_DIENTES='';//LE_SUPERVISA_EL_CEPILLADO_DE_DIENTES
 $NO_LE_SUPERVISA_EL_CEPILLADO_DE_DIENTES='';
-if ($datos[$i]['SUPERVISAN_CEPILLADO_DIENTES']==1) {
+if ($datos[$i]['SUPERVISAN_CEPILLADO_DIENTES']=='1') {
 $SI_LE_SUPERVISA_EL_CEPILLADO_DE_DIENTES='X';//LE_SUPERVISA_EL_CEPILLADO_DE_DIENTES
-}elseif ($datos[$i]['SUPERVISAN_CEPILLADO_DIENTES']==0) {
+}elseif ($datos[$i]['SUPERVISAN_CEPILLADO_DIENTES']=='0') {
     $NO_LE_SUPERVISA_EL_CEPILLADO_DE_DIENTES='X';
 }
 
 $CON_QUE_HACE_HIGIENE_ORAL=$datos[$i]['HIGIENIZACION_HORAL'];//CON_QUE_HACE_HIGIENE_ORAL
 $SI_TIENE_EL_NIÑO_O_NIÑA_TOS='';
 $NO_TIENE_EL_NIÑO_O_NIÑA_TOS='';
-if ($datos[$i]['TIENE_TOS']==1) {
+if ($datos[$i]['TIENE_TOS']=='1') {
     $SI_TIENE_EL_NIÑO_O_NIÑA_TOS='X';
-}elseif ($datos[$i]['TIENE_TOS']==0) {
+}elseif ($datos[$i]['TIENE_TOS']=='0') {
     $NO_TIENE_EL_NIÑO_O_NIÑA_TOS='X';
 }
 $N_DE_DIAS_QUE_LLEVA_CON_TOS=$datos[$i]['NUMERO_DIAS_CONTOS'];
 $SI_TIENE_TIRAJE_SUCOTAL='';
 $NO_TIENE_TIRAJE_SUCOTAL='';
-if ($datos[$i]['TIRAJE_COSTAL']==1) {
+if ($datos[$i]['TIRAJE_COSTAL']=='1') {
 $SI_TIENE_TIRAJE_SUCOTAL='X';
-}elseif ($datos[$i]['TIRAJE_COSTAL']==0) {
+}elseif ($datos[$i]['TIRAJE_COSTAL']=='0') {
 $NO_TIENE_TIRAJE_SUCOTAL='X';
 }
 $SI_TIENE_EL_NIÑO_O_NIÑA_DIFICULTAD_PARA_RESPIRAR='';
 $NO_TIENE_EL_NIÑO_O_NIÑA_DIFICULTAD_PARA_RESPIRAR='';
-if ($datos[$i]['DIFICUALTAD_RESPIRAR']==1) {
+if ($datos[$i]['DIFICUALTAD_RESPIRAR']=='1') {
     $SI_TIENE_EL_NIÑO_O_NIÑA_DIFICULTAD_PARA_RESPIRAR='X';
-}elseif ($datos[$i]['DIFICUALTAD_RESPIRAR']==0) {
+}elseif ($datos[$i]['DIFICUALTAD_RESPIRAR']=='0') {
   $NO_TIENE_EL_NIÑO_O_NIÑA_DIFICULTAD_PARA_RESPIRAR='X';
 }
 $N_DE_DIAS_CON_DIFICULTAD_PARA_RESPIRAR=$datos[$i]['NUMERO_DIAS_DIFICULTAD_RESPIRATORIA'];
 $SI_TIENE_ESTRIDOR='';
 $NO_TIENE_ESTRIDOR='';
-if ($datos[$i]['ESTRIDOR']==1) {
+if ($datos[$i]['ESTRIDOR']=='1') {
 $SI_TIENE_ESTRIDOR='X';
-}elseif ($datos[$i]['ESTRIDOR']==0) {
+}elseif ($datos[$i]['ESTRIDOR']=='0') {
 $NO_TIENE_ESTRIDOR='X';
 }
 $N_DE_RESPIRACIONES_POR_MINUTO=$datos[$i]['NUMERO_RESPIRACIONES_MINUTO'];
 $SI_TIENE_RESPIRACION_RAPIDA='';
 $NO_TIENE_RESPIRACION_RAPIDA='';
-if ($datos[$i]['RESPIRACION_RAPIDA']==1) {
+if ($datos[$i]['RESPIRACION_RAPIDA']=='1') {
    $SI_TIENE_RESPIRACION_RAPIDA='X';
-}elseif ($datos[$i]['RESPIRACION_RAPIDA']==0) {
+}elseif ($datos[$i]['RESPIRACION_RAPIDA']=='0') {
     $NO_TIENE_RESPIRACION_RAPIDA='X';
 }
 $SI_TIENE_SIBILANCIAS='';
 $NO_TIENE_SIBILANCIAS='';
-if ($datos[$i]['SIBILANCIAS']==1) {
+if ($datos[$i]['SIBILANCIAS']=='1') {
   $SI_TIENE_SIBILANCIAS='X';
-}elseif ($datos[$i]['SIBILANCIAS']==0) {
+}elseif ($datos[$i]['SIBILANCIAS']=='0') {
    $NO_TIENE_SIBILANCIAS='X';
 }
 $SI_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_CON_TB='';
 $NO_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_CON_TB='';
-if ($datos[$i]['CONTACTO_PERSONAS_TB']==1) {
+if ($datos[$i]['CONTACTO_PERSONAS_TB']=='1') {
    $SI_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_CON_TB='X';
-}elseif ($datos[$i]['CONTACTO_PERSONAS_TB']==0) {
+}elseif ($datos[$i]['CONTACTO_PERSONAS_TB']=='0') {
    $NO_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_CON_TB='X';
 }
 $SI_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_SINTOMATICAS_RESPIRATORIAS='';
 $NO_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_SINTOMATICAS_RESPIRATORIAS='';
-if ($datos[$i]['ENCONTACTO_PERSONAS_SINTOMATICAS']==1) {
+if ($datos[$i]['ENCONTACTO_PERSONAS_SINTOMATICAS']=='1') {
    $SI_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_SINTOMATICAS_RESPIRATORIAS='X';
-}elseif ($datos[$i]['ENCONTACTO_PERSONAS_SINTOMATICAS']==0) {
+}elseif ($datos[$i]['ENCONTACTO_PERSONAS_SINTOMATICAS']=='0') {
     $NO_EL_NIÑO_NIÑA_HA_ESTADO_EN_CONTACTO_CON_PERSONAS_SINTOMATICAS_RESPIRATORIAS='X';
 }
 $SI_TOS_PERSISTENTE_POR_MAS_DE_21_DIAS='';
 $NO_TOS_PERSISTENTE_POR_MAS_DE_21_DIAS='';
-if ($datos[$i]['PERSOSTENTE_TOS_21_DIAS']==1) {
+if ($datos[$i]['PERSOSTENTE_TOS_21_DIAS']=='1') {
     $SI_TOS_PERSISTENTE_POR_MAS_DE_21_DIAS='X';
-}elseif ($datos[$i]['PERSOSTENTE_TOS_21_DIAS']==0) {
+}elseif ($datos[$i]['PERSOSTENTE_TOS_21_DIAS']=='0') {
    $NO_TOS_PERSISTENTE_POR_MAS_DE_21_DIAS='X';
 }
 $SI_PERDIDA_O_GANANCIA_DE_PESO_EN_LOS_ULTIMOS_TRES_MESES='';
 $NO_PERDIDA_O_GANANCIA_DE_PESO_EN_LOS_ULTIMOS_TRES_MESES='';
-if ($datos[$i]['PERDIDA_GNANCIA_PESO_3MESES']==1) {
+if ($datos[$i]['PERDIDA_GNANCIA_PESO_3MESES']=='1') {
     $SI_PERDIDA_O_GANANCIA_DE_PESO_EN_LOS_ULTIMOS_TRES_MESES='X';
-}elseif ($datos[$i]['PERDIDA_GNANCIA_PESO_3MESES']==0) {
+}elseif ($datos[$i]['PERDIDA_GNANCIA_PESO_3MESES']=='0') {
     $NO_PERDIDA_O_GANANCIA_DE_PESO_EN_LOS_ULTIMOS_TRES_MESES='X';
 }
 $SI_TIENE_EL_NIÑO_DIARREA='';
 $NO_TIENE_EL_NIÑO_DIARREA='';
 if ($datos[$i]['DIARREA']==1) {
     $SI_TIENE_EL_NIÑO_DIARREA='X';
-}elseif ($datos[$i]['DIARREA']==0) {
+}elseif ($datos[$i]['DIARREA']=='0') {
    $NO_TIENE_EL_NIÑO_DIARREA='X';
 }
 $N_DE_DIAS_QUE_EL_NIÑ_TIENE_DIARREA=$datos[$i]['NUMERO_DIAS_DIARREA'];
 $SI_FONTANELA_O_MOLLEJA_HUNDIDA='';
 $NO_FONTANELA_O_MOLLEJA_HUNDIDA='';
-if ($datos[$i]['FONTANELA_MOLLEJA_HUNDIDA']==1) {
+if ($datos[$i]['FONTANELA_MOLLEJA_HUNDIDA']=='1') {
    $SI_FONTANELA_O_MOLLEJA_HUNDIDA='X';
-}elseif ($datos[$i]['FONTANELA_MOLLEJA_HUNDIDA']==0) {
+}elseif ($datos[$i]['FONTANELA_MOLLEJA_HUNDIDA']=='0') {
     $NO_FONTANELA_O_MOLLEJA_HUNDIDA='X';
 }
 $SI_INTRANQUILO_O_IRRITABLE='';
 $NO_INTRANQUILO_O_IRRITABLE='';
-if ($datos[$i]['INTRANQUILO_IRRITABLE']==1) {
+if ($datos[$i]['INTRANQUILO_IRRITABLE']=='1') {
    $SI_INTRANQUILO_O_IRRITABLE='X';
-}elseif ($datos[$i]['INTRANQUILO_IRRITABLE']==0) {
+}elseif ($datos[$i]['INTRANQUILO_IRRITABLE']=='0') {
     $NO_INTRANQUILO_O_IRRITABLE='X';
 }
 $SI_HAY_SANGRE_EN_LAS_HECES='';
 $NO_HAY_SANGRE_EN_LAS_HECES='';
-if ($datos[$i]['SANGRE_HECES']==1) {
+if ($datos[$i]['SANGRE_HECES']=='1') {
  $SI_HAY_SANGRE_EN_LAS_HECES='X';
-}elseif ($datos[$i]['SANGRE_HECES']==0) {
+}elseif ($datos[$i]['SANGRE_HECES']=='0') {
     $NO_HAY_SANGRE_EN_LAS_HECES='X';
 }
 
 $SI_BOCA_SECA_O_MUCHA_SED='';
 $NO_BOCA_SECA_O_MUCHA_SED='';
-if ($datos[$i]['BOCA_SECA_SED']==1) {
+if ($datos[$i]['BOCA_SECA_SED']=='1') {
 $SI_BOCA_SECA_O_MUCHA_SED='X';
-}elseif ($datos[$i]['BOCA_SECA_SED']==0) {
+}elseif ($datos[$i]['BOCA_SECA_SED']=='0') {
 $NO_BOCA_SECA_O_MUCHA_SED='X';
 }
 $SI_OJOS_HUNDIDOS='';
 $NO_OJOS_HUNDIDOS='';
-if ($datos[$i]['OJOS_HUNDIDOS']==1) {
+if ($datos[$i]['OJOS_HUNDIDOS']=='1') {
    $SI_OJOS_HUNDIDOS='X';
-}elseif ($datos[$i]['OJOS_HUNDIDOS']==0) {
+}elseif ($datos[$i]['OJOS_HUNDIDOS']=='0') {
    $NO_OJOS_HUNDIDOS='X';
 }
 $SI_PLIEGUE_CUTÁNEO_MUY_LENTO_MAYOR_2_SEG='';
 $NO_PLIEGUE_CUTÁNEO_MUY_LENTO_MAYOR_2_SEG='';
-if ($datos[$i]['PLIEGUE_CUTANEO_2S_MAYOR']==1) {
+if ($datos[$i]['PLIEGUE_CUTANEO_2S_MAYOR']=='1') {
   $SI_PLIEGUE_CUTÁNEO_MUY_LENTO_MAYOR_2_SEG='X';
-}elseif ($datos[$i]['PLIEGUE_CUTANEO_2S_MAYOR']==0) {
+}elseif ($datos[$i]['PLIEGUE_CUTANEO_2S_MAYOR']=='0') {
    $NO_PLIEGUE_CUTÁNEO_MUY_LENTO_MAYOR_2_SEG='X';
 }
 $SI_PLIEGUE_CUTÁNEO_LENTO_2_SEG_O_MENOR='';
 $NO_PLIEGUE_CUTÁNEO_LENTO_2_SEG_O_MENOR='';
-if ($datos[$i]['PLIEGUE_CUTANEO_2S_MENOR']==1) {
+if ($datos[$i]['PLIEGUE_CUTANEO_2S_MENOR']=='1') {
    $SI_PLIEGUE_CUTÁNEO_LENTO_2_SEG_O_MENOR='X';
-}elseif ($datos[$i]['PLIEGUE_CUTANEO_2S_MENOR']==0) {
+}elseif ($datos[$i]['PLIEGUE_CUTANEO_2S_MENOR']=='0') {
     $NO_PLIEGUE_CUTÁNEO_LENTO_2_SEG_O_MENOR='X';
 }
 $SI_TIENE_EL_NIÑO_O_NIÑA_FIEBRE='';
 $NO_TIENE_EL_NIÑO_O_NIÑA_FIEBRE='';
-if ($datos[$i]['FIEBRE']==1) {
+if ($datos[$i]['FIEBRE']=='1') {
    $SI_TIENE_EL_NIÑO_O_NIÑA_FIEBRE='X';
-}elseif ($datos[$i]['FIEBRE']==0) {
+}elseif ($datos[$i]['FIEBRE']=='0') {
    $NO_TIENE_EL_NIÑO_O_NIÑA_FIEBRE='X';
 }
 $N_DE_DIAS_QUE_EL_NIÑO_TIENE_FIEBRE=$datos[$i]['NUMERO_DIAS_FIEBRE'];
 $SI_FIEBRE_DE_MAS_DE_5_DÍAS_TODOS_LOS_DÍAS='';
 $NO_FIEBRE_DE_MAS_DE_5_DÍAS_TODOS_LOS_DÍAS='';
-if ($datos[$i]['FIEBRE_MAS_5DIAS']==1) {
+if ($datos[$i]['FIEBRE_MAS_5DIAS']=='1') {
     $SI_FIEBRE_DE_MAS_DE_5_DÍAS_TODOS_LOS_DÍAS='X';
-}elseif ($datos[$i]['FIEBRE_MAS_5DIAS']==0) {
+}elseif ($datos[$i]['FIEBRE_MAS_5DIAS']=='0') {
    $NO_FIEBRE_DE_MAS_DE_5_DÍAS_TODOS_LOS_DÍAS='X';
 }
 $SI_RIGIDEZ_DE_NUCA='';
 $NO_RIGIDEZ_DE_NUCA='';
-if ($datos[$i]['RIGIDEZ_NUCA']==1) {
+if ($datos[$i]['RIGIDEZ_NUCA']=='1') {
     $SI_RIGIDEZ_DE_NUCA='X';
-}elseif ($datos[$i]['RIGIDEZ_NUCA']==0) {
+}elseif ($datos[$i]['RIGIDEZ_NUCA']=='0') {
     $NO_RIGIDEZ_DE_NUCA='X';
 }
 $SI_FIEBRE_MAYOR_DE_39='';
 $NO_FIEBRE_MAYOR_DE_39='';
-if ($datos[$i]['FIEBRE_MAYOR_39']==1) {
+if ($datos[$i]['FIEBRE_MAYOR_39']=='1') {
     $SI_FIEBRE_MAYOR_DE_39='X';
-}elseif ($datos[$i]['FIEBRE_MAYOR_39']==0) {
+}elseif ($datos[$i]['FIEBRE_MAYOR_39']=='0') {
    $NO_FIEBRE_MAYOR_DE_39='X';
 }
 $SI_ASPECTO_TOXICO='';
 $NO_ASPECTO_TOXICO='';
-if ($datos[$i]['ASPECTO_TOXICO']==1) {
+if ($datos[$i]['ASPECTO_TOXICO']=='1') {
     $SI_ASPECTO_TOXICO='X';
-}elseif ($datos[$i]['ASPECTO_TOXICO']==0) {
+}elseif ($datos[$i]['ASPECTO_TOXICO']=='0') {
     $NO_ASPECTO_TOXICO='X';
 }
 $SI_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_MALARIA='';
 $NO_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_MALARIA='';
-if ($datos[$i]['VIVE_ZONDA_RIESGO_MALARIA']==1) {
+if ($datos[$i]['VIVE_ZONDA_RIESGO_MALARIA']=='1') {
     $SI_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_MALARIA='X';
-}elseif ($datos[$i]['VIVE_ZONDA_RIESGO_MALARIA']==0) {
+}elseif ($datos[$i]['VIVE_ZONDA_RIESGO_MALARIA']=='0') {
     $NO_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_MALARIA='X';
 }
 $SI_MANIFESTACIÓN_DE_SANGRADO='';
 $NO_MANIFESTACIÓN_DE_SANGRADO='';
-if ($datos[$i]['MANIFESTACION_SANGRADO']==1) {
+if ($datos[$i]['MANIFESTACION_SANGRADO']=='1') {
    $SI_MANIFESTACIÓN_DE_SANGRADO='X';
-}elseif ($datos[$i]['MANIFESTACION_SANGRADO']==0) {
+}elseif ($datos[$i]['MANIFESTACION_SANGRADO']=='0') {
   $NO_MANIFESTACIÓN_DE_SANGRADO='X';
 }
 $SI_TOS='';
 $NO_TOS='';
-if ($datos[$i]['FIEBRE_TOS']==1) {
+if ($datos[$i]['FIEBRE_TOS']=='1') {
     $SI_TOS='X';
-}elseif ($datos[$i]['FIEBRE_TOS']==0) {
+}elseif ($datos[$i]['FIEBRE_TOS']=='0') {
     $NO_TOS='X';
 }
 $SI_DOLOR_ABDOMINAL_CONTINUO_INTENSO='';
 $NO_DOLOR_ABDOMINAL_CONTINUO_INTENSO='';
-if ($datos[$i]['DOLOR_ABDOMINAL_CONTINUO']==1) {
+if ($datos[$i]['DOLOR_ABDOMINAL_CONTINUO']=='1') {
     $SI_DOLOR_ABDOMINAL_CONTINUO_INTENSO='X';
-}elseif ($datos[$i]['DOLOR_ABDOMINAL_CONTINUO']==0) {
+}elseif ($datos[$i]['DOLOR_ABDOMINAL_CONTINUO']=='0') {
     $NO_DOLOR_ABDOMINAL_CONTINUO_INTENSO='X';
 }
 $SI_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_DENGUE='';
 $NO_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_DENGUE='';
-if ($datos[$i]['VIVE_ZONDA_RIESGO_DENGUE']==1) {
+if ($datos[$i]['VIVE_ZONDA_RIESGO_DENGUE']=='1') {
  $SI_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_DENGUE='X';
-}elseif ($datos[$i]['VIVE_ZONDA_RIESGO_DENGUE']==0) {
+}elseif ($datos[$i]['VIVE_ZONDA_RIESGO_DENGUE']=='0') {
   $NO_VIVE_O_VISITO_ZONA_DE_RIESGO_DE_DENGUE='X';
 }
 $SI_PIEL_HÚMEDA_Y_FRIA='';
 $NO_PIEL_HÚMEDA_Y_FRIA='';
-if ($datos[$i]['PIEL_HUMEDA_FRIA']==1) {
+if ($datos[$i]['PIEL_HUMEDA_FRIA']=='1') {
    $SI_PIEL_HÚMEDA_Y_FRIA='X';
-}elseif ($datos[$i]['PIEL_HUMEDA_FRIA']==0) {
+}elseif ($datos[$i]['PIEL_HUMEDA_FRIA']=='0') {
    $NO_PIEL_HÚMEDA_Y_FRIA='X';
 }
 $SI_CORIZA='';
 $NO_CORIZA='';
-if ($datos[$i]['CORIZA']==1) {
+if ($datos[$i]['CORIZA']=='1') {
     $SI_CORIZA='X';
-}elseif ($datos[$i]['CORIZA']==0) {
+}elseif ($datos[$i]['CORIZA']=='0') {
     $NO_CORIZA='X';
 }
 
 $SI_PULSO_RÁPIDO_Y_DÉBIL='';
 $NO_PULSO_RÁPIDO_Y_DÉBIL='';
-if ($datos[$i]['PULSO_RAPIDO_DEBIL']==1) {
+if ($datos[$i]['PULSO_RAPIDO_DEBIL']=='1') {
     $SI_PULSO_RÁPIDO_Y_DÉBIL='X';
-}elseif ($datos[$i]['PULSO_RAPIDO_DEBIL']==0) {
+}elseif ($datos[$i]['PULSO_RAPIDO_DEBIL']=='0') {
    $NO_PULSO_RÁPIDO_Y_DÉBIL='X';
 }
 $ZONA_R='';
 $ZONA_U='';
-if ($datos[$i]['ZONA_RU']==1) {
+if ($datos[$i]['ZONA_RU']=='1') {
   $ZONA_U='X';
-}
 }elseif ($datos[$i]['ZONA_RU']==2) {
     $ZONA_R='X';
 }
 $SI_INQUIETO_O_IRRITABLE='';
 $NO_INQUIETO_O_IRRITABLE='';
-if ($datos[$i]['INQUIETO_IRRITABLE']==1) {
+if ($datos[$i]['INQUIETO_IRRITABLE']=='1') {
     $SI_INQUIETO_O_IRRITABLE='X';
-}elseif ($datos[$i]['INQUIETO_IRRITABLE']==0) {
+}elseif ($datos[$i]['INQUIETO_IRRITABLE']=='0') {
    $NO_INQUIETO_O_IRRITABLE='X';
 }
 $SI_OJOS_ROJOS='';
 $NO_OJOS_ROJOS='';
-if ($datos[$i]['OJOS_ROJOS']==1) {
+if ($datos[$i]['OJOS_ROJOS']=='1') {
     $SI_OJOS_ROJOS='X';
-}elseif ($datos[$i]['OJOS_ROJOS']==0) {
+}elseif ($datos[$i]['OJOS_ROJOS']=='0') {
     $NO_OJOS_ROJOS='X';
 }
 $SI_ERUPCIÓN_CUTÁNEA_Y_GENERALIZADA='';
 $NO_ERUPCIÓN_CUTÁNEA_Y_GENERALIZADA='';
-if ($datos[$i]['ERUPCION_CUTANIA']==1) {
+if ($datos[$i]['ERUPCION_CUTANIA']=='1') {
     $SI_ERUPCIÓN_CUTÁNEA_Y_GENERALIZADA='X';
-}elseif ($datos[$i]['ERUPCION_CUTANIA']==0) {
+}elseif ($datos[$i]['ERUPCION_CUTANIA']=='0') {
   $NO_ERUPCIÓN_CUTÁNEA_Y_GENERALIZADA='X';
 }
 $SI_FIEBRE_POR_MAS_DE_14_DÍAS_Y_O_SUDORACIÓN='';
 $NO_FIEBRE_POR_MAS_DE_14_DÍAS_Y_O_SUDORACIÓN='';
-if ($datos[$i]['FIEBRE_SUDORACION_14DIAS']==1) {
+if ($datos[$i]['FIEBRE_SUDORACION_14DIAS']=='1') {
    $SI_FIEBRE_POR_MAS_DE_14_DÍAS_Y_O_SUDORACIÓN='X';
-}elseif ($datos[$i]['FIEBRE_SUDORACION_14DIAS']==0) {
+}elseif ($datos[$i]['FIEBRE_SUDORACION_14DIAS']=='0') {
     $NO_FIEBRE_POR_MAS_DE_14_DÍAS_Y_O_SUDORACIÓN='X';
 }
 $SI_DOLOR_DE_CABEZA_RECIENTE_QUE_AUMENTA='';
 $NO_DOLOR_DE_CABEZA_RECIENTE_QUE_AUMENTA='';
-if ($datos[$i]['DOLOR_CABEZA_RECIENTE_AUMENTA']==1) {
+if ($datos[$i]['DOLOR_CABEZA_RECIENTE_AUMENTA']=='1') {
    $SI_DOLOR_DE_CABEZA_RECIENTE_QUE_AUMENTA='X';
-}elseif ($datos[$i]['DOLOR_CABEZA_RECIENTE_AUMENTA']==0) {
+}elseif ($datos[$i]['DOLOR_CABEZA_RECIENTE_AUMENTA']=='0') {
    $NO_DOLOR_DE_CABEZA_RECIENTE_QUE_AUMENTA='X';
 }
 $SI_EL_DOLOR_DE_CABEZA_SE_ACOMPAÑA_DE_OTROS_SINTOMA_COMO_VOMITO='';
 $NO_EL_DOLOR_DE_CABEZA_SE_ACOMPAÑA_DE_OTROS_SINTOMA_COMO_VOMITO='';
-if ($datos[$i]['DOLOR_CABEZA_OTRO_VOMITO']==1) {
+if ($datos[$i]['DOLOR_CABEZA_OTRO_VOMITO']=='1') {
    $SI_EL_DOLOR_DE_CABEZA_SE_ACOMPAÑA_DE_OTROS_SINTOMA_COMO_VOMITO='X';
-}elseif ($datos[$i]['DOLOR_CABEZA_OTRO_VOMITO']==0) {
+}elseif ($datos[$i]['DOLOR_CABEZA_OTRO_VOMITO']=='0') {
    $NO_EL_DOLOR_DE_CABEZA_SE_ACOMPAÑA_DE_OTROS_SINTOMA_COMO_VOMITO='X';
 }
 $SI_EL_DOLOR_DE_HUESOS_HA_IDO_EN_AUMENTO='';
 $NO_EL_DOLOR_DE_HUESOS_HA_IDO_EN_AUMENTO='';
-if ($datos[$i]['DOLOR_HUESOS_AUMENTA']==1) {
+if ($datos[$i]['DOLOR_HUESOS_AUMENTA']=='1') {
    $SI_EL_DOLOR_DE_HUESOS_HA_IDO_EN_AUMENTO='X';
-}elseif ($datos[$i]['DOLOR_HUESOS_AUMENTA']==0) {
+}elseif ($datos[$i]['DOLOR_HUESOS_AUMENTA']=='0') {
     $NO_EL_DOLOR_DE_HUESOS_HA_IDO_EN_AUMENTO='X';
 }
 $SI_EL_DOLOR_DE_CABEZA_DESPIERTA_AL_NIÑ='';
 $NO_EL_DOLOR_DE_CABEZA_DESPIERTA_AL_NIÑ='';
-if ($datos[$i]['DOLOR_CABEZA_DESPIERTA']==1) {
+if ($datos[$i]['DOLOR_CABEZA_DESPIERTA']=='1') {
 $SI_EL_DOLOR_DE_CABEZA_DESPIERTA_AL_NIÑ='X';
-}elseif ($datos[$i]['DOLOR_CABEZA_DESPIERTA']==0) {
+}elseif ($datos[$i]['DOLOR_CABEZA_DESPIERTA']=='0') {
 $NO_EL_DOLOR_DE_CABEZA_DESPIERTA_AL_NIÑ='X';
 }
 $SI_HA_TENIDO_DOLOR_DE_HUESOS_EN_EL_ULTIMO_MES='';
 $NO_HA_TENIDO_DOLOR_DE_HUESOS_EN_EL_ULTIMO_MES='';
-if ($datos[$i]['DOLOR_HUESOS']==1) {
+if ($datos[$i]['DOLOR_HUESOS']=='1') {
     $SI_HA_TENIDO_DOLOR_DE_HUESOS_EN_EL_ULTIMO_MES='X';
-}elseif ($datos[$i]['DOLOR_HUESOS']==0) {
+}elseif ($datos[$i]['DOLOR_HUESOS']=='0') {
     $NO_HA_TENIDO_DOLOR_DE_HUESOS_EN_EL_ULTIMO_MES='X';
 }
 $SI_EN_LOS_ULTIMOS_3_MESES_A_TENIDO_CAMBIOS_COMO_FATIGA_PERDIDA_DE_PETITO_O_PESO='';
 $NO_EN_LOS_ULTIMOS_3_MESES_A_TENIDO_CAMBIOS_COMO_FATIGA_PERDIDA_DE_PETITO_O_PESO='';
-if ($datos[$i]['CAMBIOS_FATIGA_APETITO_PESO']==1) {
+if ($datos[$i]['CAMBIOS_FATIGA_APETITO_PESO']=='1') {
    $SI_EN_LOS_ULTIMOS_3_MESES_A_TENIDO_CAMBIOS_COMO_FATIGA_PERDIDA_DE_PETITO_O_PESO='X';
-}elseif ($datos[$i]['CAMBIOS_FATIGA_APETITO_PESO']==0) {
+}elseif ($datos[$i]['CAMBIOS_FATIGA_APETITO_PESO']=='0') {
    $NO_EN_LOS_ULTIMOS_3_MESES_A_TENIDO_CAMBIOS_COMO_FATIGA_PERDIDA_DE_PETITO_O_PESO='X';
 }
 $N_DE_DIAS_QUE_EL_NIÑ_TIENE_DOLOR_DE_CABEZA=$datos[$i]['NUMERO_DIAS_DOLOR_CABEZA'];
 $SI_DOLOR_DE_HUESOS_INTERRUMPE_LAS_ACTIVIDADES_DEL_NIÑ='';
 $NO_DOLOR_DE_HUESOS_INTERRUMPE_LAS_ACTIVIDADES_DEL_NIÑ='';
-if ($datos[$i]['DOLOR_HUESOS_INTERRUMPE_ACTIVIDAD']==1) {
+if ($datos[$i]['DOLOR_HUESOS_INTERRUMPE_ACTIVIDAD']=='1') {
    $SI_DOLOR_DE_HUESOS_INTERRUMPE_LAS_ACTIVIDADES_DEL_NIÑ='X';
-}elseif ($datos[$i]['DOLOR_HUESOS_INTERRUMPE_ACTIVIDAD']==0) {
+}elseif ($datos[$i]['DOLOR_HUESOS_INTERRUMPE_ACTIVIDAD']=='0') {
    $NO_DOLOR_DE_HUESOS_INTERRUMPE_LAS_ACTIVIDADES_DEL_NIÑ='X';
 }
 $SI_EL_NIÑO_O_NIÑA_TIENE_PROBLEMAS_DE_OIDO='';
 $NO_EL_NIÑO_O_NIÑA_TIENE_PROBLEMAS_DE_OIDO='';
-if ($datos[$i]['OIDO_PROBLEMAS']==1) {
+if ($datos[$i]['OIDO_PROBLEMAS']=='1') {
 $SI_EL_NIÑO_O_NIÑA_TIENE_PROBLEMAS_DE_OIDO='X';
-}elseif ($datos[$i]['OIDO_PROBLEMAS']==0) {
+}elseif ($datos[$i]['OIDO_PROBLEMAS']=='0') {
 $NO_EL_NIÑO_O_NIÑA_TIENE_PROBLEMAS_DE_OIDO='X';
 }
 $N_DE_EPISODIOS_PREVIOS=$datos[$i]['NUMERO_EPISODIOS_PREVIOS'];
 $SI_TIENE_SUPURACIÓN_DE_OÍDO='';
 $NO_TIENE_SUPURACIÓN_DE_OÍDO='';
-if ($datos[$i]['SUPURACION_OIDO']==1) {
+if ($datos[$i]['SUPURACION_OIDO']=='1') {
 $SI_TIENE_SUPURACIÓN_DE_OÍDO='X';
-}elseif ($datos[$i]['SUPURACION_OIDO']==0) {
+}elseif ($datos[$i]['SUPURACION_OIDO']=='0') {
 $NO_TIENE_SUPURACIÓN_DE_OÍDO='X';
 }
 $HACE_CUANTOS_DIAS=$datos[$i]['NUMERO_DIAS_SUPURACION_OIDO'];
 $SI_TUMEFACCIÓN_DOLOR_ATRÁS_DE_LA_OREJA='';
 $NO_TUMEFACCIÓN_DOLOR_ATRÁS_DE_LA_OREJA='';
-if ($datos[$i]['TUMEFACCION_OREJA']==1) {
+if ($datos[$i]['TUMEFACCION_OREJA']=='1') {
 $SI_TUMEFACCIÓN_DOLOR_ATRÁS_DE_LA_OREJA='X';
-}elseif ($datos[$i]['TUMEFACCION_OREJA']==0) {
+}elseif ($datos[$i]['TUMEFACCION_OREJA']=='0') {
     $NO_TUMEFACCIÓN_DOLOR_ATRÁS_DE_LA_OREJA='X';
 }
 $SI_EL_NIÑO_O_NIÑA_TIENE_DESNUTRICIÓN_Y_O_ANEMIA='';
 $NO_EL_NIÑO_O_NIÑA_TIENE_DESNUTRICIÓN_Y_O_ANEMIA='';
-if ($datos[$i]['DESNUTRICION_ANEMIA']==1) {
+if ($datos[$i]['DESNUTRICION_ANEMIA']=='1') {
    $SI_EL_NIÑO_O_NIÑA_TIENE_DESNUTRICIÓN_Y_O_ANEMIA='X';
-}elseif ($datos[$i]['DESNUTRICION_ANEMIA']==0) {
+}elseif ($datos[$i]['DESNUTRICION_ANEMIA']=='0') {
    $NO_EL_NIÑO_O_NIÑA_TIENE_DESNUTRICIÓN_Y_O_ANEMIA='X';
 }
 $RETRASO_EN_EL_CRECIMIENTO_MUY_INTENSO='';
 $RETRASO_EN_EL_CRECIMIENTO_MENOS_MARCADO='';
-if ($datos[$i]['RETRA_CRECIMIENTO']==1) {
+if ($datos[$i]['RETRA_CRECIMIENTO']=='1') {
    $RETRASO_EN_EL_CRECIMIENTO_MUY_INTENSO='X';
-}elseif ($datos[$i]['RETRA_CRECIMIENTO']==0) {
+}elseif ($datos[$i]['RETRA_CRECIMIENTO']=='0') {
     $RETRASO_EN_EL_CRECIMIENTO_MENOS_MARCADO='X';
 }
    $PERDIDA_DE_TEJIDO_MUSCULAR_MUY_MARCADA='';
       $PERDIDA_DE_TEJIDO_MUSCULAR_MARCADA='';
-if ($datos[$i]['PERDIDA_TEJIDO_MUSCULAR']==1) {
+if ($datos[$i]['PERDIDA_TEJIDO_MUSCULAR']=='1') {
     $PERDIDA_DE_TEJIDO_MUSCULAR_MUY_MARCADA='X';
-}elseif ($datos[$i]['PERDIDA_TEJIDO_MUSCULAR']==0) {
+}elseif ($datos[$i]['PERDIDA_TEJIDO_MUSCULAR']=='0') {
    $PERDIDA_DE_TEJIDO_MUSCULAR_MARCADA='X';
 }
 
 $TEJIDO_ADIPOSO_AUSENTE='';
 $TEJIDO_ADIPOSO_POCO_DISMINUIDO='';
-if ($datos[$i]['TEJIDO_ADIPOSO']==1) {
+if ($datos[$i]['TEJIDO_ADIPOSO']=='1') {
    $TEJIDO_ADIPOSO_AUSENTE='X';
-}elseif ($datos[$i]['TEJIDO_ADIPOSO']==0) {
+}elseif ($datos[$i]['TEJIDO_ADIPOSO']=='0') {
     $TEJIDO_ADIPOSO_POCO_DISMINUIDO='X';
 }
 $SI_EDEMA='';
 $NO_EDEMA='';
-if ($datos[$i]['EDEMA']==1) {
+if ($datos[$i]['EDEMA']=='1') {
     $SI_EDEMA='X';
-}elseif ($datos[$i]['EDEMA']==0) {
+}elseif ($datos[$i]['EDEMA']=='0') {
     $NO_EDEMA='X';
 }
 $VALORACION_DE_LA_CARA_CARA_DE_VIEJITO='';
 $VALORACION_DE_LA_CARA_CARA_DE_LUNA_LLENA='';
-if ($datos[$i]['VALORACION_CARA']==1) {
+
+if ($datos[$i]['VALORACION_CARA']=='1') {
    $VALORACION_DE_LA_CARA_CARA_DE_VIEJITO='X';
-}elseif ($datos[$i]['VALORACION_CARA']==0) {
+}elseif ($datos[$i]['VALORACION_CARA']=='0') {
     $VALORACION_DE_LA_CARA_CARA_DE_LUNA_LLENA='X';
+    
 }
 $EL_SISTEMA_ÓSEO_ROSARIO_COSTAL_VISIBLE='';
             $EL_SISTEMA_ÓSEO_PIERNAS_DE_SABLE='';
-$datosPreguntaRespuestaSistemaOseo=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=152 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPreguntaRespuestaSistemaOseo=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=152 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPreguntaRespuestaSistemaOseo); $y++) { 
     switch ($datosPreguntaRespuestaSistemaOseo[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '557':
@@ -727,7 +734,9 @@ for ($y=0; $y < count($datosPreguntaRespuestaSistemaOseo); $y++) {
 }
 $COMPORTAMIENTO_MIRADA_DE_ANGUSTIA='';
             $COMPORTAMIENTO_LLANTO_APATIA='';
-$datosPreguntaRespuestaComportamiento=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=153 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPreguntaRespuestaComportamiento=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=153 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPreguntaRespuestaComportamiento); $y++) { 
     switch ($datosPreguntaRespuestaComportamiento[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '559':
@@ -744,23 +753,25 @@ for ($y=0; $y < count($datosPreguntaRespuestaComportamiento); $y++) {
 }
 $APETITO_DISMINUIDO='';
 $APETITO_AUMENTADO='';
-if ($datos[$i]['APETITO']==1) {
+if ($datos[$i]['APETITO']=='1') {
     $APETITO_DISMINUIDO='X';
-}elseif ($datos[$i]['APETITO']==0) {
+}elseif ($datos[$i]['APETITO']=='0') {
    $APETITO_AUMENTADO='X';
 }
 $CABELLO_ESCASO='';
 $CABELLO_DEBIL='';
-if ($datos[$i]['CABELLO']==1) {
+if ($datos[$i]['CABELLO']=='1') {
     $CABELLO_ESCASO='X';
-}elseif ($datos[$i]['CABELLO']==0) {
+}elseif ($datos[$i]['CABELLO']=='0') {
     $CABELLO_DEBIL='X';
 }
             $COLOR_ROJO='';
             $COLOR_NARANJA='';
             $COLOR_AMARILLO='';
             $COLOR_VERDE='';
-$datosPreguntaRespuestaComportamiento=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=3 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPreguntaRespuestaComportamiento=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=3 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPreguntaRespuestaComportamiento); $y++) { 
     switch ($datosPreguntaRespuestaComportamiento[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '8':
@@ -783,12 +794,13 @@ for ($y=0; $y < count($datosPreguntaRespuestaComportamiento); $y++) {
             break;
     }
 }
+
 $MEDIDA=$datos[$i]['PERIMETRO_BRAQUIAL_MEDIDA'];
 $LACTANTE_TOMA_SENO_SI='';
 $LACTANTE_TOMA_SENO_NO='';
-if ($datos[$i]['LACTA_TOMA_SENO_MESES']==1) {
+if ($datos[$i]['LACTA_TOMA_SENO_MESES']=='1') {
     $LACTANTE_TOMA_SENO_SI='X';
-}elseif ($datos[$i]['LACTA_TOMA_SENO_MESES']==0) {
+}elseif ($datos[$i]['LACTA_TOMA_SENO_MESES']=='0') {
    $LACTANTE_TOMA_SENO_NO='X';
 }
 $NUM_VECES_TOMA_SENO_AL_DIA=$datos[$i]['NUMERO_VECES_TOMA_SENO_DIA_MESES'];
@@ -796,7 +808,9 @@ $NUM_VECES_TOMA_SENO_AL_NOCHE=$datos[$i]['NUMERO_VECES_TOMA_SENO_NOCHE_MESES'];
 $NARIZ_FRENTE_AL_PEZON='';
 $CUERPO_FRENTE_A_LA_MADRE='';
 $MADRE_SOSTIENE_NIÑO='';
-$datosPyRPosicion=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=4 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRPosicion=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=4 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRPosicion); $y++) { 
     switch ($datosPyRPosicion[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '12':
@@ -818,7 +832,9 @@ $MADRE_SOSTIENE_NIÑO='';
 $MENOR_TOCA_SENO='';
 $LABIO_INFERIOR_AFUERA='';
 $AUREOLA_MAS_ARRIBA='';
-$datosPyRAgarre=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=5 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRAgarre=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=5 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRAgarre); $y++) { 
     switch ($datosPyRAgarre[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '15':
@@ -847,7 +863,9 @@ $LACERACION_PEZON='';
 $HOSPITALIZACION='';
 $OTROS_DIFICULTAD_AMAMANTAR='';
 
-$datosPyRDificultad=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=6 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRDificultad=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=6 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRDificultad); $y++) { 
     switch ($datosPyRDificultad[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '18':
@@ -892,7 +910,9 @@ $AGUA='';
 $COLADA='';
 $PAPILLA='';
 $NO_RECIBE='';
-$datosPyROtrosAlimentos=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=7 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyROtrosAlimentos=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi`
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+ WHERE PREGUNTAS_ID_PREGUNTA=7 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyROtrosAlimentos); $y++) { 
     switch ($datosPyROtrosAlimentos[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '26':
@@ -927,7 +947,9 @@ $NO_RECIBE='';
 
 $CONTIENEN_SAL='';
 $CONTIENEN_AZUCAR='';
-$datosPyRSalAzucar=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=8 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRSalAzucar=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=8 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRSalAzucar); $y++) { 
     switch ($datosPyRSalAzucar[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '32':
@@ -946,7 +968,9 @@ $TETERO='';
 $TASA='';
 $CUCHARA='';
 $OTRO_UTIL_ALIMENTAR='';
-$datosPyRSalAzucar=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=9 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRSalAzucar=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=9 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRSalAzucar); $y++) { 
     switch ($datosPyRSalAzucar[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '34':
@@ -971,9 +995,9 @@ $OTRO_UTIL_ALIMENTAR='';
 }
 $NIÑO_MAS_6MESES_TOMA_SENO_SI='';
 $NIÑO_MAS_6MESES_TOMA_SENO_NO='';
-if ($datos[$i]['TOMA_SENO_ANOS']==1) {
+if ($datos[$i]['TOMA_SENO_ANOS']=='1') {
    $NIÑO_MAS_6MESES_TOMA_SENO_SI='X';
-}elseif ($datos[$i]['TOMA_SENO_ANOS']==0) {
+}elseif ($datos[$i]['TOMA_SENO_ANOS']=='0') {
     $NIÑO_MAS_6MESES_TOMA_SENO_NO='X';
 }
 
@@ -983,17 +1007,17 @@ $NUM_VECES_TOMA_SENO_AL_NOCHE_6MESES=$datos[$i]['NUMERO_VECES_TOMA_SENO_NOCHE_AN
 $ALIMENTOS_CON_MAYOR_FRECUENCIA=$datos[$i]['ALIMENTO_MAYOR_FRECUENCIA'];
 $ESTA_PROGRAMA_NUTRICIONAL_SI='';
 $ESTA_PROGRAMA_NUTRICIONAL_NO='';
-if ($datos[$i]['PROGRAMA_RECUPERACION_NUTRICONAL']==1) {
+if ($datos[$i]['PROGRAMA_RECUPERACION_NUTRICONAL']=='1') {
    $ESTA_PROGRAMA_NUTRICIONAL_SI='X';
-}elseif ($datos[$i]['PROGRAMA_RECUPERACION_NUTRICONAL']==0) {
+}elseif ($datos[$i]['PROGRAMA_RECUPERACION_NUTRICONAL']=='0') {
    $ESTA_PROGRAMA_NUTRICIONAL_NO='X';
 }
 $CUAL_PROGRAMA_NUTRICIONAL=$datos[$i]['CUAL_PROGRAMA_NUTRICIONAL'];
 $NIÑO_USA_BIBERON_SI='';
 $NIÑO_USA_BIBERON_NO='';
-if ($datos[$i]['USA_BIBERON']==1) {
+if ($datos[$i]['USA_BIBERON']=='1') {
 $NIÑO_USA_BIBERON_SI='X';
-}elseif ($datos[$i]['USA_BIBERON']==0) {
+}elseif ($datos[$i]['USA_BIBERON']=='0') {
   $NIÑO_USA_BIBERON_NO='X';
 }
 
@@ -1004,7 +1028,9 @@ $TOMA_SOPA='';
 $TOMA_GASEOSA='';
 $TOMA_OTRO='';
 
-$datosPyRTomaElNiño=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=10 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRTomaElNiño=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` 
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+    WHERE PREGUNTAS_ID_PREGUNTA=10 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRTomaElNiño); $y++) { 
     switch ($datosPyRTomaElNiño[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
        case '38':
@@ -1039,7 +1065,9 @@ $CONS_LIQUIDA='';
 $CONS_CREMA='';
 $CONS_PAPILLA='';
 $CONS_OTRO='';
-$datosPyRConsistencia=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=11 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRConsistencia=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi`
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+ WHERE PREGUNTAS_ID_PREGUNTA=11 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRConsistencia); $y++) { 
     switch ($datosPyRConsistencia[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
        case '44':
@@ -1065,17 +1093,17 @@ $CONS_OTRO='';
 
 $NIÑO_COME_SOLO_SI='';
 $NIÑO_COME_SOLO_NO='';
-if ($datos[$i]['COME_SOLO']==1) {
+if ($datos[$i]['COME_SOLO']=='1') {
    $NIÑO_COME_SOLO_SI='X';
-}elseif ($datos[$i]['COME_SOLO']==0) {
+}elseif ($datos[$i]['COME_SOLO']=='0') {
     $NIÑO_COME_SOLO_NO='X';
 }
 $OP_3MESES_DESARROLLO_SI='';
 $OP_3MESES_DESARROLLO_NO='';
 $OP_3MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_3_LEVANTA_CABEZA']==1) {
+if ($datos[$i]['MESES_3_LEVANTA_CABEZA']=='1') {
     $OP_3MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_3_LEVANTA_CABEZA']==0) {
+}elseif ($datos[$i]['MESES_3_LEVANTA_CABEZA']=='0') {
     $OP_3MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_3_LEVANTA_CABEZA']==2) {
    $OP_3MESES_DESARROLLO_NA='X';
@@ -1083,9 +1111,9 @@ if ($datos[$i]['MESES_3_LEVANTA_CABEZA']==1) {
 $OP_6MESES_DESARROLLO_SI='';
 $OP_6MESES_DESARROLLO_NO='';
 $OP_6MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_6_SIENTA_APOYO']==1) {
+if ($datos[$i]['MESES_6_SIENTA_APOYO']=='1') {
     $OP_6MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_6_SIENTA_APOYO']==0) {
+}elseif ($datos[$i]['MESES_6_SIENTA_APOYO']=='0') {
     $OP_6MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_6_SIENTA_APOYO']==2) {
    $OP_6MESES_DESARROLLO_NA='X';
@@ -1093,9 +1121,9 @@ if ($datos[$i]['MESES_6_SIENTA_APOYO']==1) {
 $OP_9MESES_DESARROLLO_SI='';
 $OP_9MESES_DESARROLLO_NO='';
 $OP_9MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_9_SIETA_SOLO']==1) {
+if ($datos[$i]['MESES_9_SIETA_SOLO']=='1') {
    $OP_9MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_9_SIETA_SOLO']==0) {
+}elseif ($datos[$i]['MESES_9_SIETA_SOLO']=='0') {
    $OP_9MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_9_SIETA_SOLO']==2) {
     $OP_9MESES_DESARROLLO_NA='X';
@@ -1103,9 +1131,9 @@ if ($datos[$i]['MESES_9_SIETA_SOLO']==1) {
 $OP_12MESES_DESARROLLO_SI='';
 $OP_12MESES_DESARROLLO_NO='';
 $OP_12MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_12_CAMINA_APOYO']==1) {
+if ($datos[$i]['MESES_12_CAMINA_APOYO']=='1') {
     $OP_12MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_12_CAMINA_APOYO']==0) {
+}elseif ($datos[$i]['MESES_12_CAMINA_APOYO']=='0') {
    $OP_12MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_12_CAMINA_APOYO']==2) {
     $OP_12MESES_DESARROLLO_NA='X';
@@ -1113,9 +1141,9 @@ if ($datos[$i]['MESES_12_CAMINA_APOYO']==1) {
 $OP_16MESES_DESARROLLO_SI='';
 $OP_16MESES_DESARROLLO_NO='';
 $OP_16MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_16_CAMINA_SOLO']==1) {
+if ($datos[$i]['MESES_16_CAMINA_SOLO']=='1') {
     $OP_16MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_16_CAMINA_SOLO']==0) {
+}elseif ($datos[$i]['MESES_16_CAMINA_SOLO']=='0') {
     $OP_16MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_16_CAMINA_SOLO']==2) {
     $OP_16MESES_DESARROLLO_NA='X';
@@ -1123,9 +1151,9 @@ if ($datos[$i]['MESES_16_CAMINA_SOLO']==1) {
 $OP_20MESES_DESARROLLO_SI='';
 $OP_20MESES_DESARROLLO_NO='';
 $OP_20MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_20_CORRE_RAPIDO']==1) {
+if ($datos[$i]['MESES_20_CORRE_RAPIDO']=='1') {
     $OP_20MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_20_CORRE_RAPIDO']==0) {
+}elseif ($datos[$i]['MESES_20_CORRE_RAPIDO']=='0') {
     $OP_20MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_20_CORRE_RAPIDO']==2) {
     $OP_20MESES_DESARROLLO_NA='X';
@@ -1134,9 +1162,9 @@ $OP_24MESES_DESARROLLO_SI='';
 $OP_24MESES_DESARROLLO_NO='';
 $OP_24MESES_DESARROLLO_NA='';
 
-if ($datos[$i]['MESES_24_PATEA_PELOTA']==1) {
+if ($datos[$i]['MESES_24_PATEA_PELOTA']=='1') {
    $OP_24MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_24_PATEA_PELOTA']==0) {
+}elseif ($datos[$i]['MESES_24_PATEA_PELOTA']=='0') {
    $OP_24MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_24_PATEA_PELOTA']==2) {
    $OP_24MESES_DESARROLLO_NA='X';
@@ -1144,9 +1172,9 @@ if ($datos[$i]['MESES_24_PATEA_PELOTA']==1) {
 $OP_30MESES_DESARROLLO_SI='';
 $OP_30MESES_DESARROLLO_NO='';
 $OP_30MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_30_EMPINA_AMBOSPIES']==1) {
+if ($datos[$i]['MESES_30_EMPINA_AMBOSPIES']=='1') {
    $OP_30MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_30_EMPINA_AMBOSPIES']==0) {
+}elseif ($datos[$i]['MESES_30_EMPINA_AMBOSPIES']=='0') {
     $OP_30MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_30_EMPINA_AMBOSPIES']==2) {
     $OP_30MESES_DESARROLLO_NA='X';
@@ -1154,9 +1182,9 @@ if ($datos[$i]['MESES_30_EMPINA_AMBOSPIES']==1) {
 $OP_36MESES_DESARROLLO_SI='';
 $OP_36MESES_DESARROLLO_NO='';
 $OP_36MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_36_SUBE_BAJA_ESCALERAS_SOLO']==1) {
+if ($datos[$i]['MESES_36_SUBE_BAJA_ESCALERAS_SOLO']=='1') {
     $OP_36MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_36_SUBE_BAJA_ESCALERAS_SOLO']==0) {
+}elseif ($datos[$i]['MESES_36_SUBE_BAJA_ESCALERAS_SOLO']=='0') {
    $OP_36MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_36_SUBE_BAJA_ESCALERAS_SOLO']==2) {
     $OP_36MESES_DESARROLLO_NA='X';
@@ -1164,9 +1192,9 @@ if ($datos[$i]['MESES_36_SUBE_BAJA_ESCALERAS_SOLO']==1) {
 $OP_48MESES_DESARROLLO_SI='';
 $OP_48MESES_DESARROLLO_NO='';
 $OP_48MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_48_LANZA_ATRAPA_PELOTA']==1) {
+if ($datos[$i]['MESES_48_LANZA_ATRAPA_PELOTA']=='1') {
    $OP_48MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_48_LANZA_ATRAPA_PELOTA']==0) {
+}elseif ($datos[$i]['MESES_48_LANZA_ATRAPA_PELOTA']=='0') {
    $OP_48MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_48_LANZA_ATRAPA_PELOTA']==2) {
     $OP_48MESES_DESARROLLO_NA='X';
@@ -1174,9 +1202,9 @@ if ($datos[$i]['MESES_48_LANZA_ATRAPA_PELOTA']==1) {
 $OP_60MESES_DESARROLLO_SI='';
 $OP_60MESES_DESARROLLO_NO='';
 $OP_60MESES_DESARROLLO_NA='';
-if ($datos[$i]['MESES_60_PARA_SALTA']==1) {
+if ($datos[$i]['MESES_60_PARA_SALTA']=='1') {
     $OP_60MESES_DESARROLLO_SI='X';
-}elseif ($datos[$i]['MESES_60_PARA_SALTA']==0) {
+}elseif ($datos[$i]['MESES_60_PARA_SALTA']=='0') {
     $OP_60MESES_DESARROLLO_NO='X';
 }elseif ($datos[$i]['MESES_60_PARA_SALTA']==2) {
     $OP_60MESES_DESARROLLO_NA='X';
@@ -1185,16 +1213,16 @@ if ($datos[$i]['MESES_60_PARA_SALTA']==1) {
 $NUM_CONSULTAS_CRECIMIENTO=$datos[$i]['NUMERO_CONSULTAR_CRECIMEINTO'];
 $RECIBE_MICRONUTRIENTES_SI='';
 $RECIBE_MICRONUTRIENTES_NO='';
-if ($datos[$i]['RECIBE_MICRONUTRIENTES']==1) {
+if ($datos[$i]['RECIBE_MICRONUTRIENTES']=='1') {
    $RECIBE_MICRONUTRIENTES_SI='X';
-}elseif ($datos[$i]['RECIBE_MICRONUTRIENTES']==0) {
+}elseif ($datos[$i]['RECIBE_MICRONUTRIENTES']=='0') {
     $RECIBE_MICRONUTRIENTES_NO='X';
 }
 $RECIBE_DESPARACITACION_SI='';
 $RECIBE_DESPARACITACION_NO='';
-if ($datos[$i]['RECIBIO_DESPARACITACION']==1) {
+if ($datos[$i]['RECIBIO_DESPARACITACION']=='1') {
    $RECIBE_DESPARACITACION_SI='X';
-}elseif ($datos[$i]['RECIBIO_DESPARACITACION']==0) {
+}elseif ($datos[$i]['RECIBIO_DESPARACITACION']=='0') {
     $RECIBE_DESPARACITACION_NO='X';
 }
 $DESCRIPCION_MICRONUTRIENTES=$datos[$i]['DES_MICRONUTRIENTES'];
@@ -1202,132 +1230,132 @@ $FECHA_DESPARACITACION=$datos[$i]['FECHA_DESPARACITACION'];
 $FECHA_ENTREGA_MICRONUTRIENTES=$datos[$i]['FECHA_ULTIMA_ENTREGA'];
 $LE_SONRIEN_SI='';
 $LE_SONRIEN_NO='';
-if ($datos[$i]['LE_SONRIE']==1) {
+if ($datos[$i]['LE_SONRIE']=='1') {
     $LE_SONRIEN_SI='X';
-}elseif ($datos[$i]['LE_SONRIE']==0) {
+}elseif ($datos[$i]['LE_SONRIE']=='0') {
     $LE_SONRIEN_NO='X';
 }
 
 $LE_ACOMPAÑAN_SI='';
 $LE_ACOMPAÑAN_NO='';
-if ($datos[$i]['LO_ACOMPANA']==1) {
+if ($datos[$i]['LO_ACOMPANA']=='1') {
 $LE_ACOMPAÑAN_SI='X';
-}elseif ($datos[$i]['LO_ACOMPANA']==0) {
+}elseif ($datos[$i]['LO_ACOMPANA']=='0') {
     $LE_ACOMPAÑAN_NO='X';
 }
 $ALZAN_SI='';
 $ALZAN_NO='';
-if ($datos[$i]['ALZA_ARRULLAN']==1) {
+if ($datos[$i]['ALZA_ARRULLAN']=='1') {
     $ALZAN_SI='X';
-}elseif ($datos[$i]['ALZA_ARRULLAN']==0) {
+}elseif ($datos[$i]['ALZA_ARRULLAN']=='0') {
     $ALZAN_NO='X';
 }
 $LE_JUEGAN_SI='';
 $LE_JUEGAN_NO='';
-if ($datos[$i]['JUEGA']==1) {
+if ($datos[$i]['JUEGA']=='1') {
     $LE_JUEGAN_SI='X';
-}elseif ($datos[$i]['JUEGA']==0) {
+}elseif ($datos[$i]['JUEGA']=='0') {
    $LE_JUEGAN_NO='X';
 }
 $PREOCUPAN_POR_HIGIENE_SI='';
 $PREOCUPAN_POR_HIGIENE_NO='';
-if ($datos[$i]['SE_PREOCUPA_HIGIENE']==1) {
+if ($datos[$i]['SE_PREOCUPA_HIGIENE']=='1') {
 $PREOCUPAN_POR_HIGIENE_SI='X';
-}elseif ($datos[$i]['SE_PREOCUPA_HIGIENE']==0) {
+}elseif ($datos[$i]['SE_PREOCUPA_HIGIENE']=='0') {
 $PREOCUPAN_POR_HIGIENE_NO='X';
 }
 $CASTIGAN_CORREA_SI='';
 $CASTIGAN_CORREA_NO='';
-if ($datos[$i]['CASTIGAN_CONRREA_PALMADAS']==1) {
+if ($datos[$i]['CASTIGAN_CONRREA_PALMADAS']=='1') {
    $CASTIGAN_CORREA_SI='X';
-}elseif ($datos[$i]['CASTIGAN_CONRREA_PALMADAS']==0) {
+}elseif ($datos[$i]['CASTIGAN_CONRREA_PALMADAS']=='0') {
     $CASTIGAN_CORREA_NO='X';
 }
 $PREOCUPAN_POR_SALUD_SI='';
 $PREOCUPAN_POR_SALUD_NO='';
-if ($datos[$i]['SE_PREOCUPA_SALUD']==1) {
+if ($datos[$i]['SE_PREOCUPA_SALUD']=='1') {
    $PREOCUPAN_POR_SALUD_SI='X';
-}elseif ($datos[$i]['SE_PREOCUPA_SALUD']==0) {
+}elseif ($datos[$i]['SE_PREOCUPA_SALUD']=='0') {
     $PREOCUPAN_POR_SALUD_NO='X';
 }
 $ACCIDENTES_FRECUENTES_SI='';
 $ACCIDENTES_FRECUENTES_NO='';
-if ($datos[$i]['TIENE_ACCIDENTES_FRECUENTES']==1) {
+if ($datos[$i]['TIENE_ACCIDENTES_FRECUENTES']=='1') {
    $ACCIDENTES_FRECUENTES_SI='X';
-}elseif ($datos[$i]['TIENE_ACCIDENTES_FRECUENTES']==0) {
+}elseif ($datos[$i]['TIENE_ACCIDENTES_FRECUENTES']=='0') {
     $ACCIDENTES_FRECUENTES_NO='X';
 }
 $SOLO_TOMANDO_TETERO_SI='';
 $SOLO_TOMANDO_TETERO_NO='';
-if ($datos[$i]['ESTA_SOLO_TOAMDO_TETERO']==1) {
+if ($datos[$i]['ESTA_SOLO_TOAMDO_TETERO']=='1') {
    $SOLO_TOMANDO_TETERO_SI='X';
-}elseif ($datos[$i]['ESTA_SOLO_TOAMDO_TETERO']==0) {
+}elseif ($datos[$i]['ESTA_SOLO_TOAMDO_TETERO']=='0') {
     $SOLO_TOMANDO_TETERO_NO='X';
 }
 $OBJETOS_PEQUEÑOS_SI='';
 $OBJETOS_PEQUEÑOS_NO='';
-if ($datos[$i]['OBJETOS_PEQUENOS_ALCANCE']==1) {
+if ($datos[$i]['OBJETOS_PEQUENOS_ALCANCE']=='1') {
     $OBJETOS_PEQUEÑOS_SI='X';
-}elseif ($datos[$i]['OBJETOS_PEQUENOS_ALCANCE']==0) {
+}elseif ($datos[$i]['OBJETOS_PEQUENOS_ALCANCE']=='0') {
     $OBJETOS_PEQUEÑOS_NO='X';
 }
 $NIÑOS_COCINA_SI='';
 $NIÑOS_COCINA_NO='';
-if ($datos[$i]['EN_COCINA']==1) {
+if ($datos[$i]['EN_COCINA']=='1') {
     $NIÑOS_COCINA_SI='X';
-}elseif ($datos[$i]['EN_COCINA']==0) {
+}elseif ($datos[$i]['EN_COCINA']=='0') {
     $NIÑOS_COCINA_NO='X';
 }
 $CUCHILLOS_AL_ALCANCE_SI='';
 $CUCHILLOS_AL_ALCANCE_NO='';
-if ($datos[$i]['ALCANCE_CUCHILLOS_SERRUCHOS']==1) {
+if ($datos[$i]['ALCANCE_CUCHILLOS_SERRUCHOS']=='1') {
    $CUCHILLOS_AL_ALCANCE_SI='X';
-}elseif ($datos[$i]['ALCANCE_CUCHILLOS_SERRUCHOS']==0) {
+}elseif ($datos[$i]['ALCANCE_CUCHILLOS_SERRUCHOS']=='0') {
     $CUCHILLOS_AL_ALCANCE_NO='X';
 }
 $MEDICAMENTOS_AL_ALCANCE_SI='';
 $MEDICAMENTOS_AL_ALCANCE_NO='';
-if ($datos[$i]['ALCANCE_MEDICAMENTOS']==1) {
+if ($datos[$i]['ALCANCE_MEDICAMENTOS']=='1') {
    $MEDICAMENTOS_AL_ALCANCE_SI='X';
-}elseif ($datos[$i]['ALCANCE_MEDICAMENTOS']==0) {
+}elseif ($datos[$i]['ALCANCE_MEDICAMENTOS']=='0') {
     $MEDICAMENTOS_AL_ALCANCE_NO='X';
 }
 
 $ESCALERAS_SIN_PROTECCION_SI='';
 $ESCALERAS_SIN_PROTECCION_NO='';
-if ($datos[$i]['ESCALERAS_TERRAZAS_SIN_PROTECCION']==1) {
+if ($datos[$i]['ESCALERAS_TERRAZAS_SIN_PROTECCION']=='1') {
    
 $ESCALERAS_SIN_PROTECCION_SI='X';
-}elseif ($datos[$i]['ESCALERAS_TERRAZAS_SIN_PROTECCION']==0) {
+}elseif ($datos[$i]['ESCALERAS_TERRAZAS_SIN_PROTECCION']=='0') {
   $ESCALERAS_SIN_PROTECCION_NO='X';
 }
 $EXISTEN_OTROS_RIESGOS_SI='';
 $EXISTEN_OTROS_RIESGOS_NO='';
-if ($datos[$i]['EXISTEN_OTROS_RIESGOS_HOGAR']==1) {
+if ($datos[$i]['EXISTEN_OTROS_RIESGOS_HOGAR']=='1') {
    $EXISTEN_OTROS_RIESGOS_SI='X';
-}elseif ($datos[$i]['EXISTEN_OTROS_RIESGOS_HOGAR']==0) {
+}elseif ($datos[$i]['EXISTEN_OTROS_RIESGOS_HOGAR']=='0') {
     $EXISTEN_OTROS_RIESGOS_NO='X';
 }
 $AGUA_SIN_TAPA_SI='';
 $AGUA_SIN_TAPA_NO='';
-if ($datos[$i]['AGUA_ALMACENADA_SINTAPA']==1) {
+if ($datos[$i]['AGUA_ALMACENADA_SINTAPA']=='1') {
     $AGUA_SIN_TAPA_SI='X';
-}elseif ($datos[$i]['AGUA_ALMACENADA_SINTAPA']==0) {
+}elseif ($datos[$i]['AGUA_ALMACENADA_SINTAPA']=='0') {
     $AGUA_SIN_TAPA_NO='X';
  }
 
 $CABLES_DESCUBIERTOS_SI='';
 $CABLES_DESCUBIERTOS_NO='';
- if ($datos[$i]['ENCHUFES_CABLES_DECUBIERTOS']==1) {
+ if ($datos[$i]['ENCHUFES_CABLES_DECUBIERTOS']=='1') {
     $CABLES_DESCUBIERTOS_SI='X';
-}elseif ($datos[$i]['ENCHUFES_CABLES_DECUBIERTOS']==0) {
+}elseif ($datos[$i]['ENCHUFES_CABLES_DECUBIERTOS']=='0') {
    $CABLES_DESCUBIERTOS_NO='X';
  }
  $VELAS_AL_ALCANCE_SI='';
 $VELAS_AL_ALCANCE_NO='';
- if ($datos[$i]['VELAS_FOSFOROS']==1) {
+ if ($datos[$i]['VELAS_FOSFOROS']=='1') {
      $VELAS_AL_ALCANCE_SI='X';
-}elseif ($datos[$i]['VELAS_FOSFOROS']==0) {
+}elseif ($datos[$i]['VELAS_FOSFOROS']=='0') {
     $VELAS_AL_ALCANCE_NO='X';
  }
 $ROPA_SUCIA='';
@@ -1345,7 +1373,9 @@ $VIVIENDA_ILUMINACION='';
 $EVITAN_TEMPERATURA='';
 $ACUMULA_AGUA='';
 $ADULTO_TOS_CUIDA='';
-$datosPyRAmbientalesHigiene=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi` WHERE PREGUNTAS_ID_PREGUNTA=151 AND GENERAL_AIEPI_idGENERAL_AIEPI='".$idAiepiBuscar."'");
+$datosPyRAmbientalesHigiene=$this->_modeloAiepi->getPreguntasRespuesta("SELECT * FROM `aiepi`
+ INNER JOIN general_aiepi on general_aiepi.ID_GENERAL_AIEPI=aiepi.GENERAL_AIEPI_idGENERAL_AIEPI
+ WHERE PREGUNTAS_ID_PREGUNTA=151 AND MIEMBROS_HOGAR_ID_MIEMBROS_HOGAR='".$idAiepiBuscar."'");
 for ($y=0; $y < count($datosPyRAmbientalesHigiene); $y++) { 
     switch ($datosPyRAmbientalesHigiene[$y]['PREGUNTA_RESPUESTA_SC_ID_PREGUNTA_RESPUESTA_SC']) {
         case '542':

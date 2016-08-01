@@ -1,19 +1,21 @@
 <div class="container">
+	<center><p class="titulo" style = "font-size:45px; color:#2196f3" >SINCRONIZACIÓN</p>
+	<p>Recuerda que para poder sincronizar desbes estar conectado</p>
 	<div class="row">
 		<div class="col l6">
 			<form action="<?php echo BASE_URL; ?>sincronizar/sincronizarm" method="Post">
-				<button>Sincronizar al servidor</button>
+				<button class="btn-large waves-effect waves-light blue">Sincronizar con el servidor</button>
 	
 			</form>
-
+		</div>
+		<div class="col l6">
 			<form action="<?php echo BASE_URL; ?>sincronizar/sincronizarBajarm" method="Post">
-				<button>Sincronizar Al local</button>
-				<p class="bnt" id="create_account">dfsdf	</p>
+				<button class="btn-large waves-effect waves-light blue " >Descargar localmente</button>
+				
 			</form>
-
-
 		</div>
 	</div>
+	</center>
 </div>
 
 <script type="text/javascript">

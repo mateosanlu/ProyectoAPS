@@ -15,7 +15,14 @@
 			selectMonths: true, // Creates a dropdown to control month
 			selectYears: 100 // Creates a dropdown of 15 years to control year
 		});
-		
+		$('#btnConsultar').prop('disabled',true);
+		$('#logoSearch').hide();
+		$('#btnConsultar').mouseenter(function(){
+			if ($(this).prop('disabled')) {
+				Materialize.toast('Seleccione una opcion para poder consultar', 4000);
+			}
+			
+		});
 		$('#divOpDoc').hide();
 		$('#divOpNombre').hide();
 		$('#divOpApellido').hide();
@@ -28,6 +35,8 @@
 				$('#divOpApellido').hide();
 				$('#divOpRangoFechas').hide();
 				$('#divOpNumFicha').hide();
+				$('#btnConsultar').prop('disabled',false);
+				$('#logoSearch').show();
 			}
 		});
 		$('#opNombre').click( function(){ 
@@ -37,6 +46,8 @@
 				$('#divOpApellido').hide();
 				$('#divOpRangoFechas').hide();
 				$('#divOpNumFicha').hide();
+				$('#btnConsultar').prop('disabled',false);
+				$('#logoSearch').show();
 			}
 		});
 		$('#opApellido').click( function(){ 
@@ -46,6 +57,8 @@
 				$('#divOpDoc').hide();
 				$('#divOpRangoFechas').hide();
 				$('#divOpNumFicha').hide();
+				$('#btnConsultar').prop('disabled',false);
+				$('#logoSearch').show();
 			}
 		});
 		$('#opRangoFechas').click( function(){ 
@@ -55,6 +68,8 @@
 				$('#divOpDoc').hide();
 				$('#divOpNumFicha').hide();
 				$('#divOpApellido').hide();
+				$('#btnConsultar').prop('disabled',false);
+				$('#logoSearch').show();
 			}
 		});
 		$('#opNumFicha').click( function(){ 
@@ -64,6 +79,8 @@
 				$('#divOpDoc').hide();
 				$('#divOpRangoFechas').hide();
 				$('#divOpApellido').hide();
+				$('#btnConsultar').prop('disabled',false);
+				$('#logoSearch').show();
 			}
 
 		});
@@ -72,6 +89,7 @@
 			$('#divOpNumFicha').show();
 			$('#numFichaBuscarFormato').val($('#fichaHogarSearch0').val());
 			$('#consultForm').submit();
+
 		});
 
 	/*	 function  Eps(dato){
@@ -103,24 +121,67 @@
             }
         });*/
 $('#contador').val();
+var url=$('#urlReportes').val();
 for (var y = 0; y < $('#contador').val(); y++) {
-	
-
         $('#h'+y).click(function(){
+			$('#conFicha').html('<br><h4 style = "color:#2196f3" align="center"> FORMATOS ASOCIADOS </h4><br>');
+			$.post('/ProyectoAPS/consultas/consultarFicha',{
+        		docBuscarFicha:$(this).val()
+        	},function(datosFicha){
+			datosFicha = $.parseJSON(datosFicha);
+			$('#conFicha').append('<center>'+
+                 		'<a target="_blank" class="btn-large waves-effect waves-light blue" href="'+url+'reportes/generarFicha/'+datosFicha[0]['ID_FIC_HOGAR']+'">FICHA HOGAR</a>'+
+                 		'</center>');
+        	});
+
         	$.post('/ProyectoAPS/consultas/consultarFormatos',{
         		docBuscarFormato:$(this).val()
         	},function(datos){
         		datos = $.parseJSON(datos);
+        		var op;
                  //alert(datos[0]['IDENTIFICACION_MIEMBRO_HOGAR']);
                  //console.log(datos[0]['DES_FORMATO']);
-                 $('#contFormatos').html('<br><h4 style = "color:#2196f3" align="center"> FORMATOS ASOCIADOS </h4><br>');
+                 
+                 
+                 
                  for (var i = 0; i < datos.length; i++) {
-                 	$('#contFormatos').append('<center>'+
-                 		'<a class="btn-large waves-effect waves-light blue" href="http://localhost/ProyectoAPS/reportesAiepi/pdf1/'+datos[i]['IDENTIFICACION_MIEMBRO_HOGAR']+'">'+datos[i]['DES_FORMATO']+'</a>'+
+                 	op=datos[i]['ID_FORMATO'];
+                 		
+                 	
+                 	if (op==2) {
+                 		$('#contFormatos').append('<center>'+
+                 		'<a target="_blank" class="btn-large waves-effect waves-light blue" href="'+url+'reportekardes/reporteKardesPdf/'+datos[i]['ID_MIEMBRO']+'">'+datos[i]['DES_FORMATO']+'</a>'+
                  		'</center><br>');
+                 	}
+                 	if (op==3) {
+                 		 $('#contFormatos').append('<center>'+
+                 		'<a target="_blank" class="btn-large waves-effect waves-light blue" href="'+url+'reportes/generarCancermama/'+datos[i]['ID_MIEMBRO']+'">'+datos[i]['DES_FORMATO']+'</a>'+
+                 		'</center><br>');
+                 	}
+                 	if (op==4) {
+                 		$('#contFormatos').append('<center>'+
+                 		'<a target="_blank" class="btn-large waves-effect waves-light blue" href="'+url+'reportesAiepi/pdf1/'+datos[i]['ID_MIEMBRO']+'">'+datos[i]['DES_FORMATO']+'</a>'+
+                 		'</center><br>');
+                 	}
+                 	if (op==5) {
+                 		$('#contFormatos').append('<center>'+
+                 		'<a target="_blank" class="btn-large waves-effect waves-light blue" href="'+url+'reportes/generarDemandaInducida/'+datos[i]['ID_MIEMBRO']+'">'+datos[i]['DES_FORMATO']+'</a>'+
+                 		'</center><br>');
+                 	}
+                 	if (op==6) {
+                 		$('#contFormatos').append('<center>'+
+                 		'<a target="_blank" class="btn-large waves-effect waves-light blue" href="'+url+'reportes/generarFindrisk/'+datos[i]['ID_MIEMBRO']+'">'+datos[i]['DES_FORMATO']+'</a>'+
+                 		'</center><br>');
+                 	}
+                 
+                 	
                  }     
              }); 
-        });
+
+        	        });
+       
+			
+      
         }
     });
 
